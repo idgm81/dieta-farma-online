@@ -1,0 +1,7 @@
+{
+  "name": "dieta-farma-online",
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "fontawesome#^4.7.0"
+  }
+}
