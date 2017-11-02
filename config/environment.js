@@ -21,7 +21,35 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    contentSecurityPolicy: {
+      'default-src': "'none'",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
+      'font-src': "'self'",
+      'connect-src': "'self'",
+      'img-src': "'self'",
+      'report-uri':"'localhost'",
+      'style-src': "'self' 'unsafe-inline'",
+      'frame-src': "'none'"
     }
+  };
+
+  ENV['ember-simple-auth'] = {
+    authorizer: 'authorizer:jwt'
+  };
+
+  ENV['ember-simple-auth-token'] = {
+    serverTokenEndpoint: '/api/token-auth/',
+    tokenPropertyName: 'token',
+    identificationField: 'email',
+    passwordField: 'password',
+    refreshAccessTokens: true,
+    authorizationPrefix: 'JWT ',
+    authorizationHeaderName: 'x-auth-token',
+    refreshTokenPropertyName: 'refresh_token',
+    refreshLeeway: 300, // Refresh the token 5 minutes (300s) before it expires.,
+    serverTokenRefreshEndpoint: '/api/token-refresh/',
+    tokenExpireName: 'exp'
   };
 
   if (environment === 'development') {
@@ -43,9 +71,7 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
-
-  }
+  if (environment === 'production') {}
 
   return ENV;
 };
