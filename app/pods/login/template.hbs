@@ -1,5 +1,6 @@
 {{login-form
   id='dt-login-page'
-  user=model.user
+  email=model.email
   password=model.password
-  submit='doLogin'}}
+  authError=error
+  onsubmit='authenticate'}}
