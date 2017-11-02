@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 const validations = {
-  user: /.@.+..+/,
+  email: /.@.+..+/,
   password: /.{8,}/
 };
 
@@ -11,18 +11,25 @@ export default Ember.Component.extend({
 
   classNames: ['top-content'],
 
-  user: null,
+  email: '',
 
-  password: null,
+  password: '',
+
+  authError: false,
+
+  msgError: Ember.computed('authError', function () {
+    return 'Usuario o contraseña inválidos';
+  }),
 
   didInsertElement() {
     this._super(...arguments);
+
     Ember.$.backstretch("../../assets/images/backgrounds/login-1.jpg");
   },
 
-  validateCredentials(credentials) {
-    const isValidUser = credentials.user !== undefined && validations.user.test(credentials.user);
-    const isValidPassword = credentials.password !== undefined && validations.password.test(credentials.password);
+  validateCredentials(loginCredentials) {
+    const isValidUser = loginCredentials.email !== undefined && validations.email.test(loginCredentials.email);
+    const isValidPassword = loginCredentials.password !== undefined && validations.password.test(loginCredentials.password);
 
     if (!isValidUser) {
       Ember.$('form').find('input').eq(0).addClass('input-error');
@@ -40,16 +47,13 @@ export default Ember.Component.extend({
   },
 
   actions: {
-    submit(e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const credentials = {
-        user: this.get('user'),
+    submit() {
+      const loginCredentials = {
+        email: this.get('email'),
         password: this.get('password')
       };
-      if (this.validateCredentials(credentials)) {
-        this.sendAction('submit', credentials);
+      if (this.validateCredentials(loginCredentials)) {
+        this.sendAction('onsubmit', loginCredentials);
       }
     }
   }

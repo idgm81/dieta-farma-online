@@ -16,15 +16,15 @@
           </div>
         </div>
         <div class="form-bottom">
-          <form role="form" class="login-form" onsubmit={{action 'submit'}}>
+          <form role="form" class="login-form">
             <div class="form-group">
               <label class="sr-only" for="form-username">Usuario</label>
               {{input
                 id='form-username'
                 name='form-username'
-                type='text'
+                type='email'
                 class='form-username form-control'
-                value=user
+                value=email
                 placeholder='Usuario'}}
             </div>
             <div class="form-group">
@@ -37,7 +37,11 @@
                 value=password
                 placeholder='Contraseña'}}
             </div>
-            <button type="submit" class="btn">Acceder</button>
+            {{#if authError}}
+              <div><p>{{msgError}}</p></div>
+            {{/if}}
+            <button class="btn" {{action 'submit'}}>Acceder</button>
+            <div class="loader" style="display: none">Accediendo...</div>
           </form>
         </div>
       </div>

@@ -210,7 +210,7 @@ $color-dietafarma: #25a29f;
   }
 
   input {
-    &[type="text"], &[type="password"] {
+    &[type="email"], &[type="password"] {
       height: 50px;
       margin: 0;
       padding: 0 20px;
@@ -292,7 +292,7 @@ $color-dietafarma: #25a29f;
   }
 
   input {
-    &[type="text"]:focus, &[type="password"]:focus {
+    &[type="email"]:focus, &[type="password"]:focus {
       outline: 0;
       background: #fff;
       border: 3px solid #fff;
@@ -314,7 +314,7 @@ $color-dietafarma: #25a29f;
   }
 
   input {
-    &[type="text"]:-moz-placeholder, &[type="password"]:-moz-placeholder {
+    &[type="email"]:-moz-placeholder, &[type="password"]:-moz-placeholder {
       color: #888;
     }
   }
@@ -326,7 +326,7 @@ $color-dietafarma: #25a29f;
   }
 
   input {
-    &[type="text"]:-ms-input-placeholder, &[type="password"]:-ms-input-placeholder {
+    &[type="email"]:-ms-input-placeholder, &[type="password"]:-ms-input-placeholder {
       color: #888;
     }
   }
@@ -338,7 +338,7 @@ $color-dietafarma: #25a29f;
   }
 
   input {
-    &[type="text"]::-webkit-input-placeholder, &[type="password"]::-webkit-input-placeholder {
+    &[type="email"]::-webkit-input-placeholder, &[type="password"]::-webkit-input-placeholder {
       color: #888;
     }
   }
