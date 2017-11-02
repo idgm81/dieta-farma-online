@@ -35,6 +35,16 @@ module.exports = function(defaults) {
   });
 
   app.import({
+    development: 'bower_components/moment/moment.js',
+    production: 'bower_components/moment/min/moment.min.js'
+  });
+
+  app.import({
+    development: 'bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js',
+    production: 'bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js'
+  });
+
+  app.import({
     development: 'bower_components/jquery-backstretch/jquery.backstretch.js',
     production: 'bower_components/jquery-backstretch/jquery.backstretch.min.js'
   });
