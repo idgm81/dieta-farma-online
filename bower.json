@@ -3,6 +3,8 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
     "font-awesome": "fontawesome#^4.7.0",
-    "jquery-backstretch": "^2.1.16"
+    "jquery-backstretch": "^2.1.16",
+    "moment": "2.10.6",
+    "bootstrap-datepicker": "^1.7.1"
   }
 }
