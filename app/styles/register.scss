@@ -155,7 +155,7 @@ $color-dietafarma: #25a29f;
 	  padding-top: 40px;
 	}
 
-	.f1 {
+	.register {
 	  padding: 25px;
 	  background: #fff;
 	  -moz-border-radius: 4px;
@@ -168,37 +168,37 @@ $color-dietafarma: #25a29f;
 	  }
 	}
 
-	.f1-steps {
+	.register-steps {
 	  overflow: hidden;
 	  position: relative;
 	  margin-top: 20px;
 	}
 
-	.f1-progress {
+	.register-progress {
 	  position: absolute;
 	  top: 24px;
 	  left: 0;
 	  width: 100%;
-	  height: 1px;
+	  height: 2px;
 	  background: #ddd;
 	}
 
-	.f1-progress-line {
+	.register-progress-line {
 	  position: absolute;
 	  top: 0;
 	  left: 0;
-	  height: 1px;
+	  height: 2px;
 	  background: $color-dietafarma;
 	}
 
-	.f1-step {
+	.register-step {
 	  position: relative;
 	  float: left;
 	  width: 20%;
 	  padding: 0 5px;
 	}
 
-	.f1-step-icon {
+	.register-step-icon {
 	  display: inline-block;
 	  width: 40px;
 	  height: 40px;
@@ -212,14 +212,14 @@ $color-dietafarma: #25a29f;
 	  border-radius: 50%;
 	}
 
-	.f1-step {
-	  &.activated .f1-step-icon {
+	.register-step {
+	  &.completed .register-step-icon {
 	    background: #fff;
 	    border: 1px solid $color-dietafarma;
 	    color: $color-dietafarma;
 	    line-height: 38px;
 	  }
-	  &.active .f1-step-icon {
+	  &.active .register-step-icon {
 	    width: 48px;
 	    height: 48px;
 	    margin-top: 0;
@@ -230,26 +230,26 @@ $color-dietafarma: #25a29f;
 	  p {
 	    color: #ccc;
 	  }
-	  &.activated p, &.active p {
+	  &.completed p, &.active p {
 	    color: $color-dietafarma;
 	  }
 	}
 
-	.f1 fieldset {
+	.register fieldset {
 	  display: none;
 	  text-align: left;
 	}
 
-	.f1-buttons {
+	.register-buttons {
 	  text-align: right;
 	}
 
-	.f1 .input-error {
-	  border-color: $color-dietafarma;
+	.register .input-error {
+	  border-color: red;
 	}
 
 	input {
-  &[type="text"], &[type="password"] {
+  &[type="text"], &[type="email"], &[type="password"] {
     height: 44px;
     margin: 0;
     padding: 0 20px;
@@ -333,7 +333,7 @@ textarea {
 }
 
 input {
-  &[type="text"]:focus, &[type="password"]:focus {
+  &[type="text"]:focus, &[type="email"]:focus, &[type="password"]:focus {
     outline: 0;
     background: #fff;
     border: 1px solid #ccc;
@@ -355,7 +355,7 @@ textarea {
 }
 
 input {
-  &[type="text"]:-moz-placeholder, &[type="password"]:-moz-placeholder {
+  &[type="text"]:-moz-placeholder, &[type="email"]:-moz-placeholder, &[type="password"]:-moz-placeholder {
     color: #888;
   }
 }
@@ -367,7 +367,7 @@ textarea {
 }
 
 input {
-  &[type="text"]:-ms-input-placeholder, &[type="password"]:-ms-input-placeholder {
+  &[type="text"]:-ms-input-placeholder, &[type="email"]:-ms-input-placeholder, &[type="password"]:-ms-input-placeholder {
     color: #888;
   }
 }
@@ -379,7 +379,7 @@ textarea {
 }
 
 input {
-  &[type="text"]::-webkit-input-placeholder, &[type="password"]::-webkit-input-placeholder {
+  &[type="text"]::-webkit-input-placeholder, &[type="email"]::-webkit-input-placeholder, &[type="password"]::-webkit-input-placeholder {
     color: #888;
   }
 }
@@ -488,10 +488,10 @@ button.btn {
 	  h1, h2 {
 	    font-size: 32px;
 	  }
-	  .f1 {
+	  .register {
 	    padding-bottom: 20px;
 	  }
-	  .f1-buttons button {
+	  .register-buttons button {
 	    margin-bottom: 5px;
 	  }
 	}
