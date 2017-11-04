@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('home');
   this.route('register');
   this.route('login');
+  this.route('error-page', { path: '*path'});
 });
 
 export default Router;

@@ -2,6 +2,7 @@
 @import "login";
 @import "register";
 @import "spinner";
+@import "error";
 
 
 .jumbotron {
@@ -84,10 +85,6 @@ footer
 
 .bgdark-blue {
   background-color: #2C3E50;
-}
-
-.bglight-blue {
-  background-color: #3498DB;
 }
 
 .top-footer {
