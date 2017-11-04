@@ -7,10 +7,6 @@ const validations = {
 
 export default Ember.Component.extend({
 
-  attributeBindings: ['id'],
-
-  classNames: ['top-content'],
-
   email: '',
 
   password: '',
@@ -20,12 +16,6 @@ export default Ember.Component.extend({
   msgError: Ember.computed('authError', function () {
     return 'Usuario o contraseña inválidos';
   }),
-
-  didInsertElement() {
-    this._super(...arguments);
-
-    Ember.$.backstretch("../../assets/images/backgrounds/login-1.jpg");
-  },
 
   validateCredentials(loginCredentials) {
     const isValidUser = loginCredentials.email !== undefined && validations.email.test(loginCredentials.email);
