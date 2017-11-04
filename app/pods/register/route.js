@@ -16,7 +16,9 @@ export default Ember.Route.extend({
       shapes: '',
       clinicHistory: '',
       foodDiseases: '',
-      foodForbidden: ''
+      foodForbidden: '',
+      dietDescription: '',
+      injuries: ''
     }
   },
 

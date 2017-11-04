@@ -1,1 +1,6 @@
-{{register-form id='dt-register-page' onsubmit='register'}}
+{{#wrapper-bg images=registerBackground}}
+  {{register-form
+    id='dt-register-page'
+    data=model
+    onsubmit='register'}}
+{{/wrapper-bg}}

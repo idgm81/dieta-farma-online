@@ -11,19 +11,22 @@ export default Ember.Component.extend({
 
   classNames: ['top-content'],
 
+  data: {},
+
   step: '1',
 
   didInsertElement() {
     this._super(...arguments);
 
-    Ember.$.backstretch("../../assets/images/backgrounds/register-1.jpg");
     this.$('.register fieldset:first').fadeIn('slow');
-
     this.$('.register input[type="text"], .register input[type="password"], .register input[type="email"], .register textarea').on('focus', () => {
       $(this).removeClass('input-error');
     });
 
-    this.$('#register-birthday').datepicker({ format: 'dd/mm/yyyy' });
+    this.$('#register-birthday').datepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true
+    });
   },
 
   _scrollToClass(element_class, removed_height) {
@@ -117,7 +120,7 @@ export default Ember.Component.extend({
       const parent_fieldset = '#register-step-' + step;
       const current_active_step = $('form.register').find('.register-step.active');
       const progress_line = $('form.register').find('.register-progress-line');
-      this.decrementProperty(this.get('step'));
+      this.decrementProperty('step');
 
       $(parent_fieldset).fadeOut(() => {
         // change icons
@@ -139,7 +142,7 @@ export default Ember.Component.extend({
 
       if(this._validateStep(step)) {
         if (Number(step) < 5) {
-          this.incrementProperty(this.get('step'));
+          this.incrementProperty('step');
           $(parent_fieldset).fadeOut(() => {
             // change icons
             current_active_step.removeClass('active').addClass('completed').next().addClass('active');
