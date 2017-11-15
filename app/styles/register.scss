@@ -6,7 +6,7 @@ $color-dietafarma: #25a29f;
 		font-size: 10px;
     font-weight: 300;
     color: #888;
-    line-height: 30px;
+    line-height: 18px;
     text-align: center;
 	}
 
@@ -244,8 +244,18 @@ $color-dietafarma: #25a29f;
 	  text-align: right;
 	}
 
-	.register .input-error {
-	  border-color: red;
+	.register .field-error {
+	  border-color: #a94442;
+	}
+
+	.fa-check-circle {
+		font-size: 4em;
+		color: $color-dietafarma;
+	}
+
+	.fa-times-circle {
+		font-size: 4em;
+		color: #a94442;
 	}
 
 	input {
@@ -453,6 +463,10 @@ button.btn {
       background: #bbb;
     }
   }
+}
+
+.datepicker table tr td.active.active {
+	background-color: $color-dietafarma;
 }
 
 	/***** Media queries *****/

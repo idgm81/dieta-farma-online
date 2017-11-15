@@ -166,6 +166,10 @@ $color-dietafarma: #25a29f;
     }
   }
 
+  .invalid-login {
+    color: #de615e;
+  }
+
   .form-top-right {
     float: left;
     width: 25%;
@@ -192,7 +196,7 @@ $color-dietafarma: #25a29f;
       button.btn {
         width: 100%;
       }
-      .input-error {
+      .field-error {
         border-color: #de615e;
       }
     }

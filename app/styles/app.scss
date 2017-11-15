@@ -1,8 +1,12 @@
-@import "bootstrap";
-@import "login";
-@import "register";
-@import "spinner";
-@import "error";
+@import 'bootstrap';
+@import 'ember-side-menu';
+@import 'ember-power-select';
+@import 'home';
+@import 'login';
+@import 'register';
+@import 'spinner';
+@import 'error';
+@import 'tables';
 
 
 .jumbotron {
@@ -59,11 +63,15 @@ footer
 }
 
 .quick-info li i {
-  font-size: 8px;
+  font-size: 10px;
   width: 15px;
   height: 15px;
   line-height: 15px;
   text-align: left;
+}
+
+.social-icon a {
+  color: #fff;
 }
 
 .social-icon li {
@@ -705,3 +713,5 @@ contact us
     font-size: 24px;
   }
 }
+
+@import "ember-power-select";
