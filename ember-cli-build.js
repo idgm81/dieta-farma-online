@@ -1,9 +1,15 @@
 /* eslint-env node */
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var funnel = require('ember-cli/node_modules/broccoli-funnel');
+var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var Funnel = require('broccoli-funnel');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
+    svg: {
+      paths: [
+        'public/assets/images',
+        'app/svgs'
+      ]
+    },
     sourcemaps: {
       enabled: true
     },
@@ -45,11 +51,16 @@ module.exports = function(defaults) {
   });
 
   app.import({
+    development: 'bower_components/bootstrap-validator/dist/validator.js',
+    production: 'bower_components/bootstrap-validator/dist/validator.min.js'
+  });
+
+  app.import({
     development: 'bower_components/jquery-backstretch/jquery.backstretch.js',
     production: 'bower_components/jquery-backstretch/jquery.backstretch.min.js'
   });
 
-  var fontFiles = new funnel('bower_components/font-awesome/fonts', {
+  var fontFiles = new Funnel('bower_components/font-awesome/fonts', {
     srcDir: '/',
     destDir: 'fonts'
   });
