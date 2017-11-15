@@ -174,6 +174,10 @@ export default Ember.Component.extend({
       if (Number(this.get('step')) === 5) {
         this.sendAction('onsubmit', this.get('data'));
       }
+    },
+
+    success() {
+      this.sendAction('onsuccess');
     }
   }
 });

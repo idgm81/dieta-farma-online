@@ -10,11 +10,15 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
 
       newUser.save()
         .then((response) => {
-          Ember.$('#end-register-modal-success').show();
+          Ember.$('#end-register-modal-success').modal();
         })
         .catch((error) => {
-          Ember.$('#end-register-modal-error').show();
+          Ember.$('#end-register-modal-error').modal();
         });
+    },
+
+    goToLogin() {
+      this.transitionTo('login');
     }
   }
 });
