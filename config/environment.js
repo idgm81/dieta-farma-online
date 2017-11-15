@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 module.exports = function(environment) {
-  var HOST = environment === 'production' ? 'https://dieta-farma-api.herokuapp.com:4500' : 'http://localhost:4500';
+  var HOST = environment === 'production' ? 'https://dieta-farma-api.herokuapp.com' : 'http://localhost:4500';
   var ENV = {
     modulePrefix: 'dieta-farma-online',
     podModulePrefix: 'dieta-farma-online/pods',
@@ -28,7 +28,7 @@ module.exports = function(environment) {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
       'font-src': "'self'",
-      'connect-src': "'self' http://localhost:4500 https://dieta-farma-api.herokuapp.com:4500/",
+      'connect-src': "'self' http://localhost:4500 https://dieta-farma-api.herokuapp.com",
       'img-src': "'self'",
       'report-uri':"'localhost'",
       'style-src': "'self' 'unsafe-inline'",
