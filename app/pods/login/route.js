@@ -1,16 +1,14 @@
 import Ember from 'ember';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
-export default Ember.Route.extend(UnauthenticatedRouteMixin, {
+export default Ember.Route.extend(ApplicationRouteMixin, UnauthenticatedRouteMixin, {
 
-  session: Ember.inject.service('session'),
+  session: Ember.inject.service(),
 
-  model() {
-    return {
-      email: '',
-      password: ''
-    }
-  },
+  routeAfterAuthentication: 'home',
+
+  api: Ember.inject.service('api'),
 
   // clear a potentially stale error message from previous login attempts
   setupController(controller, model) {
@@ -19,39 +17,20 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
       controller.set('error', false);
   },
 
-  _checkCredentials(credentials) {
-    const whiteList = [
-      {
-        email: 'jorgebaztan@dietafarma.es',
-        password: 'jorge1234'
-      }, {
-        email: 'joseotamendi@gmail.com',
-        password: 'otam1234'
-      }
-    ];
-
-    return whiteList.findBy('email', credentials.email) && whiteList.findBy('password', credentials.password);
-  },
-
   actions: {
     authenticate(credentials) {
-      //const credentials = this.getProperties('email', 'password');
       Ember.$('button').hide();
-      Ember.$('div.loader').show();
+      Ember.$('div.loading-container').show();
 
-      const isOk = this._checkCredentials(credentials);
-      setTimeout(() => {
-        Ember.$('div.loader').hide();
+      const authenticator = 'authenticator:jwt';
+      this.get('session').authenticate(authenticator, {
+        identification: credentials.email,
+        password: credentials.password
+      }).catch((reason) => {
+        Ember.$('div.loading-container').hide();
         Ember.$('button').show();
-        if (isOk) {
-          this.set('controller.error', false);
-          this.transitionTo('admin');
-        } else {
-          this.set('controller.error', true);
-        }
-      }, 500);
-      //const authenticator = 'authenticator:jwt';
-      //this.get('session').authenticate(authenticator, credentials);
+        this.set('controller.error', true);
+      });
     }
   }
 });

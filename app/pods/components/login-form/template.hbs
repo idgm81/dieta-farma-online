@@ -2,23 +2,26 @@
   <div class="col-sm-6 col-sm-offset-3 form-box">
     <div class="form-top">
       <div class="form-top-left">
-        <p>Introduce tu usuario y contraseña para acceder:</p>
+        <p>Introduce tu email y contraseña para acceder:</p>
       </div>
       <div class="form-top-right">
         <i class="fa fa-lock"></i>
       </div>
     </div>
+    <div class="loading-container" style="display: none">Accediendo...</div>
     <div class="form-bottom">
       <form role="form" class="login-form">
         <div class="form-group">
-          <label class="sr-only" for="form-username">Usuario</label>
+          <label class="sr-only" for="form-username">Email</label>
           {{input
-            id='form-username'
-            name='form-username'
+            id='form-email'
+            name='form-email'
             type='email'
-            class='form-username form-control'
+            class='form-email form-control'
             value=email
-            placeholder='Usuario'}}
+            required=true
+            placeholder='Email'}}
+          <small class="help-block with-errors"></small>
         </div>
         <div class="form-group">
           <label class="sr-only" for="form-password">Contraseña</label>
@@ -28,13 +31,15 @@
             type='password'
             class='form-password form-control'
             value=password
+            minlength='8'
+            required=true
             placeholder='Contraseña'}}
+          <small class="help-block with-errors"></small>
         </div>
         {{#if authError}}
-          <div><p>{{msgError}}</p></div>
+          <div class="invalid-login"><p>{{msgError}}</p></div>
         {{/if}}
-        <button class="btn" {{action 'submit'}}>Acceder</button>
-        <div class="loading-container" style="display: none">Accediendo...</div>
+        <button class="btn" type="submit">Acceder</button>
       </form>
     </div>
   </div>

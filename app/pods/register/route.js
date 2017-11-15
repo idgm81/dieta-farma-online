@@ -1,31 +1,20 @@
 import Ember from 'ember';
+import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
-export default Ember.Route.extend({
-
-  model() {
-    return {
-      email: '',
-      password: '',
-      repeatPassword: '',
-      name: '',
-      surname: '',
-      birthday: '01/01/1970',
-      phone: '',
-      height: '',
-      weight: '',
-      shapes: '',
-      clinicHistory: '',
-      foodDiseases: '',
-      foodForbidden: '',
-      dietDescription: '',
-      injuries: ''
-    }
-  },
+export default Ember.Route.extend(UnauthenticatedRouteMixin, {
 
   actions: {
-    register() {
-      alert('Enhorabuena, ' + this.get('model.name') + '!, ya estás registrado en dietafarma.es!')
-      //this.transitionTo('home');
+    register(data) {
+      data.birthday = new Date(data.birthday);
+      const newUser = this.store.createRecord('user', data);
+
+      newUser.save()
+        .then((response) => {
+          Ember.$('#end-register-modal-success').show();
+        })
+        .catch((error) => {
+          Ember.$('#end-register-modal-error').show();
+        });
     }
   }
 });

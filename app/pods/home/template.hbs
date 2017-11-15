@@ -1,0 +1,47 @@
+{{side-menu-toggle side="right"}}
+{{#side-menu side="right" width="300px"}}
+<div class="side-title">
+  {{inline-svg 'icon-dietafarma-white.svg'}}<span> DietaFarma App</span><
+</div>
+<div class="clearfix"></div>
+<div class="profile clearfix">
+  <div class="profile-pic">
+    <img src="../assets/images/default-avatar.png" alt="..." class="img-circle profile-img">
+  </div>
+  <div class="profile-info">
+    <h3>Hola, {{model.name}}</h3>
+  </div>
+</div>
+<nav class="sm-item-list">
+  {{model.role}}
+  <ul>
+    {{#if model.isClient}}
+      <li {{action 'showProfile'}}><i class="fa fa-fw fa-gear"></i><span>Mi Perfil</span></li>
+      <li {{action 'showDiets'}}><i class="fa fa-fw fa-file-text"></i><span>Mis dietas</span></li>
+    {{/if}}
+    {{#if model.isNutriotionist}}
+      <li {{action 'showClients'}}><i class="fa fa-fw fa-gear"></i><span>Mis clientes</span></li>
+      <li {{action 'showDiets'}}><i class="fa fa-fw fa-file-text"></i><span>Mis dietas</span></li>
+      <li {{action 'showAppointments'}}><i class="fa fa-fw fa-calendar"></i><span>Mis citas programadas</span></li>
+    {{/if}}
+    <li><i class="fa fa-fw fa-calendar"></i><span>Pedir cita presencial</span></li>
+    <li {{action 'showMessages'}}><i class="fa fa-fw fa-envelope"></i><span>Mensajes</span>
+      {{#if model.unreadMessages}}
+        <span class="badge bg-green">{{model.unreadMessages}}</span>
+      {{/if}}
+    </li>
+    <li {{action 'logout'}}><i class="fa fa-fw fa-sign-out"></i><span>Salir</span></li>
+  </ul>
+</nav>
+{{/side-menu}}
+{{content-backdrop}}
+<main id="page-wrap">
+  <div class="container">
+    {{outlet}}
+  </div>
+</main>
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">© DietaFarma 2017</span>
+  </div>
+</footer>

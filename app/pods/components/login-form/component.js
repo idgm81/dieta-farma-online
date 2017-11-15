@@ -1,10 +1,5 @@
 import Ember from 'ember';
 
-const validations = {
-  email: /.@.+..+/,
-  password: /.{8,}/
-};
-
 export default Ember.Component.extend({
 
   email: '',
@@ -14,37 +9,35 @@ export default Ember.Component.extend({
   authError: false,
 
   msgError: Ember.computed('authError', function () {
-    return 'Usuario o contraseña inválidos';
+    return 'Email y/o contraseña incorrectos';
   }),
 
-  validateCredentials(loginCredentials) {
-    const isValidUser = loginCredentials.email !== undefined && validations.email.test(loginCredentials.email);
-    const isValidPassword = loginCredentials.password !== undefined && validations.password.test(loginCredentials.password);
+  didInsertElement() {
+    this._super(...arguments);
 
-    if (!isValidUser) {
-      Ember.$('form').find('input').eq(0).addClass('input-error');
-    } else {
-      Ember.$('form').find('input').eq(0).removeClass('input-error');
-    }
+    Ember.run.scheduleOnce('afterRender', this, function() {
+      this.$('.login-form').on('invalid.bs.validator', (e) => $(e.relatedTarget).addClass('field-error'));
+      this.$('.login-form').on('valid.bs.validator', (e) => $(e.relatedTarget).removeClass('field-error'));
 
-    if (!isValidPassword) {
-      Ember.$('form').find('input').eq(1).addClass('input-error');
-    } else {
-      Ember.$('form').find('input').eq(1).removeClass('input-error');
-    }
+      this.$('.login-form').validator().on('submit', (e) => {
+        if (!e.isDefaultPrevented()) {
+          e.preventDefault();
+          e.stopPropagation();
+          // everything looks good!
+          const credentials = {
+            email: this.get('email'),
+            password: this.get('password')
+          };
 
-    return isValidUser && isValidPassword;
+          this.sendAction('onsubmit', credentials);
+        }
+      });
+    });
   },
 
   actions: {
-    submit() {
-      const loginCredentials = {
-        email: this.get('email'),
-        password: this.get('password')
-      };
-      if (this.validateCredentials(loginCredentials)) {
-        this.sendAction('onsubmit', loginCredentials);
-      }
+    resetPassword() {
+
     }
   }
 });

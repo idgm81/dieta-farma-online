@@ -40,27 +40,31 @@
           <fieldset id="register-step-1">
             <h4>Tus datos de acceso:</h4>
             <div class="form-group">
-              <label class="sr-only" for="register-email">Email</label>
+              <label for="register-email">Email</label>
               {{input
                 id='register-email'
                 name='register-email'
                 type='email'
                 required=true
                 class='register-email form-control'
+                autocomplete='off'
                 value=data.email
                 placeholder='Tu email...'}}
+                <small class="help-block with-errors"></small>
             </div>
             <div class="form-group">
-              <label class="sr-only" for="register-password">Contraseña</label>
+              <label for="register-password">Contraseña</label>
               {{input
                 id='register-password'
                 name='register-password'
                 type='password'
+                minlength='8'
                 required=true
                 class='register-password form-control'
+                autocomplete='off'
                 value=data.password
                 placeholder='Tu contraseña de acceso...'}}
-              <small class="form-text text-muted">Tu contraseña debe contener como mínimo 8 caracteres</small>
+              <small class="help-block with-errors"></small>
             </div>
             <div class="register-buttons">
               <button type="button" class="btn btn-next" {{action 'saveStep'}}>Siguiente</button>
@@ -70,26 +74,26 @@
           <fieldset id="register-step-2">
             <h4>Tu perfil:</h4>
             <div class="form-group">
-              <label class="sr-only" for="register-name">Nombre</label>
+              <label for="register-name">Nombre</label>
               {{input
                 id='register-name'
                 name='register-name'
                 type='text'
                 maxlength='25'
                 class='register-name form-control'
-                required=true
+                autocomplete='off'
                 value=data.name
                 placeholder='Nombre'}}
             </div>
             <div class="form-group">
-              <label class="sr-only" for="register-surname">Apellidos</label>
+              <label for="register-surname">Apellidos</label>
               {{input
                 id='register-surname'
                 name='register-surname'
                 type='text'
                 maxlength='25'
                 class='register-surname form-control'
-                required=true
+                autocomplete='off'
                 value=data.surname
                 placeholder='Apellidos'}}
             </div>
@@ -100,19 +104,24 @@
                 name='register-birthday'
                 type='text'
                 class='register-birthday form-control'
-                required=true
+                autocomplete='off'
                 value=data.birthday}}
             </div>
             <div class="form-group">
-              <label class="sr-only" for="register-phone">Teléfono de contacto</label>
+              <p>Sexo</p>
+              <label for="optGenre1" class="radio-inline">{{radio-button id='optGenre1' name='optGenre' value='male' checked=data.genre}}Hombre</label>
+              <label for="optGenre2" class="radio-inline">{{radio-button id='optGenre2' name='optGenre' value='female' checked=data.genre}}Mujer</label>
+            </div>
+            <div class="form-group">
+              <label for="register-phone">Teléfono de contacto</label>
               {{input
                 id='register-phone'
                 name='register-phone'
                 type='text'
                 class='register-phone form-control'
                 maxlength='9'
+                autocomplete='off'
                 value=data.phone
-                required=true
                 placeholder='Teléfono de contacto'}}
             </div>
             <div class="register-buttons">
@@ -124,26 +133,26 @@
           <fieldset id="register-step-3">
             <h4>Tus medidas:</h4>
             <div class="form-group">
-              <label class="sr-only" for="register-height">Altura</label>
+              <label for="register-height">Altura</label>
               {{input
                 id='register-height'
                 name='register-height'
-                type='number'
+                type='text'
                 class='register-height form-control'
                 maxlength='3'
-                required=true
+                autocomplete='off'
                 value=data.height
                 placeholder='Altura (cm)'}}
             </div>
             <div class="form-group">
-              <label class="sr-only" for="register-weight">Peso</label>
+              <label for="register-weight">Peso</label>
               {{input
                 id='register-weight'
                 name='register-weight'
-                type='number'
+                type='text'
                 class='register-weight form-control'
                 maxlength='3'
-                required=true
+                autocomplete='off'
                 value=data.weight
                 placeholder='Peso (kg)'}}
             </div>
@@ -156,7 +165,6 @@
                 class='register-shapes form-control'
                 rows='2'
                 value=data.shapes
-                required=true
                 placeholder='Mide tu contorno de cintura, muñecas, etc.'}}
             </div>
             <div class="register-buttons">
@@ -175,8 +183,7 @@
                 class='register-clinic-history form-control'
                 rows='2'
                 value=data.clinicHistory
-                required=true
-                placeholder='Antecedentes de enfermedades digestivas o relacionadas con la dieta'}}
+                placeholder='Antecedentes de enfermedad digestiva o relacionado con dieta (endocrino, diabetes, colesterol, gota, infarto, anorexia...)'}}
             </div>
             <div class="form-group">
               <label class="sr-only" for="register-food-diseases">Alergias / intolerancias alimentarias</label>
@@ -186,61 +193,58 @@
                 class='register-food-disease form-control'
                 rows='2'
                 value=data.foodDiseases
-                required=true
                 placeholder='Alergias o intolerancias alimentarias'}}
             </div>
             <div class="form-group">
-              <label class="sr-only" for="register-food-forbidden">¿Hay algún alimento que no te gusta consumir por religión o creencias firmes</label>
+              <label class="sr-only" for="register-food-forbidden">¿Existen alimentos que detestes o no puedas consumir por cuestiones de religión o creencias firmes?</label>
               {{textarea
                 id='register-food-forbidden'
                 name='register-food-forbidden'
                 class='register-food-forbidden form-control'
                 rows='2'
                 value=data.foodForbidden
-                placeholder='¿Existen alimentos que detestes o no puedas consumir por religión o creencias firmes?'}}
+                placeholder='¿Existen alimentos que detestes o no puedas consumir por cuestiones de religión o creencias firmes?'}}
             </div>
             <div class="form-group">
-              <label class="sr-only" for="register-food-diseases">Describe un día normal en tu dieta, cuantas comidas, cada cuantas horas, detalla alimentos
-              que componen platos compuestos.</label>
+              <label class="sr-only" for="register-food-diseases">Describe un día normal en tu dieta, cuantas comidas, cada cuantas horas, detalla alimentos que componen platos combinados</label>
               {{textarea
                 id='register-describe-diet'
                 name='register-describe-diet'
                 class='register-describe-diet form-control'
                 rows='2'
                 value=data.dietDescription
-                required=true
-                placeholder='Describe cómo es tu menú diario de comidas (número de platos, cantidad, etc...)'}}
+                placeholder='Describe un día normal en tu dieta, cuantas comidas, cada cuantas horas, detalla alimentos que componen platos combinados'}}
             </div>
             <h5>Tomas a diario...</h5>
             <div class="form-group">
               <p>¿Frutas enteras (no zumo) verduras u hortalizas?</p>
-              <label class="radio-inline"><input type="radio" name="optAlimentoFruta" value="S">Sí</label>
-              <label class="radio-inline"><input type="radio" name="optAlimentoFruta" value="N">No</label>
+              <label for="optFruit1" class="radio-inline">{{radio-button id='optFruit1' name='optFruit' value='1' checked=data.dayFruit}}Sí</label>
+              <label for="optFruit2" class="radio-inline">{{radio-button id='optFruit2' name='optFruit' value='0' checked=data.dayFruit}}No</label>
             </div>
             <div class="form-group">
               <p>¿Lácteos?</p>
-              <label class="radio-inline"><input type="radio" name="optAlimentoLacteos" value="S">Sí</label>
-              <label class="radio-inline"><input type="radio" name="optAlimentoLacteos" value="N">No</label>
+              <label for="optMilk1" class="radio-inline">{{radio-button id='optMilk1' name='optMilk' value='1' checked=data.dayMilk}}Sí</label>
+              <label for="optMilk2" class="radio-inline">{{radio-button id='optMilk2' name='optMilk' value='0' checked=data.dayMilk}}No</label>
             </div>
             <div class="form-group">
               <p>¿Cereales y frutos secos?</p>
-              <label class="radio-inline"><input type="radio" name="optAlimentoCereales" value="S">Sí</label>
-              <label class="radio-inline"><input type="radio" name="optAlimentoCereales" value="N">No</label>
+              <label for="optCereals1" class="radio-inline">{{radio-button id='optCereals1' name='optCereals' value='1' checked=data.dayCereals}}Sí</label>
+              <label for="optCereals2" class="radio-inline">{{radio-button id='optCereals2' name='optCereals' value='0' checked=data.dayCereals}}No</label>
             </div>
             <div class="form-group">
               <p>¿Carne, pescado y huevos?</p>
-              <label class="radio-inline"><input type="radio" name="optAlimentoProteinas" value="S">Sí</label>
-              <label class="radio-inline"><input type="radio" name="optAlimentoProteinas" value="N">No</label>
+              <label for="optProteins1" class="radio-inline">{{radio-button id='optProteins1' name='optProteins' value='1' checked=data.dayProteins}}Sí</label>
+              <label for="optProteins2" class="radio-inline">{{radio-button id='optProteins2' name='optProteins' value='0' checked=data.dayProteins}}No</label>
             </div>
             <div class="form-group">
               <p>¿Cocinas para ti mismo o te preparan la comida?</p>
-              <label class="radio-inline"><input type="radio" name="optAlimentoCocina" value="S">Sí</label>
-              <label class="radio-inline"><input type="radio" name="optAlimentoCocina" value="N">No</label>
+              <label for="optSelfCook1" class="radio-inline">{{radio-button id='optSelfCook1' name='optSelfCook' value='1' checked=data.selfCook}}Sí, cocino</label>
+              <label for="optSelfCook2" class="radio-inline">{{radio-button id='optSelfCook2' name='optSelfCook' value='0' checked=data.selfCook}}No, me la preparan</label>
             </div>
             <div class="form-group">
               <p>¿Has practicado alguna dieta en el pasado?</p>
-              <label class="radio-inline"><input type="radio" name="optAlimentoOtrasDietas" value="S">Sí</label>
-              <label class="radio-inline"><input type="radio" name="optAlimentoOtrasDietas" value="N">No</label>
+              <label for="optReceiveDietsBefore1" class="radio-inline">{{radio-button id='optReceiveDietsBefore1' name='optReceiveDietsBefore' value='1' checked=data.receiveDietsBefore}}Sí</label>
+              <label for="optReceiveDietsBefore2" class="radio-inline">{{radio-button id='optReceiveDietsBefore2' name='optReceiveDietsBefore' value='0' checked=data.receiveDietsBefore}}No</label>
             </div>
             <div class="register-buttons">
               <button type="button" class="btn btn-previous" onclick={{action 'previousStep'}}>Anterior</button>
@@ -252,34 +256,44 @@
             <h4>Tu actividad física:</h4>
             <div class="form-group">
               <p>¿Trabajas actualmente?</p>
-              <label class="radio-inline"><input type="radio" name="optActividadEmpleado" value="S">Sí</label>
-              <label class="radio-inline"><input type="radio" name="optActividadEmpleado" value="N">No</label>
+              <label for="optIsEmployed1" class="radio-inline">{{radio-button id='optIsEmployed1' name='optIsEmployed' value='1' checked=data.isEmployed}}Sí</label>
+              <label for="optIsEmployed2" class="radio-inline">{{radio-button id='optIsEmployed2' name='optIsEmployed' value='0' checked=data.isEmployed}}No</label>
             </div>
             <div class="form-group">
               <p>¿Cómo defines tu tipo de trabajo?</p>
-              <label class="radio-inline"><input type="radio" name="optActividadTrabajo" value="S">Sedentario</label>
-              <label class="radio-inline"><input type="radio" name="optActividadTrabajo" value="N">Activo</label>
+              {{#power-select
+                id='register-employment-type'
+                searchEnabled=false
+                selected=data.employmentType
+                options=employmentTypes
+                onchange=(action (mut data.employmentType)) as |type|}}
+                {{type}}
+              {{/power-select}}
             </div>
             <div class="form-group">
-              <label for="selTransporte">¿Cómo sueles desplazarte?</label>
-              <select class="form-control" id="selTransporte">
-                <option>A pie</option>
-                <option>Coche o moto</option>
-                <option>Bicicleta</option>
-                <option>Transporte público</option>
-              </select>
+              <label for="register-transport-type">¿Cómo sueles desplazarte?</label>
+              {{#power-select
+                id='register-transport-type'
+                searchEnabled=false
+                selected=data.transportType
+                options=transportTypes
+                onchange=(action (mut data.transportType)) as |type|}}
+                {{type}}
+              {{/power-select}}
             </div>
             <div class="form-group">
-              <label for="selFrecuencia">¿Con qué frecuencia practicas alguna actividad deportiva?</label>
-              <select class="form-control" id="selFrecuencia">
-                <option>De 1 a 3 horas a la semana</option>
-                <option>De 3 a 6 horas a las semana</option>
-                <option>De 9 a 12 horas a la semana</option>
-                <option>Más de 12 horas a la semana</option>
-              </select>
+              <label for="register-activity">¿Con qué frecuencia practicas alguna actividad deportiva?</label>
+              {{#power-select
+                id='register-activity-frecuency'
+                searchEnabled=false
+                selected=data.activityFrecuency
+                options=activityFrecuencies
+                onchange=(action (mut data.activityFrecuency)) as |frecuency|}}
+                {{frecuency}}
+              {{/power-select}}
             </div>
             <div class="form-group">
-              <label for="register-injuries">¿Tienes lesiones que te impidan realizar alguna actividad concreta?</label>
+              <label class="sr-only" for="register-injuries">¿Tienes lesiones que te impidan realizar alguna actividad concreta?</label>
               {{textarea
                 id='register-injuries'
                 name='register-injuries'
@@ -290,20 +304,50 @@
             </div>
             <div class="form-group">
               <p>¿Deseas recibir información sobre entrenamiento personal?</p>
-              <label class="radio-inline"><input type="radio" name="optInfoEntrenamiento" value="S">Sí</label>
-              <label class="radio-inline"><input type="radio" name="optInfoEntrenamiento" value="S">No</label>
+              <label for="optTrainingInfo1" class="radio-inline">{{radio-button id='optTrainingInfo1' name='optTrainingInfo' value='1' checked=data.receiveTrainingInfo}}Sí</label>
+              <label for="optTrainingInfo2" class="radio-inline">{{radio-button id='optTrainingInfo2' name='optTrainingInfo' value='0' checked=data.receiveTrainingInfo}}No</label>
             </div>
             <div class="form-group">
               <p>¿Estás interesado en recibir consejo sobre suplementación dietética?</p>
-              <label class="radio-inline"><input type="radio" name="optInfoSuplementacion" value="S">Sí</label>
-              <label class="radio-inline"><input type="radio" name="optInfoSuplementacion" value="N">No</label>
+              <label for="optSupplementInfo1" class="radio-inline">{{radio-button id='optSupplementInfo1' name='optSupplementInfo' value='1' checked=data.receiveSupplementInfo}}Sí</label>
+              <label for="optSupplementInfo2" class="radio-inline">{{radio-button id='optSupplementInfo2' name='optSupplementInfo' value='0' checked=data.receiveSupplementInfo}}No</label>
             </div>
             <div class="register-buttons">
-              <button type="button" class="btn btn-previous" onclick={{action 'previousStep'}}>Anterior</button>
-              <button type="button" class="btn btn-next" onclick={{action 'saveStep'}}>Siguiente</button>
+              <button type="button" class="btn btn-previous" {{action 'previousStep'}}>Anterior</button>
+              <button type="submit" class="btn btn-next" {{action 'register'}}>Finalizar registro</button>
             </div>
           </fieldset>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="end-register-modal-success" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="registerSuccessLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerSuccessLabel">Registro completado!</h5>
+      </div>
+      <div class="modal-body">
+        <i class="fa fa-check-circle" aria-hidden="true"></i>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-next" data-dismiss="modal" {{action 'goToLogin'}}>Acceder</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="end-register-modal-error" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="registerErrorLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerErrorLabel">Error en el registro!</h5>
+      </div>
+      <div class="modal-body">
+        <i class="fa fa-times-circle" aria-hidden="true"></i>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-next" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

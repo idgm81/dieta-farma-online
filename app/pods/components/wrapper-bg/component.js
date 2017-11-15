@@ -15,6 +15,6 @@ export default Component.extend({
   }),
 
   teardownBackstretch: on('willDestroyElement', function() {
-    $.backstretch('destroy', true);
+    $.backstretch('destroy');
   })
 });
