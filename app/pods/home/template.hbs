@@ -17,13 +17,13 @@
     {{#if model.isClient}}
       <li {{action 'showProfile'}}><i class="fa fa-fw fa-gear"></i><span>Mi Perfil</span></li>
       <li {{action 'showDiets'}}><i class="fa fa-fw fa-file-text"></i><span>Mis dietas</span></li>
+      <li {{action 'book'}}><i class="fa fa-fw fa-calendar"></i><span>Pedir cita presencial</span></li>
     {{/if}}
-    {{#if model.isNutriotionist}}
+    {{#if model.isNutritionist}}
       <li {{action 'showClients'}}><i class="fa fa-fw fa-gear"></i><span>Mis clientes</span></li>
       <li {{action 'showDiets'}}><i class="fa fa-fw fa-file-text"></i><span>Mis dietas</span></li>
-      <li {{action 'showAppointments'}}><i class="fa fa-fw fa-calendar"></i><span>Mis citas programadas</span></li>
+      <li {{action 'showCalendar'}}><i class="fa fa-fw fa-calendar"></i><span>Mi calendario</span></li>
     {{/if}}
-    <li><i class="fa fa-fw fa-calendar"></i><span>Pedir cita presencial</span></li>
     <li {{action 'showMessages'}}><i class="fa fa-fw fa-envelope"></i><span>Mensajes</span>
       {{#if model.unreadMessages}}
         <span class="badge bg-green">{{model.unreadMessages}}</span>

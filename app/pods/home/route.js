@@ -29,7 +29,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       this.transitionTo('home.diets');
     },
 
-    showAppointments() {
+    showCalendar() {
       this.close();
       this.transitionTo('home.appointments');
     },
