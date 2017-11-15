@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 module.exports = function(environment) {
-  var HOST = environment === 'production' ? 'https://dieta-farma-api.herokuapp.com:4500/' : 'http://localhost:4500';
+  var HOST = environment === 'production' ? 'https://dieta-farma-api.herokuapp.com:4500' : 'http://localhost:4500';
   var ENV = {
     modulePrefix: 'dieta-farma-online',
     podModulePrefix: 'dieta-farma-online/pods',
