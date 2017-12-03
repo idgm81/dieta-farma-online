@@ -98,7 +98,7 @@
                 placeholder='Apellidos'}}
             </div>
             <div class="form-group">
-              <label for="register-birthday">Fecha de nacimiento</label>
+              <label for="register-birthday">Fecha de nacimiento (dd-mm-aaaa)</label>
               {{input
                 id='register-birthday'
                 name='register-birthday'
@@ -123,6 +123,25 @@
                 autocomplete='off'
                 value=data.phone
                 placeholder='Teléfono de contacto'}}
+            </div>
+            <div class="form-group">
+              <label for="register-phone">¿Cuál es tu motivo y objetivo para realizar una dieta?</label>
+              {{#power-select
+                id='register-objectives'
+                searchEnabled=false
+                selected=data.objective
+                options=objectives
+                onchange=(action (mut data.objective)) as |obj|}}
+                {{obj}}
+              {{/power-select}}
+              {{#power-select
+                id='register-reasons'
+                searchEnabled=false
+                selected=data.reason
+                options=reasons
+                onchange=(action (mut data.reason)) as |reason|}}
+                {{reason}}
+              {{/power-select}}
             </div>
             <div class="register-buttons">
               <button type="button" class="btn btn-previous" {{action 'previousStep'}}>Anterior</button>
@@ -176,7 +195,7 @@
           <fieldset id="register-step-4">
             <h4>Tus hábitos de alimentación:</h4>
             <div class="form-group">
-              <label class="sr-only" for="register-clinic-history">Antecedentes de enfermedad digestiva o relacionado con dieta (endocrino, diabetes, colesterol, gota, infarto, anorexia...)</label>
+              <label for="register-clinic-history">Tines antecedentes de enfermedad digestiva o relacionado con dieta (endocrino, diabetes, colesterol, gota, infarto, anorexia...)</label>
               {{textarea
                 id='register-clinic-history'
                 name='register-clinic-history'
@@ -186,24 +205,31 @@
                 placeholder='Antecedentes de enfermedad digestiva o relacionado con dieta (endocrino, diabetes, colesterol, gota, infarto, anorexia...)'}}
             </div>
             <div class="form-group">
-              <label class="sr-only" for="register-food-diseases">Alergias / intolerancias alimentarias</label>
+              <label for="register-food-diseases">¿Padeces alguna alergia o intolerancia alimentaria?¿Cuál?</label>
               {{textarea
                 id='register-food-disease'
                 name='register-food-disease'
                 class='register-food-disease form-control'
                 rows='2'
-                value=data.foodDiseases
-                placeholder='Alergias o intolerancias alimentarias'}}
+                value=data.foodDiseases}}
             </div>
             <div class="form-group">
-              <label class="sr-only" for="register-food-forbidden">¿Existen alimentos que detestes o no puedas consumir por cuestiones de religión o creencias firmes?</label>
+              <label for="register-food-forbidden">¿Qué alimentos son los que más te gustan?</label>
+              {{textarea
+                id='register-food-favourite'
+                name='register-food-favourite'
+                class='register-food-favourite form-control'
+                rows='2'
+                value=data.foodFavourite}}
+            </div>
+            <div class="form-group">
+              <label for="register-food-forbidden">¿Qué alimento/s no te gusta/n nada, no quieres o no puedes consumir?</label>
               {{textarea
                 id='register-food-forbidden'
                 name='register-food-forbidden'
                 class='register-food-forbidden form-control'
                 rows='2'
-                value=data.foodForbidden
-                placeholder='¿Existen alimentos que detestes o no puedas consumir por cuestiones de religión o creencias firmes?'}}
+                value=data.foodForbidden}}
             </div>
             <div class="form-group">
               <label class="sr-only" for="register-food-diseases">Describe un día normal en tu dieta, cuantas comidas, cada cuantas horas, detalla alimentos que componen platos combinados</label>
@@ -260,7 +286,7 @@
               <label for="optIsEmployed2" class="radio-inline">{{radio-button id='optIsEmployed2' name='optIsEmployed' value='0' checked=data.isEmployed}}No</label>
             </div>
             <div class="form-group">
-              <p>¿Cómo defines tu tipo de trabajo?</p>
+              <label for="register-employment-type">¿Cómo defines tu tipo de trabajo?</label>
               {{#power-select
                 id='register-employment-type'
                 searchEnabled=false
@@ -293,14 +319,13 @@
               {{/power-select}}
             </div>
             <div class="form-group">
-              <label class="sr-only" for="register-injuries">¿Tienes lesiones que te impidan realizar alguna actividad concreta?</label>
+              <label for="register-injuries">¿Tienes lesiones que te impidan realizar alguna actividad concreta?</label>
               {{textarea
                 id='register-injuries'
                 name='register-injuries'
                 class='register-injuries form-control'
                 rows=2
-                value=data.injuries
-                placeholder='¿Tienes lesiones que te impidan realizar alguna actividad concreta?'}}
+                value=data.injuries}}
             </div>
             <div class="form-group">
               <p>¿Deseas recibir información sobre entrenamiento personal?</p>
@@ -308,7 +333,7 @@
               <label for="optTrainingInfo2" class="radio-inline">{{radio-button id='optTrainingInfo2' name='optTrainingInfo' value='0' checked=data.receiveTrainingInfo}}No</label>
             </div>
             <div class="form-group">
-              <p>¿Estás interesado en recibir consejo sobre suplementación dietética?</p>
+              <p>¿Estás interesado en recibir de manera gratuita consejos sobre suplementación dietética?</p>
               <label for="optSupplementInfo1" class="radio-inline">{{radio-button id='optSupplementInfo1' name='optSupplementInfo' value='1' checked=data.receiveSupplementInfo}}Sí</label>
               <label for="optSupplementInfo2" class="radio-inline">{{radio-button id='optSupplementInfo2' name='optSupplementInfo' value='0' checked=data.receiveSupplementInfo}}No</label>
             </div>

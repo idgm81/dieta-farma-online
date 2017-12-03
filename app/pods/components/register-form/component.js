@@ -8,6 +8,10 @@ export default Ember.Component.extend({
 
   data: {},
 
+  objectives: ['Pérdida de peso', 'Ganancia de peso', 'Mantenimiento', 'Mejorar composición corporal', 'Otro'],
+
+  reasons: ['Salud', 'Estética', 'Competición', 'Otro'],
+
   employmentTypes: ['Sendentario', 'Activo'],
 
   transportTypes: ['A pie', 'Coche o moto', 'Bicicleta', 'Transporte público'],
@@ -44,6 +48,8 @@ export default Ember.Component.extend({
       this.$('input#optSelfCook2').prop('checked', true);
       this.$('input#optReceiveDietsBefore2').prop('checked', true);
       this.$('input#optIsEmployed2').prop('checked', true);
+      this.set('data.objective', this.get('objectives.0'));
+      this.set('data.reason', this.get('reasons.0'));
       this.set('data.employmentType', this.get('employmentTypes.0'));
       this.set('data.transportType', this.get('transportTypes.0'));
       this.set('data.activityFrecuency', this.get('activityFrecuencies.0'));
