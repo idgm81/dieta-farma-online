@@ -32,10 +32,10 @@ export default Ember.Component.extend({
     Ember.run.scheduleOnce('afterRender', this, function() {
       this.$('.register fieldset:first').fadeIn('slow');
       this.$('#register-birthday').datepicker({
-        format: 'yyyy-mm-dd',
+        format: 'dd-mm-yyyy',
         autoclose: true
       });
-      this.$('#register-birthday').val('1970-01-01');
+      this.$('#register-birthday').val('01-01-2000');
       this.$('form.register').find('fieldset').each((index, element) => {
         if (index > 0) {
           $(element).find('input, textarea, select').each((index, el) => {
