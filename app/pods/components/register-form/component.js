@@ -12,6 +12,10 @@ export default Ember.Component.extend({
 
   reasons: ['Salud', 'Estética', 'Competición', 'Otro'],
 
+  foodFrecuency: ['Diario', 'Semanal', 'Mensual', 'Nunca'],
+
+  otherSupevisors: ['Médico', 'Nutricionista', 'Farmacéutico', 'Entrenador', 'Otro'],
+
   employmentTypes: ['Sendentario', 'Activo'],
 
   transportTypes: ['A pie', 'Coche o moto', 'Bicicleta', 'Transporte público'],
@@ -39,6 +43,9 @@ export default Ember.Component.extend({
           });
         }
       });
+
+      $('input[name="checkInjuries"]').attr('data-validate', 'true');
+      $('input[name="checkTerms"]').attr('data-validate', 'true');
 
       this.$('input#optGenre2').prop('checked', true);
       this.$('input#optFruit2').prop('checked', true);

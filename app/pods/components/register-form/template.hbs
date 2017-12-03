@@ -195,17 +195,16 @@
           <fieldset id="register-step-4">
             <h4>Tus hábitos de alimentación:</h4>
             <div class="form-group">
-              <label for="register-clinic-history">Tines antecedentes de enfermedad digestiva o relacionado con dieta (endocrino, diabetes, colesterol, gota, infarto, anorexia...)</label>
+              <label for="register-clinic-history">¿Tienes antecedentes de enfermedad digestiva o relacionado con dieta (endocrino, diabetes, colesterol, gota, infarto, anorexia...)</label>
               {{textarea
                 id='register-clinic-history'
                 name='register-clinic-history'
                 class='register-clinic-history form-control'
                 rows='2'
-                value=data.clinicHistory
-                placeholder='Antecedentes de enfermedad digestiva o relacionado con dieta (endocrino, diabetes, colesterol, gota, infarto, anorexia...)'}}
+                value=data.clinicHistory}}
             </div>
             <div class="form-group">
-              <label for="register-food-diseases">¿Padeces alguna alergia o intolerancia alimentaria?¿Cuál?</label>
+              <label for="register-food-diseases">¿Padeces alguna alergia o intolerancia alimentaria? ¿Cuál?</label>
               {{textarea
                 id='register-food-disease'
                 name='register-food-disease'
@@ -232,35 +231,58 @@
                 value=data.foodForbidden}}
             </div>
             <div class="form-group">
-              <label class="sr-only" for="register-food-diseases">Describe un día normal en tu dieta, cuantas comidas, cada cuantas horas, detalla alimentos que componen platos combinados</label>
+              <label for="register-food-diseases">Describe un día normal en tu dieta, cuantas comidas, cada cuantas horas, detalla alimentos que componen platos combinados</label>
               {{textarea
                 id='register-describe-diet'
                 name='register-describe-diet'
                 class='register-describe-diet form-control'
                 rows='2'
-                value=data.dietDescription
-                placeholder='Describe un día normal en tu dieta, cuantas comidas, cada cuantas horas, detalla alimentos que componen platos combinados'}}
+                value=data.dietDescription}}
             </div>
-            <h5>Tomas a diario...</h5>
+            <h5>¿Qué tipo de alimentos consumes?¿Con qué frecuencia?</h5>
             <div class="form-group">
               <p>¿Frutas enteras (no zumo) verduras u hortalizas?</p>
-              <label for="optFruit1" class="radio-inline">{{radio-button id='optFruit1' name='optFruit' value='1' checked=data.dayFruit}}Sí</label>
-              <label for="optFruit2" class="radio-inline">{{radio-button id='optFruit2' name='optFruit' value='0' checked=data.dayFruit}}No</label>
+              {{#power-select
+                id='optFruit'
+                searchEnabled=false
+                selected=data.dayFruit
+                options=foodFrecuency
+                onchange=(action (mut data.dayFruit)) as |frec|}}
+                {{frec}}
+              {{/power-select}}
             </div>
             <div class="form-group">
               <p>¿Lácteos?</p>
-              <label for="optMilk1" class="radio-inline">{{radio-button id='optMilk1' name='optMilk' value='1' checked=data.dayMilk}}Sí</label>
-              <label for="optMilk2" class="radio-inline">{{radio-button id='optMilk2' name='optMilk' value='0' checked=data.dayMilk}}No</label>
+              {{#power-select
+                id='optMilk'
+                searchEnabled=false
+                selected=data.dayMilk
+                options=foodFrecuency
+                onchange=(action (mut data.dayMilk)) as |frec|}}
+                {{frec}}
+              {{/power-select}}
             </div>
             <div class="form-group">
               <p>¿Cereales y frutos secos?</p>
-              <label for="optCereals1" class="radio-inline">{{radio-button id='optCereals1' name='optCereals' value='1' checked=data.dayCereals}}Sí</label>
-              <label for="optCereals2" class="radio-inline">{{radio-button id='optCereals2' name='optCereals' value='0' checked=data.dayCereals}}No</label>
+              {{#power-select
+                id='optCereals'
+                searchEnabled=false
+                selected=data.dayCereals
+                options=foodFrecuency
+                onchange=(action (mut data.dayCereals)) as |frec|}}
+                {{frec}}
+              {{/power-select}}
             </div>
             <div class="form-group">
               <p>¿Carne, pescado y huevos?</p>
-              <label for="optProteins1" class="radio-inline">{{radio-button id='optProteins1' name='optProteins' value='1' checked=data.dayProteins}}Sí</label>
-              <label for="optProteins2" class="radio-inline">{{radio-button id='optProteins2' name='optProteins' value='0' checked=data.dayProteins}}No</label>
+              {{#power-select
+                id='optProteins'
+                searchEnabled=false
+                selected=data.dayProteins
+                options=foodFrecuency
+                onchange=(action (mut data.dayProteins)) as |frec|}}
+                {{frec}}
+              {{/power-select}}
             </div>
             <div class="form-group">
               <p>¿Cocinas para ti mismo o te preparan la comida?</p>
@@ -271,6 +293,17 @@
               <p>¿Has practicado alguna dieta en el pasado?</p>
               <label for="optReceiveDietsBefore1" class="radio-inline">{{radio-button id='optReceiveDietsBefore1' name='optReceiveDietsBefore' value='1' checked=data.receiveDietsBefore}}Sí</label>
               <label for="optReceiveDietsBefore2" class="radio-inline">{{radio-button id='optReceiveDietsBefore2' name='optReceiveDietsBefore' value='0' checked=data.receiveDietsBefore}}No</label>
+            </div>
+            <div class="form-group">
+              <p>¿Alguna de ellas bajo supervisión de un profesional?</p>
+              {{#power-select
+                id='optSupervisor'
+                searchEnabled=false
+                selected=data.supervisor
+                options=otherSupevisors
+                onchange=(action (mut data.supervisor)) as |superv|}}
+                {{superv}}
+              {{/power-select}}
             </div>
             <div class="register-buttons">
               <button type="button" class="btn btn-previous" onclick={{action 'previousStep'}}>Anterior</button>
@@ -328,6 +361,9 @@
                 value=data.injuries}}
             </div>
             <div class="form-group">
+              <label>{{input type='checkbox' name='checkInjuries'}}No sufro ninguna otra patología que me impida o desaconseje hacer dieta de pérdida de peso</label>
+            </div>
+            <div class="form-group">
               <p>¿Deseas recibir información sobre entrenamiento personal?</p>
               <label for="optTrainingInfo1" class="radio-inline">{{radio-button id='optTrainingInfo1' name='optTrainingInfo' value='1' checked=data.receiveTrainingInfo}}Sí</label>
               <label for="optTrainingInfo2" class="radio-inline">{{radio-button id='optTrainingInfo2' name='optTrainingInfo' value='0' checked=data.receiveTrainingInfo}}No</label>
@@ -337,6 +373,9 @@
               <label for="optSupplementInfo1" class="radio-inline">{{radio-button id='optSupplementInfo1' name='optSupplementInfo' value='1' checked=data.receiveSupplementInfo}}Sí</label>
               <label for="optSupplementInfo2" class="radio-inline">{{radio-button id='optSupplementInfo2' name='optSupplementInfo' value='0' checked=data.receiveSupplementInfo}}No</label>
             </div>
+            <div class="form-group"><label>{{input type='checkbox' name='checkTerms'}}Acepto que mis datos puedan ser utilizados para fines comerciales a terceros</label>
+            </div>
+            <small class="help-block with-errors"></small>
             <div class="register-buttons">
               <button type="button" class="btn btn-previous" {{action 'previousStep'}}>Anterior</button>
               <button type="submit" class="btn btn-next" {{action 'register'}}>Finalizar registro</button>
