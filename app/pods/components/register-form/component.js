@@ -8,11 +8,13 @@ export default Ember.Component.extend({
 
   data: {},
 
+  dietTypes: ['Muy variada', 'Menos variada'],
+
   objectives: ['Pérdida de peso', 'Ganancia de peso', 'Mantenimiento', 'Mejorar composición corporal', 'Otro'],
 
   reasons: ['Salud', 'Estética', 'Competición', 'Otro'],
 
-  foodFrecuency: ['Diario', 'Semanal', 'Mensual', 'Nunca'],
+  foodFrecuencies: ['Diario', 'Semanal', 'Mensual', 'Nunca'],
 
   otherSupevisors: ['Médico', 'Nutricionista', 'Farmacéutico', 'Entrenador', 'Otro'],
 
@@ -20,7 +22,7 @@ export default Ember.Component.extend({
 
   transportTypes: ['A pie', 'Coche o moto', 'Bicicleta', 'Transporte público'],
 
-  activityFrecuencies: ['De 1 a 3 horas a la semana', 'De 3 a 6 horas a la semana', 'De 9 a 12 horas a la semana', 'Más de 12 horas a la semana'],
+  exerciseFrecuencies: ['De 1 a 3 horas', 'De 3 a 6 horas', 'De 9 a 12 horas', 'Más de 12 horas'],
 
   hasError: false,
 
@@ -31,11 +33,6 @@ export default Ember.Component.extend({
 
     Ember.run.scheduleOnce('afterRender', this, function() {
       this.$('.register fieldset:first').fadeIn('slow');
-      this.$('#register-birthday').datepicker({
-        format: 'dd-mm-yyyy',
-        autoclose: true
-      });
-      this.$('#register-birthday').val('01-01-2000');
       this.$('form.register').find('fieldset').each((index, element) => {
         if (index > 0) {
           $(element).find('input, textarea, select').each((index, el) => {
@@ -55,28 +52,78 @@ export default Ember.Component.extend({
       this.$('input#optSelfCook2').prop('checked', true);
       this.$('input#optReceiveDietsBefore2').prop('checked', true);
       this.$('input#optIsEmployed2').prop('checked', true);
-      this.set('data.objective', this.get('objectives.0'));
-      this.set('data.reason', this.get('reasons.0'));
-      this.set('data.employmentType', this.get('employmentTypes.0'));
-      this.set('data.transportType', this.get('transportTypes.0'));
-      this.set('data.activityFrecuency', this.get('activityFrecuencies.0'));
-
+      this.$('input#optdoExercise2').prop('checked', true);
+      this.$('input#optIncreaseActivity2').prop('checked', true);
       this.$('input#optTrainingInfo2').prop('checked', true);
       this.$('input#optSupplementInfo2').prop('checked', true);
 
       Ember.setProperties(this.get('data'), {
+        birthday: { day: 1, month: 1, year: 1970 },
         genre: 'female',
-        dayFruit: '0',
-        dayMilk: '0',
-        dayCereals: '0',
-        dayProteins: '0',
+        measures: {
+          height: '',
+          weight: '',
+          imc: '',
+          fat: '',
+          water: '',
+          mass: '',
+          biotype: '',
+          boneMass: '',
+          metabolicExpense: '',
+          metabolicAge: '',
+          visceralFat: '',
+          segments: {
+            arm: {
+              left: {
+                fatPercentage: '',
+                mass: ''
+              },
+              right: {
+                fatPercentage: '',
+                mass: ''
+              }
+            },
+            leg: {
+              left: {
+                fatPercentage: '',
+                mass: ''
+              },
+              right: {
+                fatPercentage: '',
+                mass: ''
+              }
+            },
+            trunk: {
+              fatPercentage: '',
+              mass: ''
+            }
+          }
+        },
+        objective: this.get('objectives.4'),
+        reason: this.get('reasons.3'),
+        foodDiseases: '',
+        foodForbidden: '',
+        foodFavourite: '',
+        dietType: this.get('dietTypes.0'),
+        dayFruit: this.get('foodFrecuencies.3'),
+        dayMilk: this.get('foodFrecuencies.3'),
+        dayCereals: this.get('foodFrecuencies.3'),
+        dayProteins: this.get('foodFrecuencies.3'),
         selfCook: '0',
         receiveDietsBefore: '0',
+        supervisor: this.get('otherSupevisors.4'),
+        supervisorDetail: '',
         isEmployed: '0',
+        employmentType: this.get('employmentTypes.0'),
+        transportType: this.get('transportTypes.0'),
+        doExercise: false,
+        exerciseFrecuency: this.get('exerciseFrecuencies.0'),
+        increaseActivity: false,
+        injuries: '',
         receiveTrainingInfo: '0',
         receiveSupplementInfo: '0',
         role: 'client',
-        assignedNutritionist: '0'
+        assignedNutritionist: 1
       });
 
       this.$('form.register').validator();

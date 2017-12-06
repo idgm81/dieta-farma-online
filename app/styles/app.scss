@@ -1,11 +1,16 @@
 @import 'bootstrap';
 @import 'ember-side-menu';
+@import 'ember-power-select/themes/bootstrap';
 @import 'ember-power-select';
 @import 'home';
 @import 'login';
 @import 'register';
 @import 'spinner';
 @import 'error';
+
+li.ember-power-select-option {
+  font-size: xx-small;
+}
 
 .jumbotron {
   background: #532F8C;
