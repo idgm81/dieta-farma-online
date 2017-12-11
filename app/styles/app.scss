@@ -13,16 +13,6 @@ li.ember-power-select-option {
   font-size: xx-small;
 }
 
-.dieta-farma-calendar-small {
-  @include ember-power-calendar($cell-size: 30px);
-}
-.dieta-farma-calendar-medium {
-  @include ember-power-calendar($cell-size: 45px);
-}
-.dieta-farma-calendar-big {
-  @include ember-power-calendar($cell-size: 70px);
-}
-
 .holiday {
   color: red;
 }
