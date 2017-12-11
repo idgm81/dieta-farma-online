@@ -100,11 +100,14 @@ export default Route.extend(UnauthenticatedRouteMixin, {
 
   actions: {
     register(data) {
+      $('div.loading-container').show();
       this.get('api').createUser(this._normalize(data))
         .then((response) => {
+          $('div.loading-container').hide();
           $('#end-register-modal-success').modal();
         })
         .catch((error) => {
+          $('div.loading-container').hide();
           $('#end-register-modal-error').modal();
         });
     },
