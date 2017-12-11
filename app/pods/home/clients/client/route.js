@@ -11,5 +11,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
     return this.get('api').getUser(params.id);
   },
 
-  actions: {}
+  actions: {
+    addDiet() {
+      this.transitionTo('home.diets.new');
+    }
+  }
 });

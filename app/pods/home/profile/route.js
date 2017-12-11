@@ -14,9 +14,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
     showDiets() {
       this.transitionTo('home.diets');
     },
-    addDiet() {
-      this.transitionTo('home.diets.new');
-    },
     edit(id) {
       this.transitionTo('home.profile.edit', id);
     }

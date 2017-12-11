@@ -8,17 +8,19 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
-        #{{index}} Desde {{moment-format diet.fromDate 'DD/MM/YYYY'}} - Hasta {{moment-format diet.toDate 'DD/MM/YYYY'}}
+        Desde {{moment-format model.fromDate 'DD/MM/YYYY'}} - Hasta {{moment-format model.toDate 'DD/MM/YYYY'}}
       </h3>
     </div>
     <div class="panel-body">
-      {{diet.title}}
+      {{model.title}}
     </div>
-    <div class="panel-footer">
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-warning" {{action 'edit' _id}}><i class="fa fa-x fa-pencil"></i></button>
-        <button type="button" class="btn btn-danger" {{action 'delete' _id}}><i class="fa fa-x fa-trash"></i></button>
+    {{#if isNutritionist}}
+      <div class="panel-footer">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-warning" {{action 'edit' (get model '_id')}}><i class="fa fa-x fa-pencil"></i></button>
+          <button type="button" class="btn btn-danger" {{action 'delete' (get model '_id')}}><i class="fa fa-x fa-trash"></i></button>
+        </div>
       </div>
-    </div>
+    {{/if}}
   </div>
 </div>
