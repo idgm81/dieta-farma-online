@@ -1,5 +1,28 @@
 $color-dietafarma: #25a29f;
 
+.home-header {
+  position: fixed;
+  top: 0px;
+  background-color: $color-dietafarma;
+  padding: 10px 0 10px 0;
+  margin: 0 auto;
+  width: 100%;
+  h1 {
+    color: white;
+    text-align: center;
+    margin-top: 18px;
+  }
+}
+
+.main-content {
+  margin-top: 100px;
+}
+
+.breadcrumb {
+  background-color: #eaeaea;
+  font-family: 'Raleway', sans-serif;
+}
+
 .side-title {
   width: 230px;
   float: left;
@@ -16,51 +39,6 @@ $color-dietafarma: #25a29f;
   height: 55px;
   margin: 0;
   padding-left: 10px;
-}
-
-.profile-pic {
-  width: 35%;
-  float: left;
-}
-
-.profile-info {
-  margin-top: 20px;
-  padding: 25px 10px 10px;
-  width: 65%;
-  float: left;
-  h3 {
-    font-size: 18px;
-    color: #ECF0F1;
-    margin: 0;
-    font-weight: 300;
-  }
-}
-
-#profile-image1 {
-  cursor: pointer;
-  width: 100px;
-  height: 100px;
-  border: 2px solid #03b1ce;
-}
-
-.tital {
-  font-size: 16px;
-  font-weight: 500;
-}
-.bot-border {
-  border-bottom: 1px #f8f8f8 solid;
-  margin: 5px 0 5px 0;
-}
-
-.img-circle.profile-img {
-    width: 70%;
-    background: #fff;
-    margin-left: 15%;
-    z-index: 1000;
-    position: inherit;
-    margin-top: 20px;
-    border: 1px solid rgba(52,73,94,.44);
-    padding: 4px;
 }
 
 .side-menu ul li {
@@ -87,7 +65,7 @@ $color-dietafarma: #25a29f;
     display: block;
     height: 5px;
     width: 100%;
-    background-color: $color-dietafarma;
+    background-color: white;
     position: relative;
     transition: all 0.3s ease-in-out;
     &:after {
@@ -95,7 +73,7 @@ $color-dietafarma: #25a29f;
       display: block;
       height: 5px;
       width: 100%;
-      background-color: $color-dietafarma;
+      background-color: white;
       position: relative;
       transition: all 0.3s ease-in-out;
     }
@@ -104,7 +82,7 @@ $color-dietafarma: #25a29f;
       display: block;
       height: 5px;
       width: 100%;
-      background-color: $color-dietafarma;
+      background-color: white;
       position: relative;
       transition: all 0.3s ease-in-out;
       top: -15px;
@@ -148,7 +126,7 @@ $color-dietafarma: #25a29f;
   position: fixed;
   width: 36px;
   height: 36px;
-  top: 36px;
+  top: 24px;
   &.left {
     left: 36px;
   }
@@ -191,9 +169,9 @@ $color-dietafarma: #25a29f;
     font-weight: 400;
     line-height: 13px;
     padding: 2px 6px;
-    position: absolute;
+    position: relative;
     right: 2px;
-    top: 8px;
+    top: -2px;
 }
 
 .bg-green {
@@ -217,6 +195,50 @@ $color-dietafarma: #25a29f;
     border-radius: 10px;
 }
 
+.side-menu-profile-pic {
+  width: 35%;
+  float: left;
+}
+
+.side-menu-profile-info {
+  padding: 0px 10px 10px 40px;
+  width: 65%;
+  float: left;
+  h3 {
+    color: white;
+    font-family: 'Raleway', sans-serif;
+  }
+  &.profile {
+    color: white;
+  }
+}
+
+.img-circle.profile-img {
+  width: 100px;
+  margin: 10px auto;
+  background: #fff;
+  position: inherit;
+  border: 1px solid rgba(52, 73, 94, 0.44);
+  padding: 4px;
+}
+
+.caption {
+  h3 {
+    text-align: center;
+  }
+}
+
+.footer {
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 24px;
+  background-color: black;
+}
+
 #slide {
   .bm-cross {
     background: #bdc3c7;
@@ -229,56 +251,6 @@ $color-dietafarma: #25a29f;
 
 .left_col {
   background: #2A3F54;
-}
-
-.profile_pic {
-  width: 35%;
-  float: left;
-}
-
-.img-circle.profile_img {
-  width: 70%;
-  background: #fff;
-  margin-left: 15%;
-  z-index: 1000;
-  position: inherit;
-  margin-top: 20px;
-  border: 1px solid rgba(52, 73, 94, 0.44);
-  padding: 4px;
-}
-
-.profile_info {
-  padding: 25px 10px 10px;
-  width: 65%;
-  float: left;
-  span {
-    font-size: 13px;
-    line-height: 30px;
-    color: #BAB8B8;
-  }
-  h2 {
-    font-size: 14px;
-    color: #ECF0F1;
-    margin: 0;
-    font-weight: 300;
-  }
-}
-
-.profile.img_2 {
-  text-align: center;
-  .profile_pic {
-    width: 100%;
-    .img-circle.profile_img {
-      width: 50%;
-      margin: 10px 0 0;
-    }
-  }
-  .profile_info {
-    padding: 15px 10px 0;
-    width: 100%;
-    margin-bottom: 10px;
-    float: left;
-  }
 }
 
 .border-blue {
@@ -345,4 +317,20 @@ $color-dietafarma: #25a29f;
   background: #50C1CF !important;
   border: 1px solid #50C1CF !important;
   color: #fff;
+}
+
+.btn-df {
+  color: #fff;
+  background-color: $color-dietafarma;
+  border-color: #2e6da4;
+}
+
+.panel-df {
+  border-color: $color-dietafarma;
+}
+
+.panel-df > .panel-heading {
+    color: #fff;
+    background-color: $color-dietafarma;
+    border-color: $color-dietafarma;
 }
