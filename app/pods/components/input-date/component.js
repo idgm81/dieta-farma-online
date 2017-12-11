@@ -19,7 +19,11 @@ export default Ember.Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    this.$('#' + this.get('innerId')).datepicker({ format: this.get('format') });
+    this.$('.input-group.date').datepicker({
+      calendarWeeks: true,
+      autoclose: true,
+      format: this.get('format')
+    });
   },
 
   /**

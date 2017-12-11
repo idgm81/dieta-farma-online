@@ -1,0 +1,41 @@
+<ol class="breadcrumb">
+  <li><a href="/home">Home</a></li>
+  <li class="active">Pedir cita presencial</li>
+</ol>
+
+<div class="container">
+  <div class="panel panel-default">
+    {{#power-calendar-multiple
+      locale='es'
+      class='dieta-farma-calendar-medium'
+      minDate=now
+      selected=meetDays
+      onSelect=(action (mut selectedDate) value='moment') as |calendar|}}
+      {{calendar.nav}}
+      {{#calendar.days as |day|}}
+        {{#with (moment-format day.date 'ddd') as |weekday|}}
+          {{#if (or (eq weekday "Sat") (eq weekday "Sun"))}}
+            <strong class="holiday">{{day.number}}</strong>
+          {{else}}
+            {{day.number}}
+          {{/if}}
+        {{/with}}
+      {{/calendar.days}}
+    {{/power-calendar-multiple}}
+  </div>
+</div>
+
+<div class="container">
+  <div class="panel panel-df">
+    <div class="panel-heading">Fecha de la cita</div>
+    <div class="panel-body">
+      <p>{{moment-format selectedDate.[1] 'dddd, DD [de] MMMM [de] YYYY'}}</p>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-info" {{action 'cancel'}}>Cancelar</button>
+      </div>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-df" {{action 'save'}}>Pedir cita</button>
+      </div>
+    </div>
+  </div>
+</div>

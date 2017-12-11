@@ -1,13 +1,24 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+const { Route, inject: { service } } = Ember;
+export default Route.extend(AuthenticatedRouteMixin, {
 
-  model() {
-    const id = this.get('session.data.authenticated.id');
+  api: service(),
 
-    return this.store.findRecord('user', id);
+  model(params) {
+    return this.get('api').getUser(params.id);
   },
 
-  actions: {}
+  actions: {
+    showDiets() {
+      this.transitionTo('home.diets');
+    },
+    addDiet() {
+      this.transitionTo('home.diets.new');
+    },
+    edit(id) {
+      this.transitionTo('home.profile.edit', id);
+    }
+  }
 });

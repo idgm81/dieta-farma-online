@@ -1,17 +1,38 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import { USER_ROLES } from './constants';
+
+const { inject: { service } , get} = Ember;
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
-  session: Ember.inject.service(),
+  session: service(),
 
-  sideMenu: Ember.inject.service(),
+  api: service(),
+
+  sideMenu: service(),
 
   model() {
-    const role = this.get('session.data.authenticated.role');
-    const id = this.get('session.data.authenticated.id');
+    const userId = this.get('session.data.authenticated.id');
 
-    return this.store.findRecord('user', id);
+    return this.get('api').getUser(userId);
+  },
+
+  redirect(model, transition) {
+    this._super(...arguments);
+
+    const nextRoute = get(model, 'user.role') === USER_ROLES.NUTRITIONIST
+      ? 'home.clients.index'
+      : 'home.diets';
+
+    this.transitionTo(nextRoute);
+  },
+
+  setupController: function(controller, model) {
+    controller.set('isClient', get(model, 'user.role') === USER_ROLES.CLIENT);
+    controller.set('headerTitle', `Hola ${get(model, 'user.profile.name')}`);
+    controller.set('fullName', `${get(model, 'user.profile.name')} ${get(model, 'user.profile.surname')}`);
+    //controller.set('unreadMessages', model.messages.getEach('_id').length);
   },
 
   close() {
@@ -19,9 +40,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
-    showProfile() {
+    showMyProfile() {
       this.close();
-      this.transitionTo('home.profile');
+      this.transitionTo('home.profile', this.get('session.data.authenticated.id'));
+    },
+
+    askForAppointment() {
+      this.close();
+      this.transitionTo('home.calendar.new');
     },
 
     showDiets() {
@@ -29,9 +55,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       this.transitionTo('home.diets');
     },
 
-    showCalendar() {
+    showMyAppointments() {
       this.close();
-      this.transitionTo('home.appointments');
+      this.transitionTo('home.calendar');
     },
 
     showMessages() {
@@ -39,7 +65,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       this.transitionTo('home.messages');
     },
 
-    showClients() {
+    showMyClients() {
       this.close();
       this.transitionTo('home.clients');
     },

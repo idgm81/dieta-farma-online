@@ -2,16 +2,16 @@ import Ember from 'ember';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
-export default Ember.Route.extend(ApplicationRouteMixin, UnauthenticatedRouteMixin, {
+const { Route, inject: { service }, $} = Ember
 
-  session: Ember.inject.service(),
+export default Route.extend(ApplicationRouteMixin, UnauthenticatedRouteMixin, {
+
+  session: service(),
 
   routeAfterAuthentication: 'home',
 
-  api: Ember.inject.service('api'),
-
   // clear a potentially stale error message from previous login attempts
-  setupController(controller, model) {
+  setupController(controller) {
       this._super(...arguments);
 
       controller.set('error', false);
@@ -19,16 +19,17 @@ export default Ember.Route.extend(ApplicationRouteMixin, UnauthenticatedRouteMix
 
   actions: {
     authenticate(credentials) {
-      Ember.$('button').hide();
-      Ember.$('div.loading-container').show();
+      $('button').hide();
+      $('div.loading-container').show();
 
       const authenticator = 'authenticator:jwt';
       this.get('session').authenticate(authenticator, {
         identification: credentials.email,
         password: credentials.password
       }).catch((reason) => {
-        Ember.$('div.loading-container').hide();
-        Ember.$('button').show();
+        debugger
+        $('div.loading-container').hide();
+        $('button').show();
         this.set('controller.error', true);
       });
     }

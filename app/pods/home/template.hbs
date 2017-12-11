@@ -1,46 +1,41 @@
-{{side-menu-toggle side="right"}}
+<div class="home-header">
+  <h1>{{headerTitle}}</h1>
+  {{side-menu-toggle side="right"}}
+</div>
+
 {{#side-menu side="right" width="300px"}}
-<div class="side-title">
-  {{inline-svg 'icon-dietafarma-white.svg'}}<span> DietaFarma App</span><
-</div>
-<div class="clearfix"></div>
-<div class="profile clearfix">
-  <div class="profile-pic">
-    <img src="../assets/images/default-avatar.png" alt="..." class="img-circle profile-img">
+  <div class="side-title">
+    {{inline-svg 'icon-dietafarma-white.svg'}}<span> DietaFarma App</span><
   </div>
-  <div class="profile-info">
-    <h3>Hola, {{model.name}}</h3>
+  <div class="clearfix"></div>
+  <div class="profile clearfix">
+    <div class="side-menu-profile-pic">
+      <img src="../assets/images/default-avatar.png" alt="..." class="img-circle profile-img">
+    </div>
+    <div class="side-menu-profile-info">
+      <h3>{{fullName}}</h3>
+      <div class="profile" {{action 'showMyProfile'}}><i class="fa fa-fw fa-gear"></i>Perfil</div>
+    </div>
   </div>
-</div>
-<nav class="sm-item-list">
-  <ul>
-    {{#if model.isClient}}
-      <li {{action 'showProfile'}}><i class="fa fa-fw fa-gear"></i><span>Mi Perfil</span></li>
-      <li {{action 'showDiets'}}><i class="fa fa-fw fa-file-text"></i><span>Mis dietas</span></li>
-      <li {{action 'book'}}><i class="fa fa-fw fa-calendar"></i><span>Pedir cita presencial</span></li>
-    {{/if}}
-    {{#if model.isNutritionist}}
-      <li {{action 'showClients'}}><i class="fa fa-fw fa-gear"></i><span>Mis clientes</span></li>
-      <li {{action 'showDiets'}}><i class="fa fa-fw fa-file-text"></i><span>Mis dietas</span></li>
-      <li {{action 'showCalendar'}}><i class="fa fa-fw fa-calendar"></i><span>Mi calendario</span></li>
-    {{/if}}
-    <li {{action 'showMessages'}}><i class="fa fa-fw fa-envelope"></i><span>Mensajes</span>
-      {{#if model.unreadMessages}}
-        <span class="badge bg-green">{{model.unreadMessages}}</span>
+  <nav class="sm-item-list">
+    <ul>
+      {{#if isClient}}
+        <li {{action 'showDiets'}}><i class="fa fa-fw fa-file-text"></i><span>Mis dietas</span></li>
+        <li {{action 'askForAppointment'}}><i class="fa fa-fw fa-calendar"></i><span>Pedir cita presencial</span></li>
+      {{else}}
+        <li {{action 'showMyClients'}}><i class="fa fa-fw fa-group"></i><span>Mis clientes</span></li>
+        <li {{action 'showMyAppointments'}}><i class="fa fa-fw fa-calendar"></i><span>Mis próximas citas</span></li>
       {{/if}}
-    </li>
-    <li {{action 'logout'}}><i class="fa fa-fw fa-sign-out"></i><span>Salir</span></li>
-  </ul>
-</nav>
+      <li {{action 'showMessages'}}><i class="fa fa-fw fa-envelope"></i><span>Mensajes</span>
+        {{#if (gt unreadMessages 0)}}
+          <span class="badge bg-green">{{unreadMessages}}</span>
+        {{/if}}
+      </li>
+      <li {{action 'logout'}}><i class="fa fa-fw fa-sign-out"></i><span>Salir</span></li>
+    </ul>
+  </nav>
 {{/side-menu}}
 {{content-backdrop}}
-<main id="page-wrap">
-  <div class="container">
-    {{outlet}}
-  </div>
+<main class="main-content">
+  {{outlet}}
 </main>
-<footer class="footer">
-  <div class="container">
-    <span class="text-muted">© DietaFarma 2017</span>
-  </div>
-</footer>

@@ -1,0 +1,36 @@
+<ol class="breadcrumb">
+  <li>{{link-to 'Home' 'home'}}</li>
+  <li>{{link-to 'Mis clientes' 'home.clients'}}</li>
+  <li class="active">Crear dieta</li>
+</ol>
+
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for="title">Titulo:</label>
+      {{input type='text' class='form-control' id='title' name='title' value=.title}}
+    </div>
+
+    <div class="form-group">
+      {{input-date innerId='fromDate' labelText='Desde:' value=(moment-format fromDate 'DD/MM/YYYY')}}
+    </div>
+
+    <div class="form-group">
+      {{input-date innerId='toDate' labelText='Hasta:' value=(moment-format toDate 'DD/MM/YYYY')}}
+    </div>
+
+    <div class="form-group">
+      <label for="pwd">Detalle:</label>
+      {{textarea
+        id='detail'
+        name='detail'
+        class='form-control'
+        rows='5'
+        value=detail}}
+    </div>
+
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-df" {{action 'save'}}>Guardar</button>
+    </div>
+  </form>
+</div>

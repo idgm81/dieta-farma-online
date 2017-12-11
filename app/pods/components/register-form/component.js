@@ -41,21 +41,7 @@ export default Ember.Component.extend({
         }
       });
 
-      $('input[name="checkInjuries"]').attr('data-validate', 'true');
       $('input[name="checkTerms"]').attr('data-validate', 'true');
-
-      this.$('input#optGenre2').prop('checked', true);
-      this.$('input#optFruit2').prop('checked', true);
-      this.$('input#optMilk2').prop('checked', true);
-      this.$('input#optCereals2').prop('checked', true);
-      this.$('input#optProteins2').prop('checked', true);
-      this.$('input#optSelfCook2').prop('checked', true);
-      this.$('input#optReceiveDietsBefore2').prop('checked', true);
-      this.$('input#optIsEmployed2').prop('checked', true);
-      this.$('input#optdoExercise2').prop('checked', true);
-      this.$('input#optIncreaseActivity2').prop('checked', true);
-      this.$('input#optTrainingInfo2').prop('checked', true);
-      this.$('input#optSupplementInfo2').prop('checked', true);
 
       Ember.setProperties(this.get('data'), {
         birthday: { day: 1, month: 1, year: 1970 },
@@ -109,21 +95,19 @@ export default Ember.Component.extend({
         dayMilk: this.get('foodFrecuencies.3'),
         dayCereals: this.get('foodFrecuencies.3'),
         dayProteins: this.get('foodFrecuencies.3'),
-        selfCook: '0',
-        receiveDietsBefore: '0',
+        selfCook: false,
+        receiveDietsBefore: false,
         supervisor: this.get('otherSupevisors.4'),
         supervisorDetail: '',
-        isEmployed: '0',
+        isEmployed: false,
         employmentType: this.get('employmentTypes.0'),
         transportType: this.get('transportTypes.0'),
         doExercise: false,
         exerciseFrecuency: this.get('exerciseFrecuencies.0'),
         increaseActivity: false,
         injuries: '',
-        receiveTrainingInfo: '0',
-        receiveSupplementInfo: '0',
-        role: 'client',
-        assignedNutritionist: 1
+        receiveTrainingInfo: false,
+        receiveSupplementInfo: false,
       });
 
       this.$('form.register').validator();
