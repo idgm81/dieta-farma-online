@@ -58,6 +58,12 @@ export default Ember.Component.extend({
           metabolicExpense: '',
           metabolicAge: '',
           visceralFat: '',
+          creases: {
+            bicipital: '',
+            tricipital: '',
+            subescapular: '',
+            suprailiaco: ''
+          },
           segments: {
             arm: {
               left: {
@@ -83,6 +89,14 @@ export default Ember.Component.extend({
               fatPercentage: '',
               mass: ''
             }
+          },
+          shapes: {
+            wrist: '',
+            waist: '',
+            hip: '',
+            arm: '',
+            leg: '',
+            chest: ''
           }
         },
         objective: this.get('objectives.4'),
