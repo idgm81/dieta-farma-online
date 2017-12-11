@@ -10,5 +10,6 @@ module.exports = {
     jquery: true
   },
   rules: {
+    "no-unused-vars": [ "warn" ]
   }
 };
