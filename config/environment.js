@@ -33,6 +33,11 @@ module.exports = function(environment) {
       'report-uri':"'localhost'",
       'style-src': "'self' 'unsafe-inline'",
       'frame-src': "'none'"
+    },
+    moment: {
+      // To cherry-pick specific locale support into your application.
+      // Full list of locales: https://github.com/moment/moment/tree/2.10.3/locale
+      includeLocales: ['es']
     }
   };
 
@@ -50,7 +55,7 @@ module.exports = function(environment) {
     refreshAccessTokens: false,
     authorizationPrefix: 'JWT ',
     refreshTokenPropertyName: 'refresh_token',
-    refreshLeeway: 300, // Refresh the token 5 minutes (300s) before it expires.,
+    refreshLeeway: 180, // Refresh the token 5 minutes (300s) before it expires.,
     serverTokenRefreshEndpoint: `${HOST}/api/auth/refresh_token`,
     tokenExpireName: 'exp'
   };
