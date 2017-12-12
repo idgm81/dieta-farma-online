@@ -335,6 +335,10 @@ $color-dietafarma: #25a29f;
     border-color: $color-dietafarma;
 }
 
+.table {
+  font-size: 14px;
+}
+
 .dieta-farma-calendar-small {
   @include ember-power-calendar($cell-size: 30px);
 }
