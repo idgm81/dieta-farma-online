@@ -10,8 +10,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   session: service(),
 
-  model() {
-    return this.get('api').getAppointments();
+  model(params) {
+    return this.get('api').getAppointments(params.id);
   },
 
   setupController(controller, model) {

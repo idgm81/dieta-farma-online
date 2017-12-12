@@ -2,7 +2,7 @@ import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import { USER_ROLES } from './constants';
 
-const { inject: { service } , get} = Ember;
+const { inject: { service } , computed, get} = Ember;
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
@@ -11,6 +11,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   api: service(),
 
   sideMenu: service(),
+
+  userId: computed.reads('session.data.authenticated.id'),
 
   model() {
     const userId = this.get('session.data.authenticated.id');
@@ -42,7 +44,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   actions: {
     showMyProfile() {
       this.close();
-      this.transitionTo('home.profile', this.get('session.data.authenticated.id'));
+      this.transitionTo('home.profile', this.get('userId'));
     },
 
     askForAppointment() {
@@ -52,12 +54,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     showDiets() {
       this.close();
-      this.transitionTo('home.diets');
+      this.transitionTo('home.diets.index');
     },
 
     showMyAppointments() {
       this.close();
-      this.transitionTo('home.calendar');
+      this.transitionTo('home.calendar.index', this.get('userId'));
     },
 
     showMessages() {

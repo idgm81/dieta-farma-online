@@ -9,12 +9,14 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   session: service(),
 
-  model() {
-    return this.get('api').getDiets();
+  model(params, transition) {
+    const queryParams = transition.queryParams;
+
+    return this.get('api').getDiets(queryParams.userId);
   },
 
   actions: {
-    viewDetails(id) {
+    show(id) {
       this.transitionTo('home.diets.diet', id);
     }
   }

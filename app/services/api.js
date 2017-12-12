@@ -37,8 +37,8 @@ export default AjaxService.extend({
     }
   }),
 
-  getUser(id) {
-    return this.request(`/users/${id}`, {
+  getUser(userId) {
+    return this.request(`/users/${userId}`, {
       method: 'GET'
     });
   },
@@ -56,15 +56,15 @@ export default AjaxService.extend({
     });
   },
 
-  editUser(data) {
-    return this.request(`/users/${this.get('userId')}`, {
+  editUser(userId, data) {
+    return this.request(`/users/${userId}`, {
       method: 'PUT',
       data
     });
   },
 
-  getDiets() {
-    return this.request(`/diets/${this.get('userId')}`, {
+  getDiets(userId) {
+    return this.request(`/diets/${userId}`, {
       method: 'GET'
     });
   },
@@ -76,47 +76,47 @@ export default AjaxService.extend({
     });
   },
 
-  editDiet(id, data) {
-    return this.request(`/diets/${id}/?id=${this.get('userId')}`, {
+  editDiet(dietId, userId, data) {
+    return this.request(`/diets/${dietId}/?id=${userId}`, {
       method: 'PUT',
       data
     });
   },
 
-  deleteDiet(id) {
-    return this.request(`/diets/${id}`, {
+  deleteDiet(dietId) {
+    return this.request(`/diets/${dietId}`, {
       method: 'DELETE'
     });
   },
 
-  getAppointments() {
-    return this.request(`/appointments/${this.get('userId')}`, {
+  getAppointments(userId) {
+    return this.request(`/appointments/${userId}`, {
       method: 'GET'
     });
   },
 
-  createAppointment(data) {
-    return this.request(`/appointments/${this.get('userId')}`, {
+  createAppointment(userId, data) {
+    return this.request(`/appointments/${userId}`, {
       method: 'POST',
       data
     });
   },
 
-  editAppointment(id, data) {
-    return this.request(`/appointments/${id}/?id=${this.get('userId')}`, {
+  editAppointment(appointmentId, userId, data) {
+    return this.request(`/appointments/${appointmentId}/?id=${userId}`, {
       method: 'PUT',
       data
     });
   },
 
-  getMessages() {
-    return this.request(`/messages/${this.get('userId')}`, {
+  getMessages(userId) {
+    return this.request(`/messages/${userId}`, {
       method: 'GET'
     });
   },
 
-  createMessage(data) {
-    return this.request(`/messages/${this.get('userId')}`, {
+  createMessage(userId, data) {
+    return this.request(`/messages/${userId}`, {
       method: 'POST',
       data
     });
