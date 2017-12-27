@@ -28,7 +28,7 @@ module.exports = function(environment) {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
       'font-src': "'self'",
-      'connect-src': "'self' http://localhost:4500 https://dieta-farma-api.herokuapp.com",
+      'connect-src': "'self' 'localhost' 'dieta-farma-api.herokuapp.com' 's3.eu-west-3.amazonaws.com'",
       'img-src': "'self'",
       'report-uri':"'localhost'",
       'style-src': "'self' 'unsafe-inline'",
