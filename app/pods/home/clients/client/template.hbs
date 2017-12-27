@@ -44,12 +44,13 @@
               <tr>
                 <td>Dietas</td>
                 <td>
-                  <div class="btn-group" role="group">
-                    {{#if model.user.diets}}
+                  {{#if model.user.profile.diets}}
+                    <div class="btn-group" role="group">
                       <button type="button" class="btn btn-info" {{action 'showDiets' (get model.user '_id')}}><i class="fa fa-x fa-eye"></i> Ver</button>
-                    {{else}}
-                      <button type="button" class="btn btn-info" {{action 'addDiet' (get model.user '_id')}}><i class="fa fa-x fa-plus"></i> Añadir</button>
-                    {{/if}}
+                    </div>
+                  {{/if}}
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary" {{action 'addDiet' (get model.user '_id')}}><i class="fa fa-x fa-plus"></i> Añadir</button>
                   </div>
                 </td>
               </tr>
