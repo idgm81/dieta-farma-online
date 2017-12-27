@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-const { Route, RSVP, inject: { service }, get } = Ember;
+const { Route, inject: { service }, get } = Ember;
 
 export default Route.extend(AuthenticatedRouteMixin, {
 
@@ -10,14 +10,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
   session: service(),
 
   model(params, transition) {
-    const queryParams = transition.queryParams;
+    const userId = transition.queryParams.userId || this.get('session.data.authenticated.id');
 
-    return this.get('api').getDiets(queryParams.userId);
-  },
-
-  actions: {
-    show(id) {
-      this.transitionTo('home.diets.diet', id);
-    }
+    return this.get('api').getDiets(userId);
   }
 });
