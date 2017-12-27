@@ -13,10 +13,6 @@ export default AjaxService.extend({
 
   contentType: 'application/json; charset=utf-8',
 
-  userId: Ember.computed('session.data', function() {
-    return this.get('session.data.authenticated.id');
-  }),
-
   options() {
     const result = this._super(...arguments);
 
@@ -57,14 +53,14 @@ export default AjaxService.extend({
   },
 
   editUser(userId, data) {
-    return this.request(`/users/${userId}`, {
+    return this.request(`/users`, {
       method: 'PUT',
       data
     });
   },
 
   getDiets(userId) {
-    return this.request(`/diets/${userId}`, {
+    return this.request(`/diets?userId=${userId}`, {
       method: 'GET'
     });
   },
@@ -76,8 +72,8 @@ export default AjaxService.extend({
     });
   },
 
-  editDiet(dietId, userId, data) {
-    return this.request(`/diets/${dietId}/?id=${userId}`, {
+  editDiet(dietId, data) {
+    return this.request(`/diets/${dietId}`, {
       method: 'PUT',
       data
     });
@@ -90,36 +86,56 @@ export default AjaxService.extend({
   },
 
   getAppointments(userId) {
-    return this.request(`/appointments/${userId}`, {
+    return this.request(`/appointments?userId=${userId}`, {
       method: 'GET'
     });
   },
 
-  createAppointment(userId, data) {
-    return this.request(`/appointments/${userId}`, {
+  createAppointment(data) {
+    return this.request(`/appointments`, {
       method: 'POST',
       data
     });
   },
 
-  editAppointment(appointmentId, userId, data) {
-    return this.request(`/appointments/${appointmentId}/?id=${userId}`, {
+  editAppointment(appointmentId, data) {
+    return this.request(`/appointments/${appointmentId}`, {
       method: 'PUT',
       data
     });
   },
 
   getMessages(userId) {
-    return this.request(`/messages/${userId}`, {
+    return this.request(`/messages?userId=${userId}`, {
       method: 'GET'
     });
   },
 
-  createMessage(userId, data) {
-    return this.request(`/messages/${userId}`, {
+  createMessage(data) {
+    return this.request(`/messages`, {
       method: 'POST',
       data
     });
   },
 
+  getS3Url(category, fileName, fileType) {
+    return this.request(`/signed-request`, {
+      method: 'POST',
+      data: {
+        file: fileName,
+        category,
+        type: fileType
+      }
+    });
+  },
+
+  uploadToS3(file, signedRequest) {
+    return new Promise(function(resolve, reject) {
+      const xhr = new XMLHttpRequest()
+      xhr.open('PUT', signedRequest)
+      xhr.setRequestHeader('x-amz-acl', 'public-read')
+      xhr.onload = () => { resolve() }
+      xhr.send(file)
+    })
+  }
 });
