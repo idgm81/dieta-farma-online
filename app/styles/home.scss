@@ -322,7 +322,7 @@ $color-dietafarma: #25a29f;
 .btn-df {
   color: #fff;
   background-color: $color-dietafarma;
-  border-color: #2e6da4;
+  border-color: $color-dietafarma;
 }
 
 .panel-df {
@@ -347,4 +347,16 @@ $color-dietafarma: #25a29f;
 }
 .dieta-farma-calendar-big {
   @include ember-power-calendar($cell-size: 70px);
+}
+
+.file-picker__dropzone {
+  background-color: white;
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  line-height: 200px;
+  text-align: center;
+  height: 200px;
+  border-width: 2px;
+  margin-bottom: 20px;
 }
