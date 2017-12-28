@@ -1,6 +1,7 @@
 $color-dietafarma: #25a29f;
 
 .home-header {
+  z-index: 9999;
   position: fixed;
   top: 0px;
   background-color: $color-dietafarma;
@@ -226,6 +227,10 @@ $color-dietafarma: #25a29f;
   h3 {
     text-align: center;
   }
+}
+
+.client.thumbnail {
+  height: 270px;
 }
 
 .footer {
