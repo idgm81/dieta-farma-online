@@ -25,42 +25,42 @@ module.exports = function(defaults) {
     // Add options here
     sassOptions: {
       includePaths: [
-        'bower_components/bootstrap-sass/assets/stylesheets'
+        'node_modules/bootstrap-sass/assets/stylesheets'
       ]
     }
   });
 
   app.import({
-    development: 'bower_components/font-awesome/css/font-awesome.css',
-    production: 'bower_components/font-awesome/css/font-awesome.min.css'
+    development: 'node_modules/font-awesome/css/font-awesome.css',
+    production: 'node_modules/font-awesome/css/font-awesome.min.css'
   });
 
   app.import({
-    development: 'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
-    production: 'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js'
+    development: 'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
+    production: 'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js'
   });
 
   app.import({
-    development: 'bower_components/moment/moment.js',
-    production: 'bower_components/moment/min/moment.min.js'
+    development: 'node_modules/moment/moment.js',
+    production: 'node_modules/moment/min/moment.min.js'
   });
 
   app.import({
-    development: 'bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js',
-    production: 'bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js'
+    development: 'node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js',
+    production: 'node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js'
   });
 
   app.import({
-    development: 'bower_components/bootstrap-validator/dist/validator.js',
-    production: 'bower_components/bootstrap-validator/dist/validator.min.js'
+    development: 'node_modules/bootstrap-validator/dist/validator.js',
+    production: 'node_modules/bootstrap-validator/dist/validator.min.js'
   });
 
   app.import({
-    development: 'bower_components/jquery-backstretch/jquery.backstretch.js',
-    production: 'bower_components/jquery-backstretch/jquery.backstretch.min.js'
+    development: 'node_modules/jquery-backstretch/jquery.backstretch.js',
+    production: 'node_modules/jquery-backstretch/jquery.backstretch.min.js'
   });
 
-  var fontFiles = new Funnel('bower_components/font-awesome/fonts', {
+  var fontFiles = new Funnel('node_modules/font-awesome/fonts', {
     srcDir: '/',
     destDir: 'fonts'
   });
