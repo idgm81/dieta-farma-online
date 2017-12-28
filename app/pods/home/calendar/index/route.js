@@ -2,7 +2,7 @@ import Ember from 'ember';
 import moment from 'moment';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-const { Route, RSVP, inject: { service }, get } = Ember;
+const { Route, inject: { service }, get } = Ember;
 
 export default Route.extend(AuthenticatedRouteMixin, {
 
@@ -10,8 +10,16 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   session: service(),
 
-  model(params) {
-    return this.get('api').getAppointments(params.id);
+  moment: service(),
+
+  beforeModel() {
+    this.get('moment').setLocale('es');
+  },
+
+  model() {
+    const userId = get(this, 'session.data.authenticated.id');
+
+    return this.get('api').getAppointments(userId);
   },
 
   setupController(controller, model) {

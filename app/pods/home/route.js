@@ -59,7 +59,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     showMyAppointments() {
       this.close();
-      this.transitionTo('home.calendar.index', this.get('userId'));
+      this.transitionTo('home.calendar.index');
     },
 
     showMessages() {

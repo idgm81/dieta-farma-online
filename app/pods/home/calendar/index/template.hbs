@@ -4,7 +4,7 @@
 </ol>
 
 <div class="container">
-  <div class="panel panel-default">
+  <div class="panel panel-df">
     {{#power-calendar-multiple
       locale='es'
       class='dieta-farma-calendar-medium'
@@ -12,7 +12,7 @@
       selected=meetDays as |calendar|}}
       {{calendar.nav}}
       {{#calendar.days as |day|}}
-        {{#with (moment-format day.date 'ddd') as |weekday|}}
+        {{#with (moment-format day.date 'ddd' locale='es') as |weekday|}}
           {{#if (or (eq weekday "Sat") (eq weekday "Sun"))}}
             <strong class="holiday">{{day.number}}</strong>
           {{else}}
