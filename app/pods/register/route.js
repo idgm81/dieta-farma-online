@@ -89,6 +89,7 @@ export default Route.extend(UnauthenticatedRouteMixin, {
         employmentType: data.employmentType,
         transportType: data.transportType,
         doExercise: data.doExercise,
+        sportDetail: data.sportDetail,
         exerciseFrecuency: data.exerciseFrecuency,
         increaseActivity: data.increaseActivity,
         injuries: data.injuries,

@@ -117,6 +117,7 @@ export default Ember.Component.extend({
         employmentType: this.get('employmentTypes.0'),
         transportType: this.get('transportTypes.0'),
         doExercise: false,
+        sportDetail: '',
         exerciseFrecuency: this.get('exerciseFrecuencies.0'),
         increaseActivity: false,
         injuries: '',
