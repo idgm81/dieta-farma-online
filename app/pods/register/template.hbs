@@ -3,14 +3,14 @@
     id='dt-register-page'
     onsubmit='register'}}
 
-  {{#generic-modal id='register-modal-success' onaccept='goToLogin'}}
+  {{#generic-modal id='modal-registration-ok' onclose='goToLogin'}}
     <div class="text-center">
       <i class="fa fa-check-circle" aria-hidden="true"></i>
     </div>
     <h5 class="modal-title">Registro completado!</h5>
   {{/generic-modal}}
 
-  {{#generic-modal id='register-modal-error'}}
+  {{#generic-modal id='modal-registration-error'}}
     <div class="text-center">
       <i class="fa fa-times-circle" aria-hidden="true"></i>
     </div>
