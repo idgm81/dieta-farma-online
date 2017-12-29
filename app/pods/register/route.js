@@ -103,14 +103,13 @@ export default Route.extend(UnauthenticatedRouteMixin, {
     register(data) {
       $('div.loading-container').show();
       this.get('api').createUser(this._normalize(data))
-        .then((response) => {
-          $('div.loading-container').hide();
-          $('#end-register-modal-success').modal();
+        .then(() => {
+          $('#register-modal-success').modal();
         })
-        .catch((error) => {
-          $('div.loading-container').hide();
-          $('#end-register-modal-error').modal();
-        });
+        .catch(() => {
+          $('#register-modal-error').modal();
+        })
+        .finally(() => $('div.loading-container').hide())
     },
 
     goToLogin() {

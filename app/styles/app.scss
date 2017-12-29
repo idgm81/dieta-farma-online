@@ -477,10 +477,6 @@ about
   padding-bottom: 10px;
 }
 
-/***************************************
-doctor team
-***************************************/
-
 .thumbnail {
   border-radius: 0px;
 }
@@ -668,6 +664,36 @@ contact us
   display: block;
 }
 
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.fa-check-circle {
+  font-size: 3em;
+  color: $color-dietafarma;
+}
+
+.fa-times-circle {
+  font-size: 3em;
+  color: #a94442;
+}
+
 /***** Media queries *****/
 
 @media (min-width: 992px) and (max-width: 1199px) {}
@@ -685,7 +711,6 @@ contact us
     font-size: 32px;
   }
 }
-
 
 @media (min-width: 551px) and (max-width: 980px) {
 }
@@ -728,5 +753,3 @@ contact us
     font-size: 24px;
   }
 }
-
-@import "ember-power-select";

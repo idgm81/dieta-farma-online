@@ -1,6 +1,19 @@
 {{#wrapper-bg images=registerBackground}}
   {{register-form
     id='dt-register-page'
-    onsubmit='register'
-    onsuccess='goToLogin'}}
+    onsubmit='register'}}
+
+  {{#generic-modal id='register-modal-success' onaccept='goToLogin'}}
+    <div class="text-center">
+      <i class="fa fa-check-circle" aria-hidden="true"></i>
+    </div>
+    <h5 class="modal-title">Registro completado!</h5>
+  {{/generic-modal}}
+
+  {{#generic-modal id='register-modal-error'}}
+    <div class="text-center">
+      <i class="fa fa-times-circle" aria-hidden="true"></i>
+    </div>
+    <h5 class="modal-title">Error en el registro!</h5>
+  {{/generic-modal}}
 {{/wrapper-bg}}

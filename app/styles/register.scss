@@ -248,16 +248,6 @@ $color-dietafarma: #25a29f;
 	  border-color: #a94442;
 	}
 
-	.fa-check-circle {
-		font-size: 4em;
-		color: $color-dietafarma;
-	}
-
-	.fa-times-circle {
-		font-size: 4em;
-		color: #a94442;
-	}
-
 	input {
   &[type="text"], &[type="email"], &[type="password"] {
     height: 44px;
