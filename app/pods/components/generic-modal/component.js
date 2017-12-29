@@ -13,11 +13,6 @@ export default Ember.Component.extend({
   'aria-hidden': 'true',
 
   actions: {
-    ok: function() {
-      this.$('.modal').modal('hide');
-      this.sendAction('onaccept');
-    },
-
     close: function() {
       this.$('.modal').modal('hide');
       this.sendAction('onclose');
