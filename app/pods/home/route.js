@@ -14,20 +14,16 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   userId: computed.reads('session.data.authenticated.id'),
 
-  beforeModel() {
-    this._super(...arguments);
-
-    run.later(() => this.get('session').invalidate(), 180000);
-  },
-
   model() {
     const userId = this.get('session.data.authenticated.id');
 
     return this.get('api').getUser(userId);
   },
 
-  redirect(model, transition) {
+  redirect(model) {
     this._super(...arguments);
+
+    run.later(() => this.get('session').invalidate(), 180000);
 
     const nextRoute = get(model, 'user.role') === USER_ROLES.NUTRITIONIST
       ? 'home.clients.index'
