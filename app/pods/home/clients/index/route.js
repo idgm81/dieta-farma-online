@@ -8,6 +8,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   api: service(),
 
+  session: service(),
+
   model() {
     return this.get('api').getUsers(USER_ROLES.CLIENT)
   },
@@ -24,8 +26,11 @@ export default Route.extend(AuthenticatedRouteMixin, {
       this.transitionTo('home.clients.client', id)
     },
 
-    showMessages() {
-      this.transitionTo('home.messages')
+    sendMessage(client) {
+      const nutritionist= get(this, 'session.data.authenticated.id');
+      const queryParams = { client, nutritionist };
+
+      this.transitionTo('home.messages.new',  { queryParams })
     }
   }
 });

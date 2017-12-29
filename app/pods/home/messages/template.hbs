@@ -1,56 +1,18 @@
-<div class="page-header">
-  <h1>Mensajes</h1>
-</div>
-<div class="col-md-6 col-xs-12">
-  <div class="x_panel">
-    <div class="x_title">
-      <div class="clearfix"></div>
+<ol class="breadcrumb">
+  <li>{{link-to 'Home' 'home'}}</li>
+  <li class="active">Mis mensajes</li>
+</ol>
+
+{{#each model.messages as |message|}}
+  <div class="media">
+    <div class="media-left">
+      <img alt="64x64" class="media-object" src="../assets/images/default-avatar.png" style="width: 64px; height: 64px;"
+        data-holder-rendered="true">
     </div>
-    <div class="x_content">
-      <ul class="list-unstyled msg_list">
-        <li>
-          <a>
-            <span class="image">
-              <img src="../assets/images/default-avatar.png" alt="img">
-            </span>
-            <span>
-              <span>John Smith</span>
-              <span class="time">3 mins ago</span>
-            </span>
-            <span class="message">
-              Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-            </span>
-          </a>
-        </li>
-        <li>
-          <a>
-            <span class="image">
-              <img src="../assets/images/default-avatar.png" alt="img">
-            </span>
-            <span>
-              <span>John Smith</span>
-              <span class="time">3 mins ago</span>
-            </span>
-            <span class="message">
-              Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-            </span>
-          </a>
-        </li>
-        <li>
-          <a>
-            <span class="image">
-              <img src="../assets/images/default-avatar.png" alt="img">
-            </span>
-            <span>
-              <span>John Smith</span>
-              <span class="time">3 mins ago</span>
-            </span>
-            <span class="message">
-              Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-            </span>
-          </a>
-        </li>
-      </ul>
+    <div class="media-body">
+      <h4 class="media-heading">{{message.title}}</h4>
+      <small>Enviado el {{moment-format message.date 'DD/MM/YYYY'}}</small>
+      <p>{{message.content}}</p>
     </div>
   </div>
-</div>
+{{/each}}

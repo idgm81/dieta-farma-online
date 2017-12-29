@@ -1,0 +1,38 @@
+<ol class="breadcrumb">
+  <li>{{link-to 'Home' 'home'}}</li>
+  <li>{{link-to 'Mis clientes' 'home.clients'}}</li>
+  <li class="active">Nuevo mensaje</li>
+</ol>
+
+<div class="container">
+  <div class="loading-container" style="display: none">Enviando mensaje...</div>
+  <form role="form">
+    <div class="form-group">
+      <label for="title">Asunto:</label>
+      {{input type='text' class='form-control' id='title' name='title' value=title}}
+    </div>
+
+    <div class="form-group">
+      <label for="title">Texto:</label>
+      {{textarea class='form-control' id='content' name='content' value=content}}
+    </div>
+
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-df" {{action 'send'}}>Enviar</button>
+    </div>
+  </form>
+</div>
+
+{{#generic-modal id='modal-new-message-ok' onclose='goToHome'}}
+  <div class="text-center">
+    <i class="fa fa-check-circle" aria-hidden="true"></i>
+  </div>
+  <h5 class="modal-title">Mensaje enviado!</h5>
+{{/generic-modal}}
+
+{{#generic-modal id='modal-message-diet-error'}}
+  <div class="text-center">
+    <i class="fa fa-times-circle" aria-hidden="true"></i>
+  </div>
+  <h5 class="modal-title">Error al enviar el mensaje!</h5>
+{{/generic-modal}}
