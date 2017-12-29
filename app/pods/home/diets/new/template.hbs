@@ -4,11 +4,8 @@
   <li class="active">Crear dieta</li>
 </ol>
 
-{{#each flashMessages.queue as |flash|}}
-  {{flash-message flash=flash}}
-{{/each}}
-
 <div class="container">
+  <div class="loading-container" style="display: none">Guardando dieta...</div>
   <form role="form">
     <div class="form-group">
       <label for="title">Titulo:</label>
@@ -35,3 +32,17 @@
     </div>
   </form>
 </div>
+
+{{#generic-modal id='modal-new-diet-ok' onclose='goToHome'}}
+  <div class="text-center">
+    <i class="fa fa-check-circle" aria-hidden="true"></i>
+  </div>
+  <h5 class="modal-title">Dieta creada correctamente!</h5>
+{{/generic-modal}}
+
+{{#generic-modal id='modal-new-diet-error'}}
+  <div class="text-center">
+    <i class="fa fa-times-circle" aria-hidden="true"></i>
+  </div>
+  <h5 class="modal-title">Error al crear la dieta!</h5>
+{{/generic-modal}}

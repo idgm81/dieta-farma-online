@@ -1,13 +1,11 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { Controller, inject: { service }, get, set } = Ember;
+const { Controller, inject: { service }, get, set, $ } = Ember;
 
 export default Controller.extend({
 
   session: service(),
-
-  flashMessages: service(),
 
   api: service(),
 
@@ -27,6 +25,8 @@ export default Controller.extend({
       const fileType = get(this, 'file.type');
       const category = 'diets';
 
+      $('div.loading-container').show();
+
       return this.get('api').getS3Url(category, fileName, fileType).then((signedData) => {
         this.get('api').uploadToS3(get(this, 'file'), signedData.signedRequest).then(() => {
           set(this, 'url', signedData.url);
@@ -40,14 +40,27 @@ export default Controller.extend({
             url: get(this, 'url')
           };
 
+
           return this.get('api').createDiet(diet)
-            .then(() => {
-              this.get('flashMessages').success('Dieta creada correctamente!');
-              this.replaceRoute('home.clients');
+            .then(() => $('#modal-new-diet-ok').modal())
+            .catch(() => $('#modal-new-diet-error').modal())
+            .finally(() => {
+              $('div.loading-container').hide();
             })
-            .catch(() => this.get('flashMessages').error('Error al crear la diera!'));
+        }).catch(() => {
+          $('#modal-new-diet-error').modal();
+        }).finally(() => {
+          $('div.loading-container').hide();
         });
+      }).catch(() => {
+        $('#modal-new-diet-error').modal();
+      }).finally(() => {
+        $('div.loading-container').hide();
       });
+    },
+
+    goToHome() {
+      this.replaceRoute('home.clients');
     }
   }
 });
