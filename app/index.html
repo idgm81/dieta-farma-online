@@ -60,10 +60,16 @@
     </script>
     <script>
     (function ($) {
+
+        $('body').on('click', function(event) {
+          if($('button.navbar-toggle').length) {
+            $('.navbar-collapse.in').collapse('hide');
+          }
+        });
+
         // Add smooth scrolling to all links in navbar
         $('ul.nav').on('click', function(event) {
           event.preventDefault();
-          console.log('jajajajja');
         });
 
         $('.navbar a, a.btn-appoint, .quick-info li a, .overlay-detail a').on('click', function(event) {
