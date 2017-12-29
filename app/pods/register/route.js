@@ -2,7 +2,7 @@ import Ember from 'ember';
 import moment from 'moment';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
-const { Route, inject: { service }} = Ember;
+const { Route, inject: { service } } = Ember;
 
 export default Route.extend(UnauthenticatedRouteMixin, {
 
@@ -104,12 +104,12 @@ export default Route.extend(UnauthenticatedRouteMixin, {
       $('div.loading-container').show();
       this.get('api').createUser(this._normalize(data))
         .then(() => {
-          $('#register-modal-success').modal();
+          $('#modal-registration-ok').modal();
         })
         .catch(() => {
-          $('#register-modal-error').modal();
+          $('#modal-registration-error').modal();
         })
-        .finally(() => $('div.loading-container').hide())
+        .finally(() => $('div.loading-container').hide());
     },
 
     goToLogin() {
