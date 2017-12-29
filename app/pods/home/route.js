@@ -2,7 +2,7 @@ import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import { USER_ROLES } from './constants';
 
-const { inject: { service } , computed, get} = Ember;
+const { inject: { service } , computed, get, run} = Ember;
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
@@ -13,6 +13,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   sideMenu: service(),
 
   userId: computed.reads('session.data.authenticated.id'),
+
+  beforeModel() {
+    this._super(...arguments);
+
+    run.later(() => this.get('session').invalidate(), 180000);
+  },
 
   model() {
     const userId = this.get('session.data.authenticated.id');
