@@ -27,6 +27,7 @@ export default Route.extend(ApplicationRouteMixin, UnauthenticatedRouteMixin, {
         identification: credentials.email,
         password: credentials.password
       }).catch((reason) => {
+        console.log(reason);
         $('div.loading-container').hide();
         $('button').show();
         this.set('controller.error', true);
