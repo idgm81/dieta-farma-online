@@ -44,7 +44,7 @@
               <tr>
                 <td>Dietas</td>
                 <td>
-                  {{#if model.user.profile.diets}}
+                  {{#if (gt model.user.profile.diets.length 0)}}
                     <div class="btn-group" role="group">
                       <button type="button" class="btn btn-info" {{action 'showDiets' (get model.user '_id')}}><i class="fa fa-x fa-eye"></i> Ver</button>
                     </div>
