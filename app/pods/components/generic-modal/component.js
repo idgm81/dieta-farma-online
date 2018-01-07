@@ -17,6 +17,5 @@ export default Ember.Component.extend({
       this.$('.modal').modal('hide');
       this.sendAction('onclose');
     }
-  },
-
+  }
 });
