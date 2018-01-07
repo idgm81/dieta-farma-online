@@ -1,28 +1,29 @@
 import Ember from 'ember';
 
+const DATE_FORMAT = 'dd/mm/yyyy';
+
 export default Ember.Component.extend({
 
   classNames: ['form-group'],
 
-  innerId: null,
+  id: '',
 
   labelText: '',
 
-  type: 'text',
-
-  format: 'dd/mm/yyyy',
+  value: '',
 
   required: true,
-
-  dateValue: null,
 
   didInsertElement() {
     this._super(...arguments);
 
     this.$('.input-group.date').datepicker({
-      calendarWeeks: true,
+      language: 'es',
       autoclose: true,
-      format: this.get('format')
+      format: DATE_FORMAT,
+      todayHighlight: true,
+      container: `form`,
+      orientation: 'auto left'
     });
   },
 
