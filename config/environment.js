@@ -1,11 +1,19 @@
 /* eslint-env node */
 
 module.exports = function(environment) {
-  var HOST = environment === 'production' ? 'https://dieta-farma-api.herokuapp.com' : 'http://localhost:4500';
-  var ENV = {
+  const HOST = environment === 'production'
+    ? 'https://dieta-farma-api.herokuapp.com'
+    : 'http://localhost:4500';
+  const ENV = {
     modulePrefix: 'dieta-farma-online',
     podModulePrefix: 'dieta-farma-online/pods',
     environment: environment,
+    i18n: {
+      defaultLocale: 'es'
+    },
+    moment: {
+      includeLocales: ['es']
+    },
     rootURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -53,7 +61,7 @@ module.exports = function(environment) {
     refreshAccessTokens: false,
     authorizationPrefix: 'JWT ',
     refreshTokenPropertyName: 'refresh_token',
-    refreshLeeway: 180, // Refresh the token 5 minutes (300s) before it expires.,
+    refreshLeeway: 120, // Refresh the token 2 minutes (120s) before it expires
     serverTokenRefreshEndpoint: `${HOST}/api/auth/refresh_token`,
     tokenExpireName: 'exp'
   };
@@ -77,7 +85,26 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {}
+  if (environment === 'production') {
+    ENV.manifest = {
+			enabled: true,
+			appcacheFile: '/manifest.appcache',
+			includePaths: [
+				'assets/vendor/app.min.css'
+			],
+			excludePaths: [
+				'index.html',
+				'manifest.webapp',
+				'robots.txt',
+				'manifest.json',
+				'crossdomain.xml',
+				'assets/res/**/*',
+				new RegExp(/.\.svg$/)
+			],
+			network: ['*'],
+			showCreateDate: true
+		};
+  }
 
   return ENV;
 };
