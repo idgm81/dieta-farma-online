@@ -3,9 +3,11 @@ import Ember from 'ember';
 import AjaxService from 'ember-ajax/services/ajax';
 import ENV from '../config/environment';
 
+const { inject: { service }, computed, RSVP } = Ember;
+
 export default AjaxService.extend({
 
-  session: Ember.inject.service(),
+  session: service(),
 
   host: ENV.APP.API_HOST,
 
@@ -22,7 +24,7 @@ export default AjaxService.extend({
     return result
   },
 
-  headers: Ember.computed('session.data.authenticated.token', {
+  headers: computed('session.data.authenticated.token', {
     get() {
       let headers = {};
       const authToken = this.get('session.data.authenticated.token');
@@ -32,6 +34,12 @@ export default AjaxService.extend({
       return headers;
     }
   }),
+
+  checkEmail() {
+    return this.request(`/checkEmail`, {
+      method: 'GET'
+    });
+  },
 
   getUser(userId) {
     return this.request(`/users/${userId}`, {
@@ -130,7 +138,7 @@ export default AjaxService.extend({
   },
 
   uploadToS3(file, signedRequest) {
-    return new Promise(function(resolve, reject) {
+    return new RSVP.Promise(function(resolve, reject) {
       const xhr = new XMLHttpRequest()
       xhr.open('PUT', signedRequest)
       xhr.setRequestHeader('x-amz-acl', 'public-read')
