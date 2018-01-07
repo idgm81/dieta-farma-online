@@ -6,7 +6,6 @@ export default Base.extend({
   session: Ember.inject.service(),
 
   authorize(sessionData, block) {
-    console.log(sessionData);
     const { token } = sessionData
     if (this.get('session.isAuthenticated') && token) {
       block('Authorization', `JWT ${token}`);
