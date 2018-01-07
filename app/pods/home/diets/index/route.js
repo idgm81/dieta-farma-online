@@ -20,11 +20,11 @@ export default Route.extend(AuthenticatedRouteMixin, {
       window.open(url);
     },
 
-    delete(id) {
+    delete(id, userId) {
       $('#modal-wait-delete-diet').modal();
-      return this.get('api').deleteDiet(id)
+      return this.get('api').deleteDiet(id, userId)
         .then(() => {
-          this.refresh();
+          this.replaceWith('home.clients.index');
         })
         .catch(() => {
           $('#modal-delete-diet-error').modal();

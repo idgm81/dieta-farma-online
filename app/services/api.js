@@ -87,8 +87,8 @@ export default AjaxService.extend({
     });
   },
 
-  deleteDiet(dietId) {
-    return this.request(`/diets/${dietId}`, {
+  deleteDiet(dietId, userId) {
+    return this.request(`/diets/${dietId}?userId=${userId}`, {
       method: 'DELETE'
     });
   },

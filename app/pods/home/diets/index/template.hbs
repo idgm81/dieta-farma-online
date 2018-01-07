@@ -25,7 +25,7 @@
         </div>
         {{#if isNutriotionist}}
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-danger" {{action 'delete' (get diet '_id')}}><i class="fa fa-x fa-trash"></i></button>
+            <button type="button" class="btn btn-danger" {{action 'delete' (get diet '_id') (get diet 'client')}}><i class="fa fa-x fa-trash"></i></button>
           </div>
         {{/if}}
       </div>
