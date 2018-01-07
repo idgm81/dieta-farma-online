@@ -12,10 +12,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   moment: service(),
 
-  beforeModel() {
-    this.get('moment').setLocale('es');
-  },
-
   model() {
     const userId = get(this, 'session.data.authenticated.id');
 

@@ -9,11 +9,12 @@
       locale='es'
       class='dieta-farma-calendar-medium'
       minDate=now
-      selected=meetDays as |calendar|}}
+      selected=meetDays
+      value='moment' as |calendar|}}
       {{calendar.nav}}
       {{#calendar.days as |day|}}
-        {{#with (moment-format day.date 'ddd' locale='es') as |weekday|}}
-          {{#if (or (eq weekday "Sat") (eq weekday "Sun"))}}
+        {{#with (moment-format day.date 'd' locale='es') as |weekday|}}
+          {{#if (or (eq weekday '0') (eq weekday '6'))}}
             <strong class="holiday">{{day.number}}</strong>
           {{else}}
             {{day.number}}
