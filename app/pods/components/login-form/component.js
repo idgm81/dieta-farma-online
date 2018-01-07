@@ -1,21 +1,21 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+const { Component, computed, run } = Ember;
+
+export default Component.extend({
 
   email: '',
 
   password: '',
 
-  authError: false,
+  authError: null,
 
-  msgError: Ember.computed('authError', function () {
-    return 'Email y/o contraseña incorrectos';
-  }),
+  msgError: computed.reads('authError'),
 
   didInsertElement() {
     this._super(...arguments);
 
-    Ember.run.scheduleOnce('afterRender', this, function() {
+    run.scheduleOnce('afterRender', this, function() {
       this.$('.login-form').on('invalid.bs.validator', (e) => $(e.relatedTarget).addClass('field-error'));
       this.$('.login-form').on('valid.bs.validator', (e) => $(e.relatedTarget).removeClass('field-error'));
 
@@ -36,8 +36,8 @@ export default Ember.Component.extend({
   },
 
   actions: {
-    resetPassword() {
-
+    reset() {
+      this.sendAction('onreset');
     }
   }
 });
