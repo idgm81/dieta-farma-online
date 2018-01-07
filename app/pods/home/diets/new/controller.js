@@ -32,7 +32,7 @@ export default Controller.extend({
 
       $('#modal-wait-diet').modal();
 
-      return this.get('api').getS3Url(category, fileName, fileType).then((response) => {
+      return this.get('api').getS3Url(this.get('userId'), category, fileName, fileType).then((response) => {
         this.get('api').uploadToS3(get(this, 'file'), response.signedRequest).then(() => {
           set(this, 'url', response.url);
 

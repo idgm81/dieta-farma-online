@@ -126,10 +126,11 @@ export default AjaxService.extend({
     });
   },
 
-  getS3Url(category, fileName, fileType) {
+  getS3Url(userId, category, fileName, fileType) {
     return this.request(`/signed-request`, {
       method: 'POST',
       data: {
+        userId,
         file: fileName,
         category,
         type: fileType
