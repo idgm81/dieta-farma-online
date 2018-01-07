@@ -7,6 +7,7 @@ export default {
     "privateAccess": "Acceso privado"
   },
   "text": {
-    "accessing": "Accediendo..."
+    "accessing": "Accediendo...",
+    "signUp": "Registrando, por favor espere..."
   }
 };

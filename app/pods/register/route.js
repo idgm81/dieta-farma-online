@@ -6,6 +6,8 @@ const { Route, inject: { service } } = Ember;
 
 export default Route.extend(UnauthenticatedRouteMixin, {
 
+  i18n: service(),
+
   api: service(),
 
   _normalize(data) {

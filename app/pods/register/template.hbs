@@ -1,7 +1,9 @@
-{{#wrapper-bg images=registerBackground}}
+{{#wrapper-bg images='backgrounds/register-1.jpg'}}
   {{register-form
     id='dt-register-page'
     onsubmit='register'}}
+
+  {{wait-modal id='modal-register' text=(t 'text.signUp')}}
 
   {{#generic-modal id='modal-registration-ok' onclose='goToLogin'}}
     <div class="text-center">
