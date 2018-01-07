@@ -20,16 +20,21 @@ export default Controller.extend({
   }),
 
   actions: {
+
+    cancel() {
+      this.replaceRoute('home.clients');
+    },
+
     save() {
-      const fileName = `${get(this, 'userId')}_${get(this, 'file.name')}`
+      const fileName = get(this, 'file.name');
       const fileType = get(this, 'file.type');
       const category = 'diets';
 
-      $('div.loading-container').show();
+      $('#modal-wait-diet').modal();
 
-      return this.get('api').getS3Url(category, fileName, fileType).then((signedData) => {
-        this.get('api').uploadToS3(get(this, 'file'), signedData.signedRequest).then(() => {
-          set(this, 'url', signedData.url);
+      return this.get('api').getS3Url(category, fileName, fileType).then((response) => {
+        this.get('api').uploadToS3(get(this, 'file'), response.signedRequest).then(() => {
+          set(this, 'url', response.url);
 
           const diet = {
             client: get(this, 'userId'),
@@ -45,17 +50,17 @@ export default Controller.extend({
             .then(() => $('#modal-new-diet-ok').modal())
             .catch(() => $('#modal-new-diet-error').modal())
             .finally(() => {
-              $('div.loading-container').hide();
+              $('#modal-wait-diet').modal('hide');
             })
         }).catch(() => {
           $('#modal-new-diet-error').modal();
         }).finally(() => {
-          $('div.loading-container').hide();
+          $('#modal-wait-diet').modal('hide');
         });
       }).catch(() => {
         $('#modal-new-diet-error').modal();
       }).finally(() => {
-        $('div.loading-container').hide();
+        $('#modal-wait-diet').modal('hide');
       });
     },
 

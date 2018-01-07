@@ -5,19 +5,18 @@
 </ol>
 
 <div class="container">
-  <div class="loading-container" style="display: none">Guardando dieta...</div>
-  <form role="form">
+  <form role="form" id="form-diet">
     <div class="form-group">
       <label for="title">Titulo:</label>
-      {{input type='text' class='form-control' id='title' name='title' value=title}}
+      {{input type='text' class='form-control' id='title' name='title' value=title data-validate='true'}}
     </div>
 
     <div class="form-group">
-      {{input-date innerId='fromDate' labelText='Desde:' value=fromDate}}
+      {{input-date id='diet-start-date' labelText='Desde:' value=fromDate data-validate='true'}}
     </div>
 
     <div class="form-group">
-      {{input-date innerId='toDate' labelText='Hasta:' value=toDate}}
+      {{input-date id='toDate' labelText='Hasta:' value=toDate data-validate='true'}}
     </div>
 
     <div class="form-group">
@@ -28,10 +27,15 @@
     </div>
 
     <div class="btn-group" role="group">
-      <button type="button" class="btn btn-df" {{action 'save'}}>Guardar</button>
+      <button type="submit" class="btn btn-df" {{action 'save'}}>Guardar</button>
+    </div>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-danger" {{action 'cancel'}}>Cancelar</button>
     </div>
   </form>
 </div>
+
+{{wait-modal id='modal-wait-diet' text='Guardando dieta...'}}
 
 {{#generic-modal id='modal-new-diet-ok' onclose='goToHome'}}
   <div class="text-center">
