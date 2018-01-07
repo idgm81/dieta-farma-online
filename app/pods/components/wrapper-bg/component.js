@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { imagePath } from 'dieta-farma-online/helpers/image-path';
 
 const { $, Component, on } = Ember;
 
@@ -9,7 +10,7 @@ export default Component.extend({
 
   setupBackstretch: on('didInsertElement', function() {
     $.backstretch(
-      this.get('images'),
+      imagePath(this.get('images')),
       this.get('config')
     );
   }),
