@@ -34,9 +34,14 @@
             value=password
             minlength='8'
             required=true
+            autocomplete='on'
             placeholder='Contraseña'}}
           <small class="help-block with-errors"></small>
         </div>
+        <!--
+        <div class="form-group text-right">
+          <small role="button" {{action 'reset'}}>¿Has olvidado tu contraseña?</small>
+        </div> -->
         {{#if authError}}
           <div class="invalid-login"><p>{{msgError}}</p></div>
         {{/if}}

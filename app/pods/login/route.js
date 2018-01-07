@@ -2,9 +2,11 @@ import Ember from 'ember';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
-const { Route, inject: { service }, $} = Ember
+const { Route, inject: { service }, $} = Ember;
 
 export default Route.extend(ApplicationRouteMixin, UnauthenticatedRouteMixin, {
+
+  i18n: service(),
 
   session: service(),
 
@@ -20,18 +22,20 @@ export default Route.extend(ApplicationRouteMixin, UnauthenticatedRouteMixin, {
   actions: {
     authenticate(credentials) {
       $('button').hide();
-      $('div.loading-container').show();
+      $('#modal-login').modal();
 
       const authenticator = 'authenticator:jwt';
       this.get('session').authenticate(authenticator, {
         identification: credentials.email,
         password: credentials.password
-      }).catch((reason) => {
-        console.log(reason);
-        $('div.loading-container').hide();
+      }).catch((error) => {
+        $('#modal-login').modal('hide');
         $('button').show();
-        this.set('controller.error', true);
+        this.set('controller.error', error || this.get('i18n').t('error.generic'));
       });
+    },
+    resetPassword() {
+
     }
   }
 });
