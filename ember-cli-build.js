@@ -4,6 +4,9 @@ var Funnel = require('broccoli-funnel');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
+		'ember-cli-babel': {
+			includePolyfill: true
+		},
     svg: {
       paths: [
         'public/assets/images',
@@ -41,13 +44,13 @@ module.exports = function(defaults) {
   });
 
   app.import({
-    development: 'node_modules/moment/moment.js',
-    production: 'node_modules/moment/min/moment.min.js'
+    development: 'node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js',
+    production: 'node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js'
   });
 
   app.import({
-    development: 'node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js',
-    production: 'node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js'
+    development: 'node_modules/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js',
+    production: 'node_modules/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js'
   });
 
   app.import({
