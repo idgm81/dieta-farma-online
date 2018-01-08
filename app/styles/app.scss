@@ -288,6 +288,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   line-height: 20px;
   color: #999999;
+  background-color: white;
   font-size: 300;
   font-size: 16px;
 }
@@ -478,7 +479,10 @@ about
 }
 
 .thumbnail {
-  border-radius: 0px;
+  padding-top: 20px;
+  height: 400px;
+  background-color: #335b69;
+  border: 0px;
 }
 
 .caption {
@@ -486,6 +490,13 @@ about
     padding-bottom: 5px;
   }
   p {
+    padding: 5px;
+  }
+}
+
+.caption-text {
+  h4 {
+    color: white;
     padding-bottom: 10px;
   }
 }
