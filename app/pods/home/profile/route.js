@@ -4,6 +4,8 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 const { Route, inject: { service } } = Ember;
 export default Route.extend(AuthenticatedRouteMixin, {
 
+  session: service(),
+
   api: service(),
 
   model(params) {
@@ -11,11 +13,14 @@ export default Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
-    showDiets() {
-      this.transitionTo('home.diets');
+    delete(id) {
+      this.get('api').deleteUser(id).then(() => this.get('session').invalidate())
     },
     edit(id) {
       this.transitionTo('home.profile.edit', id);
-    }
+    },
+    showDiets() {
+      this.transitionTo('home.diets');
+    },
   }
 });
