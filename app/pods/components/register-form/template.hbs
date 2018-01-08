@@ -138,8 +138,16 @@
             </div>
             <div class="form-group">
               <p>Sexo</p>
-              <label for="optGenre1" class="radio-inline">{{radio-button id='optGenre1' name='optGenre' value='male' checked=data.genre}}Hombre</label>
-              <label for="optGenre2" class="radio-inline">{{radio-button id='optGenre2' name='optGenre' value='female' checked=data.genre}}Mujer</label>
+              <label for="optGenre1" class="radio-inline">
+                {{radio-button id='optGenre1' name='optGenre' value='male' checked=data.genre}}
+                <span>Hombre</span>
+                <div class="radio-checked"></div>
+              </label>
+              <label for="optGenre2" class="radio-inline">
+                {{radio-button id='optGenre2' name='optGenre' value='female' checked=data.genre}}
+                <span>Mujer</span>
+                <div class="radio-checked"></div>
+              </label>
             </div>
             <div class="form-group">
               <label for="register-phone">Teléfono de contacto</label>
@@ -623,7 +631,8 @@
               {{/power-select}}
             </div>
             <div class="form-group">
-              <label>{{input type='checkbox' name='checkInjuries' checked=data.checkInjury}}No sufro ninguna otra patología que me impida o desaconseje hacer dieta para perder peso</label>
+              {{input type='checkbox' id='checkInjuries' name='checkInjuries' checked=data.checkInjury}}
+              <label for="checkInjuries">No sufro ninguna otra patología que me impida o desaconseje hacer dieta para perder peso</label>
             </div>
             <div class="form-group">
               <label for="register-diet-description">Describe un día normal en tu dieta, cuantas comidas, cada cuantas horas, detalla alimentos que componen platos combinados</label>
@@ -695,13 +704,29 @@
             </div>
             <div class="form-group">
               <p>¿Cocinas para ti mismo o te preparan la comida?</p>
-              <label for="optSelfCook1" class="radio-inline">{{radio-button id='optSelfCook1' name='optSelfCook' value=true checked=data.selfCook}}Sí, cocino</label>
-              <label for="optSelfCook2" class="radio-inline">{{radio-button id='optSelfCook2' name='optSelfCook' value=false checked=data.selfCook}}No, me la preparan</label>
+              <label for="optSelfCook1" class="radio-inline">
+                {{radio-button id='optSelfCook1' name='optSelfCook' value=true checked=data.selfCook}}
+                <span>Sí, cocino</span>
+                <div class="radio-checked"></div>
+              </label>
+              <label for="optSelfCook2" class="radio-inline">
+                {{radio-button id='optSelfCook2' name='optSelfCook' value=false checked=data.selfCook}}
+                <span>No, me la preparan</span>
+                <div class="radio-checked"></div>
+              </label>
             </div>
             <div class="form-group">
               <p>¿Has practicado alguna dieta en el pasado?</p>
-              <label for="optReceiveDietsBefore1" class="radio-inline">{{radio-button id='optReceiveDietsBefore1' name='optReceiveDietsBefore' value=true checked=data.receiveDietsBefore}}Sí</label>
-              <label for="optReceiveDietsBefore2" class="radio-inline">{{radio-button id='optReceiveDietsBefore2' name='optReceiveDietsBefore' value=false checked=data.receiveDietsBefore}}No</label>
+              <label for="optReceiveDietsBefore1" class="radio-inline">
+                {{radio-button id='optReceiveDietsBefore1' name='optReceiveDietsBefore' value=true checked=data.receiveDietsBefore}}
+                <span>Sí</span>
+                <div class="radio-checked"></div>
+              </label>
+              <label for="optReceiveDietsBefore2" class="radio-inline">
+                {{radio-button id='optReceiveDietsBefore2' name='optReceiveDietsBefore' value=false checked=data.receiveDietsBefore}}
+                <span>No</span>
+                <div class="radio-checked"></div>
+              </label>
             </div>
             <div class="form-group">
               <p>¿Alguna de ellas bajo supervisión de un profesional?</p>
@@ -733,8 +758,15 @@
             <h4>Tu actividad física:</h4>
             <div class="form-group">
               <p>¿Trabajas actualmente?</p>
-              <label for="optIsEmployed1" class="radio-inline">{{radio-button id='optIsEmployed1' name='optIsEmployed' value=true checked=data.isEmployed}}Sí</label>
-              <label for="optIsEmployed2" class="radio-inline">{{radio-button id='optIsEmployed2' name='optIsEmployed' value=false checked=data.isEmployed}}No</label>
+              <label for="optIsEmployed1" class="radio-inline">
+                {{radio-button id='optIsEmployed1' name='optIsEmployed' value=true checked=data.isEmployed}}
+                <span>Sí</span>
+                <div class="radio-checked"></div>
+              </label>
+              <label for="optIsEmployed2" class="radio-inline">
+                {{radio-button id='optIsEmployed2' name='optIsEmployed' value=false checked=data.isEmployed}}
+                <span>No</span>
+                <div class="radio-checked"></div></label>
             </div>
             <div class="form-group">
               <label for="register-employment-type">¿Cómo defines tu tipo de trabajo?</label>
@@ -760,8 +792,16 @@
             </div>
             <div class="form-group">
               <p>¿Practicas ejercicio o has practicado en el pasado?</p>
-              <label for="optDoExercise1" class="radio-inline">{{radio-button id='optDoExercise1' name='optDoExercise' value=true checked=data.doExercise}}Sí</label>
-              <label for="optDoExercise2" class="radio-inline">{{radio-button id='optDoExercise2' name='optDoExercise' value=false checked=data.doExercise}}No</label>
+              <label for="optDoExercise1" class="radio-inline">
+                {{radio-button id='optDoExercise1' name='optDoExercise' value=true checked=data.doExercise}}
+                <span>Sí</span>
+                <div class="radio-checked"></div>
+              </label>
+              <label for="optDoExercise2" class="radio-inline">
+                {{radio-button id='optDoExercise2' name='optDoExercise' value=false checked=data.doExercise}}
+                <span>No</span>
+                <div class="radio-checked"></div>
+              </label>
             </div>
             <div class="form-group">
               <p>¿Cuál, cuánto tiempo por sesión y con cuanta frecuencia semanal?</p>
@@ -788,8 +828,16 @@
             </div>
             <div class="form-group">
               <p>¿Estarías dispuesto a aumentar tu actividad o ejercicio físico?</p>
-              <label for="optIncreaseActivity1" class="radio-inline">{{radio-button id='optIncreaseActivity1' name='optIncreaseActivity' value=true checked=data.increaseActivity}}Sí</label>
-              <label for="optIncreaseActivity2" class="radio-inline">{{radio-button id='optIncreaseActivity2' name='optIncreaseActivity' value=false checked=data.increaseActivity}}No</label>
+              <label for="optIncreaseActivity1" class="radio-inline">
+                {{radio-button id='optIncreaseActivity1' name='optIncreaseActivity' value=true checked=data.increaseActivity}}
+                <span>Sí</span>
+                <div class="radio-checked"></div>
+              </label>
+              <label for="optIncreaseActivity2" class="radio-inline">
+                {{radio-button id='optIncreaseActivity2' name='optIncreaseActivity' value=false checked=data.increaseActivity}}
+                <span>No</span>
+                <div class="radio-checked"></div>
+              </label>
             </div>
             <div class="form-group">
               <label for="register-injuries">¿Tienes lesiones que te impidan realizar alguna actividad concreta?</label>
@@ -802,15 +850,33 @@
             </div>
             <div class="form-group">
               <p>¿Deseas recibir información sobre entrenamiento personal?</p>
-              <label for="optTrainingInfo1" class="radio-inline">{{radio-button id='optTrainingInfo1' name='optTrainingInfo' value=true checked=data.receiveTrainingInfo}}Sí</label>
-              <label for="optTrainingInfo2" class="radio-inline">{{radio-button id='optTrainingInfo2' name='optTrainingInfo' value=false checked=data.receiveTrainingInfo}}No</label>
+              <label for="optTrainingInfo1" class="radio-inline">
+                {{radio-button id='optTrainingInfo1' name='optTrainingInfo' value=true checked=data.receiveTrainingInfo}}
+                <span>Sí</span>
+                <div class="radio-checked"></div>
+              </label>
+              <label for="optTrainingInfo2" class="radio-inline">
+                {{radio-button id='optTrainingInfo2' name='optTrainingInfo' value=false checked=data.receiveTrainingInfo}}
+                <span>No</span>
+                <div class="radio-checked"></div>
+              </label>
             </div>
             <div class="form-group">
               <p>¿Estás interesado en recibir de manera gratuita consejos sobre suplementación dietética?</p>
-              <label for="optSupplementInfo1" class="radio-inline">{{radio-button id='optSupplementInfo1' name='optSupplementInfo' value=true checked=data.receiveSupplementInfo}}Sí</label>
-              <label for="optSupplementInfo2" class="radio-inline">{{radio-button id='optSupplementInfo2' name='optSupplementInfo' value=false checked=data.receiveSupplementInfo}}No</label>
+              <label for="optSupplementInfo1" class="radio-inline">
+                {{radio-button id='optSupplementInfo1' name='optSupplementInfo' value=true checked=data.receiveSupplementInfo}}
+                <span>Sí</span>
+                <div class="radio-checked"></div>
+              </label>
+              <label for="optSupplementInfo2" class="radio-inline">
+                {{radio-button id='optSupplementInfo2' name='optSupplementInfo' value=false checked=data.receiveSupplementInfo}}
+                <span>No</span>
+                <div class="radio-checked"></div>
+              </label>
             </div>
-            <div class="form-group"><label>{{input type='checkbox' name='checkTerms' checked=data.terms required=true}}Acepto que mis datos personales puedan ser utilizados con fines comerciales</label>
+            <div class="form-group">
+              {{input type='checkbox' id='checkTerms' name='checkTerms' checked=data.terms required=true}}
+              <label for="checkTerms">Acepto que mis datos personales puedan ser utilizados con fines comerciales</label>
             </div>
             <small class="help-block with-errors"></small>
             <div class="register-buttons">
