@@ -9,14 +9,14 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img src="../assets/images/icon-dietafarma-logo-full-white.svg" class="img-responsive" style="width: 140px; margin-top: -16px;"></a>
+            <a class="navbar-brand" href="#"><img src="{{image-path 'icon-dietafarma-logo-full-white.svg'}}" class="img-responsive" style="width: 140px; margin-top: -16px;"></a>
           </div>
-          <div class="collapse navbar-collapse navbar-right" id="myNavbar">
+          <div id="myNavbar" class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#banner">Home</a></li>
-              <li class=""><a href="#service">Servicios</a></li>
-              <li class=""><a href="#about">Acerca de</a></li>
-              <li class=""><a href="#contact">Contacto</a></li>
+              <li class="active"><a href="#banner">{{t 'text.public.nav.home'}}</a></li>
+              <li class=""><a href="#service">{{t 'text.public.nav.services'}}</a></li>
+              <li class=""><a href="#about">{{t 'text.public.nav.about'}}</a></li>
+              <li class=""><a href="#contact">{{t 'text.public.nav.contact'}}</a></li>
             </ul>
           </div>
         </div>
@@ -26,10 +26,10 @@
       <div class="row">
         <div class="banner-info">
           <div class="banner-text text-center">
-            <h1 class="white">PONTE EN FORMA CON DIETAFARMA</h1>
-            <p>Comprometidos con el ideal de que la salud debe ir más allá de la ausencia de enfermedad.<br>A través de una dieta equilibrada-moderada-variada, unido a hábitos de vida saludables como practicar ejercicio, se puede alcanzar y mantener un estado de salud único: el BIENESTAR</p>
-            <a class="btn btn-appoint" {{action 'goToRegister'}}>Regístrate</a>
-            <a class="btn btn-appoint" {{action 'goToLogin'}}>Identifícate</a>
+            <h1 class="white">{{t 'text.public.banner.title'}}</h1>
+            <p>{{t 'text.public.banner.message'}}</p>
+            <a class="btn btn-appoint" {{action 'goToRegister'}}>{{t 'text.public.buttons.register'}}</a>
+            <a class="btn btn-appoint" {{action 'goToLogin'}}>{{t 'text.public.buttons.signin'}}</a>
           </div>
           <div class="overlay-detail text-center">
             <a href="#service"><i class="fa fa-angle-down"></i></a>
@@ -45,30 +45,16 @@
     <div class="row">
       <div class="col-md-4 col-sm-4">
         <h2 class="ser-title">Servicios</h2>
-        <hr class="botm-line">
-        <p></p>
-      </div>
-      <div class="col-md-4 col-sm-4">
-        <div class="service-info">
-          <div class="icon">
-            <i class="fa fa-heart"></i>
-          </div>
-          <div class="icon-info">
-            <h4>Entrenamiento personal</h4>
-            <p>Entrenamiento adaptado a tu objetivo, gustos y capacidad</p>
-          </div>
-        </div>
-        <div class="service-info">
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-4">
         <div class="service-info">
           <div class="icon">
             <i class="fa fa-user-md"></i>
           </div>
           <div class="icon-info">
-            <h4>Consulta dietética</h4>
-            <p>Asesoramiento online. Regístrate y elaboraremos una dieta que se ajuste a tus necesidades y relizaremos un seguimiento continuo</p>
+            <h4>Consulta dietética online</h4>
+            <p>{{t 'text.public.services.paragraph1'}}</p>
+            <p>{{t 'text.public.services.paragraph2'}}</p>
+            <p>{{t 'text.public.services.paragraph3'}}</p>
+            <p>{{t 'text.public.services.paragraph4'}}</p>
           </div>
         </div>
         <div class="service-info">
@@ -87,29 +73,15 @@
         <hr class="botm-line">
       </div>
       <div class="col-md-3 col-sm-4">
-          <img class="img-circle center-block" src="../assets/images/doctor-bazti-2.jpg" width="200px" height="auto">
+          <img class="img-circle center-block" src="{{image-path 'doctor-bazti.jpg'}}" width="200px" height="auto">
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
          <div style="visibility: visible;" class="col-sm-9 more-features-box">
             <div class="more-features-box-text">
               <div class="more-features-box-text-icon"> <i class="fa fa-angle-right" aria-hidden="true"></i> </div>
               <div class="more-features-box-text-description">
-                <h3>Soy farmacéutico</h3>
-                <p>Tendré en cuenta las patologías y tratamientos actuales al prescribir una dieta. Convertiré tu dieta en una herramienta para prevenir la enfermedad cardiovascular, obesidad, hipertensión, diabetes y demás patologías denominadas “enfermedades de la abundancia”. Perseguiré tus objetivos dietéticos siempre dentro del marco de la salud.</p>
-            </div>
-            </div>
-            <div class="more-features-box-text">
-              <div class="more-features-box-text-icon"> <i class="fa fa-angle-right" aria-hidden="true"></i> </div>
-              <div class="more-features-box-text-description">
-                <h3>Soy nutricionista</h3>
-                <p>Tendré en cuenta gustos y aversiones gastronómicas para adecuar la dieta propuesta a la habitual tuya, para trastornar lo menos posible. Además dicha dieta cumplirá todas las recomendaciones dietéticas calificadas por las autoridades alimentarias como saludables.</p>
-              </div>
-            </div>
-            <div class="more-features-box-text">
-              <div class="more-features-box-text-icon"> <i class="fa fa-angle-right" aria-hidden="true"></i> </div>
-              <div class="more-features-box-text-description">
-                <h3>Soy entrenador</h3>
-                <p>defensor del ejercicio como medio para alcanzar la longevidad funcional. Por ello te propondré un entrenamiento deportivo o un aumento ligero de la actividad física, en función de tu edad, capacidad y ganas. De este modo los cambios obtenidos por un cambio positivo de dieta se producirán más rápido y se prolongarán más en el tiempo.</p>
+                <h3>{{t 'text.public.aboutMe.title'}}</h3>
+                <p>{{t 'text.public.aboutMe.message'}}</p>
               </div>
             </div>
           </div>
@@ -162,7 +134,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          © Dietafarma. All Rights Reserved
+          {{t 'text.public.footer.copyright'}}
         </div>
       </div>
     </div>
