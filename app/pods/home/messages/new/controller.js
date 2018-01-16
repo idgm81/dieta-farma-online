@@ -11,10 +11,16 @@ export default Controller.extend({
 
   queryParams: ['client', 'nutritionist'],
 
-  actions: {
-    send() {
-      $('div.loading-container').show();
+  client: null,
 
+  nutritionist: null,
+
+  actions: {
+    cancel() {
+      this.replaceRoute('home.messages');
+    },
+
+    send() {
       const message = {
         client: get(this, 'client'),
         nutritionist: get(this, 'nutritionist'),
@@ -23,17 +29,19 @@ export default Controller.extend({
         text: get(this, 'content')
       };
 
+      $('#modal-wait-message').modal();
+
       return this.get('api').createMessage(message)
         .then(() => $('#modal-new-message-ok').modal())
         .catch(() => $('#modal-new-message-error').modal())
         .finally(() => {
-          $('div.loading-container').hide();
+          $('#modal-wait-message').modal('hide');
         })
 
     },
 
     goToHome() {
-      this.replaceRoute('home.clients');
+      this.replaceRoute('home');
     }
   }
 });
