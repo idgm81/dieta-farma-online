@@ -1,9 +1,9 @@
 <div class="home-header">
   <h1>{{headerTitle}}</h1>
-  {{side-menu-toggle side="right"}}
+  {{side-menu-toggle side='right'}}
 </div>
 
-{{#side-menu side="right" width="300px"}}
+{{#side-menu side='right' width='300px'}}
   <div class="side-title">
     {{inline-svg 'icon-dietafarma-white.svg'}}<span> DietaFarma App</span><
   </div>
@@ -21,10 +21,18 @@
     <ul>
       {{#if isClient}}
         <li {{action 'showDiets'}}><i class="fa fa-fw fa-file-text"></i><span>Mis dietas</span></li>
-        <li {{action 'askForAppointment'}}><i class="fa fa-fw fa-calendar"></i><span>Pedir cita presencial</span></li>
+        <li id="SkypeButton_Call_dietafarma_1">
+          <script type="text/javascript">
+            Skype.ui({
+            "name": "call",
+            "element": "SkypeButton_Call_dietafarma_1",
+            "participants": ["dietafarma"],
+            "imageSize": 24
+            });
+          </script>
+        </li>
       {{else}}
         <li {{action 'showMyClients'}}><i class="fa fa-fw fa-group"></i><span>Mis clientes</span></li>
-        <li {{action 'showMyAppointments'}}><i class="fa fa-fw fa-calendar"></i><span>Mis próximas citas</span></li>
       {{/if}}
       <li {{action 'showMessages'}}><i class="fa fa-fw fa-envelope"></i><span>Mensajes</span>
         {{#if (gt unreadMessages 0)}}
