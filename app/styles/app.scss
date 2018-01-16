@@ -485,6 +485,17 @@ about
   border: 0px;
 }
 
+.profile-thumbnail {
+  padding-top: 20px;
+  background-color: #fff;
+  border: 0px;
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 .caption {
   h3 {
     padding-bottom: 5px;
