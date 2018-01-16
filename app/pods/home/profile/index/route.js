@@ -8,8 +8,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   api: service(),
 
-  model(params) {
-    return this.get('api').getUser(params.id);
+  model() {
+    return this.get('api').getUser(this.get('session.data.authenticated.id'));
   },
 
   actions: {
