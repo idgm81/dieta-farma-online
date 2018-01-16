@@ -1,7 +1,9 @@
 /* eslint-env node */
 
 module.exports = function(environment) {
-  const HOST = environment === 'production'
+  const buildDate = new Date().toJSON().slice(2, 10).replace(/\D+/g, '');
+
+  const API_HOST = environment === 'production'
     ? 'https://dieta-farma-api.herokuapp.com'
     : 'http://localhost:4500';
   const ENV = {
@@ -30,7 +32,9 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      API_HOST: HOST
+      API_HOST,
+      version: '1.0',
+      buildDate
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
@@ -41,9 +45,6 @@ module.exports = function(environment) {
       'report-uri':"'localhost'",
       'style-src': "'self' 'unsafe-inline'",
       'frame-src': "'none'"
-    },
-    moment: {
-      includeLocales: ['es']
     }
   };
 
@@ -54,7 +55,7 @@ module.exports = function(environment) {
 
 
   ENV['ember-simple-auth-token'] = {
-    serverTokenEndpoint: `${HOST}/api/auth/user`,
+    serverTokenEndpoint: `${API_HOST}/api/auth/user`,
     tokenPropertyName: 'token',
     identificationField: 'email',
     passwordField: 'password',
@@ -62,7 +63,7 @@ module.exports = function(environment) {
     authorizationPrefix: 'JWT ',
     refreshTokenPropertyName: 'refresh_token',
     refreshLeeway: 120, // Refresh the token 2 minutes (120s) before it expires
-    serverTokenRefreshEndpoint: `${HOST}/api/auth/refresh_token`,
+    serverTokenRefreshEndpoint: `${API_HOST}/api/auth/refresh_token`,
     tokenExpireName: 'exp'
   };
 

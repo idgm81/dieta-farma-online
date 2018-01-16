@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import ENV from '../../config/environment';
 import { USER_ROLES } from './constants';
 
 const { inject: { service } , computed, get, run} = Ember;
@@ -36,6 +37,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set('isClient', get(model, 'user.role') === USER_ROLES.CLIENT);
     controller.set('headerTitle', `Hola ${get(model, 'user.profile.name')}`);
     controller.set('fullName', `${get(model, 'user.profile.name')} ${get(model, 'user.profile.surname')}`);
+    controller.set('appVersion', `${ENV.APP.version}.${ENV.APP.buildDate}`);
     //controller.set('unreadMessages', model.messages.getEach('_id').length);
   },
 
@@ -46,7 +48,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   actions: {
     showMyProfile() {
       this.close();
-      this.transitionTo('home.profile', this.get('userId'));
+      this.transitionTo('home.profile.index', this.get('userId'));
     },
 
     askForAppointment() {
@@ -66,7 +68,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     showMessages() {
       this.close();
-      this.transitionTo('home.messages');
+      this.transitionTo('home.messages.index');
     },
 
     showMyClients() {
