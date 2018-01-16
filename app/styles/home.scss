@@ -234,6 +234,23 @@ $color-dietafarma: #25a29f;
   height: 250px;
 }
 
+.floating-button {
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	bottom: 40px;
+	right: 40px;
+	background-color: $color-dietafarma;
+	color: #FFF;
+	border-radius: 50px;
+	text-align: center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-floating-button {
+	margin-top: 14px;
+}
+
 .footer {
   font-family: 'Roboto', sans-serif;
   text-align: center;
