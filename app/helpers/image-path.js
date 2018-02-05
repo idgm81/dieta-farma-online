@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 const { Helper: { helper } } = Ember;
 
-const IMAGE_PATH = 'assets/images/';
+const IMAGE_PATH = '/assets/images/';
 
 /**
  * Image path function.
