@@ -9,11 +9,9 @@ export default Controller.extend({
 
   api: service(),
 
-  queryParams: ['client', 'nutritionist'],
+  queryParams: ['userId'],
 
-  client: null,
-
-  nutritionist: null,
+  userId: null,
 
   actions: {
     cancel() {
@@ -22,11 +20,10 @@ export default Controller.extend({
 
     send() {
       const message = {
-        client: get(this, 'client'),
-        nutritionist: get(this, 'nutritionist'),
+        client: get(this, 'session.data.authenticated.id'),
         title: get(this, 'title'),
         date: moment().format(),
-        text: get(this, 'content')
+        text: get(this, 'text')
       };
 
       $('#modal-wait-message').modal();

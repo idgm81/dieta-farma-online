@@ -17,8 +17,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   actions: {
     new() {
-      const queryParams = { userId: this.get('session.data.authenticated.id') };
-      this.transitionTo('home.messages.new', { queryParams });
+      this.transitionTo('home.messages.new');
     }
   }
 });

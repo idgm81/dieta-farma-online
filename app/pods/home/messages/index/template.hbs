@@ -6,13 +6,13 @@
 {{#each model.messages as |message|}}
   <div class="media">
     <div class="media-left">
-      <img alt="64x64" class="media-object" src="{{image-path 'default-avatar.png'}}" style="width: 64px; height: 64px;"
+      <img alt="64x64" class="media-object img-circle" src="{{image-path 'default-avatar.png'}}" style="width: 64px; height: 64px;"
         data-holder-rendered="true">
     </div>
     <div class="media-body">
       <h4 class="media-heading">{{message.title}}</h4>
       <small>Enviado el {{moment-format message.date 'DD/MM/YYYY'}}</small>
-      <p>{{message.content}}</p>
+      <p>{{message.text}}</p>
     </div>
   </div>
 {{else}}
