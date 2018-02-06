@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
   <li>{{link-to 'Home' 'home'}}</li>
-  <li class="active">Mis mensajes</li>
+  <li class="active">Buzón de mensajes</li>
 </ol>
 
 {{#each model.messages as |message|}}
@@ -10,8 +10,8 @@
         data-holder-rendered="true">
     </div>
     <div class="media-body">
-      <h4 class="media-heading">{{message.title}}</h4>
       <small>Enviado el {{moment-format message.date 'DD/MM/YYYY'}}</small>
+      <h5 class="media-heading">{{message.title}}</h5>
       <p>{{message.text}}</p>
     </div>
   </div>
