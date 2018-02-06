@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { Controller, inject: { service }, get, set, $ } = Ember;
+const { Controller, computed, inject: { service }, get, set, $ } = Ember;
 
 export default Controller.extend({
 
@@ -15,7 +15,7 @@ export default Controller.extend({
 
   file: null,
 
-  nutritionistId: Ember.computed('session.data', function() {
+  nutritionistId: computed('session.data', function() {
     return this.get('session.data.authenticated.id');
   }),
 
