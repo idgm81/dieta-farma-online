@@ -21,7 +21,7 @@
     <ul>
       {{#if isClient}}
         <li {{action 'showDiets'}}><i class="fa fa-fw fa-file-text"></i><span>Mis dietas</span></li>
-        <li id="SkypeButton_Call_dietafarma_1">
+        <div id="SkypeButton_Call_dietafarma_1">
           <script type="text/javascript">
             Skype.ui({
             "name": "call",
@@ -30,7 +30,7 @@
             "imageSize": 24
             });
           </script>
-        </li>
+        </div>
       {{else}}
         <li {{action 'showMyClients'}}><i class="fa fa-fw fa-group"></i><span>Mis clientes</span></li>
       {{/if}}
