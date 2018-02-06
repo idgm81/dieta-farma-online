@@ -354,6 +354,10 @@ hr.botm-line {
   margin: 20px 0 20px 0;
 }
 
+section.section-padding {
+  background-color: rgba(238, 238, 238, 0.15);
+}
+
 /***************************************
 services
 ***************************************/
@@ -438,10 +442,6 @@ td {
 about
 ***************************************/
 
-#about {
-  background-color: rgba(238, 238, 238, 0.15);
-}
-
 .lg-line {
   line-height: 1.4;
   font-size: 28px;
@@ -507,7 +507,6 @@ about
 
 .caption-text {
   h4 {
-    color: white;
     padding-bottom: 10px;
   }
 }
@@ -684,6 +683,10 @@ contact us
 
 #sendmessage.show, #errormessage.show, .show {
   display: block;
+}
+
+.has-error .help-block {
+  color: red
 }
 
 
