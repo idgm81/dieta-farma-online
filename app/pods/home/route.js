@@ -24,7 +24,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   redirect(model) {
     this._super(...arguments);
 
-    run.later(() => this.get('session').invalidate(), 180000);
+    run.later(() => this.get('session').invalidate(), 10 * 60 * 1000); //close session after 10 minutes
 
     const nextRoute = get(model, 'user.role') === USER_ROLES.NUTRITIONIST
       ? 'home.clients.index'
