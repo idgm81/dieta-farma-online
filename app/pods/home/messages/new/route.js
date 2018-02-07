@@ -9,5 +9,12 @@ export default Route.extend(AuthenticatedRouteMixin, {
     userId: {
       refreshModel: true
     }
+  },
+
+  resetController(controller, isExiting, transition) {
+    if (isExiting) {
+      controller.set('title', '');
+      controller.set('text', '');
+    }
   }
 });

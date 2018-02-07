@@ -39,6 +39,10 @@ export default Controller.extend({
 
     goToHome() {
       this.replaceRoute('home');
+    },
+
+    goToMessages() {
+      this.replaceRoute('home.messages.index');
     }
   }
 });
