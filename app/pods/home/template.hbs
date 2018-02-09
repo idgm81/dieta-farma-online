@@ -35,8 +35,8 @@
         <li {{action 'showMyClients'}}><i class="fa fa-fw fa-group"></i><span>Mis clientes</span></li>
       {{/if}}
       <li {{action 'showMessages'}}><i class="fa fa-fw fa-envelope"></i><span>Mensajes</span>
-        {{#if (gt unreadMessages 0)}}
-          <span class="badge bg-green">{{unreadMessages}}</span>
+        {{#if (gt inboxMessages 0)}}
+          <span class="badge bg-green">{{inboxMessages}}</span>
         {{/if}}
       </li>
       <li {{action 'logout'}}><i class="fa fa-fw fa-sign-out"></i><span>Salir</span></li>
