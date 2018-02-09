@@ -10,14 +10,15 @@ export default Route.extend(AuthenticatedRouteMixin, {
   session: service(),
 
   model(params, transition) {
-    const userId = transition.queryParams.userId || this.get('session.data.authenticated.id');
+    const userId = this.get('session.data.authenticated.id');
 
     return this.get('api').getMessages(userId);
   },
 
   actions: {
     new() {
-      this.transitionTo('home.messages.new');
+      const queryParams = { from: this.get('session.data.authenticated.id') }
+      this.transitionTo('home.messages.new', { queryParams });
     }
   }
 });

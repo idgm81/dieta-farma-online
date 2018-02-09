@@ -9,7 +9,7 @@ export default Controller.extend({
 
   api: service(),
 
-  queryParams: ['userId'],
+  queryParams: ['from', 'to'],
 
   userId: null,
 
@@ -20,7 +20,8 @@ export default Controller.extend({
 
     send() {
       const message = {
-        client: get(this, 'session.data.authenticated.id'),
+        from: get(this, 'from'),
+        to: get(this, 'to'),
         title: get(this, 'title'),
         date: moment().format(),
         text: get(this, 'text')

@@ -28,7 +28,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
     sendMessage(client) {
       const nutritionist= get(this, 'session.data.authenticated.id');
-      const queryParams = { client, nutritionist };
+      const queryParams = { from: nutritionist, to: client };
 
       this.transitionTo('home.messages.new',  { queryParams })
     }

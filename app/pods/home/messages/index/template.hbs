@@ -10,7 +10,7 @@
         data-holder-rendered="true">
     </div>
     <div class="media-body">
-      <small>Enviado el {{moment-format message.date 'DD/MM/YYYY'}}</small>
+      <small>Recibido el {{moment-format message.date 'DD/MM/YYYY'}}</small>
       <h5 class="media-heading">{{message.title}}</h5>
       <p>{{message.text}}</p>
     </div>
@@ -26,6 +26,8 @@
   </div>
 {{/each}}
 
-<div {{action 'new'}} class='floating-button'>
-  <i class="fa fa-2x fa-pencil my-floating-button"></i>
-</div>
+{{#unless isNutritionist}}
+  <div {{action 'new'}} class='floating-button'>
+    <i class="fa fa-2x fa-pencil my-floating-button"></i>
+  </div>
+{{/unless}}
