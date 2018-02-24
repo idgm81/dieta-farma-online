@@ -359,12 +359,24 @@ div.media{
 
 .dieta-farma-calendar-small {
   @include ember-power-calendar($cell-size: 30px);
+  margin: auto;
 }
 .dieta-farma-calendar-medium {
   @include ember-power-calendar($cell-size: 45px);
+  margin: auto;
+  .ember-power-calendar-day--today {
+    background-color: #96d5ff;
+  }
+  .ember-power-calendar-day--focused {
+    box-shadow: inset 0px -2px 0px 0px #25a29f;
+  }
+  .ember-power-calendar-day:not([disabled]):hover {
+    background-color: #25a29f;
+  }
 }
 .dieta-farma-calendar-big {
   @include ember-power-calendar($cell-size: 70px);
+  margin: auto;
 }
 
 .file-picker__dropzone {

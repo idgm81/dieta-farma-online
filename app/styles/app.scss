@@ -161,17 +161,34 @@ banner
 
 .navbar-brand
 {
-	font-family: 'Chewy', cursive;
-	font-size: 32px;
+	font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  padding: 0px;
+  color: #fff !important;
 }
 
-.navbar-brand img {
-    padding-top: 2px;
-    width: 120px !important;
+.navbar-brand > img {
+  height: 100%;
+  padding: 7px 14px;
+  width: auto;
+  display: inline-block !important;
 }
 
-.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-    color: #EA6045;
+.navbar-alignit .navbar-header {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  height: 50px;
+}
+
+.navbar-alignit .navbar-brand {
+top: 50%;
+display: block;
+position: relative;
+height: auto;
+transform: translate(0,-50%);
+margin-right: 15px;
+margin-left: 15px;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
