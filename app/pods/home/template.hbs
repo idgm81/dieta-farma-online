@@ -21,7 +21,7 @@
     <ul>
       {{#if isClient}}
         <li {{action 'showDiets'}}><i class="fa fa-fw fa-file-text"></i><span>Mis dietas</span></li>
-        <li {{action 'askForAppointment'}}><i class="fa fa-fw fa-calendar"></i><span>Pedir cita</span></li>
+        {{!-- TODO: <li {{action 'askForAppointment'}}><i class="fa fa-fw fa-calendar"></i><span>Pedir cita</span></li> --}}
         <div id="SkypeButton_Call_dietafarma_1">
           <script type="text/javascript">
             Skype.ui({
@@ -34,7 +34,7 @@
         </div>
       {{else}}
         <li {{action 'showMyClients'}}><i class="fa fa-fw fa-group"></i><span>Mis clientes</span></li>
-        <li {{action 'showMyCalendar'}}><i class="fa fa-fw fa-calendar"></i><span>Mi calendario</span></li>
+        {{!-- TODO: <li {{action 'showMyCalendar'}}><i class="fa fa-fw fa-calendar"></i><span>Mi calendario</span></li> --}}
       {{/if}}
       <li {{action 'showMessages'}}><i class="fa fa-fw fa-envelope"></i><span>Mensajes</span>
         {{#if (gt inboxMessages 0)}}
