@@ -16,12 +16,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
       const queryParams = { userId };
 
       this.transitionTo('home.diets.index', { queryParams });
-    },
-
-    addDiet(userId) {
-      const queryParams = { userId };
-
-      this.transitionTo('home.diets.new', { queryParams });
     }
   }
 });

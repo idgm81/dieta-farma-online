@@ -1,5 +1,4 @@
 <ol class="breadcrumb">
-  <li>{{link-to 'Home' 'home'}}</li>
   <li>{{link-to 'Mis clientes' 'home.clients.index'}}</li>
   <li class="active">Perfil de {{model.user.profile.name}}</li>
 </ol>
@@ -14,6 +13,9 @@
         </div>
       </div>
     </div>
+    {{!-- <div class="btn-group" role="group">
+      <button type="button" class="btn btn-warning" {{action 'edit' (get model.user '_id')}}><i class="fa fa-x fa-pencil"></i> Modificar</button>
+    </div> --}}
   </div>
 </div>
 
@@ -44,13 +46,8 @@
               <tr>
                 <td>Dietas</td>
                 <td>
-                  {{#if (gt model.user.profile.diets.length 0)}}
-                    <div class="btn-group" role="group">
-                      <button type="button" class="btn btn-info" {{action 'showDiets' (get model.user '_id')}}><i class="fa fa-x fa-eye"></i> Ver</button>
-                    </div>
-                  {{/if}}
                   <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-primary" {{action 'addDiet' (get model.user '_id')}}><i class="fa fa-x fa-plus"></i> Añadir</button>
+                    <button type="button" class="btn btn-info" {{action 'showDiets' (get model.user '_id')}}><i class="fa fa-x fa-eye"></i> Ver</button>
                   </div>
                 </td>
               </tr>
