@@ -7,6 +7,8 @@ export default Ember.Controller.extend({
 
   session: service(),
 
+  api: service(),
+
   isNutritionist: computed.equal('session.data.authenticated.role', USER_ROLES.NUTRITIONIST),
 
   queryParams: ['userId'],
