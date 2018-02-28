@@ -59,11 +59,11 @@ module.exports = function(environment) {
     tokenPropertyName: 'token',
     identificationField: 'email',
     passwordField: 'password',
-    refreshAccessTokens: false,
+    refreshAccessTokens: true,
     authorizationPrefix: 'JWT ',
-    refreshTokenPropertyName: 'refresh_token',
+    refreshTokenPropertyName: 'refreshToken',
     refreshLeeway: 120, // Refresh the token 2 minutes (120s) before it expires
-    serverTokenRefreshEndpoint: `${API_HOST}/api/auth/refresh_token`,
+    serverTokenRefreshEndpoint: `${API_HOST}/api/auth/refreshToken`,
     tokenExpireName: 'exp'
   };
 

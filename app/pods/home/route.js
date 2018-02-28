@@ -27,7 +27,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   redirect(model) {
     this._super(...arguments);
 
-    run.later(() => this.get('session').invalidate(), 10 * 60 * 1000); //close session after 10 minutes
+    run.later(() => this.get('session').invalidate(), 15 * 60 * 1000); //close session after 15 minutes
 
     const nextRoute = get(model, 'userData.user.role') === USER_ROLES.NUTRITIONIST
       ? 'home.clients.index'
@@ -64,7 +64,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       this.transitionTo('home.diets.index');
     },
 
-    showMyAppointments() {
+    showMyCalendar() {
       this.close();
       this.transitionTo('home.calendar.index');
     },
