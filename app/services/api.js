@@ -94,7 +94,13 @@ export default AjaxService.extend({
   },
 
   getAppointments(userId) {
-    return this.request(`/appointments?userId=${userId}`, {
+    return this.request(`/appointments/customer?userId=${userId}`, {
+      method: 'GET'
+    });
+  },
+
+  getAvailableDates(userId) {
+    return this.request(`/appointments/calendar?userId=${userId}`, {
       method: 'GET'
     });
   },
@@ -103,6 +109,12 @@ export default AjaxService.extend({
     return this.request(`/appointments`, {
       method: 'POST',
       data
+    });
+  },
+
+  deleteAppointment(appointmentId) {
+    return this.request(`/appointments/${appointmentId}`, {
+      method: 'DELETE'
     });
   },
 

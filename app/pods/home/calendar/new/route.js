@@ -1,36 +1,26 @@
 import Ember from 'ember';
-import moment from 'moment';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-const { Route, RSVP, inject: { service }, get } = Ember;
+const { Route, inject: { service }, get } = Ember;
 
 export default Route.extend(AuthenticatedRouteMixin, {
 
   api: service(),
 
+  session: service(),
+
   model() {
-    return this.get('api').getAppointments();
+    return this.get('api').getAvailableDates(get(this, 'session.data.authenticated.id'));
   },
 
   setupController(controller, model) {
     const appointments = get(model, 'appointments');
-    let meetDays = [];
-
-    appointments.forEach((a) => meetDays.push(a.date));
-    controller.set('appointments', appointments);
-    controller.set('meetDays', meetDays);
-    controller.set('now', moment().format('YYYY-MM-DD'));
-    controller.set('selectedDate', moment().add(1, 'days').format('YYYY-MM-DD'));
-  },
-
-  actions: {
-    cancel() {
-      this.replaceWith('home')
-    },
-    save(data) {
-      this.get('api').createAppointment(data).then((response) => {
-
-      });
-    }
+    const dayOptions = appointments.map((appointments) => appointments.day);
+    controller.set('typeOptions', ['Presencial', 'Skype']);
+    controller.set('bookType', 'Presencial');
+    controller.set('dayOptions', dayOptions);
+    controller.set('bookDay', dayOptions[0]);
+    controller.set('hourOptions', appointments[0].hours);
+    controller.set('bookHour', appointments[0].hours[0]);
   }
 });

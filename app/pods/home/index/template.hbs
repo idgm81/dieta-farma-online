@@ -1,0 +1,65 @@
+<ol class="breadcrumb">
+  {{#if isNutritionist}}
+    <li>{{link-to 'Mis clientes' 'home.clients.index'}}</li>
+  {{else}}
+    <li class="active">Inicio</li>
+  {{/if}}
+</ol>
+
+{{#each model.appointments as |appointment|}}
+  <div class="container">
+    <div class="panel panel-df">
+      <div class="panel-heading">
+        <h3 class="panel-title">Cita <strong></strong></h3>
+      </div>
+      <div class="panel-body">
+        Tu cita reservada es el {{moment-format appointment.data 'LLL'}}
+      </div>
+    </div>
+  </div>
+{{else}}
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-warning"></i> Atención</h3>
+      </div>
+      <div class="panel-body">No tienes ninguna cita reservada próximamente</div>
+    </div>
+  </div>
+{{/each}}
+
+
+{{#each model.diets as |diet index|}}
+  <div class="container">
+    <div class="panel panel-df">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          #{{index}} {{diet.title}}
+        </h3>
+      </div>
+      <div class="panel-body">
+        Desde {{moment-format diet.fromDate 'DD/MM/YYYY'}} - Hasta {{moment-format diet.toDate 'DD/MM/YYYY'}}
+      </div>
+      <div class="panel-footer text-center">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-info" {{action 'open' (get diet 'url')}}><i class="fa fa-x fa-eye"></i></button>
+        </div>
+        {{#if isNutritionist}}
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-danger" {{action 'delete' (get diet '_id') (get diet 'client')}}><i class="fa fa-x fa-trash"></i></button>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+{{else}}
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-warning"></i> Atención</h3>
+      </div>
+      <div class="panel-body">No tienes ninguna dieta asignada</div>
+    </div>
+  </div>
+{{/each}}
+

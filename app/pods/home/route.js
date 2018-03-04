@@ -20,6 +20,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     return RSVP.hash({
       userData: this.get('api').getUser(id),
+      appointmentsData: this.get('api').getAppointments(id),
       messagesData: this.get('api').getMessages(id)
     });
   },
@@ -31,7 +32,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     const nextRoute = get(model, 'userData.user.role') === USER_ROLES.NUTRITIONIST
       ? 'home.clients.index'
-      : 'home.diets';
+      : 'home.index';
 
     this.transitionTo(nextRoute);
   },
