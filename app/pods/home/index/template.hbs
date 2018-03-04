@@ -15,16 +15,20 @@
       <div class="panel-body">
         Tu cita es el {{moment-format appointment.date 'LLL'}}
       </div>
-      {{#if (gte (moment-diff now cita.date precision='hours') 24)}}
-        <div class="panel-footer text-center">
-          <button type="button" class="btn btn-danger" {{action 'delete' (get cita '_id')}}><i class="fa fa-trash"></i></button>
-        </div>
-      {{/if}}
+      {{#unless isNutritionist}}
+        {{#if (gte (moment-diff now cita.date precision='hours') 24)}}
+          <div class="panel-footer text-center">
+            <button type="button" class="btn btn-danger" {{action 'delete' (get cita '_id')}}><i class="fa fa-trash"></i></button>
+          </div>
+        {{/if}}
+      {{/unless}}
     </div>
   </div>
-  <div class="alert alert-info text-justify">
-    <small><strong>Nota: </strong>Puedes cancelar tu cita antes de 24h si te surge algún imprevisto. La videoconsulta se intentará realizar como máximo hasta en 3 ocasiones. Si no hay respuesta la cita se dará por realizada.</small>
-  </div>
+  {{#unless isNutritionist}}
+    <div class="alert alert-info text-justify">
+      <small><strong>Nota: </strong>Puedes cancelar tu cita antes de 24h si te surge algún imprevisto. La videoconsulta se intentará realizar como máximo hasta en 3 ocasiones. Si no hay respuesta la cita se dará por realizada.</small>
+    </div>
+  {{/unless}}
 {{else}}
   <div class="container">
     <div class="panel panel-default">
@@ -52,38 +56,39 @@
   <h5 class="modal-title">Error al cancelar la cita!</h5>
 {{/generic-modal}}
 
-
-{{#each model.diets.diets as |diet index|}}
-  <div class="container">
-    <div class="panel panel-df">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          #{{index}} {{diet.title}}
-        </h3>
-      </div>
-      <div class="panel-body">
-        Desde {{moment-format diet.fromDate 'DD/MM/YYYY'}} - Hasta {{moment-format diet.toDate 'DD/MM/YYYY'}}
-      </div>
-      <div class="panel-footer text-center">
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-info" {{action 'open' (get diet 'url')}}><i class="fa fa-x fa-eye"></i></button>
+{{#unless isNutritionist}}
+  {{#each model.diets.diets as |diet index|}}
+    <div class="container">
+      <div class="panel panel-df">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            #{{index}} {{diet.title}}
+          </h3>
         </div>
-        {{#if isNutritionist}}
+        <div class="panel-body">
+          Desde {{moment-format diet.fromDate 'DD/MM/YYYY'}} - Hasta {{moment-format diet.toDate 'DD/MM/YYYY'}}
+        </div>
+        <div class="panel-footer text-center">
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-danger" {{action 'delete' (get diet '_id') (get diet 'client')}}><i class="fa fa-x fa-trash"></i></button>
+            <button type="button" class="btn btn-info" {{action 'open' (get diet 'url')}}><i class="fa fa-x fa-eye"></i></button>
           </div>
-        {{/if}}
+          {{#if isNutritionist}}
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-danger" {{action 'delete' (get diet '_id') (get diet 'client')}}><i class="fa fa-x fa-trash"></i></button>
+            </div>
+          {{/if}}
+        </div>
       </div>
     </div>
-  </div>
-{{else}}
-  <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-warning"></i> Atención</h3>
+  {{else}}
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-warning"></i> Atención</h3>
+        </div>
+        <div class="panel-body">No tienes ninguna dieta asignada</div>
       </div>
-      <div class="panel-body">No tienes ninguna dieta asignada</div>
     </div>
-  </div>
-{{/each}}
+  {{/each}}
+{{/unless}}
 
