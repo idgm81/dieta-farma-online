@@ -16,5 +16,18 @@ export default Route.extend(AuthenticatedRouteMixin, {
       diets: this.get('api').getDiets(userId),
       appointments: this.get('api').getAppointments(userId)
     });
+  },
+
+  actions: {
+    delete(id) {
+      $('#modal-wait-appointment').modal();
+
+      return this.get('api').deleteAppointment(id)
+        .then(() => $('#modal-delete-appointment-ok').modal())
+        .catch(() => $('#modal-delete-appointment-error').modal())
+        .finally(() => {
+          $('#modal-wait-message').modal('hide');
+        })
+    }
   }
 });
