@@ -31,7 +31,7 @@
   </div>
 {{else}}
   <div class="container">
-    <div class="panel panel-warning">
+    <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-warning"></i> Atención</h3>
       </div>
@@ -44,13 +44,14 @@
   <div {{action 'new'}} class='floating-button'>
     <i class="fa fa-2x fa-plus my-floating-button"></i>
   </div>
+  
+  {{wait-modal id='modal-wait-delete-diet' text='Borrando dieta...'}}
+
+  {{#generic-modal id='modal-delete-diet-error'}}
+    <div class="text-center">
+      <i class="fa fa-times-circle" aria-hidden="true"></i>
+    </div>
+    <h5 class="modal-title">Error al borrar la dieta!</h5>
+  {{/generic-modal}}
 {{/if}}
 
-{{wait-modal id='modal-wait-delete-diet' text='Borrando dieta...'}}
-
-{{#generic-modal id='modal-delete-diet-error'}}
-  <div class="text-center">
-    <i class="fa fa-times-circle" aria-hidden="true"></i>
-  </div>
-  <h5 class="modal-title">Error al borrar la dieta!</h5>
-{{/generic-modal}}
