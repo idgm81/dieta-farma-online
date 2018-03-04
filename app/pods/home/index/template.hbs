@@ -6,14 +6,14 @@
   {{/if}}
 </ol>
 
-{{#each model.appointments as |appointment|}}
+{{#each model.appointments.appointments as |appointment|}}
   <div class="container">
     <div class="panel panel-df">
       <div class="panel-heading">
-        <h3 class="panel-title">Cita <strong></strong></h3>
+        <h3 class="panel-title">Próxita Cita <strong>{{if (eq appointment.type 'P') 'Presencial' 'Skype'}}</strong></h3>
       </div>
       <div class="panel-body">
-        Tu cita reservada es el {{moment-format appointment.data 'LLL'}}
+        Tu cita es el {{moment-format appointment.date 'LLL'}}
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@
 {{/each}}
 
 
-{{#each model.diets as |diet index|}}
+{{#each model.diets.diets as |diet index|}}
   <div class="container">
     <div class="panel panel-df">
       <div class="panel-heading">
