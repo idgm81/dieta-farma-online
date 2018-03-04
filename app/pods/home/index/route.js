@@ -18,6 +18,12 @@ export default Route.extend(AuthenticatedRouteMixin, {
     });
   },
 
+  setupController(controller, model) {
+    this._super(...arguments);
+
+    controller.set('isNutritionist', this.get('session.data.authenticated.role') === 'N');
+  },
+
   actions: {
     delete(id) {
       $('#modal-wait-appointment').modal();

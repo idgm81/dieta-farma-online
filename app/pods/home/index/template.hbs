@@ -1,8 +1,7 @@
 <ol class="breadcrumb">
+  <li class="active">Inicio</li>
   {{#if isNutritionist}}
     <li>{{link-to 'Mis clientes' 'home.clients.index'}}</li>
-  {{else}}
-    <li class="active">Inicio</li>
   {{/if}}
 </ol>
 
@@ -35,7 +34,13 @@
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-warning"></i> Atención</h3>
       </div>
-      <div class="panel-body">No tienes ninguna cita reservada próximamente</div>
+      <div class="panel-body">
+        {{#if isNutritionist}}
+          No tienes ninguna cita próximamente
+        {{else}}
+          No tienes ninguna cita reservada próximamente
+        {{/if}}
+      </div>
     </div>
   </div>
 {{/each}}
