@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import moment from 'moment';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 const { Route, inject: { service }, get } = Ember;
@@ -10,8 +9,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   session: service(),
 
-  moment: service(),
-
   model() {
     const userId = get(this, 'session.data.authenticated.id');
 
@@ -19,14 +16,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   },
 
   setupController(controller, model) {
-    const appointments = get(model, 'appointments');
-    let meetDays = [];
-
-    appointments.forEach((a) => meetDays.push(a.date));
+    const appointments = get(model, 'items');
     controller.set('appointments', appointments);
-    controller.set('meetDays', meetDays);
-    controller.set('now', moment().format('YYYY-MM-DD'));
-  },
-
-  actions: {}
+  }
 });

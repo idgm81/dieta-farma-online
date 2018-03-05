@@ -1,48 +1,70 @@
 <ol class="breadcrumb">
-  <li><a href="/home">Home</a></li>
+  <li>{{link-to 'Inicio' 'home'}}</li>
   <li class="active">Mis próximas citas</li>
 </ol>
 
-<div class="container">
-  <div class="panel panel-df">
-    {{#power-calendar-multiple
-      locale='es'
-      class='dieta-farma-calendar-medium'
-      minDate=now
-      selected=meetDays
-      value='moment' as |calendar|}}
-      {{calendar.nav}}
-      {{#calendar.days as |day|}}
-        {{#with (moment-format day.date 'd' locale='es') as |weekday|}}
-          {{#if (or (eq weekday '0') (eq weekday '6'))}}
-            <strong class="holiday">{{day.number}}</strong>
-          {{else}}
-            {{day.number}}
-          {{/if}}
-        {{/with}}
-      {{/calendar.days}}
-    {{/power-calendar-multiple}}
+<section>
+  <div class="container">
+    <div class="panel panel-df">
+      {{#power-calendar
+        locale='es'
+        class='dieta-farma-calendar-medium'
+        center=center
+        onCenterChange=(action (mut center) value='moment')
+        onSelect=(action 'onSelected' value='moment') as |calendar|}}
+        {{calendar.nav}}
+        {{#calendar.days as |day|}}
+          {{#with (moment-format day.date 'd' locale='es') as |weekday|}}
+            {{#if (or (eq weekday '0') (eq weekday '6'))}}
+              <strong class="holiday">{{day.number}}</strong>
+            {{else}}
+              {{day.number}}
+            {{/if}}
+          {{/with}}
+        {{/calendar.days}}
+      {{/power-calendar}}
+    </div>
   </div>
-</div>
-
-<div class="container">
-  <div class="panel panel-df">
-    <div class="panel-heading">Detalle</div>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Fecha</th>
-          <th>Cliente</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each appointments as |meets|}}
+</section>
+<section>
+  <div class="container">
+    <div class="panel panel-df">
+      <div class="panel-heading">Detalle</div>
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td>{{moment-format meets.date 'DD/MM/YYYY HH:MM'}}</td>
-            <td>{{meets.client}}</td>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Tipo</th>
           </tr>
-        {{/each}}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {{#each dayAppointments  as |cita|}}
+            <tr>
+              <td>{{moment-format cita.date 'DD/MM/YYYY'}}</td>
+              <td>{{moment-format cita.date 'HH:mm'}}</td>
+              <td>{{if (eq cita.type 'P') 'Presencial' 'Skype'}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
+</section>
+
+{{wait-modal id='modal-wait-appointment' text='Cancelando cita...'}}
+
+{{#generic-modal id='modal-delete-appointment-ok' onclose='goToCalendar'}}
+  <div class="text-center">
+    <i class="fa fa-check-circle" aria-hidden="true"></i>
+  </div>
+  <h5 class="modal-title">Cita cancelada!</h5>
+{{/generic-modal}}
+
+{{#generic-modal id='modal-delete-appointment-error'}}
+  <div class="text-center">
+    <i class="fa fa-times-circle" aria-hidden="true"></i>
+  </div>
+  <h5 class="modal-title">Error al cancelar la cita!</h5>
+{{/generic-modal}}
+
