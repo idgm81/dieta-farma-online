@@ -21,7 +21,9 @@
     <ul>
       {{#if isClient}}
         <li {{action 'showDiets'}}><i class="fa fa-fw fa-file-text"></i><span>Mis dietas</span></li>
-        <li {{action 'askForAppointment'}}><i class="fa fa-fw fa-calendar"></i><span>Pedir cita</span></li>
+        {{#if isFeatureActive}}
+          <li {{action 'askForAppointment'}}><i class="fa fa-fw fa-calendar"></i><span>Pedir cita</span></li>
+        {{/if}}
         <div id="SkypeButton_Call_dietafarma_1">
           <script type="text/javascript">
             Skype.ui({

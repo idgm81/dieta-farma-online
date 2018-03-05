@@ -20,7 +20,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     return RSVP.hash({
       userData: this.get('api').getUser(id),
-      appointmentsData: this.get('api').getAppointments(id),
       messagesData: this.get('api').getMessages(id)
     });
   },
@@ -39,6 +38,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   setupController: function(controller, model) {
     controller.set('isClient', get(model, 'userData.user.role') === USER_ROLES.CLIENT);
+    controller.set('isFeatureActive', this.get('userId') === '5a2eaf11976b340004a9bae4');
     controller.set('headerTitle', `Hola ${get(model, 'userData.user.profile.name')}`);
     controller.set('fullName', `${get(model, 'userData.user.profile.name')} ${get(model, 'userData.user.profile.surname')}`);
     controller.set('appVersion', `${ENV.APP.version}.${ENV.APP.buildDate}`);
