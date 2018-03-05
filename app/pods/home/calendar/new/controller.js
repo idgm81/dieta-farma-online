@@ -15,6 +15,12 @@ export default Ember.Controller.extend({
       this.replaceRoute('home')
     },
 
+    onSelectDay(day) {
+      const index = this.get('dayOptions').indexOf(day);
+      this.set('hourOptions', this.get(`calendar.${index}.hours`));
+      this.set('bookDay', day);
+    },
+
     save() {
       const data = {
         customer: get(this, 'session.data.authenticated.id'),

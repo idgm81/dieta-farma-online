@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  <li>{{link-to 'Home' 'home'}}</li>
+  <li>{{link-to 'Inicio' 'home'}}</li>
   <li class="active">Pedir cita</li>
 </ol>
 
@@ -28,7 +28,7 @@
           searchEnabled=false
           selected=bookDay
           options=dayOptions
-          onchange=(action (mut bookDay)) as |day|}}
+          onchange=(action 'onSelectDay') as |day|}}
           {{moment-format day 'dddd DD MMMM' 'YYYY-MM-DD'}}
         {{/power-select}}
       </div>

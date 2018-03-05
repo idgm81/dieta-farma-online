@@ -14,7 +14,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   },
 
   setupController(controller, model) {
-    const appointments = get(model, 'appointments');
+    const appointments = get(model, 'items');
     const dayOptions = appointments.map((appointments) => appointments.day);
     controller.set('typeOptions', ['Presencial', 'Skype']);
     controller.set('bookType', 'Presencial');
@@ -22,5 +22,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
     controller.set('bookDay', dayOptions[0]);
     controller.set('hourOptions', appointments[0].hours);
     controller.set('bookHour', appointments[0].hours[0]);
+    controller.set('calendar', appointments);
   }
 });
