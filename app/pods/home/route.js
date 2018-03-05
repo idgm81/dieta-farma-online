@@ -38,7 +38,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   setupController: function(controller, model) {
     controller.set('isClient', get(model, 'userData.user.role') === USER_ROLES.CLIENT);
-    controller.set('isFeatureActive', this.get('userId') === '5a2eaf11976b340004a9bae4');
+    controller.set('isFeatureActive', this.get('userId') === '5a74230545283400044aec6b');
     controller.set('headerTitle', `Hola ${get(model, 'userData.user.profile.name')}`);
     controller.set('fullName', `${get(model, 'userData.user.profile.name')} ${get(model, 'userData.user.profile.surname')}`);
     controller.set('appVersion', `${ENV.APP.version}.${ENV.APP.buildDate}`);
