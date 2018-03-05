@@ -94,7 +94,7 @@ export default AjaxService.extend({
   },
 
   getAppointments(userId) {
-    return this.request(`/appointments/customer?userId=${userId}`, {
+    return this.request(`/appointments?userId=${userId}`, {
       method: 'GET'
     });
   },
