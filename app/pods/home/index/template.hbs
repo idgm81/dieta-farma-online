@@ -5,61 +5,81 @@
   {{/if}}
 </ol>
 
-{{#each model.appointments.appointments as |appointment|}}
+{{#if isNutritionist}}
   <div class="container">
     <div class="panel panel-df">
       <div class="panel-heading">
-        <h3 class="panel-title">Próxita Cita <strong>{{if (eq appointment.type 'P') 'Presencial' 'Skype'}}</strong></h3>
+        <h3 class="panel-title">Tus citas de hoy</h3>
       </div>
-      <div class="panel-body">
-        Tu cita es el {{moment-format appointment.date 'LLL'}}
-      </div>
-      {{#unless isNutritionist}}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model.appointments.items as |cita|}}
+            {{#if (gte (moment-diff now cita.date precision='days') 0)}}
+              <tr>
+                <td>{{moment-format cita.date 'DD/MM/YYYY'}}</td>
+                <td>{{moment-format cita.date 'HH:mm'}}</td>
+                <td>{{if (eq cita.type 'P') 'Presencial' 'Skype'}}</td>
+              </tr>
+            {{/if}}
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{{else}}
+  {{#each model.appointments.items as |cita|}}
+    <div class="container">
+      <div class="panel panel-df">
+        <div class="panel-heading">
+          <h3 class="panel-title">Próxima cita <strong>{{if (eq cita.type 'P') 'Presencial' 'Skype'}}</strong></h3>
+        </div>
+        <div class="panel-body">
+          {{moment-format cita.date 'dddd DD [de] MMMM [de] YYYY [a las] HH:mm'}}
+        </div>
         {{#if (gte (moment-diff now cita.date precision='hours') 24)}}
           <div class="panel-footer text-center">
             <button type="button" class="btn btn-danger" {{action 'delete' (get cita '_id')}}><i class="fa fa-trash"></i></button>
           </div>
         {{/if}}
-      {{/unless}}
+      </div>
     </div>
-  </div>
-  {{#unless isNutritionist}}
-    <div class="alert alert-info text-justify">
+    <div class="alert alert-warning text-justify">
       <small><strong>Nota: </strong>Puedes cancelar tu cita antes de 24h si te surge algún imprevisto. La videoconsulta se intentará realizar como máximo hasta en 3 ocasiones. Si no hay respuesta la cita se dará por realizada.</small>
     </div>
-  {{/unless}}
-{{else}}
-  <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-warning"></i> Atención</h3>
+
+    {{wait-modal id='modal-wait-appointment' text='Cancelando cita...'}}
+
+    {{#generic-modal id='modal-delete-appointment-ok' onclose='goToCalendar'}}
+      <div class="text-center">
+        <i class="fa fa-check-circle" aria-hidden="true"></i>
       </div>
-      <div class="panel-body">
-        {{#if isNutritionist}}
-          No tienes ninguna cita próximamente
-        {{else}}
-          No tienes ninguna cita reservada próximamente
-        {{/if}}
+      <h5 class="modal-title">Cita cancelada!</h5>
+    {{/generic-modal}}
+
+    {{#generic-modal id='modal-delete-appointment-error'}}
+      <div class="text-center">
+        <i class="fa fa-times-circle" aria-hidden="true"></i>
+      </div>
+      <h5 class="modal-title">Error al cancelar la cita!</h5>
+    {{/generic-modal}}
+  {{else}}
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-warning"></i> Atención</h3>
+        </div>
+        <div class="panel-body">No tienes ninguna cita reservada próximamente</div>
       </div>
     </div>
-  </div>
-{{/each}}
-
-{{wait-modal id='modal-wait-appointment' text='Cancelando cita...'}}
-
-{{#generic-modal id='modal-delete-appointment-ok' onclose='goToCalendar'}}
-  <div class="text-center">
-    <i class="fa fa-check-circle" aria-hidden="true"></i>
-  </div>
-  <h5 class="modal-title">Cita cancelada!</h5>
-{{/generic-modal}}
-
-{{#generic-modal id='modal-delete-appointment-error'}}
-  <div class="text-center">
-    <i class="fa fa-times-circle" aria-hidden="true"></i>
-  </div>
-  <h5 class="modal-title">Error al cancelar la cita!</h5>
-{{/generic-modal}}
+  {{/each}}
+{{/if}}
 
 {{#unless isNutritionist}}
   {{#each model.diets.diets as |diet index|}}
