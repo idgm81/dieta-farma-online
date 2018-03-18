@@ -28,13 +28,13 @@ export default Ember.Controller.extend({
         date: moment(`${this.get('bookDay')} ${this.get('bookHour')}`, 'YYYY-MM-DD HH:mm').format()
       };
 
-      $('#modal-wait-appointment').modal();
+      $('#modal-wait-new-appointment').modal();
 
       return this.get('api').createAppointment(data)
         .then(() => $('#modal-new-appointment-ok').modal())
         .catch(() => $('#modal-new-appointment-error').modal())
         .finally(() => {
-          $('#modal-wait-appointment').modal('hide');
+          $('#modal-wait-new-appointment').modal('hide');
         })
     },
 

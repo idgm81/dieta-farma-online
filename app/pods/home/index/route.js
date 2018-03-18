@@ -26,13 +26,13 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   actions: {
     delete(id) {
-      $('#modal-wait-appointment').modal();
+      $('#modal-wait-delete-appointment').modal();
 
       return this.get('api').deleteAppointment(id)
         .then(() => $('#modal-delete-appointment-ok').modal())
         .catch(() => $('#modal-delete-appointment-error').modal())
         .finally(() => {
-          $('#modal-wait-message').modal('hide');
+          $('#modal-wait-delete-appointment').modal('hide');
         })
     }
   }
