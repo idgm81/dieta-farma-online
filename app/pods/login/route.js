@@ -1,16 +1,13 @@
 import Ember from 'ember';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
-import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
 const { Route, inject: { service }, $} = Ember;
 
-export default Route.extend(ApplicationRouteMixin, UnauthenticatedRouteMixin, {
+export default Route.extend(UnauthenticatedRouteMixin, {
 
   i18n: service(),
 
   session: service(),
-
-  routeAfterAuthentication: 'home',
 
   // clear a potentially stale error message from previous login attempts
   setupController(controller) {
