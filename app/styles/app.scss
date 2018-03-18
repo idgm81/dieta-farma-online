@@ -191,8 +191,16 @@ margin-right: 15px;
 margin-left: 15px;
 }
 
+.navbar-default .navbar-toggle {
+  border: none;
+}
+
 .navbar-default .navbar-toggle .icon-bar {
     background-color: white;
+}
+
+.navbar-toggle .icon-bar + .icon-bar {
+  margin-top: 8px;
 }
 
 .top-nav-collapse {
