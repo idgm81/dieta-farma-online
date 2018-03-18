@@ -18,6 +18,7 @@ export default Ember.Controller.extend({
     onSelectDay(day) {
       const index = this.get('dayOptions').indexOf(day);
       this.set('hourOptions', this.get(`calendar.${index}.hours`));
+      this.set('bookHour', this.get('hourOptions.0'));
       this.set('bookDay', day);
     },
 
