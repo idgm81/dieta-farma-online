@@ -34,6 +34,11 @@
     </div>
   </div>
 {{else}}
+  {{#if model.appointments.items.length}}
+    <div class="alert alert-warning text-justify">
+      <small><strong>Nota: </strong>Puedes cancelar tu cita antes de 24h si te surge algún imprevisto. La videoconsulta se intentará realizar como máximo hasta en 3 ocasiones. Si no hay respuesta la cita se dará por realizada.</small>
+    </div>
+  {{/if}}
   {{#each model.appointments.items as |cita|}}
     <div class="container">
       <div class="panel panel-df">
@@ -49,9 +54,6 @@
           </div>
         {{/if}}
       </div>
-    </div>
-    <div class="alert alert-warning text-justify">
-      <small><strong>Nota: </strong>Puedes cancelar tu cita antes de 24h si te surge algún imprevisto. La videoconsulta se intentará realizar como máximo hasta en 3 ocasiones. Si no hay respuesta la cita se dará por realizada.</small>
     </div>
   {{else}}
     <div class="container">
