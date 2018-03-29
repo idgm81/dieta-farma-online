@@ -26,7 +26,7 @@ export default Ember.Controller.extend({
       const data = {
         customer: get(this, 'session.data.authenticated.id'),
         type: this.get('bookType') === 'Presencial' ? 'P' : 'S',
-        date: moment(`${this.get('bookDay')} ${this.get('bookHour')}`, 'YYYY-MM-DD HH:mm').format()
+        date: moment(`${this.get('bookDay')} ${this.get('bookHour')}`, 'YYYY-MM-DD HH:mm').toISOString()
       };
 
       $('#modal-wait-new-appointment').modal();
