@@ -28,7 +28,7 @@ export default Route.extend(UnauthenticatedRouteMixin, {
       }).catch(({error}) => {
         $('#modal-login').modal('hide');
         $('button').show();
-        this.set('controller.error', error.msg || this.get('i18n').t('error.generic'));
+        this.set('controller.error', error || this.get('i18n').t('error.generic'));
       });
     },
     goToResetPassword() {
