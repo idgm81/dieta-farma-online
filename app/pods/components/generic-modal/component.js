@@ -14,7 +14,6 @@ export default Component.extend({
 
   actions: {
     close: function() {
-      this.$('.modal').modal('hide');
       this.sendAction('onclose');
     }
   }

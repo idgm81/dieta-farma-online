@@ -16,7 +16,6 @@ export default Controller.extend({
 
   actions: {
     changePass() {
-      $('button').hide();
       $('#modal-change-pass').modal();
 
       const data = {
@@ -27,7 +26,6 @@ export default Controller.extend({
         $('#modal-change-pass-ok').modal();
       }).catch(() => {
         $('#modal-change-pass-ko').modal();
-        $('button').show();
       }).finally(() => {
         $('#modal-change-pass').modal('hide');
       });
