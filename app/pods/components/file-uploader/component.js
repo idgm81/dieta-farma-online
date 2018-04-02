@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
-const { computed, get, set } = Ember;
+const { computed, get, set, Component } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
 
   file: null,
 

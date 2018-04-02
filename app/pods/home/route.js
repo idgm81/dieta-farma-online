@@ -1,11 +1,14 @@
 import Ember from 'ember';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+
 import ENV from '../../config/environment';
 import { USER_ROLES } from './constants';
+import { getWithDefault } from '@ember/object';
+import { imagePath } from 'dieta-farma-online/helpers/image-path';
 
 const { inject: { service } , computed, get, run, RSVP} = Ember;
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+export default Ember.Route.extend(ApplicationRouteMixin, {
 
   session: service(),
 
@@ -21,7 +24,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return RSVP.hash({
       userData: this.get('api').getUser(id),
       messagesData: this.get('api').getMessages(id)
-    });
+    }).catch(() => this.transitionTo('index'));
   },
 
   redirect(model) {
@@ -40,6 +43,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     controller.set('isClient', get(model, 'userData.user.role') === USER_ROLES.CLIENT);
     controller.set('isFeatureActive', this.get('userId') === '5a74230545283400044aec6b');
     controller.set('headerTitle', `Hola ${get(model, 'userData.user.profile.name')}`);
+    controller.set('avatar', getWithDefault(model, 'userData.user.profile.avatar', imagePath('default-avatar.png')));
     controller.set('fullName', `${get(model, 'userData.user.profile.name')} ${get(model, 'userData.user.profile.surname')}`);
     controller.set('appVersion', `${ENV.APP.version}.${ENV.APP.buildDate}`);
     controller.set('inboxMessages', get(model, 'messagesData.messages').length);
@@ -81,7 +85,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     },
 
     logout() {
-      this.get('session').invalidate();
+      try {
+        return this.get('session').invalidate();
+      } catch (e) {
+        return this.transitionTo('login');
+      }
     }
   }
 });

@@ -39,6 +39,11 @@ module.exports = function(defaults) {
   });
 
   app.import({
+    development: 'node_modules/croppie/croppie.css',
+    production: 'node_modules/croppie/croppie.css'
+  });
+
+  app.import({
     development: 'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
     production: 'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js'
   });
@@ -61,6 +66,11 @@ module.exports = function(defaults) {
   app.import({
     development: 'node_modules/jquery-backstretch/jquery.backstretch.js',
     production: 'node_modules/jquery-backstretch/jquery.backstretch.min.js'
+  });
+
+  app.import({
+    development: 'node_modules/croppie/croppie.js',
+    production: 'node_modules/croppie/croppie.min.js'
   });
 
   var fontFiles = new Funnel('node_modules/font-awesome/fonts', {

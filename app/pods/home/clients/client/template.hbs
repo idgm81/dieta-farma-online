@@ -1,274 +1,276 @@
-<ol class="breadcrumb">
-  <li>{{link-to 'Mis clientes' 'home.clients.index'}}</li>
-  <li class="active">Perfil de {{model.user.profile.name}}</li>
-</ol>
+{{#with model.user.profile as |profile|}}
+  <ol class="breadcrumb">
+    <li>{{link-to 'Mis clientes' 'home.clients.index'}}</li>
+    <li class="active">Perfil de {{profile.name}}</li>
+  </ol>
 
-<div class="container">
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="client thumbnail">
-        <img src="../../assets/images/default-avatar.png" alt="..." class="img-circle profile-img">
-        <div class="caption">
-          <h3>{{model.user.profile.name}} {{model.user.profile.surname}}</h3>
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="profile-thumbnail">
+          <img src="{{if profile.avatar  profile.avatar (image-path 'default-avatar.png')}}" alt="avatar" class="profile-img">
+          <div class="caption">
+            <h3>{{profile.name}} {{profile.surname}}</h3>
+          </div>
         </div>
       </div>
-    </div>
-    {{!-- <div class="btn-group" role="group">
-      <button type="button" class="btn btn-warning" {{action 'edit' (get model.user '_id')}}><i class="fa fa-x fa-pencil"></i> Modificar</button>
-    </div> --}}
-  </div>
-</div>
-
-<div class="container">
-  <div class="panel-group" id="accordion">
-    <div class="panel panel-df">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Datos personales</a>
-        </h4>
-      </div>
-      <div id="collapse1" class="panel-collapse collapse in">
-        <div class="panel-body">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>Edad</td>
-                <td>{{moment-diff model.user.profile.birthday now precision='year'}} años</td>
-              </tr>
-              <tr>
-                <td>Email</td>
-                <td>{{model.user.email}}</td>
-              </tr>
-              <tr>
-                <td>Teléfono</td>
-                <td>{{model.user.profile.phone}}</td>
-              </tr>
-              <tr>
-                <td>Dietas</td>
-                <td>
-                  <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-info" {{action 'showDiets' (get model.user '_id')}}><i class="fa fa-x fa-eye"></i> Ver</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-df">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Medidas</a>
-        </h4>
-      </div>
-      <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>Altura</td>
-                <td>{{model.user.profile.measures.height}} cm</td>
-              </tr>
-              <tr>
-                <td>Peso</td>
-                <td>{{model.user.profile.measures.weight}} kg</td>
-              </tr>
-              <tr>
-                <td>IMC</td>
-                <td>{{model.user.profile.measures.imc}} %</td>
-              </tr>
-              <tr>
-                <td>Agua</td>
-                <td>{{model.user.profile.measures.water}} %</td>
-              </tr>
-              <tr>
-                <td>Grasa</td>
-                <td>{{model.user.profile.measures.fat}} %</td>
-              </tr>
-              <tr>
-                <td>Masa muscular</td>
-                <td>{{model.user.profile.measures.mass}} kg</td>
-              </tr>
-              <tr>
-                <td>Biotipo (1-9)</td>
-                <td>{{model.user.profile.measures.biotype}}</td>
-              </tr>
-              <tr>
-                <td>Masa ósea</td>
-                <td>{{model.user.profile.measures.boneMass}} kg</td>
-              </tr>
-              <tr>
-                <td>Gasto metabólico basal</td>
-                <td>{{model.user.profile.measures.metabolicExpense}} kcal</td>
-              </tr>
-              <tr>
-                <td>Edad metabólica</td>
-                <td>{{model.user.profile.measures.metabolicAge}}</td>
-              </tr>
-              <tr>
-                <td>Nivel grasa bisceral (1-12 o 13-59)</td>
-                <td>{{model.user.profile.measures.visceralFat}}</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Segemento</th>
-                <th>Porcentaje grasa (%)</th>
-                <th>Masa muscular (kg)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Brazo izq.</td>
-                <td>{{model.user.profile.measures.segments.arm.left.fatPercentage}}</td>
-                <td>{{model.user.profile.measures.segments.arm.left.mass}}</td>
-              </tr>
-              <tr>
-                <td>Brazo dcho.</td>
-                <td>{{model.user.profile.measures.segments.arm.right.fatPercentage}}</td>
-                <td>{{model.user.profile.measures.segments.arm.right.mass}}</td>
-              </tr>
-              <tr>
-                <td>Pierna izq.</td>
-                <td>{{model.user.profile.measures.segments.leg.left.fatPercentage}}</td>
-                <td>{{model.user.profile.measures.segments.leg.left.mass}}</td>
-              </tr>
-              <tr>
-                <td>Pierna dcha.</td>
-                <td>{{model.user.profile.measures.segments.leg.right.fatPercentage}}</td>
-                <td>{{model.user.profile.measures.segments.leg.right.mass}}</td>
-              </tr>
-              <tr>
-                <td>Tronco</td>
-                <td>{{model.user.profile.measures.segments.trunk.fatPercentage}}</td>
-                <td>{{model.user.profile.measures.segments.trunk.mass}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-df">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Alimentación</a>
-        </h4>
-      </div>
-      <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>Objetivo de la dieta</td>
-                <td>{{model.user.profile.objective}}</td>
-              </tr>
-              <tr>
-                <td>Motivo para hacer la dieta</td>
-                <td>{{model.user.profile.reason}}</td>
-              </tr>
-              <tr>
-                <td>Tipo de dieta</td>
-                <td>{{model.user.profile.dietType}}</td>
-              </tr>
-              <tr>
-                <td>Enfermedades o intolerancias</td>
-                <td>{{model.user.profile.foodDiseases}}</td>
-              </tr>
-              <tr>
-                <td>Alimentos prohibidos</td>
-                <td>{{model.user.profile.foodForbidden}}</td>
-              </tr>
-              <tr>
-                <td>Alimentos favoritos</td>
-                <td>{{model.user.profile.foodFavourite}}</td>
-              </tr>
-              <tr>
-                <td>Frecuencia consumo fruta</td>
-                <td>{{model.user.profile.dayFruit}}</td>
-              </tr>
-              <tr>
-                <td>Frecuencia consumo lácteos</td>
-                <td>{{model.user.profile.dayMilk}}</td>
-              </tr>
-              <tr>
-                <td>Frecuencia consumo cereales y frutos secos</td>
-                <td>{{model.user.profile.dayCereals}}</td>
-              </tr>
-              <tr>
-                <td>Frecuencia consumo proteinas</td>
-                <td>{{model.user.profile.dayProteins}}</td>
-              </tr>
-              <tr>
-                <td>Cocina para él mismo </td>
-                <td>{{if model.user.profile.selfCook 'Sí' 'No'}}</td>
-              </tr>
-              <tr>
-                <td>Ha hecho dieta anteriormente</td>
-                <td>{{if model.user.profile.receiveDietsBefore 'Sí' 'No'}}</td>
-              </tr>
-              <tr>
-                <td>Anterior supervisor</td>
-                <td>{{model.user.profile.supervisor}} {{model.user.profile.supervisorDetail}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-df">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Actividad</a>
-        </h4>
-      </div>
-      <div id="collapse4" class="panel-collapse collapse">
-        <div class="panel-body">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>Trabaja actualmente</td>
-                <td>{{if model.user.profile.isEmployed 'Sí' 'No'}}</td>
-              </tr>
-              <tr>
-                <td>Tipo de empleo</td>
-                <td>{{model.user.profile.employmentType}}</td>
-              </tr>
-              <tr>
-                <td>Realiza ejercicio</td>
-                <td>{{if model.user.profile.doExercise 'Sí' 'No'}}</td>
-              </tr>
-              <tr>
-                <td>¿Cúal?¿Tiempo por sesión?</td>
-                <td>{{model.user.profile.sportDetail}}</td>
-              </tr>
-              <tr>
-                <td>Frecuencia</td>
-                <td>{{model.user.profile.exerciseFrecuency}}</td>
-              </tr>
-              <tr>
-                <td>Estaría dispuesto a aumentar su actividad</td>
-                <td>{{if model.user.profile.increaseActivity 'Sí' 'No'}}</td>
-              </tr>
-              <tr>
-                <td>Lesiones</td>
-                <td>{{model.user.profile.injuries}}</td>
-              </tr>
-              <tr>
-                <td>Recibe información sobre entrenamiento</td>
-                <td>{{if model.user.profile.receiveTrainingInfo 'Sí' 'No'}}</td>
-              </tr>
-              <tr>
-                <td>Recibe información sobre suplementación deportiva</td>
-                <td>{{if model.user.profile.receiveSupplementInfo 'Sí' 'No'}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      {{!-- <div class="btn-group" role="group">
+        <button type="button" class="btn btn-warning" {{action 'edit' (get model.user '_id')}}><i class="fa fa-x fa-pencil"></i> Modificar</button>
+      </div> --}}
     </div>
   </div>
-</div>
+
+  <div class="container">
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-df">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Datos personales</a>
+          </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Edad</td>
+                  <td>{{moment-diff profile.birthday now precision='year'}} años</td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>{{model.user.email}}</td>
+                </tr>
+                <tr>
+                  <td>Teléfono</td>
+                  <td>{{profile.phone}}</td>
+                </tr>
+                <tr>
+                  <td>Dietas</td>
+                  <td>
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-info" {{action 'showDiets' (get model.user '_id')}}><i class="fa fa-x fa-eye"></i> Ver</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-df">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Medidas</a>
+          </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse">
+          <div class="panel-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Altura</td>
+                  <td>{{profile.measures.height}} cm</td>
+                </tr>
+                <tr>
+                  <td>Peso</td>
+                  <td>{{profile.measures.weight}} kg</td>
+                </tr>
+                <tr>
+                  <td>IMC</td>
+                  <td>{{profile.measures.imc}} %</td>
+                </tr>
+                <tr>
+                  <td>Agua</td>
+                  <td>{{profile.measures.water}} %</td>
+                </tr>
+                <tr>
+                  <td>Grasa</td>
+                  <td>{{profile.measures.fat}} %</td>
+                </tr>
+                <tr>
+                  <td>Masa muscular</td>
+                  <td>{{profile.measures.mass}} kg</td>
+                </tr>
+                <tr>
+                  <td>Biotipo (1-9)</td>
+                  <td>{{profile.measures.biotype}}</td>
+                </tr>
+                <tr>
+                  <td>Masa ósea</td>
+                  <td>{{profile.measures.boneMass}} kg</td>
+                </tr>
+                <tr>
+                  <td>Gasto metabólico basal</td>
+                  <td>{{profile.measures.metabolicExpense}} kcal</td>
+                </tr>
+                <tr>
+                  <td>Edad metabólica</td>
+                  <td>{{profile.measures.metabolicAge}}</td>
+                </tr>
+                <tr>
+                  <td>Nivel grasa bisceral (1-12 o 13-59)</td>
+                  <td>{{profile.measures.visceralFat}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Segemento</th>
+                  <th>Porcentaje grasa (%)</th>
+                  <th>Masa muscular (kg)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Brazo izq.</td>
+                  <td>{{profile.measures.segments.arm.left.fatPercentage}}</td>
+                  <td>{{profile.measures.segments.arm.left.mass}}</td>
+                </tr>
+                <tr>
+                  <td>Brazo dcho.</td>
+                  <td>{{profile.measures.segments.arm.right.fatPercentage}}</td>
+                  <td>{{profile.measures.segments.arm.right.mass}}</td>
+                </tr>
+                <tr>
+                  <td>Pierna izq.</td>
+                  <td>{{profile.measures.segments.leg.left.fatPercentage}}</td>
+                  <td>{{profile.measures.segments.leg.left.mass}}</td>
+                </tr>
+                <tr>
+                  <td>Pierna dcha.</td>
+                  <td>{{profile.measures.segments.leg.right.fatPercentage}}</td>
+                  <td>{{profile.measures.segments.leg.right.mass}}</td>
+                </tr>
+                <tr>
+                  <td>Tronco</td>
+                  <td>{{profile.measures.segments.trunk.fatPercentage}}</td>
+                  <td>{{profile.measures.segments.trunk.mass}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-df">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Alimentación</a>
+          </h4>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse">
+          <div class="panel-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Objetivo de la dieta</td>
+                  <td>{{profile.objective}}</td>
+                </tr>
+                <tr>
+                  <td>Motivo para hacer la dieta</td>
+                  <td>{{profile.reason}}</td>
+                </tr>
+                <tr>
+                  <td>Tipo de dieta</td>
+                  <td>{{profile.dietType}}</td>
+                </tr>
+                <tr>
+                  <td>Enfermedades o intolerancias</td>
+                  <td>{{profile.foodDiseases}}</td>
+                </tr>
+                <tr>
+                  <td>Alimentos prohibidos</td>
+                  <td>{{profile.foodForbidden}}</td>
+                </tr>
+                <tr>
+                  <td>Alimentos favoritos</td>
+                  <td>{{profile.foodFavourite}}</td>
+                </tr>
+                <tr>
+                  <td>Frecuencia consumo fruta</td>
+                  <td>{{profile.dayFruit}}</td>
+                </tr>
+                <tr>
+                  <td>Frecuencia consumo lácteos</td>
+                  <td>{{profile.dayMilk}}</td>
+                </tr>
+                <tr>
+                  <td>Frecuencia consumo cereales y frutos secos</td>
+                  <td>{{profile.dayCereals}}</td>
+                </tr>
+                <tr>
+                  <td>Frecuencia consumo proteinas</td>
+                  <td>{{profile.dayProteins}}</td>
+                </tr>
+                <tr>
+                  <td>Cocina para él mismo </td>
+                  <td>{{if profile.selfCook 'Sí' 'No'}}</td>
+                </tr>
+                <tr>
+                  <td>Ha hecho dieta anteriormente</td>
+                  <td>{{if profile.receiveDietsBefore 'Sí' 'No'}}</td>
+                </tr>
+                <tr>
+                  <td>Anterior supervisor</td>
+                  <td>{{profile.supervisor}} {{profile.supervisorDetail}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-df">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Actividad</a>
+          </h4>
+        </div>
+        <div id="collapse4" class="panel-collapse collapse">
+          <div class="panel-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Trabaja actualmente</td>
+                  <td>{{if profile.isEmployed 'Sí' 'No'}}</td>
+                </tr>
+                <tr>
+                  <td>Tipo de empleo</td>
+                  <td>{{profile.employmentType}}</td>
+                </tr>
+                <tr>
+                  <td>Realiza ejercicio</td>
+                  <td>{{if profile.doExercise 'Sí' 'No'}}</td>
+                </tr>
+                <tr>
+                  <td>¿Cúal?¿Tiempo por sesión?</td>
+                  <td>{{profile.sportDetail}}</td>
+                </tr>
+                <tr>
+                  <td>Frecuencia</td>
+                  <td>{{profile.exerciseFrecuency}}</td>
+                </tr>
+                <tr>
+                  <td>Estaría dispuesto a aumentar su actividad</td>
+                  <td>{{if profile.increaseActivity 'Sí' 'No'}}</td>
+                </tr>
+                <tr>
+                  <td>Lesiones</td>
+                  <td>{{profile.injuries}}</td>
+                </tr>
+                <tr>
+                  <td>Recibe información sobre entrenamiento</td>
+                  <td>{{if profile.receiveTrainingInfo 'Sí' 'No'}}</td>
+                </tr>
+                <tr>
+                  <td>Recibe información sobre suplementación deportiva</td>
+                  <td>{{if profile.receiveSupplementInfo 'Sí' 'No'}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/with}}

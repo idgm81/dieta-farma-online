@@ -201,6 +201,15 @@ $color-dietafarma: #25a29f;
 .side-menu-profile-pic {
   width: 35%;
   float: left;
+  .profile-img {
+    width: 70px;
+    margin: 10px auto;
+    background: #fff;
+    border: 1px solid rgba(52, 73, 94, 0.44);
+    position: inherit;
+    border-radius: 50%;
+    padding: 4px;
+  }
 }
 
 .side-menu-profile-info {
@@ -216,25 +225,53 @@ $color-dietafarma: #25a29f;
   }
 }
 
-.img-circle.profile-img {
-  width: 70px;
-  margin: 10px auto;
-  background: #fff;
-  position: inherit;
-  border: 1px solid rgba(52, 73, 94, 0.44);
-  padding: 4px;
+.profile-thumbnail {
+  .profile-img {
+    width: 100px;
+    margin: 10px auto;
+    background: #eaeaea;
+    position: inherit;
+    border-radius: 50%;
+    padding: 4px;
+  }
+
+  .badge {
+      top: -15px;
+      position: relative;
+      display: inline-block;
+      min-width: 10px;
+      padding: 3px 5px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      background-color: #777;
+      border-radius: 10px;
+  }
+}
+
+#modal-edit-avatar {
+  .cr-image {
+    position: initial;
+  }
 }
 
 .caption {
-  height: 100px;
   h3 {
     text-align: center;
   }
 }
 
-.client.thumbnail {
+.client.profile-thumbnail {
   height: 250px;
-  background-color: #eaeaea;
+  background: #eaeaea;
+  padding: 5px;
+  .profile-img {
+    background: #fff;
+  }
 }
 
 .floating-button {

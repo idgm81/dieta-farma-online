@@ -1,0 +1,18 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4>Selecciona tu imagen de perfil</h4>
+    </div>
+    <div class="modal-body">
+      {{#unless file}}
+        {{#file-picker fileLoaded='fileLoaded' readAs='readAsDataURL' preview=false}}
+          <p>Arrastra aquí or haz click para subir el archivo</p>
+        {{/file-picker}}
+      {{/unless}}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-df" data-dismiss="modal" {{action 'save'}}>Aceptar</button>
+      <button type="button" class="btn btn-danger" data-dismiss="modal" {{action 'cancel'}}>Cancelar</button>
+    </div>
+  </div>
+</div>
