@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 form-box">
+    <div class="form-top">
+      <div class="form-top-left">
+        <p>{{t 'text.reset.info'}}</p>
+      </div>
+      <div class="form-top-right">
+        <i class="fa fa-lock"></i>
+      </div>
+    </div>
+    <div class="form-bottom">
+      <form role="form" class="email-form">
+        <div class="form-group">
+          <label class="sr-only" for="form-email">Email</label>
+          {{input
+            id='form-email'
+            name='form-email'
+            type='email'
+            class='form-email form-control'
+            value=email
+            required=true
+            autocomplete='off'
+            placeholder='Email'}}
+          <small class="help-block with-errors"></small>
+        </div>
+        {{#if authError}}
+          <div class="invalid-email"><p>{{msgError}}</p></div>
+        {{/if}}
+        <button class="btn" type="submit">Comprobar</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 {{#wrapper-bg images='backgrounds/login.jpg'}}
-  <div id="dt-login-page" class="top-content">
+  <div class="dt-login-page top-content">
     <div class="inner-bg">
       <div class="container">
         <div class="row">
@@ -10,7 +10,7 @@
         {{login-form
           authError=error
           onsubmit='authenticate'
-          onreset='resetPassword'}}
+          onreset='goToResetPassword'}}
       </div>
     </div>
   </div>

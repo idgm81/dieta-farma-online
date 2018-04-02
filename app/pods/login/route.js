@@ -31,8 +31,8 @@ export default Route.extend(UnauthenticatedRouteMixin, {
         this.set('controller.error', error.msg || this.get('i18n').t('error.generic'));
       });
     },
-    resetPassword() {
-
+    goToResetPassword() {
+      this.transitionTo('reset-password');
     }
   }
 });

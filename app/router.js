@@ -7,6 +7,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('change-password');
   this.route('error-page', { path: '*path'});
   this.route('home', function() {
     this.route('calendar', function() {
@@ -30,6 +31,7 @@ Router.map(function() {
   });
   this.route('login');
   this.route('register');
+  this.route('reset-password');
 });
 
 export default Router;

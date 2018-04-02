@@ -35,9 +35,16 @@ export default AjaxService.extend({
     }
   }),
 
-  checkEmail() {
-    return this.request(`/checkEmail`, {
+  checkEmail(email) {
+    return this.request(`/auth/checkEmail?email=${email}`, {
       method: 'GET'
+    });
+  },
+
+  modifyPassword(data) {
+    return this.request(`/auth/modifyPassword`, {
+      method: 'POST',
+      data
     });
   },
 
@@ -61,9 +68,15 @@ export default AjaxService.extend({
   },
 
   editUser(userId, data) {
-    return this.request(`/users`, {
+    return this.request(`/users/${userId}`, {
       method: 'PUT',
       data
+    });
+  },
+
+  deleteUser(userId) {
+    return this.request(`/users/${userId}`, {
+      method: 'DELETE'
     });
   },
 

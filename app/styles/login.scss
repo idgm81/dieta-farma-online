@@ -1,6 +1,6 @@
 $color-dietafarma: #25a29f;
 
-#dt-login-page {
+.dt-login-page {
 
   strong {
     font-weight: 500;
@@ -113,7 +113,7 @@ $color-dietafarma: #25a29f;
   /***** Top content *****/
 
   .inner-bg {
-    padding: 100px 0 170px 0;
+    padding: 30px 0 0 0;
   }
 
   .top-content {
@@ -166,7 +166,11 @@ $color-dietafarma: #25a29f;
     }
   }
 
-  .invalid-login {
+  .reset-pass {
+    color: #fff;
+  }
+
+  .invalid-login, .invalid-email {
     color: #de615e;
   }
 

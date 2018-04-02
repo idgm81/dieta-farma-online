@@ -1,10 +1,13 @@
-import Ember from 'ember';
+import Component from "@ember/component";
+import { inject as service } from "@ember/controller";
+import { run } from "@ember/runloop";
+import { setProperties } from "@ember/object";
 
-export default Ember.Component.extend({
+export default Component.extend({
 
-  attributeBindings: ['id'],
+  api: service(),
 
-  classNames: ['top-content'],
+  classNames: ['dt-register-page', 'top-content'],
 
   data: {},
 
@@ -31,7 +34,7 @@ export default Ember.Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    Ember.run.scheduleOnce('afterRender', this, function() {
+    run.scheduleOnce('afterRender', this, function() {
       this.$('.register fieldset:first').fadeIn('slow');
       this.$('form.register').find('fieldset').each((index, element) => {
         if (index > 0) {
@@ -43,7 +46,7 @@ export default Ember.Component.extend({
 
       $('input[name="checkTerms"]').attr('data-validate', 'true');
 
-      Ember.setProperties(this.get('data'), {
+      setProperties(this.get('data'), {
         birthday: { day: 1, month: 1, year: 1970 },
         genre: 'female',
         measures: {
