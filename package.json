@@ -56,7 +56,7 @@
     "ember-radio-buttons": "4.1.0",
     "ember-resolver": "4.5.0",
     "ember-side-menu": "0.0.15",
-    "ember-simple-auth": "1.4.2",
+    "ember-simple-auth": "1.6.0",
     "ember-simple-auth-token": "3.0.0",
     "ember-source": "2.16.1",
     "fastclick": "1.0.6",
