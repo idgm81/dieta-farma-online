@@ -4,10 +4,17 @@ export default {
   },
   "label": {
     "dietafarma": "DietaFarma",
-    "privateAccess": "Acceso privado"
+    "privateAccess": "Acceso privado",
+    "resetPass": "Solicitar cambio contraseña",
+    "changePass": "Escoge tu nueva contraseña"
   },
   "text": {
     "accessing": "Accediendo...",
+    "changePass": {
+      "ok": "Se ha cambiado tu contraseña correctamente",
+      "ko": "Se ha producido un error al cambiar la contraseña"
+    },
+    "checking": "Comprobando...",
     "public": {
       "aboutMe": {
         "title": "\"Soy farmacéutico de profesión, nutricionista por vocación, y entrenador por devoción\"",
@@ -37,6 +44,11 @@ export default {
         "paragraph3": "Realizaremos un seguimiento continuo de tu dieta y podrás renovarla periódicamente",
         "paragraph4": "Si te gusta más el contacto directo próximamente podrás reservar tu consulta a través de Skype o presencial con del servicio de 'Citas' de la aplicación"
       }
+    },
+    "reset": {
+      "info": "Introduce tu email para recibir el enlace desde donde podrás modificar tu contraseña de forma segura:",
+      "emailOK": "Hemos enviado un enlace a esa dirección de email para que puedas cambiar tu contraseña. Dispones de 15 minutos antes de que el enlace deje de ser válido",
+      "emailKO": "No hemos encontrado ese email es nuestra base de datos"
     },
     "signUp": "Registrando, por favor espere..."
   }
