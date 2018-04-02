@@ -1,14 +1,16 @@
-import Ember from 'ember';
+import { reads } from '@ember/object/computed';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { run } from '@ember/runloop';
+import RSVP from 'rsvp';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
 import ENV from '../../config/environment';
 import { USER_ROLES } from './constants';
-import { getWithDefault } from '@ember/object';
+import { getWithDefault, get } from '@ember/object';
 import { imagePath } from 'dieta-farma-online/helpers/image-path';
 
-const { inject: { service } , computed, get, run, RSVP} = Ember;
-
-export default Ember.Route.extend(ApplicationRouteMixin, {
+export default Route.extend(ApplicationRouteMixin, {
 
   session: service(),
 
@@ -16,7 +18,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   sideMenu: service(),
 
-  userId: computed.reads('session.data.authenticated.id'),
+  userId: reads('session.data.authenticated.id'),
 
   model() {
     const id = get(this, 'userId');

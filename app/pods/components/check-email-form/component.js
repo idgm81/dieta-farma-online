@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import { reads } from '@ember/object/computed';
 import { run } from '@ember/runloop';
 import Component from '@ember/component';

@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { Component, computed, run } = Ember;
+import { reads } from '@ember/object/computed';
+import Component from '@ember/component';
+import { run } from '@ember/runloop';
 
 export default Component.extend({
 
@@ -10,7 +10,7 @@ export default Component.extend({
 
   authError: null,
 
-  msgError: computed.reads('authError'),
+  msgError: reads('authError'),
 
   didInsertElement() {
     this._super(...arguments);

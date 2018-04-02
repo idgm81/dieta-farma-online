@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Component from '@ember/component';
+import { on } from '@ember/object/evented';
 import { imagePath } from 'dieta-farma-online/helpers/image-path';
-
-const { $, Component, on } = Ember;
 
 export default Component.extend({
   // Configuration

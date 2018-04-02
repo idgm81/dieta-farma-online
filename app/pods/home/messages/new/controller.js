@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
+import $ from 'jquery';
 import moment from 'moment';
-
-const { Controller, inject: { service }, get, $ } = Ember;
 
 export default Controller.extend({
 

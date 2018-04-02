@@ -1,6 +1,5 @@
-import Ember from 'ember';
-
-const { Helper: { helper } } = Ember;
+import { isArray } from '@ember/array';
+import { helper } from '@ember/component/helper';
 
 const IMAGE_PATH = '/assets/images/';
 
@@ -17,7 +16,7 @@ const IMAGE_PATH = '/assets/images/';
  *
  */
 export function imagePath(params = '') {
-	let imgPath = Ember.isArray(params) ? params[0] : params;
+	let imgPath = isArray(params) ? params[0] : params;
 
 	// imgPath is not string >> empty string
 	if (typeof imgPath !== 'string') {

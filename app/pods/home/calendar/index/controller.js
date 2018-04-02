@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 import moment from 'moment';
-
-const { Controller, inject: { service } } = Ember;
 
 export default Controller.extend({
 

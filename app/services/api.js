@@ -1,9 +1,10 @@
 // app/services/api.js
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+
+import { computed } from '@ember/object';
+import RSVP from 'rsvp';
 import AjaxService from 'ember-ajax/services/ajax';
 import ENV from '../config/environment';
-
-const { inject: { service }, computed, RSVP } = Ember;
 
 export default AjaxService.extend({
 

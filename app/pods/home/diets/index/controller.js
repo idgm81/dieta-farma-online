@@ -1,15 +1,15 @@
-import Ember from 'ember';
+import { equal } from '@ember/object/computed';
+import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 import { USER_ROLES } from '../../constants';
 
-const { inject: { service }, computed } = Ember;
-
-export default Ember.Controller.extend({
+export default Controller.extend({
 
   session: service(),
 
   api: service(),
 
-  isNutritionist: computed.equal('session.data.authenticated.role', USER_ROLES.NUTRITIONIST),
+  isNutritionist: equal('session.data.authenticated.role', USER_ROLES.NUTRITIONIST),
 
   queryParams: ['userId'],
 

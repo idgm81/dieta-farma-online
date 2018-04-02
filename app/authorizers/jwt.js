@@ -1,9 +1,9 @@
+import { inject as service } from '@ember/service';
 import Base from 'ember-simple-auth/authorizers/base';
-import Ember from 'ember';
 
 export default Base.extend({
 
-  session: Ember.inject.service(),
+  session: service(),
 
   authorize(sessionData, block) {
     const { token } = sessionData

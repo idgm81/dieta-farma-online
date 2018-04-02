@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
 const DATE_FORMAT = 'dd/mm/yyyy';
 
-export default Ember.Component.extend({
+export default Component.extend({
 
   classNames: ['form-group'],
 
