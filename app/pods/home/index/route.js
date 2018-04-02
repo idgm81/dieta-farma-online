@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import moment from 'moment';
+import { isPresent } from '@ember/utils';
+import { get } from '@ember/object';
 
 const { Route, inject: { service }, RSVP } = Ember;
 
@@ -22,6 +25,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     this._super(...arguments);
 
     controller.set('isNutritionist', this.get('session.data.authenticated.role') === 'N');
+    controller.set('hasAppointmentsToday', isPresent(get(model, 'appointments.items').filter((item) => moment(item.date).isSame(moment(), 'day'))));
   },
 
   actions: {

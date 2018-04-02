@@ -11,26 +11,31 @@
       <div class="panel-heading">
         <h3 class="panel-title">Tus citas de hoy</h3>
       </div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Tipo</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each model.appointments.items as |cita|}}
-            {{#if (gte (moment-diff now cita.date precision='days') 0)}}
-              <tr>
-                <td>{{moment-format cita.date 'DD/MM/YYYY'}}</td>
-                <td>{{moment-format cita.date 'HH:mm'}}</td>
-                <td>{{if (eq cita.type 'P') 'Presencial' 'Skype'}}</td>
-              </tr>
-            {{/if}}
-          {{/each}}
-        </tbody>
-      </table>
+      {{#if hasAppointmentsToday}}
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.appointments.items as |cita|}}
+              {{#if (gte (moment-diff now cita.date precision='days') 0)}}
+                <tr>
+                  <td>{{moment-format cita.date 'DD/MM/YYYY'}}</td>
+                  <td>{{moment-format cita.date 'HH:mm'}}</td>
+                  <td>{{if (eq cita.type 'P') 'Presencial' 'Skype'}}</td>
+                </tr>
+              
+              {{/if}}
+            {{/each}}
+          </tbody>
+        </table>
+      {{else}}
+        <div class="panel-body">No tienes ninguna programada para hoy</div>
+      {{/if}}
     </div>
   </div>
 {{else}}
