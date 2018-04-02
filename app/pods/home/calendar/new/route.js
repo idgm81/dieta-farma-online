@@ -14,6 +14,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
   },
 
   setupController(controller, model) {
+    this._super(...arguments);
+
     const appointments = get(model, 'items');
     const dayOptions = appointments.map((appointments) => appointments.day);
     controller.set('typeOptions', ['Presencial', 'Skype']);

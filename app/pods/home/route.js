@@ -42,6 +42,8 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   setupController: function(controller, model) {
+    this._super(...arguments);
+
     controller.set('isClient', get(model, 'userData.user.role') === USER_ROLES.CLIENT);
     controller.set('isFeatureActive', this.get('userId') === '5a74230545283400044aec6b');
     controller.set('headerTitle', `Hola ${get(model, 'userData.user.profile.name')}`);

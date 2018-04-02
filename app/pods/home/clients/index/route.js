@@ -15,6 +15,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
   },
 
   setupController(controller, model) {
+    this._super(...arguments);
+
     const usersArray = get(model, 'users');
     const clientsGroup = usersArray.map((e,i) => (i % 4 === 0) && usersArray.slice(i, i + 4)).filter((e) => e)
 

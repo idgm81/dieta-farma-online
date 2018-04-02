@@ -13,10 +13,5 @@ export default Route.extend(AuthenticatedRouteMixin, {
     const userId = get(this, 'session.data.authenticated.id');
 
     return this.get('api').getAppointments(userId);
-  },
-
-  setupController(controller, model) {
-    const appointments = get(model, 'items');
-    controller.set('appointments', appointments);
   }
 });
