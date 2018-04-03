@@ -12,6 +12,8 @@ export default Component.extend({
 
   'aria-hidden': 'true',
 
+  buttonText: 'Ok',
+
   actions: {
     close: function() {
       this.sendAction('onclose');
