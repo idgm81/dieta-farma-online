@@ -288,11 +288,43 @@ $color-dietafarma: #25a29f;
 }
 
 div.media{
-  margin-left: 10px;
+  margin: 15px;
 }
 
 .my-floating-button {
 	margin-top: 14px;
+}
+
+.chat {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+.chat li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #eaeaea;
+}
+
+.chat li.left .chat-body {
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body {
+    margin-right: 60px;
+}
+
+.chat li .chat-body p {
+    margin: 0;
+    color: #777777;
+}
+
+.modal-body textarea {
+  width: 90%;
+  color: black;
+  resize: none;
 }
 
 .footer {
@@ -304,10 +336,6 @@ div.media{
   width: 100%;
   height: 24px;
   background-color: black;
-}
-
-.left_col {
-  background: #2A3F54;
 }
 
 .border-blue {
