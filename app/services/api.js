@@ -139,15 +139,22 @@ export default AjaxService.extend({
     });
   },
 
-  getMessages(userId) {
-    return this.request(`/messages?userId=${userId}`, {
+  getThreads(userId) {
+    return this.request(`/threads?userId=${userId}`, {
       method: 'GET'
     });
   },
 
-  createMessage(data) {
-    return this.request(`/messages`, {
+  createThread(data) {
+    return this.request(`/threads`, {
       method: 'POST',
+      data
+    });
+  },
+
+  createMessage(threadId, data) {
+    return this.request(`/threads/${threadId}`, {
+      method: 'PUT',
       data
     });
   },

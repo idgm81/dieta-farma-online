@@ -28,11 +28,11 @@ export default Route.extend(AuthenticatedRouteMixin, {
       this.transitionTo('home.clients.client', id)
     },
 
-    sendMessage(client) {
+    createThread(client) {
       const nutritionist= get(this, 'session.data.authenticated.id');
       const queryParams = { from: nutritionist, to: client };
 
-      this.transitionTo('home.messages.new',  { queryParams })
+      this.transitionTo('home.threads.new',  { queryParams })
     }
   }
 });

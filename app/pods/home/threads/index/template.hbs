@@ -1,0 +1,35 @@
+<ol class="breadcrumb">
+  <li>{{link-to 'Inicio' 'home'}}</li>
+  <li class="active">Mis coversaciones</li>
+</ol>
+
+{{#each model.threads as |thread|}}
+  <div class="media inbox" {{action 'detail' (get thread '_id')}}>
+    <div class="media-left">
+      {{#with (get thread 'customer_data.0.profile.avatar') as |avatar|}}
+        <img alt="avatar" class="media-object img-circle" src="{{avatar}}">
+      {{else}}
+        <img alt="avatar" class="media-object img-circle" src="{{image-path 'default-avatar.png'}}">
+      {{/with}}
+    </div>
+    <div class="media-body">
+      <h5 class="media-heading">{{thread.title}}</h5>
+      <small>{{thread.messages.0.text}}</small>
+    </div>
+  </div>
+{{else}}
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-warning"></i>&nbsp;Atención</h3>
+      </div>
+      <div class="panel-body">No tienes conversaciones con tu nutricionista</div>
+    </div>
+  </div>
+{{/each}}
+
+{{#unless isNutritionist}}
+  <div {{action 'new'}} class='floating-button'>
+    <i class="fa fa-2x fa-pencil my-floating-button"></i>
+  </div>
+{{/unless}}

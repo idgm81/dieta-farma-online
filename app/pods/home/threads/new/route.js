@@ -12,7 +12,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
     }
   },
 
-  resetController(controller, isExiting, transition) {
+  resetController(controller, isExiting) {
+    this._super(...arguments);
+
     if (isExiting) {
       controller.set('from', '');
       controller.set('to', '');

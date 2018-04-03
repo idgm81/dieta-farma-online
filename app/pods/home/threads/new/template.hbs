@@ -1,11 +1,11 @@
 <ol class="breadcrumb">
   <li>{{link-to 'Inicio' 'home'}}</li>
-  <li>{{link-to 'Mis mensajes' 'home.messages'}}</li>
-  <li class="active">Nuevo mensaje</li>
+  <li>{{link-to 'Mis conversaciones' 'home.threads'}}</li>
+  <li class="active">Nueva conversación</li>
 </ol>
 
 <div class="container">
-  <form role="form" id="newMessage">
+  <form role="form" id="new-thread">
     <div class="form-group">
       <label for="title">Asunto:</label>
       {{input
@@ -38,16 +38,16 @@
 </div>
 
 
-{{wait-modal id='modal-wait-message' text='Guardando mensaje...'}}
+{{wait-modal id='modal-wait-thread' text='Guardando mensaje...'}}
 
-{{#generic-modal id='modal-new-message-ok' onclose='goToMessages'}}
+{{#generic-modal id='modal-new-thread-ok' onclose='goToThreads'}}
   <div class="text-center">
     <i class="fa fa-check-circle" aria-hidden="true"></i>
   </div>
   <h5 class="modal-title">Mensaje enviado!</h5>
 {{/generic-modal}}
 
-{{#generic-modal id='modal-new-message-error'}}
+{{#generic-modal id='modal-new-thread-error'}}
   <div class="text-center">
     <i class="fa fa-times-circle" aria-hidden="true"></i>
   </div>

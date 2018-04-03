@@ -2,7 +2,6 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { get } from '@ember/object';
 import $ from 'jquery';
-import moment from 'moment';
 
 export default Controller.extend({
 
@@ -16,25 +15,24 @@ export default Controller.extend({
 
   actions: {
     cancel() {
-      this.replaceRoute('home.messages');
+      this.replaceRoute('home.threads.index');
     },
 
     send() {
-      const message = {
+      const thread = {
         from: get(this, 'from'),
         to: get(this, 'to'),
         title: get(this, 'title'),
-        date: moment().format(),
         text: get(this, 'text')
       };
 
-      $('#modal-wait-message').modal();
+      $('#modal-wait-thread').modal();
 
-      return this.get('api').createMessage(message)
-        .then(() => $('#modal-new-message-ok').modal())
-        .catch(() => $('#modal-new-message-error').modal())
+      return this.get('api').createThread(thread)
+        .then(() => $('#modal-new-thread-ok').modal())
+        .catch(() => $('#modal-new-thread-error').modal())
         .finally(() => {
-          $('#modal-wait-message').modal('hide');
+          $('#modal-wait-thread').modal('hide');
         })
 
     },
@@ -43,8 +41,8 @@ export default Controller.extend({
       this.replaceRoute('home');
     },
 
-    goToMessages() {
-      this.replaceRoute('home.messages.index');
+    goToThreads() {
+      this.replaceRoute('home.threads.index');
     }
   }
 });

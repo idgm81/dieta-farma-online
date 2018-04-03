@@ -22,17 +22,19 @@ $color-dietafarma: #25a29f;
 .breadcrumb {
   background-color: #eaeaea;
   font-family: 'Open Sans', sans-serif;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .side-title {
-  width: 230px;
   float: left;
-  margin-left: 105px;
+  margin-left: 15px;
   background: #373a47;
   border-radius: 0;
   height: 57px;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 18px;
   color: #ECF0F1!important;
   width: 100%;
   line-height: 59px;
@@ -40,7 +42,7 @@ $color-dietafarma: #25a29f;
   height: 55px;
   padding-left: 10px;
   img {
-    height: 55px;
+    height: 40px;
   }
 }
 
@@ -203,7 +205,7 @@ $color-dietafarma: #25a29f;
   float: left;
   .profile-img {
     width: 70px;
-    margin: 10px auto;
+    margin: 20px auto;
     background: #fff;
     border: 1px solid rgba(52, 73, 94, 0.44);
     position: inherit;
@@ -213,12 +215,13 @@ $color-dietafarma: #25a29f;
 }
 
 .side-menu-profile-info {
-  padding: 0px 10px 10px 0px;
+  padding: 10px;
   width: 65%;
   float: left;
   h3 {
     color: white;
     font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
   }
   &.profile {
     color: white;
@@ -291,34 +294,71 @@ div.media{
   margin: 15px;
 }
 
+.media.inbox {
+  background-color: #eaeaea;
+  padding: 10px;
+  .media-body {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+  }
+  .media-left img {
+    width: 3.5em;
+  }
+}
+
 .my-floating-button {
 	margin-top: 14px;
 }
 
-.chat {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    color: black;
+ul.chat {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: black;
+  overflow-y: scroll;
+  max-height: 420px;
 }
 
 .chat li {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #eaeaea;
+  margin-bottom: 10px;
+  padding: 10px;
+  &.left { 
+    background-color: #c1d6ff;
+  }
+  &.right { 
+    background-color: #c9efee;
+  }
 }
 
 .chat li.left .chat-body {
-    margin-left: 60px;
+  margin-left: 60px;
 }
 
 .chat li.right .chat-body {
-    margin-right: 60px;
+  margin-right: 60px;
 }
 
 .chat li .chat-body p {
-    margin: 0;
-    color: #777777;
+  margin: 0;
+  color:black;
+  font-size: 14px;
+  overflow-wrap: break-word;
+}
+
+.chat-img img {
+  width: 3.5em;
+}
+
+.reply-message {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  textarea {
+    resize: none;
+  }
 }
 
 .modal-body textarea {

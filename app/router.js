@@ -21,8 +21,8 @@ Router.map(function() {
       this.route('edit', { path: '/edit/:id' });
       this.route('new');
     });
-    this.route('messages', function() {
-      this.route('detail', { path: ':id' });
+    this.route('threads', function() {
+      this.route('thread', { path: ':id' });
       this.route('new');
     });
     this.route('profile', { path: '/profile/:id'}, function() {

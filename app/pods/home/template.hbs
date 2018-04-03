@@ -6,6 +6,7 @@
 {{#side-menu side='right' width='300px'}}
   <div class="side-title">
     <img src="{{image-path 'logo-dietafarma-basic-white.png'}}" alt="dieta farma logo">
+    <span>Dietafarma</span>
   </div>
   <div class="clearfix"></div>
   <div class="profile clearfix">
@@ -38,9 +39,9 @@
         <li {{action 'showMyClients'}}><i class="fa fa-fw fa-group"></i><span>Mis clientes</span></li>
         <li {{action 'showMyCalendar'}}><i class="fa fa-fw fa-calendar"></i><span>Mi calendario</span></li>
       {{/if}}
-      <li {{action 'showMessages'}}><i class="fa fa-fw fa-envelope"></i><span>Mensajes</span>
-        {{#if (gt inboxMessages 0)}}
-          <span class="badge bg-green">{{inboxMessages}}</span>
+      <li {{action 'showThreads'}}><i class="fa fa-fw fa-envelope"></i><span>Mensajes</span>
+        {{#if (gt inboxThreadsUnread 0)}}
+          <span class="badge bg-green">{{inboxThreadsUnread}}</span>
         {{/if}}
       </li>
       <li {{action 'logout'}}><i class="fa fa-fw fa-sign-out"></i><span>Salir</span></li>

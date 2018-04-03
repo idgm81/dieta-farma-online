@@ -25,7 +25,7 @@ export default Route.extend(ApplicationRouteMixin, {
 
     return RSVP.hash({
       userData: this.get('api').getUser(id),
-      messagesData: this.get('api').getMessages(id)
+      inboxThreads: this.get('api').getThreads(id)
     }).catch(() => this.transitionTo('index'));
   },
 
@@ -44,13 +44,19 @@ export default Route.extend(ApplicationRouteMixin, {
   setupController: function(controller, model) {
     this._super(...arguments);
 
+    const inboxThreadsUnread = getWithDefault(model, 'inboxThreads.threads', [])
+      .map((thread) => thread.unread ? 1 : 0)
+      .reduce((acc, cur) => {
+        return acc + cur;
+      });
+
     controller.set('isClient', get(model, 'userData.user.role') === USER_ROLES.CLIENT);
     controller.set('isFeatureActive', this.get('userId') === '5a74230545283400044aec6b');
     controller.set('headerTitle', `Hola ${get(model, 'userData.user.profile.name')}`);
     controller.set('avatar', getWithDefault(model, 'userData.user.profile.avatar', imagePath('default-avatar.png')));
     controller.set('fullName', `${get(model, 'userData.user.profile.name')} ${get(model, 'userData.user.profile.surname')}`);
     controller.set('appVersion', `${ENV.APP.version}.${ENV.APP.buildDate}`);
-    controller.set('inboxMessages', get(model, 'messagesData.messages').length);
+    controller.set('inboxThreadsUnread', inboxThreadsUnread);
   },
 
   close() {
@@ -78,9 +84,9 @@ export default Route.extend(ApplicationRouteMixin, {
       this.transitionTo('home.calendar.index');
     },
 
-    showMessages() {
+    showThreads() {
       this.close();
-      this.transitionTo('home.messages.index');
+      this.transitionTo('home.threads.index');
     },
 
     showMyClients() {
