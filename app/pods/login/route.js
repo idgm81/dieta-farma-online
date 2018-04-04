@@ -26,10 +26,9 @@ export default Route.extend(UnauthenticatedRouteMixin, {
         identification: credentials.email,
         password: credentials.password
       }).catch(({error}) => {
-        $('#modal-login').modal('hide');
         $('button').show();
         this.set('controller.error', error || this.get('i18n').t('error.generic'));
-      });
+      }).finally(() => $('#modal-login').modal('hide'));
     },
     goToResetPassword() {
       this.transitionTo('reset-password');

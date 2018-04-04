@@ -1,16 +1,14 @@
-import { reads } from '@ember/object/computed';
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
 import RSVP from 'rsvp';
-import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
-
 import ENV from '../../config/environment';
+import { reads } from '@ember/object/computed';
 import { USER_ROLES } from './constants';
 import { getWithDefault, get } from '@ember/object';
 import { imagePath } from 'dieta-farma-online/helpers/image-path';
 
-export default Route.extend(ApplicationRouteMixin, {
+export default Route.extend({
 
   session: service(),
 
