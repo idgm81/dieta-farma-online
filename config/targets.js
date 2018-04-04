@@ -2,10 +2,11 @@
 
 module.exports = {
   browsers: [
-    'ie 9',
+    'last 3 ie versions',
     'last 6 chrome versions',
-    'last 3 firefox versions',
+    'last 6 firefox versions',
     'last 2 safari versions',
-    'last 1 edge versions'
+    'last 4 iOS versions',
+    'last 2 edge versions'
   ]
 };
