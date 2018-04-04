@@ -475,15 +475,38 @@ ul.chat {
     background-color: #96d5ff;
   }
   .ember-power-calendar-day--focused {
-    box-shadow: inset 0px -2px 0px 0px #25a29f;
+    box-shadow: inset 0px -2px 0px 0px $color-dietafarma;
   }
   .ember-power-calendar-day:not([disabled]):hover {
-    background-color: #25a29f;
+    background-color: $color-dietafarma;
   }
 }
+
 .dieta-farma-calendar-big {
   @include ember-power-calendar($cell-size: 70px);
   margin: auto;
+}
+
+.datepicker table tr td.today {
+	color: #000;
+	background-color: #3498DB;
+  border-color: #3498DB;
+  background-image: none;
+  background-repeat: none;
+}
+
+.datepicker table tr td.active {
+  color: #000;
+	background-color: $color-dietafarma;
+  border-color: $color-dietafarma;
+  background-image: none;
+  background-repeat: none;
+}
+
+.datepicker table tr td.active.active {
+  color: #000;
+	background-color: $color-dietafarma;
+	border-color: $color-dietafarma;
 }
 
 .file-picker__dropzone {

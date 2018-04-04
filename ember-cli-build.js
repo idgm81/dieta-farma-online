@@ -39,6 +39,11 @@ module.exports = function(defaults) {
   });
 
   app.import({
+    development: 'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
+    production: 'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css'
+  });
+
+  app.import({
     development: 'node_modules/croppie/croppie.css',
     production: 'node_modules/croppie/croppie.css'
   });
@@ -49,14 +54,11 @@ module.exports = function(defaults) {
   });
 
   app.import({
-    development: 'node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js',
-    production: 'node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js'
+    development: 'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
+    production: 'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'
   });
 
-  app.import({
-    development: 'node_modules/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js',
-    production: 'node_modules/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js'
-  });
+  app.import('node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js');
 
   app.import({
     development: 'node_modules/bootstrap-validator/dist/validator.js',

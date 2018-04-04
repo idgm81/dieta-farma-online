@@ -17,13 +17,13 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    this.$('.input-group.date').datepicker({
+    this.$(`.${this.get('id')}`).datepicker({
       language: 'es',
       autoclose: true,
       format: DATE_FORMAT,
+      container: `.${this.get('id')}`,
       todayHighlight: true,
-      container: `form`,
-      orientation: 'auto left'
+      orientation: 'bottom'
     });
   },
 

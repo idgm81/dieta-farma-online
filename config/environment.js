@@ -10,6 +10,9 @@ module.exports = function(environment) {
     modulePrefix: 'dieta-farma-online',
     podModulePrefix: 'dieta-farma-online/pods',
     environment: environment,
+    bootstrapDatepicker: {
+      includeLocales: [ 'es' ]
+    },
     i18n: {
       defaultLocale: 'es'
     },
@@ -53,7 +56,6 @@ module.exports = function(environment) {
     routeAfterAuthentication: 'home',
     routeIfAlreadyAuthenticated: 'home'
   };
-
 
   ENV['ember-simple-auth-token'] = {
     serverTokenEndpoint: `${API_HOST}/api/auth/user`,
