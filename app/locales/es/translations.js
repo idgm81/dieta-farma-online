@@ -47,7 +47,7 @@ export default {
     },
     "reset": {
       "info": "Introduce tu email para recibir el enlace desde donde podrás modificar tu contraseña de forma segura:",
-      "emailOK": "Hemos enviado un enlace a esa dirección de email para que puedas cambiar tu contraseña. Dispones de 15 minutos antes de que el enlace deje de ser válido",
+      "emailOK": "Hemos enviado un enlace a esa dirección de email para que puedas cambiar tu contraseña. Revisa también en tu bandeja de spam. Dispones de 15 minutos antes de que el enlace deje de ser válido.",
       "emailKO": "No hemos encontrado ese email es nuestra base de datos"
     },
     "signUp": "Registrando, por favor espere..."
