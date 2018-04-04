@@ -1,8 +1,9 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
-import { get } from '@ember/object';
+import { get, getWithDefault } from '@ember/object';
 import { run }  from '@ember/runloop';
+import { imagePath } from 'dieta-farma-online/helpers/image-path';
 
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
@@ -30,7 +31,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     controller.set('nutritionistAvatar', get(model, 'nutritionist_data.0.profile.avatar'));
     controller.set('customerId', get(model, 'customer_data.0._id'));
     controller.set('customerName', get(model, 'customer_data.0.profile.name'));
-    controller.set('customerAvatar', get(model, 'customer_data.0.profile.avatar'));
+    controller.set('customerAvatar', getWithDefault(model, 'customer_data.0.profile.avatar', imagePath('default-avatar.png')));
     controller.set('userId', get(this, 'userId'));
     controller.set('messages', messages);
     controller.set('messageText', null);
