@@ -6,7 +6,7 @@
 {{#side-menu side='right' width='300px'}}
   <div class="side-title">
     <img src="{{image-path 'logo-dietafarma-basic-white.png'}}" alt="dieta farma logo">
-    <span>Dietafarma</span>
+    <span>DietafarmaOnline</span>
   </div>
   <div class="clearfix"></div>
   <div class="profile clearfix">
@@ -29,6 +29,7 @@
           <script type="text/javascript">
             Skype.ui({
             "name": "call",
+            "video": true,
             "element": "SkypeButton_Call_dietafarma_1",
             "participants": ["dietafarma"],
             "imageSize": 24
@@ -47,6 +48,9 @@
       <li {{action 'logout'}}><i class="fa fa-fw fa-sign-out"></i><span>Salir</span></li>
     </ul>
   </nav>
+  <div class="version">
+    <span>{{appVersion}}</span>
+  </div>
 {{/side-menu}}
 {{content-backdrop}}
 <main class="main-content">

@@ -7,6 +7,7 @@ import { reads } from '@ember/object/computed';
 import { USER_ROLES } from './constants';
 import { getWithDefault, get } from '@ember/object';
 import { imagePath } from 'dieta-farma-online/helpers/image-path';
+import { capitalize }  from '@ember/string';
 
 export default Route.extend({
 
@@ -50,7 +51,7 @@ export default Route.extend({
 
     controller.set('isClient', get(model, 'userData.user.role') === USER_ROLES.CLIENT);
     controller.set('isFeatureActive', this.get('userId') === '5a74230545283400044aec6b');
-    controller.set('headerTitle', `Hola ${get(model, 'userData.user.profile.name')}`);
+    controller.set('headerTitle', `Hola ${capitalize(get(model, 'userData.user.profile.name'))}`);
     controller.set('avatar', getWithDefault(model, 'userData.user.profile.avatar', imagePath('default-avatar.png')));
     controller.set('fullName', `${get(model, 'userData.user.profile.name')} ${get(model, 'userData.user.profile.surname')}`);
     controller.set('appVersion', `${ENV.APP.version}.${ENV.APP.buildDate}`);

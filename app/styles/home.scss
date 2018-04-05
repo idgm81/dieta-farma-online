@@ -144,13 +144,18 @@ $color-dietafarma: #25a29f;
   background: #373a47;
   padding: 20px;
   nav {
-    height: 100%;
+    height: auto;
   }
   li {
     color: #fff;
     &:focus, &:hover {
       color: $color-dietafarma;
     }
+  }
+  .version {
+    bottom: 0;
+    position: absolute;
+    font-size: x-small;
   }
 }
 
