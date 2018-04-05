@@ -46,7 +46,7 @@ export default Route.extend({
       .map((thread) => thread.unread ? 1 : 0)
       .reduce((acc, cur) => {
         return acc + cur;
-      });
+      }, 0);
 
     controller.set('isClient', get(model, 'userData.user.role') === USER_ROLES.CLIENT);
     controller.set('isFeatureActive', this.get('userId') === '5a74230545283400044aec6b');
