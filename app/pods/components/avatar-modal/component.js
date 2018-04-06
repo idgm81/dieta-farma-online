@@ -51,7 +51,6 @@ export default Component.extend({
     },
     cancel() {
       set(this, 'file', null);
-      set(this, 'avatar', null)
       $('.modal-body').croppie('destroy');
 
       this.sendAction('oncancel');
