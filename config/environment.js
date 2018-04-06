@@ -1,8 +1,6 @@
 /* eslint-env node */
 
 module.exports = function(environment) {
-  const buildDate = new Date().toJSON().slice(2, 10).replace(/\D+/g, '');
-
   const API_HOST = environment === 'production'
     ? 'https://dieta-farma-api.herokuapp.com'
     : 'http://localhost:4500';
@@ -36,8 +34,7 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       API_HOST,
-      version: '1.0',
-      buildDate
+      version: '1.1'
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
