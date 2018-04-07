@@ -1,5 +1,5 @@
 import Component from "@ember/component";
-import { inject as service } from "@ember/controller";
+import { inject as service } from "@ember/service";
 import { run } from "@ember/runloop";
 import { setProperties } from "@ember/object";
 
