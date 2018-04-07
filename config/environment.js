@@ -34,7 +34,7 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       API_HOST,
-      version: '1.2'
+      version: '1.3'
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
