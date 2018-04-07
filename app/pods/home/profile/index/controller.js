@@ -25,7 +25,9 @@ export default Controller.extend({
 
       set(data, 'profile.avatar', avatar);
 
-      return this.get('api').editUser(this.get('userId'), data);
+      return this.get('api').editUser(this.get('userId'), data).then(() => {
+        this.get('session').set('avatar', avatar);
+      });
     },
     edit(id) {
       this.transitionToRoute('home.profile.edit', id);
