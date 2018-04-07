@@ -34,7 +34,7 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       API_HOST,
-      version: '1.4'
+      version: `${process.env.MAJOR_VERSION}.${process.env.MINOR_VERSION}`
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
