@@ -20,16 +20,12 @@
   {{wait-modal id='modal-change-pass' text=(t 'text.checking')}}
 
   {{#generic-modal id='modal-change-pass-ok' onclose='goToLogin'}}
-    <div class="text-center">
-      <i class="fa fa-check-circle" aria-hidden="true"></i>
-    </div>
+    <div class="text-center">{{fa-icon 'check-circle'}}</div>
     <h5 class="modal-title">{{t 'text.changePass.ok'}}</h5>
   {{/generic-modal}}
 
   {{#generic-modal id='modal-change-pass-ko'}}
-    <div class="text-center">
-      <i class="fa fa-times-circle" aria-hidden="true"></i>
-    </div>
+    <div class="text-center">{{fa-icon 'times-circle'}}</div>
     <h5 class="modal-title">{{t 'text.changePass.ko'}}</h5>
   {{/generic-modal}}
 {{/wrapper-bg}}

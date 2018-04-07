@@ -9,7 +9,7 @@
       <div class="profile-thumbnail">
         <div class="profile-img">
           <img class="img-circle" src="{{avatar}}" alt="avatar">
-          <span role="button" class="badge bg-green pull-right" {{action 'editAvatar'}}><i class="fa fa-pencil"></i></span>
+          <span role="button" class="badge bg-green pull-right" {{action 'editAvatar'}}>{{fa-icon 'pencil-alt'}}</span>
         </div>
       </div>
       <div class="caption">
@@ -17,7 +17,7 @@
       </div>
       {{#unless (eq model.user.role 'N')}}
       <div class="btn-group center-block" role="group">
-        <button type="submit" class="btn btn-danger" {{action 'delete'}}><i class="fa fa-trash"></i> Darme de baja</button>
+        <button type="submit" class="btn btn-danger" {{action 'delete'}}>{{fa-icon 'trash'}} Darme de baja</button>
       </div>
       {{/unless}}
     </div>
@@ -50,4 +50,4 @@
   </div>
 </div>
 
-{{avatar-modal id='modal-edit-avatar' avatar=avatar onsave="save"}}
+{{avatar-modal id='modal-edit-avatar' avatar=avatar onsave='save'}}

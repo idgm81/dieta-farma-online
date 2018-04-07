@@ -6,11 +6,11 @@
 {{#each model.threads as |thread|}}
   <div class="media inbox" {{action 'detail' (get thread '_id')}}>
     <div class="media-left">
-      {{#with (get thread 'customer_data.0.profile.avatar') as |avatar|}}
-        <img alt="avatar" class="media-object img-circle" src="{{avatar}}">
+      {{#if (eq (get thread 'messages.0.author') (get thread 'customer_data.0._id'))}}
+        <img alt="avatar" class="media-object img-circle" src="{{if (get thread 'customer_data.0.profile.avatar') (get thread 'customer_data.0.profile.avatar') (image-path 'default-avatar.png')}}">
       {{else}}
-        <img alt="avatar" class="media-object img-circle" src="{{image-path 'default-avatar.png'}}">
-      {{/with}}
+        <img alt="avatar" class="media-object img-circle" src="{{if (get thread 'nutritionist_data.0.profile.avatar') (get thread 'nutritionist_data.0.profile.avatar') (image-path 'default-avatar.png')}}">
+      {{/if}}
     </div>
     <div class="media-body">
       <h5 class="media-heading">{{thread.title}}</h5>
@@ -21,7 +21,7 @@
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-warning"></i>&nbsp;Atención</h3>
+        <h3 class="panel-title">{{fa-icon 'exclamation-triangle'}}&nbsp;Atención</h3>
       </div>
       <div class="panel-body">No tienes conversaciones con tu nutricionista</div>
     </div>
@@ -30,6 +30,6 @@
 
 {{#unless isNutritionist}}
   <div {{action 'new'}} class='floating-button'>
-    <i class="fa fa-2x fa-pencil my-floating-button"></i>
+    {{fa-icon 'pencil-alt' size='2x' transform='down-5'}}
   </div>
 {{/unless}}

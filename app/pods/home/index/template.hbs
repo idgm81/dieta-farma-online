@@ -55,7 +55,7 @@
         </div>
         {{#if (gte (moment-diff now cita.date precision='hours') 24)}}
           <div class="panel-footer text-center">
-            <button type="button" class="btn btn-danger" {{action 'delete' (get cita '_id')}}><i class="fa fa-trash"></i></button>
+            <button type="button" class="btn btn-danger" {{action 'delete' (get cita '_id')}}>{{fa-icon 'trash' size='x'}}</button>
           </div>
         {{/if}}
       </div>
@@ -64,7 +64,7 @@
     <div class="container">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"><i class="fa fa-warning"></i> Atención</h3>
+          <h3 class="panel-title">{{fa-icon 'exclamation-triangle'}} Atención</h3>
         </div>
         <div class="panel-body">No tienes ninguna cita reservada próximamente</div>
       </div>
@@ -75,16 +75,12 @@
 {{wait-modal id='modal-wait-delete-appointment' text='Cancelando cita...'}}
 
 {{#generic-modal id='modal-delete-appointment-ok' onclose='goToCalendar'}}
-  <div class="text-center">
-    <i class="fa fa-check-circle" aria-hidden="true"></i>
-  </div>
+  <div class="text-center">{{fa-icon 'check-circle'}}</div>
   <h5 class="modal-title">Cita cancelada!</h5>
 {{/generic-modal}}
 
 {{#generic-modal id='modal-delete-appointment-error'}}
-  <div class="text-center">
-    <i class="fa fa-times-circle" aria-hidden="true"></i>
-  </div>
+  <div class="text-center">{{fa-icon 'times-circle'}}</div>
   <h5 class="modal-title">Error al cancelar la cita!</h5>
 {{/generic-modal}}
 
@@ -102,7 +98,7 @@
         </div>
         <div class="panel-footer text-center">
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-info" {{action 'open' (get diet 'url')}}><i class="fa fa-x fa-eye"></i></button>
+            <button type="button" class="btn btn-info" {{action 'open' (get diet 'url')}}>{{fa-icon 'eye' size='x'}}</button>
           </div>
         </div>
       </div>
@@ -111,7 +107,7 @@
     <div class="container">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"><i class="fa fa-warning"></i> Atención</h3>
+          <h3 class="panel-title">{{fa-icon 'exclamation-triangle'}} Atención</h3>
         </div>
         <div class="panel-body">No tienes ninguna dieta asignada</div>
       </div>

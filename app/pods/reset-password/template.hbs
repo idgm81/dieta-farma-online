@@ -20,16 +20,12 @@
   {{wait-modal id='modal-check-email' text=(t 'text.checking')}}
 
   {{#generic-modal id='modal-check-email-ok' onclose='goToLogin'}}
-    <div class="text-center">
-      <i class="fa fa-check-circle" aria-hidden="true"></i>
-    </div>
+    <div class="text-center">{{fa-icon 'check-circle'}}</div>
     <h5 class="modal-title">{{t 'text.reset.emailOK'}}</h5>
   {{/generic-modal}}
 
   {{#generic-modal id='modal-check-email-ko'}}
-    <div class="text-center">
-      <i class="fa fa-times-circle" aria-hidden="true"></i>
-    </div>
+    <div class="text-center">{{fa-icon 'times-circle'}}</div>
     <h5 class="modal-title">{{t 'text.reset.emailKO'}}</h5>
   {{/generic-modal}}
 {{/wrapper-bg}}

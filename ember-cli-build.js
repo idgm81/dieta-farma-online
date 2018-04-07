@@ -1,12 +1,18 @@
 /* eslint-env node */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var Funnel = require('broccoli-funnel');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
 		'ember-cli-babel': {
 			includePolyfill: true
-		},
+    },
+    fontawesome: {
+      icons: {
+        'free-solid-svg-icons': 'all',
+        'free-regular-svg-icons': 'all',
+        'free-brands-svg-icons': 'all'
+      }
+    },
     svg: {
       paths: [
         'public/assets/images',
@@ -31,11 +37,6 @@ module.exports = function(defaults) {
         'node_modules/bootstrap-sass/assets/stylesheets'
       ]
     }
-  });
-
-  app.import({
-    development: 'node_modules/font-awesome/css/font-awesome.css',
-    production: 'node_modules/font-awesome/css/font-awesome.min.css'
   });
 
   app.import({
@@ -75,14 +76,7 @@ module.exports = function(defaults) {
     production: 'node_modules/croppie/croppie.min.js'
   });
 
-  var fontFiles = new Funnel('node_modules/font-awesome/fonts', {
-    srcDir: '/',
-    destDir: 'fonts'
-  });
-
-  module.exports = fontFiles;
-
-  return app.toTree(fontFiles);
+  return app.toTree();
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

@@ -4,16 +4,12 @@
   {{wait-modal id='modal-register' text=(t 'text.signUp')}}
 
   {{#generic-modal id='modal-registration-ok' onclose='goToLogin'}}
-    <div class="text-center">
-      <i class="fa fa-check-circle" aria-hidden="true"></i>
-    </div>
+    <div class="text-center">{{fa-icon 'check-circle'}}</div>
     <h5 class="modal-title">Registro completado!</h5>
   {{/generic-modal}}
 
   {{#generic-modal id='modal-registration-error'}}
-    <div class="text-center">
-      <i class="fa fa-times-circle" aria-hidden="true"></i>
-    </div>
+    <div class="text-center">{{fa-icon 'times-circle'}}</div>
     <h5 class="modal-title">Error en el registro!</h5>
   {{/generic-modal}}
 {{/wrapper-bg}}

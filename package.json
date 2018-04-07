@@ -1,7 +1,7 @@
 {
   "name": "dieta-farma-online",
   "version": "1.0.0",
-  "appVersion": "1.0",
+  "appVersion": "1.1",
   "description": "Dieta Farma Online App",
   "private": true,
   "directories": {
@@ -21,6 +21,10 @@
   "author": "Dieta Farma ©",
   "license": "MIT",
   "devDependencies": {
+    "@fortawesome/ember-fontawesome": "0.1.0-3",
+    "@fortawesome/free-brands-svg-icons": "5.1.0-4",
+    "@fortawesome/free-regular-svg-icons": "5.1.0-4",
+    "@fortawesome/free-solid-svg-icons": "5.1.0-4",
     "bootstrap-sass": "3.3.7",
     "bootstrap-validator": "0.11.9",
     "broccoli-asset-rev": "2.6.0",
@@ -48,7 +52,6 @@
     "ember-export-application-global": "2.0.0",
     "ember-i18n": "5.2.0",
     "ember-inflector": "2.0.0",
-    "ember-inline-svg": "0.1.11",
     "ember-load-initializers": "1.0.0",
     "ember-moment": "7.5.0",
     "ember-power-calendar": "0.7.1",
@@ -60,8 +63,6 @@
     "ember-simple-auth-token": "3.0.0",
     "ember-source": "3.0.0",
     "fastclick": "1.0.6",
-    "font-awesome": "4.7.0",
-    "inline-svg": "2.2.3",
     "jquery-backstretch": "2.1.16",
     "loader.js": "4.6.0"
   }

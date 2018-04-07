@@ -10,12 +10,12 @@
       {{#if (not-eq message.author userId)}}
         <li class="left clearfix">
           <span class="chat-img pull-left">
-            <img src="{{if (eq customerId userId) customerAvatar nutritionistAvatar}}" alt="avatar" class="img-circle">
+            <img src="{{if (eq customerId message.author) customerAvatar nutritionistAvatar}}" alt="avatar" class="img-circle">
           </span>
           <div class="chat-body clearfix">
             <div class="header">
-              <strong class="primary-font">{{if (eq customerId userId) customerName nutritionistName}}</strong>
-              <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>&nbsp;{{moment-from-now message.date hidePrefix=true}}</small>
+              <strong class="primary-font">{{if (eq customerId message.author) customerName nutritionistName}}</strong>
+              <small class="pull-right text-muted">{{fa-icon 'clock' prefix='far'}}&nbsp;{{moment-from-now message.date hidePrefix=true}}</small>
             </div>
             <p>{{message.text}}</p>
           </div>
@@ -23,11 +23,11 @@
       {{else}}
         <li class="right clearfix">
           <span class="chat-img pull-right">
-            <img src="{{if (eq customerId userId) customerAvatar nutritionistAvatar}}" alt="avatar" class="img-circle">
+            <img src="{{if (eq customerId message.author) customerAvatar nutritionistAvatar}}" alt="avatar" class="img-circle">
           </span>
           <div class="chat-body clearfix">
               <div class="header">
-                <small class="text-muted"><i class="fa fa-clock-o"></i>&nbsp;{{moment-from-now message.date hidePrefix=true}}</small>
+                <small class="text-muted">{{fa-icon 'clock' prefix='far'}}&nbsp;{{moment-from-now message.date hidePrefix=true}}</small>
               </div>
               <p>{{message.text}}</p>
           </div>

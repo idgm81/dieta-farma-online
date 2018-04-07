@@ -54,15 +54,11 @@
 {{wait-modal id='modal-wait-new-appointment' text='Solicitando cita...'}}
 
 {{#generic-modal id='modal-new-appointment-ok' onclose='goToHome'}}
-  <div class="text-center">
-    <i class="fa fa-check-circle" aria-hidden="true"></i>
-  </div>
+  <div class="text-center">{{fa-icon 'check-circle'}}</div>
   <h5 class="modal-title">Cita confirmada!</h5>
 {{/generic-modal}}
 
 {{#generic-modal id='modal-new-appointment-error'}}
-  <div class="text-center">
-    <i class="fa fa-times-circle" aria-hidden="true"></i>
-  </div>
+  <div class="text-center">{{fa-icon 'times-circle'}}</div>
   <h5 class="modal-title">Error al reservar la cita!</h5>
 {{/generic-modal}}

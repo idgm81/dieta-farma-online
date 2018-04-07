@@ -15,15 +15,15 @@
     </div>
     <div class="side-menu-profile-info">
       <h3>{{fullName}}</h3>
-      <div class="profile" {{action 'showMyProfile'}}><i class="fa fa-fw fa-gear"></i>Perfil</div>
+      <div class="profile" {{action 'showMyProfile'}}>{{fa-icon 'cog' fixedWidth=true}}<span>Perfil</span></div>
     </div>
   </div>
   <nav class="side-menu-item-list">
     <ul>
       {{#if isClient}}
-        <li {{action 'showDiets'}}><i class="fa fa-fw fa-file-text"></i><span>Mis dietas</span></li>
+        <li {{action 'showDiets'}}>{{fa-icon 'file-alt' fixedWidth=true}}<span>Mis dietas</span></li>
         {{#if isFeatureActive}}
-          <li {{action 'askForAppointment'}}><i class="fa fa-fw fa-calendar"></i><span>Pedir cita</span></li>
+          <li {{action 'askForAppointment'}}>{{fa-icon 'calendar-alt' fixedWidth=true}}<span>Pedir cita</span></li>
         {{/if}}
         <div id="SkypeButton_Call_dietafarma_1">
           <script type="text/javascript">
@@ -37,15 +37,15 @@
           </script>
         </div>
       {{else}}
-        <li {{action 'showMyClients'}}><i class="fa fa-fw fa-group"></i><span>Mis clientes</span></li>
-        <li {{action 'showMyCalendar'}}><i class="fa fa-fw fa-calendar"></i><span>Mi calendario</span></li>
+        <li {{action 'showMyClients'}}>{{fa-icon 'users' fixedWidth=true}}<span>Mis clientes</span></li>
+        <li {{action 'showMyCalendar'}}>{{fa-icon 'calendar-alt' fixedWidth=true}}<span>Mi calendario</span></li>
       {{/if}}
-      <li {{action 'showThreads'}}><i class="fa fa-fw fa-envelope"></i><span>Mensajes</span>
+      <li {{action 'showThreads'}}>{{fa-icon 'envelope' fixedWidth=true}}<span>Mensajes</span>
         {{#if (gt inboxThreadsUnread 0)}}
           <span class="badge bg-green">{{inboxThreadsUnread}}</span>
         {{/if}}
       </li>
-      <li {{action 'logout'}}><i class="fa fa-fw fa-sign-out"></i><span>Salir</span></li>
+      <li {{action 'logout'}}>{{fa-icon 'sign-out-alt' fixedWidth=true}}<span>Salir</span></li>
     </ul>
   </nav>
   <div class="version">
