@@ -20,7 +20,7 @@ export default Controller.extend({
 
   userId: reads('session.data.authenticated.id'),
 
-  avatar: alias('session.data.avatar'),
+  avatar: alias('session.data.authenticated.avatar'),
 
   setup: function(model) {
     const inboxThreadsUnread = getWithDefault(model, 'inboxThreads.threads', [])

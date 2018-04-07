@@ -244,11 +244,11 @@ $color-dietafarma: #25a29f;
   }
 
   .badge {
-      top: -15px;
+      top: -20px;
       position: relative;
       display: inline-block;
       min-width: 10px;
-      padding: 3px 5px;
+      padding: 5px 5px;
       font-size: 12px;
       font-weight: 700;
       line-height: 1;
@@ -257,7 +257,7 @@ $color-dietafarma: #25a29f;
       white-space: nowrap;
       vertical-align: middle;
       background-color: #777;
-      border-radius: 10px;
+      border-radius: 18px;
   }
 }
 
@@ -269,6 +269,7 @@ $color-dietafarma: #25a29f;
 
 .caption {
   h3 {
+    padding: 10px;
     text-align: center;
   }
 }
@@ -467,6 +468,11 @@ ul.chat {
     color: #fff;
     background-color: $color-dietafarma;
     border-color: $color-dietafarma;
+}
+
+.panel ul {
+  margin-bottom: 0;
+  padding-bottom: 24px;
 }
 
 .table {
