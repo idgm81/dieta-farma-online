@@ -38,7 +38,7 @@ export default Controller.extend({
           set(this, 'url', response.url);
 
           const diet = {
-            client: get(this, 'userId'),
+            customer: get(this, 'userId'),
             nutritionist: get(this, 'nutritionistId'),
             title: get(this, 'title'),
             fromDate: moment(get(this, 'fromDate'), 'DD/MM/YYYY').format(),
