@@ -29,6 +29,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
+    open(url) {
+      window.open(url);
+    },
     delete(id) {
       $('#modal-wait-delete-appointment').modal();
 
