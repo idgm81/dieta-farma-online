@@ -15,6 +15,7 @@ export default {
       "ko": "Se ha producido un error al cambiar la contraseña"
     },
     "checking": "Comprobando...",
+    "loading": "Cargando...",
     "public": {
       "aboutMe": {
         "title": "\"Soy farmacéutico de profesión, nutricionista por vocación, y entrenador por devoción\"",
