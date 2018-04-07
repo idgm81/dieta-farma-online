@@ -76,11 +76,8 @@ export default Controller.extend({
     },
 
     logout() {
-      try {
-        return this.get('session').invalidate();
-      } catch (e) {
-        return this.transitionToRoute('login');
-      }
+      this.get('session').invalidate();
+      this.transitionToRoute('login');
     }
   }
 
