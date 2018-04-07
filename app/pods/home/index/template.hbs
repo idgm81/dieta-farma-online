@@ -74,7 +74,7 @@
 
 {{wait-modal id='modal-wait-delete-appointment' text='Cancelando cita...'}}
 
-{{#generic-modal id='modal-delete-appointment-ok' onclose='goToCalendar'}}
+{{#generic-modal id='modal-delete-appointment-ok' onclose='refreshHome'}}
   <div class="text-center">{{fa-icon 'check-circle'}}</div>
   <h5 class="modal-title text-center">Cita cancelada!</h5>
 {{/generic-modal}}

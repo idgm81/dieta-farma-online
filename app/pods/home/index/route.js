@@ -29,6 +29,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
   },
 
   actions: {
+    refreshHome() {
+      this.refresh();
+    },
     open(url) {
       window.open(url);
     },
