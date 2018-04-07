@@ -18,11 +18,15 @@ export default Route.extend({
     $('#modal-loading-home').modal();
     const id = get(this, 'userId');
 
-    return RSVP.hash({
-      userData: this.get('api').getUser(id),
-      inboxThreads: this.get('api').getThreads(id)
-    }).catch(() => this.transitionTo('index'))
-      .finally(() => $('#modal-loading-home').modal('hide'));
+    if (id) {
+      return RSVP.hash({
+        userData: this.get('api').getUser(id),
+        inboxThreads: this.get('api').getThreads(id)
+      }).catch(() => this.transitionTo('index'))
+        .finally(() => $('#modal-loading-home').modal('hide'));
+    }
+
+    return this.transitionTo('index');
   },
 
   redirect(model) {
