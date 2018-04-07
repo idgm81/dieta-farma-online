@@ -28,7 +28,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
     controller.set('nutritionistId', get(model, 'nutritionist_data.0._id'));
     controller.set('nutritionistName', get(model, 'nutritionist_data.0.profile.name'));
-    controller.set('nutritionistAvatar', get(model, 'nutritionist_data.0.profile.avatar'));
+    controller.set('nutritionistAvatar', getWithDefault(model, 'nutritionist_data.0.profile.avatar', imagePath('default-avatar.png')));
     controller.set('customerId', get(model, 'customer_data.0._id'));
     controller.set('customerName', get(model, 'customer_data.0.profile.name'));
     controller.set('customerAvatar', getWithDefault(model, 'customer_data.0.profile.avatar', imagePath('default-avatar.png')));
