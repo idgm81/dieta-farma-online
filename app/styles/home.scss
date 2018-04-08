@@ -5,13 +5,13 @@ $color-dietafarma: #25a29f;
   position: fixed;
   top: 0px;
   background-color: $color-dietafarma;
-  padding: 10px 0 10px 0;
+  padding: 0;
   margin: 0 auto;
   width: 100%;
   h1 {
     color: white;
     text-align: center;
-    margin-top: 18px;
+    margin-top: 8px;
   }
 }
 
@@ -68,7 +68,7 @@ $color-dietafarma: #25a29f;
   span.toggle-bars {
     content: "";
     display: block;
-    height: 5px;
+    height: 3px;
     width: 100%;
     background-color: white;
     position: relative;
@@ -76,24 +76,22 @@ $color-dietafarma: #25a29f;
     &:after {
       content: "";
       display: block;
-      height: 5px;
+      height: 3px;
       width: 100%;
       background-color: white;
       position: relative;
       transition: all 0.3s ease-in-out;
+      top: 7px;
     }
     &:before {
       content: "";
       display: block;
-      height: 5px;
+      height: 3px;
       width: 100%;
       background-color: white;
       position: relative;
       transition: all 0.3s ease-in-out;
-      top: -15px;
-    }
-    &:after {
-      top: 10px;
+      top: -10px;
     }
   }
 }
@@ -129,14 +127,14 @@ $color-dietafarma: #25a29f;
 
 .side-menu-toggle {
   position: fixed;
-  width: 36px;
+  width: 30px;
   height: 36px;
-  top: 24px;
+  top: 8px;
   &.left {
-    left: 36px;
+    left: 15px;
   }
   &.right {
-    right: 36px;
+    right: 15px;
   }
 }
 
@@ -477,6 +475,13 @@ ul.chat {
 
 .table {
   font-size: 14px;
+
+  &.personal-data {
+    td {
+      vertical-align: middle;
+      border-top: none;
+    }
+  }
 }
 
 .dieta-farma-calendar-small {
