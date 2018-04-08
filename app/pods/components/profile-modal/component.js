@@ -16,20 +16,6 @@ export default Component.extend({
 
   'aria-hidden': 'true',
 
-  tu: null,
-
-  name: computed('i18n.locale', 'field', function() {
-    const i18n = this.get('i18n');
-    const field = this.get('field');
-    const fieldLabels = {
-      email: i18n.t('label.profile.email').toString(),
-      phone: i18n.t('label.profile.phone').toString(),
-      birthday: i18n.t('label.profile.birthday').toString()
-    }
-
-    return fieldLabels[field];
-  }),
-
   value: null,
 
   actions: {

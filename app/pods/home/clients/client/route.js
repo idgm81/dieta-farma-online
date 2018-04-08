@@ -8,13 +8,5 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   model(params) {
     return this.get('api').getUser(params.id);
-  },
-
-  actions: {
-    showDiets(userId) {
-      const queryParams = { userId };
-
-      this.transitionTo('home.diets.index', { queryParams });
-    }
   }
 });

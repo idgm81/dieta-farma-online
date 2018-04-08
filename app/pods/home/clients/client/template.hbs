@@ -1,5 +1,6 @@
 {{#with model.user.profile as |profile|}}
   <ol class="breadcrumb">
+    <li>{{link-to 'Inicio' 'home'}}</li>
     <li>{{link-to 'Mis clientes' 'home.clients.index'}}</li>
     <li class="active">Perfil de {{profile.name}}</li>
   </ol>
@@ -12,11 +13,11 @@
           <div class="caption">
             <h3>{{profile.name}} {{profile.surname}}</h3>
           </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-danger" {{action 'delete' (get model.user '_id')}}>{{fa-icon 'trash' size='x'}}</button>
+          </div>
         </div>
       </div>
-      {{!-- <div class="btn-group" role="group">
-        <button type="button" class="btn btn-warning" {{action 'edit' (get model.user '_id')}}><i class="fa fa-x fa-pencil"></i> Modificar</button>
-      </div> --}}
     </div>
   </div>
 
@@ -30,25 +31,25 @@
         </div>
         <div id="collapse1" class="panel-collapse collapse in">
           <div class="panel-body">
-            <table class="table">
+            <table class="table personal-data">
               <tbody>
                 <tr>
-                  <td>Edad</td>
-                  <td>{{moment-diff profile.birthday now precision='year'}} años</td>
+                  <td>{{t 'label.profile.birthday'}}</td>
+                  <td>{{moment-format profile.birthday 'DD/MM/YYYY'}} ({{moment-diff profile.birthday now precision='year'}} años)</td>
                 </tr>
                 <tr>
-                  <td>Email</td>
+                  <td>{{t 'label.profile.email'}}</td>
                   <td>{{model.user.email}}</td>
                 </tr>
                 <tr>
-                  <td>Teléfono</td>
+                  <td>{{t 'label.profile.phone'}}</td>
                   <td>{{profile.phone}}</td>
                 </tr>
                 <tr>
                   <td>Dietas</td>
                   <td>
                     <div class="btn-group" role="group">
-                      <button type="button" class="btn btn-info" {{action 'showDiets' (get model.user '_id')}}>{{fa-icon 'eye' size='x'}} Ver</button>
+                      <button type="button" class="btn btn-info" {{action 'showDiets' (get model.user '_id')}}>{{fa-icon 'eye' size='x'}}</button>
                     </div>
                   </td>
                 </tr>
@@ -65,59 +66,70 @@
         </div>
         <div id="collapse2" class="panel-collapse collapse">
           <div class="panel-body">
-            <table class="table">
+            <table class="table client-data">
               <tbody>
                 <tr>
-                  <td>Altura</td>
+                  <td>{{t 'label.profile.measures.height'}}</td>
                   <td>{{profile.measures.height}} cm</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'measures.height'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Peso</td>
+                  <td>{{t 'label.profile.measures.weight'}}</td>
                   <td>{{profile.measures.weight}} kg</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'measures.weight'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>IMC</td>
+                  <td>{{t 'label.profile.measures.imc'}}</td>
                   <td>{{profile.measures.imc}} %</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'measures.imc'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Agua</td>
+                  <td>{{t 'label.profile.measures.water'}}</td>
                   <td>{{profile.measures.water}} %</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'measures.water'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Grasa</td>
+                  <td>{{t 'label.profile.measures.fat'}}</td>
                   <td>{{profile.measures.fat}} %</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'measures.fat'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Masa muscular</td>
+                  <td>{{t 'label.profile.measures.mass'}}</td>
                   <td>{{profile.measures.mass}} kg</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'measures.mass'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Biotipo (1-9)</td>
+                  <td>{{t 'label.profile.measures.biotype'}}</td>
                   <td>{{profile.measures.biotype}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'measures.biotype'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Masa ósea</td>
+                  <td>{{t 'label.profile.measures.boneMass'}}</td>
                   <td>{{profile.measures.boneMass}} kg</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'measures.boneMass'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Gasto metabólico basal</td>
+                  <td>{{t 'label.profile.measures.height'}}</td>
                   <td>{{profile.measures.metabolicExpense}} kcal</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'measures.metabolicExpense'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Edad metabólica</td>
+                  <td>{{t 'label.profile.measures.metabolicAge'}}</td>
                   <td>{{profile.measures.metabolicAge}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'measures.metabolicAge'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Nivel grasa bisceral (1-12 o 13-59)</td>
+                  <td>{{t 'label.profile.measures.visceralFat'}}</td>
                   <td>{{profile.measures.visceralFat}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'measures.visceralFat'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
               </tbody>
             </table>
 
-            <table class="table">
+            <table class="table client-data">
               <thead>
                 <tr>
-                  <th>Segemento</th>
+                  <th>Segmento</th>
                   <th>Porcentaje grasa (%)</th>
                   <th>Masa muscular (kg)</th>
                 </tr>
@@ -161,47 +173,58 @@
         </div>
         <div id="collapse3" class="panel-collapse collapse">
           <div class="panel-body">
-            <table class="table">
+            <table class="table client-data">
               <tbody>
                 <tr>
-                  <td>Objetivo de la dieta</td>
+                  <td>{{t 'label.profile.objective'}}</td>
                   <td>{{profile.objective}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'objective'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
+
                 </tr>
                 <tr>
-                  <td>Motivo para hacer la dieta</td>
+                  <td>{{t 'label.profile.reason'}}</td>
                   <td>{{profile.reason}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'reason'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Tipo de dieta</td>
+                  <td>{{t 'label.profile.dietType'}}</td>
                   <td>{{profile.dietType}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'dietType'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Enfermedades o intolerancias</td>
+                  <td>{{t 'label.profile.foodDiseases'}}</td>
                   <td>{{profile.foodDiseases}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'foodDiseases'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Alimentos prohibidos</td>
+                  <td>{{t 'label.profile.foodForbidden'}}</td>
                   <td>{{profile.foodForbidden}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'foodForbidden'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
-                  <td>Alimentos favoritos</td>
+                  <td>{{t 'label.profile.foodFavourite'}}</td>
                   <td>{{profile.foodFavourite}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'foodFavourite'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
                   <td>Frecuencia consumo fruta</td>
                   <td>{{profile.dayFruit}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'dayFruit'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
                   <td>Frecuencia consumo lácteos</td>
                   <td>{{profile.dayMilk}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'dayMilk'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
                   <td>Frecuencia consumo cereales y frutos secos</td>
                   <td>{{profile.dayCereals}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'dayCereals'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
                   <td>Frecuencia consumo proteinas</td>
                   <td>{{profile.dayProteins}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'dayProteins'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
                   <td>Cocina para él mismo </td>
@@ -228,7 +251,7 @@
         </div>
         <div id="collapse4" class="panel-collapse collapse">
           <div class="panel-body">
-            <table class="table">
+            <table class="table client-data">
               <tbody>
                 <tr>
                   <td>Trabaja actualmente</td>
@@ -255,8 +278,9 @@
                   <td>{{if profile.increaseActivity 'Sí' 'No'}}</td>
                 </tr>
                 <tr>
-                  <td>Lesiones</td>
+                  <td>{{t 'label.profile.injuries'}}</td>
                   <td>{{profile.injuries}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'injuries'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
                   <td>Recibe información sobre entrenamiento</td>
@@ -274,3 +298,10 @@
     </div>
   </div>
 {{/with}}
+
+{{profile-modal id='modal-edit-profile' field=field value=value onsave='saveProfile'}}
+
+{{#generic-modal id='modal-edit-profile-error'}}
+  <div class="text-center">{{fa-icon 'times-circle'}}</div>
+  <h5 class="modal-title text-center">Error al modificar tus datos del perfil!</h5>
+{{/generic-modal}}
