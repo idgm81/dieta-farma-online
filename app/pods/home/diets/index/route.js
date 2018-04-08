@@ -8,6 +8,15 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   session: service(),
 
+  queryParams: {
+    userId: {
+      refreshModel: true
+    },
+    name: {
+      refreshModel: true
+    }
+  },
+
   model(params, transition) {
     const userId = transition.queryParams.userId || this.get('session.data.authenticated.id');
 

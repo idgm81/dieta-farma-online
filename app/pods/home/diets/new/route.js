@@ -6,6 +6,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
   queryParams: {
     userId: {
       refreshModel: true
+    },
+    name: {
+      refreshModel: true
     }
   }
 });

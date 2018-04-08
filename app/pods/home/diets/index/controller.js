@@ -1,6 +1,7 @@
 import { equal } from '@ember/object/computed';
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import { get, computed } from '@ember/object';
 import { USER_ROLES } from '../../constants';
 
 export default Controller.extend({
@@ -11,7 +12,11 @@ export default Controller.extend({
 
   isNutritionist: equal('session.data.authenticated.role', USER_ROLES.NUTRITIONIST),
 
-  queryParams: ['userId'],
+  queryParams: ['userId', 'name'],
+
+  clientLinkLabel: computed('name', function() {
+    return `Perfil de ${get(this, 'name')}`
+  }),
 
   actions: {
     open(url) {
@@ -19,7 +24,7 @@ export default Controller.extend({
     },
 
     new() {
-      const queryParams = { userId: this.get('userId') };
+      const queryParams = { userId: this.get('userId'), name: this.get('name') };
 
       this.transitionToRoute('home.diets.new', { queryParams });
     },

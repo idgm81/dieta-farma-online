@@ -10,9 +10,11 @@ export default Controller.extend({
 
   api: service(),
 
-  queryParams: ['userId'],
+  queryParams: ['userId', 'name'],
 
-  userId: null,
+  clientLinkLabel: computed('name', function() {
+    return `Perfil de ${get(this, 'name')}`
+  }),
 
   file: null,
 

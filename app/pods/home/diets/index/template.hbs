@@ -1,6 +1,9 @@
 <ol class="breadcrumb">
+  <li>{{link-to 'Inicio' 'home'}}</li>
   {{#if isNutritionist}}
     <li>{{link-to 'Mis clientes' 'home.clients.index'}}</li>
+    <li>{{link-to clientLinkLabel 'home.clients.client' userId}}</li>
+    <li class="active">Dietas</li>
   {{else}}
     <li class="active">Mis dietas</li>
   {{/if}}

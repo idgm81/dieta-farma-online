@@ -26,8 +26,8 @@ export default Controller.extend({
       return this.get('api').editUser(get(data, '_id'))
         .catch(() => $('#modal-edit-profile-error').modal());
     },
-    showDiets(userId) {
-      const queryParams = { userId };
+    showDiets() {
+      const queryParams = { userId: get(this, 'model.user._id'), name: get(this, 'model.user.profile.name') };
 
       this.transitionToRoute('home.diets.index', { queryParams });
     }
