@@ -6,7 +6,12 @@ export default {
     "dietafarma": "DietaFarma",
     "privateAccess": "Acceso privado",
     "resetPass": "Solicitar cambio contraseña",
-    "changePass": "Escoge tu nueva contraseña"
+    "changePass": "Escoge tu nueva contraseña",
+    "profile": {
+      "birthday": "Fecha nacimiento",
+      "email": "Email",
+      "phone": "Teléfono"
+    }
   },
   "text": {
     "accessing": "Accediendo...",

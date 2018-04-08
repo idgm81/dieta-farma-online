@@ -1,0 +1,14 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4>Edita tu {{name}}</h4>
+    </div>
+    <div class="modal-body">
+      {{input type='text' value=value key-up='validate'}}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-df" {{action 'save'}}>Guardar</button>
+      <button type="button" class="btn btn-danger" data-dismiss="modal" {{action 'cancel'}}>Cancelar</button>
+    </div>
+  </div>
+</div>

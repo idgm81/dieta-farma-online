@@ -25,9 +25,7 @@ Router.map(function() {
       this.route('thread', { path: ':id' });
       this.route('new');
     });
-    this.route('profile', { path: '/profile/:id'}, function() {
-      this.route('edit');
-    });
+    this.route('profile', { path: '/profile/:id'});
   });
   this.route('login');
   this.route('register');
