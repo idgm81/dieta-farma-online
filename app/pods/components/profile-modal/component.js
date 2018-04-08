@@ -49,7 +49,7 @@ export default Component.extend({
         email: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
         phone: '^(\\+34)?(6|7|9)\\d{8}$'
       }
-      const validated = new RegExp(patterns[field], 'g').test(this.get('value'));
+      const validated = new RegExp(patterns[field] || '.*', 'g').test(this.get('value'));
 
       validated
         ? $('button.btn-df').removeClass('disabled')

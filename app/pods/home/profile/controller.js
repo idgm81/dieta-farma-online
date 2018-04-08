@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { set } from '@ember/object';
+import { get, set } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import moment from 'moment';
 
@@ -22,16 +22,16 @@ export default Controller.extend({
       $('#modal-edit-avatar').modal();
     },
     saveAvatar(avatar) {
-      const data = this.get('model.user');
+      const data = get(this, 'model.user');
 
       set(data, 'profile.avatar', avatar);
 
-      return this.get('api').editUser(this.get('userId'), data)
+      return this.get('api').editUser(get(this, 'userId'), data)
         .then(() => this.get('session').set('authenticated.avatar', avatar))
         .catch(() => $('#modal-edit-profile-error').modal());
     },
-    editProfile(field, value) {
-      this.set('field', field);
+    editProfile(field) {
+      const value = get(this, `model.user.${field === 'email' ? 'email' : 'profile.'}${field}`);
 
       if (field === 'birthday') {
         this.set('value', moment.parseZone(value).format('DD/MM/YYYY'));
@@ -39,6 +39,7 @@ export default Controller.extend({
         this.set('value', value)
       }
 
+      this.set('field', field);
       $('#modal-edit-profile').modal();
     },
     saveProfile(field, value) {

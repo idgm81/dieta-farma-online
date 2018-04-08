@@ -35,17 +35,17 @@
           <tr>
             <td>{{t 'label.profile.birthday'}}</td>
             <td>{{moment-format model.user.profile.birthday 'DD/MM/YYYY'}} ({{moment-diff model.user.profile.birthday now precision='year'}} años)</td>
-            <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'birthday' model.user.profile.birthday}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
+            <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'birthday'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
           </tr>
           <tr>
             <td>{{t 'label.profile.email'}}</td>
             <td>{{model.user.email}}</td>
-            <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'email'  model.user.email}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
+            <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'email'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
           </tr>
           <tr>
             <td>{{t 'label.profile.phone'}}</td>
             <td>{{model.user.profile.phone}}</td>
-            <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'phone' model.user.profile.phone}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
+            <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'phone'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
           </tr>
         </tbody>
       </table>
