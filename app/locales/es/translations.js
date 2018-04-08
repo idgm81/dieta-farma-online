@@ -10,7 +10,27 @@ export default {
     "profile": {
       "birthday": "Fecha nacimiento",
       "email": "Email",
-      "phone": "Teléfono"
+      "phone": "Teléfono",
+      "measures": {
+        "height": "Altura",
+        "weight": "Peso",
+        "imc": "IMC",
+        "water": "Agua",
+        "fat": "Grasa",
+        "mass": "Masa muscular",
+        "biotype": "Biotipo (1-9)",
+        "boneMass": "Masa ósea",
+        "metabolicExpense": "Gasto metabólico basal",
+        "metabolicAge": "Edad metabólica",
+        "visceralFat": "Nivel grasa bisceral (1-12 o 13-59)"
+      },
+      "injuries": "Lesiones",
+      "objective": "Objetivo de la dieta",
+      "reason": "Motivo para hacer la dieta",
+      "dietType": "Tipo de dieta",
+      "foodDiseases": "Enfermedades o intolerancias",
+      "foodForbidden": "Alimentos prohibidos",
+      "foodFavourite": "Alimentos favoritos",
     }
   },
   "text": {
