@@ -482,6 +482,12 @@ ul.chat {
       border-top: none;
     }
   }
+
+  &.client-data {
+    td {
+      vertical-align: middle;
+    }
+  }
 }
 
 .dieta-farma-calendar-small {
