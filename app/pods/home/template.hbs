@@ -20,6 +20,7 @@
   </div>
   <nav class="side-menu-item-list">
     <ul>
+      <li {{action 'goHome'}}>{{fa-icon 'home' fixedWidth=true}}<span>Inicio</span></li>
       {{#if isClient}}
         <li {{action 'showDiets'}}>{{fa-icon 'file-alt' fixedWidth=true}}<span>Mis dietas</span></li>
         {{#if isFeatureActive}}
