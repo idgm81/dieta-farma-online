@@ -310,6 +310,9 @@ div.media{
     overflow: hidden;
     text-overflow: ellipsis;
     vertical-align: middle;
+    .header {
+      color: black;
+    }
   }
   .media-left img {
     width: 3.5em;
