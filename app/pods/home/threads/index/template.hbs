@@ -3,7 +3,7 @@
   <li class="active">Mis coversaciones</li>
 </ol>
 
-{{#each model.threads as |thread|}}
+{{#each model as |thread|}}
   <div class="media inbox" {{action 'detail' (get thread '_id')}}>
     <div class="media-left">
       {{#if (eq (get thread 'messages.0.author') (get thread 'customer_data.0._id'))}}
@@ -13,6 +13,11 @@
       {{/if}}
     </div>
     <div class="media-body">
+      {{#if isNutritionist}}
+        <div class="header">
+          <strong class="primary-font">Conversación con&nbsp;{{get thread 'customer_data.0.profile.name'}}</strong>
+        </div>
+      {{/if}}
       <h5 class="media-heading">{{thread.title}}</h5>
       <small>{{thread.messages.0.text}}</small>
     </div>

@@ -13,7 +13,11 @@ export default Route.extend(AuthenticatedRouteMixin, {
   model() {
     const userId = this.get('session.data.authenticated.id');
 
-    return this.get('api').getThreads(userId);
+    return this.get('api').getThreads(userId).then(({threads}) => {
+      threads.forEach((thread) => { thread.messages = thread.messages.reverse() });
+
+      return threads;
+    });
   },
 
   setupController(controller, model) {
