@@ -27,7 +27,7 @@ export default Controller.extend({
       set(data, 'profile.avatar', avatar);
 
       return this.get('api').editUser(get(this, 'userId'), data)
-        .then(() => this.get('session').set('authenticated.avatar', avatar))
+        .then(() => this.get('session').set('data.avatar', avatar))
         .catch(() => $('#modal-edit-profile-error').modal());
     },
     editProfile(field) {

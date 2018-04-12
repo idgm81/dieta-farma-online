@@ -20,7 +20,7 @@ export default Controller.extend({
 
   userId: reads('session.data.authenticated.id'),
 
-  avatar: reads('session.data.authenticated.avatar'),
+  avatar: reads('session.data.avatar'),
 
   setup: function(model) {
     const inboxThreadsUnread = getWithDefault(model, 'inboxThreads.threads', [])
@@ -38,7 +38,7 @@ export default Controller.extend({
       inboxThreadsUnread
     });
 
-    this.get('session').set('data.authenticated.avatar', avatar);
+    this.get('session').set('data.avatar', avatar);
   },
 
   close() {
