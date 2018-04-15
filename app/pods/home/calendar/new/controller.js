@@ -26,7 +26,7 @@ export default Controller.extend({
       const data = {
         customer: get(this, 'session.data.authenticated.id'),
         type: this.get('bookType') === 'Presencial' ? 'P' : 'S',
-        date: moment(`${this.get('bookDay')} ${this.get('bookHour')}`, 'YYYY-MM-DD HH:mm').toISOString(true)
+        date: moment.parseZone(`${this.get('bookDay')} ${this.get('bookHour')}`).toISOString()
       };
 
       $('#modal-wait-new-appointment').modal();
