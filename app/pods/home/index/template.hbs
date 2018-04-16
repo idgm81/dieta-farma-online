@@ -51,7 +51,7 @@
           <h3 class="panel-title">Próxima cita <strong>{{if (eq cita.type 'P') 'Presencial' 'Skype'}}</strong></h3>
         </div>
         <div class="panel-body">
-          {{moment-format cita.date 'dddd DD [de] MMMM [de] YYYY [a las] HH:mm'}}
+          {{moment-parse-zone cita.date 'dddd DD [de] MMMM [de] YYYY [a las] HH:mm'}}
         </div>
         {{#if (gte (moment-diff now cita.date precision='hours') 24)}}
           <div class="panel-footer text-center">
