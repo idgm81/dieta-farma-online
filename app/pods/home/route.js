@@ -14,19 +14,27 @@ export default Route.extend({
 
   userId: reads('session.data.authenticated.id'),
 
+  beforeModel(transition) {
+    this._super(...arguments);
+
+    const id = get(this, 'userId');
+
+    if (!id) {
+      return this.transitionTo('index')
+    }
+
+    return transition;
+  },
+
   model() {
     $('#modal-loading-home').modal();
     const id = get(this, 'userId');
 
-    if (id) {
-      return RSVP.hash({
-        userData: this.get('api').getUser(id),
-        inboxThreads: this.get('api').getThreads(id)
-      }).catch(() => this.transitionTo('index'))
-        .finally(() => $('#modal-loading-home').modal('hide'));
-    }
-
-    return this.transitionTo('index');
+    return RSVP.hash({
+      userData: this.get('api').getUser(id),
+      inboxThreads: this.get('api').getThreads(id)
+    }).catch(() => this.transitionTo('index'))
+      .finally(() => $('#modal-loading-home').modal('hide'));
   },
 
   redirect(model) {
