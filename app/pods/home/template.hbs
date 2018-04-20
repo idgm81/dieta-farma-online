@@ -23,9 +23,7 @@
       <li {{action 'goHome'}}>{{fa-icon 'home' fixedWidth=true}}<span>Inicio</span></li>
       {{#if isClient}}
         <li {{action 'showDiets'}}>{{fa-icon 'file-alt' fixedWidth=true}}<span>Mis dietas</span></li>
-        {{#if isFeatureActive}}
-          <li {{action 'askForAppointment'}}>{{fa-icon 'calendar-alt' fixedWidth=true}}<span>Pedir cita</span></li>
-        {{/if}}
+        <li {{action 'askForAppointment'}}>{{fa-icon 'calendar-alt' fixedWidth=true}}<span>Pedir cita</span></li>
         <div id="SkypeButton_Call_dietafarma_1">
           <script type="text/javascript">
             Skype.ui({

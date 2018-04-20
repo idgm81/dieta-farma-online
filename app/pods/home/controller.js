@@ -1,8 +1,8 @@
 import Controller from '@ember/controller';
 import ENV from '../../config/environment';
 import { inject as service } from '@ember/service';
-import { reads, alias } from '@ember/object/computed';
-import { getWithDefault, get, set, setProperties } from '@ember/object';
+import { reads } from '@ember/object/computed';
+import { getWithDefault, get, setProperties } from '@ember/object';
 import { imagePath } from 'dieta-farma-online/helpers/image-path';
 import { capitalize }  from '@ember/string';
 import { USER_ROLES } from './constants';
@@ -31,7 +31,6 @@ export default Controller.extend({
 
     setProperties(this, {
       isClient: get(model, 'userData.user.role') === USER_ROLES.CLIENT,
-      isFeatureActive: WHITE_LIST_USERS.includes(get(this, 'userId')),
       headerTitle: `Hola ${capitalize(get(model, 'userData.user.profile.name'))}`,
       fullName: `${get(model, 'userData.user.profile.name')} ${get(model, 'userData.user.profile.surname')}`,
       appVersion: `v${ENV.APP.version}`,
