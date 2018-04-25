@@ -7,12 +7,12 @@ const IMAGE_PATH = '/assets/images/';
  * Image path function.
  *
  * @example
- *     getImage('image.png')
+ *     imagePath('image.png')
  *         Returns 'assets/images/image.png'
  *
  * @method imagePath
- * @param  {String}|{Array}		params  The relative path to the image
- * @return {String}            	Path to the image
+ * @param  {String|Array}		params  The relative path to the image
+ * @return {String}									Path to the image
  *
  */
 export function imagePath(params = '') {
