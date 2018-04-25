@@ -28,6 +28,11 @@ Router.map(function() {
     this.route('profile', { path: '/profile/:id'});
   });
   this.route('login');
+  this.route('payment', function() {
+    this.route('success');
+    this.route('error');
+  });
+  this.route('premium');
   this.route('register');
   this.route('reset-password');
 });
