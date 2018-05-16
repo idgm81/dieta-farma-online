@@ -42,6 +42,7 @@ export default Controller.extend({
     });
 
     this.get('session').set('data.avatar', avatar);
+    this.close();
   },
 
   close() {

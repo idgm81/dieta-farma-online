@@ -1,3 +1,4 @@
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
@@ -6,7 +7,7 @@ import { reads } from '@ember/object/computed';
 import RSVP from 'rsvp';
 import { USER_ROLES } from './constants';
 
-export default Route.extend({
+export default Route.extend(AuthenticatedRouteMixin, {
 
   session: service(),
 
@@ -18,7 +19,7 @@ export default Route.extend({
     this._super(...arguments);
 
     const id = get(this, 'userId');
-
+        
     if (!id) {
       return this.transitionTo('index')
     }
@@ -40,7 +41,7 @@ export default Route.extend({
   redirect(model) {
     this._super(...arguments);
 
-    run.later(() => this.get('session').invalidate(), 15 * 60 * 1000); //close session after 15 minutes
+    run.later(() => this.get('session').invalidate(), 15 * 60 * 1000); // close session after 15 minutes
 
     const nextRoute = get(model, 'userData.user.role') === USER_ROLES.NUTRITIONIST
       ? 'home.clients.index'

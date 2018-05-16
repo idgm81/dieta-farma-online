@@ -25,10 +25,13 @@ export default Route.extend(UnauthenticatedRouteMixin, {
       this.get('session').authenticate(authenticator, {
         identification: credentials.email,
         password: credentials.password
-      }).catch(({error}) => {
+      })
+      .then(() => this.transitionTo('home'))
+      .catch(({error}) => {
         $('button').show();
         this.set('controller.error', error || this.get('i18n').t('error.generic'));
-      }).finally(() => $('#modal-login').modal('hide'));
+      })
+      .finally(() => $('#modal-login').modal('hide'));
     },
     goToResetPassword() {
       this.transitionTo('reset-password');
