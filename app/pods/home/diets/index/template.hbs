@@ -9,6 +9,12 @@
   {{/if}}
 </ol>
 
+{{#if (and isFeatureActive (and (not isNutritionist) (gte model.diets.length 1)))}}
+  <div class="alert alert-info text-justify">
+    <small><strong>Nota: </strong>Puedes pedir una segunda dieta a tu nutricionista pulsando en el botón que aparece más abajo</small>
+  </div>
+{{/if}}
+
 {{#each model.diets as |diet index|}}
   <div class="container">
     <div class="panel panel-df">
@@ -54,5 +60,9 @@
     <div class="text-center">{{fa-icon 'times-circle'}}</div>
     <h5 class="modal-title text-center">Error al borrar la dieta!</h5>
   {{/generic-modal}}
+{{else if (and isFeatureActive (gte model.diets.length 1))}}
+  <div {{action 'request'}} class='floating-button'>
+    {{fa-icon 'plus' size='2x' transform='down-6'}}
+  </div>
 {{/if}}
 

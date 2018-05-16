@@ -10,9 +10,16 @@ export default Controller.extend({
 
   api: service(),
 
+  queryParams: ['userId', 'name'],
+
   isNutritionist: equal('session.data.authenticated.role', USER_ROLES.NUTRITIONIST),
 
-  queryParams: ['userId', 'name'],
+  isFeatureActive: computed('session.data.authenticated.id', function() {
+    return [
+      '5a74230545283400044aec6b',
+      '5a43df203a0c23a52728cb16'
+    ].includes(this.get('session.data.authenticated.id'));
+  }),
 
   clientLinkLabel: computed('name', function() {
     return `Perfil de ${get(this, 'name')}`
@@ -27,6 +34,12 @@ export default Controller.extend({
       const queryParams = { userId: this.get('userId'), name: this.get('name') };
 
       this.transitionToRoute('home.diets.new', { queryParams });
+    },
+
+    request() {
+      const queryParams = { userId: this.get('userId') };
+
+      this.transitionToRoute('home.diets.request', { queryParams });
     },
 
     delete(id, userId) {

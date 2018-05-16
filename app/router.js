@@ -20,6 +20,7 @@ Router.map(function() {
     this.route('diets', function() {
       this.route('edit', { path: '/edit/:id' });
       this.route('new');
+      this.route('request');
     });
     this.route('threads', function() {
       this.route('thread', { path: ':id' });

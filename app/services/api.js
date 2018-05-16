@@ -94,6 +94,13 @@ export default AjaxService.extend({
     });
   },
 
+  requestDiet(data) {
+    return this.request(`/request-diet`, {
+      method: 'POST',
+      data
+    });
+  },
+
   editDiet(dietId, data) {
     return this.request(`/diets/${dietId}`, {
       method: 'PUT',
