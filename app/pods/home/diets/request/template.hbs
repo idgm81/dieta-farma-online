@@ -18,10 +18,17 @@
         value=data.q1}}
     </div>
     <div class="form-group">
-      <label for="title">¿Has seguido la dieta propuesta por tu nutricionista de forma continuada? Escoge un valor de 0 a 5
-      </label>
-      {{textarea
+      <label for="title">¿Has seguido la dieta propuesta por tu nutricionista de forma continuada?</label>
+      {{#power-select
         id='request-diet-q2'
+        searchEnabled=false
+        selected=data.q2
+        options=follows
+        onchange=(action (mut data.q2)) as |follow|}}
+        {{follow}}
+      {{/power-select}}
+      {{textarea
+        id=''
         name='request-diet-q2'
         class='request-diet-q2 form-control'
         rows='2'
@@ -37,8 +44,7 @@
         value=data.q3}}
     </div>
     <div class="form-group">
-      <label for="title">¿Qué es imposible de seguir?
-      </label>
+      <label for="title">¿Qué es imposible de seguir?</label>
       {{textarea
         id='request-diet-q4'
         name='request-diet-q4'
@@ -47,8 +53,7 @@
         value=data.q4}}
     </div>
     <div class="form-group">
-      <label for="title">¿Quieres añadir algún alimento concreto que eches de menos?
-      </label>
+      <label for="title">¿Quieres añadir algún alimento concreto que eches de menos?</label>
       {{textarea
         id='request-diet-q5'
         name='request-diet-q5'
@@ -57,8 +62,7 @@
         value=data.q5}}
     </div>
     <div class="form-group">
-      <label for="title">¿Consigues que no pasen más de 5 horas entre tomas?
-      </label>
+      <label for="title">¿Consigues que no pasen más de 5 horas entre tomas?</label>
       {{textarea
         id='request-diet-q6'
         name='request-diet-q6'
@@ -67,15 +71,17 @@
         value=data.q6}}
     </div>
     <div class="form-group">
-      <label for="title">Puntúa de 0 a 5 (cero es nunca, 5 es diario) el consumo del ultraprocesados como
+      <label for="title">Indica el consumo del ultraprocesados como
       cereales de desayuno, refrescos, galletas, bollería, comida rápida (pizza, hamburguesa)
       </label>
-      {{textarea
+      {{#power-select
         id='request-diet-q7'
-        name='request-diet-q7'
-        class='request-diet-q7 form-control'
-        rows='2'
-        value=data.q7}}
+        searchEnabled=false
+        selected=data.q7
+        options=levels
+        onchange=(action (mut data.q7)) as |level|}}
+        {{level}}
+      {{/power-select}}
     </div>
     <div class="form-group">
       <label for="title">¿Crees que has seguido bien la dieta acercándote a tu objetivo?</label>
@@ -155,7 +161,7 @@
         value=data.q15}}
     </div>
     <div class="form-group">
-      <label for="title">¿Quieres añadir algún comentario que no haya sido tratado en preguntas anteriores?</label>
+      <label for="title">Puedes añadir algún comentario que no haya sido tratado en preguntas anteriores:</label>
       {{textarea
         id='request-diet-q16'
         name='request-diet-q16'

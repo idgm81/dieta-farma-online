@@ -14,6 +14,24 @@ export default Controller.extend({
 
   data: {},
 
+  follows: [
+    '0 - Nada',
+    '1 - Muy poco',
+    '2 - Poco',
+    '3 - A medias',
+    '4 - Bastante',
+    '5 - Completamente'
+  ],
+
+  levels: [
+    '0 - Ninguno',
+    '1 - Muy poco',
+    '2 - Poco',
+    '3 - Medio',
+    '4 - Elevado',
+    '5 - Muy elevado'
+  ],
+
   actions: {
 
     cancel() {
