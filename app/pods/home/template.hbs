@@ -34,13 +34,11 @@
         <li {{action 'showMyClients'}}>{{fa-icon 'users' fixedWidth=true}}<span>Mis clientes</span></li>
         <li {{action 'showMyCalendar'}}>{{fa-icon 'calendar-alt' fixedWidth=true}}<span>Mi calendario</span></li>
       {{/if}}
-      {{#if (or isPremium (not isClient))}}
-        <li {{action 'showThreads'}}>{{fa-icon 'envelope' fixedWidth=true}}<span>Mensajes</span>
-          {{#if (gt inboxThreadsUnread 0)}}
-            <span class="badge bg-green">{{inboxThreadsUnread}}</span>
-          {{/if}}
-        </li>
-      {{/if}}
+      <li {{action 'showThreads'}}>{{fa-icon 'envelope' fixedWidth=true}}<span>Mensajes</span>
+        {{#if (gt inboxThreadsUnread 0)}}
+          <span class="badge bg-green">{{inboxThreadsUnread}}</span>
+        {{/if}}
+      </li>
       <li {{action 'logout'}}>{{fa-icon 'sign-out-alt' fixedWidth=true}}<span>Salir</span></li>
     </ul>
   </nav>
