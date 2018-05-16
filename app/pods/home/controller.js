@@ -6,6 +6,7 @@ import { getWithDefault, get, setProperties } from '@ember/object';
 import { imagePath } from 'dieta-farma-online/helpers/image-path';
 import { capitalize }  from '@ember/string';
 import { USER_ROLES } from './constants';
+import moment from 'moment';
 
 const WHITE_LIST_USERS = [
   '5a74230545283400044aec6b',
@@ -28,9 +29,12 @@ export default Controller.extend({
       .reduce((acc, cur) => acc + cur, 0);
 
     const avatar = getWithDefault(model, 'userData.user.profile.avatar', imagePath('default-avatar.png'));
+    const isFeatureActive = WHITE_LIST_USERS.includes(get(model, 'userData.user._id'));
+    const expiredFree = (moment().subtract(1, 'months')).isAfter(moment(get(model, 'userData.user.createdAt')));
 
     setProperties(this, {
       isClient: get(model, 'userData.user.role') === USER_ROLES.CLIENT,
+      isPremium: !isFeatureActive || !expiredFree,
       headerTitle: `Hola ${capitalize(get(model, 'userData.user.profile.name'))}`,
       fullName: `${get(model, 'userData.user.profile.name')} ${get(model, 'userData.user.profile.surname')}`,
       appVersion: `v${ENV.APP.version}`,
@@ -78,6 +82,11 @@ export default Controller.extend({
     showMyClients() {
       this.close();
       this.transitionToRoute('home.clients');
+    },
+
+    makePremium() {
+      this.close();
+      this.transitionToRoute('premium');
     },
 
     logout() {
