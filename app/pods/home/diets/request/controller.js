@@ -26,7 +26,7 @@ export default Controller.extend({
 
       const data = this.get('data');
 
-      data.id = this.get('userId');
+      data.customer = this.get('userId');
 
       return this.get('api').requestDiet(data)
         .then(() => $('#modal-request-diet-ok').modal())
