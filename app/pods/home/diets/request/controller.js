@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { set, get, computed } from '@ember/object';
 import $ from 'jquery';
 
 export default Controller.extend({
