@@ -148,6 +148,7 @@ $color-dietafarma: #25a29f;
     color: #fff;
     &:focus, &:hover {
       color: $color-dietafarma;
+      cursor: pointer;
     }
   }
   .version {
