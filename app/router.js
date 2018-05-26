@@ -24,7 +24,6 @@ Router.map(function() {
     });
     this.route('threads', function() {
       this.route('thread', { path: ':id' });
-      this.route('new');
     });
     this.route('profile', { path: '/profile/:id'});
   });
