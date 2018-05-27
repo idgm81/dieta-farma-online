@@ -23,6 +23,7 @@ Router.map(function() {
       this.route('request');
     });
     this.route('threads', function() {
+      this.route('new');
       this.route('thread', { path: ':id' });
     });
     this.route('profile', { path: '/profile/:id'});
