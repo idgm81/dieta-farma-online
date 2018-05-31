@@ -18,6 +18,10 @@ export default Controller.extend({
 
   file: null,
 
+  userId: null,
+
+  name: null,
+
   nutritionistId: computed('session.data', function() {
     return this.get('session.data.authenticated.id');
   }),
