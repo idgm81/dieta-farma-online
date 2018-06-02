@@ -64,3 +64,20 @@
     </div>
   </div>
 </section>
+
+<section style="display:none">
+  <form role="form" id="paymentForm" action="{{uri}}" target="" method="POST" style="display:none">
+    <div class="form-group">
+      <label for="Ds_SignatureVersion">Ds_SignatureVersion</label>
+      <input type="text" class="form-control" id="Ds_SignatureVersion" name="Ds_SignatureVersion" value="HMAC_SHA256_V1">
+    </div>
+    <div class="form-group">
+      <label for="Ds_MerchantParameters">Ds_MerchantParameters</label>
+      <input type="text" class="form-control" id="Ds_MerchantParameters" name="Ds_MerchantParameters">
+    </div>
+    <div class="form-group">
+      <label for="Ds_Signature">Ds_Signature</label>
+      <input type="text" class="form-control" id="Ds_Signature" name="Ds_Signature">
+    </div>
+  </form>
+</section>
