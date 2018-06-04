@@ -34,7 +34,7 @@ export default Controller.extend({
 
     setProperties(this, {
       isClient: get(model, 'userData.user.role') === USER_ROLES.CLIENT,
-      isPremium: !isFeatureActive || !expiredFree,
+      isPremium: !isFeatureActive || !expiredFree || get(model, 'userData.user.profile.isPremium'),
       headerTitle: `Hola ${capitalize(get(model, 'userData.user.profile.name'))}`,
       fullName: `${get(model, 'userData.user.profile.name')} ${get(model, 'userData.user.profile.surname')}`,
       appVersion: `v${ENV.APP.version}`,
