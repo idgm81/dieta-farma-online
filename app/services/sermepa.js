@@ -12,8 +12,8 @@ const DS_PARAMS = {
   "DS_MERCHANT_TRANSACTIONTYPE":"0",
   "DS_MERCHANT_TERMINAL":"001",
   "DS_MERCHANT_MERCHANTURL":"",
-  "DS_MERCHANT_URLOK":"https://dieta-farma-online.herokuapp.com/payment/success",
-  "DS_MERCHANT_URLKO":"https://dieta-farma-online.herokuapp.com/payment/error"
+  "DS_MERCHANT_URLOK":"https://dieta-farma-online.herokuapp.com/premium/success?userId=:userId",
+  "DS_MERCHANT_URLKO":"https://dieta-farma-online.herokuapp.com/premiun/error?userId=:userId"
 };
 
 export default Service.extend({
@@ -24,6 +24,10 @@ export default Service.extend({
 
   getOrder(params) {
     return (get(params, 'Ds_Merchant_Order') || get(params, 'DS_MERCHANT_ORDER') || '').trim();
+  },
+
+  getParam(key) {
+    return DS_PARAMS[key.toUpperCase()];
   },
 
   getOrderNotif(params) {

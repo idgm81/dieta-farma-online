@@ -24,13 +24,19 @@ export default Controller.extend({
   actions: {
     buy(amount) {
       const sermepa = this.get('sermepa');
+      const userId = this.get('serdId');
+      const urlOK = sermepa.getParam('DS_MERCHANT_URLOK').replace('userId', userId);
+      const urlKO = sermepa.getParam('DS_MERCHANT_URLKO').replace('userId', userId);
 
       sermepa.setParam('DS_MERCHANT_AMOUNT', amount*100);
+      sermepa.setParam('DS_MERCHANT_URLOK', urlOK);
+      sermepa.setParam('DS_MERCHANT_URLKO', urlKO);
+
       this.set('params', sermepa.createMerchantParameters());
       this.set('signature', sermepa.createMerchantSignature());
+  
       $('#paymentForm').find('#Ds_MerchantParameters').val(this.get('params'));
       $('#paymentForm').find('#Ds_Signature').val(this.get('signature'));
-
       $('#paymentForm').submit();
     }
   }
