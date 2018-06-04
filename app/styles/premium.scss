@@ -8,6 +8,32 @@
     background-color: rgba(13, 70, 83, 0.78);
     min-height: 420px;
   }
+
+  .full-overlay-color {
+    background-color: rgba(13, 70, 83, 0.78);
+    min-height: 100vh;
+  }
+}
+
+.message-info {
+  padding: 10px;
+  margin: 150px 10px 0 10px;
+  height: 240px;
+  background-color: white;
+
+  .ok {
+    color: #6ea2a2;
+  }
+  .error {
+    color: red;
+  }
+
+  .btn {
+    margin-top: 24px;
+    a {
+      color: white;
+    }
+  }
 }
 
 .premium-packs {
