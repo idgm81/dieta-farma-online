@@ -24,7 +24,7 @@ export default Controller.extend({
   actions: {
     buy(amount) {
       const sermepa = this.get('sermepa');
-      const userId = this.get('serdId');
+      const userId = this.get('userId');
       const urlOK = sermepa.getParam('DS_MERCHANT_URLOK').replace('userId', userId);
       const urlKO = sermepa.getParam('DS_MERCHANT_URLKO').replace('userId', userId);
 

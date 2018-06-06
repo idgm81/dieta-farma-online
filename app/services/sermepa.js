@@ -13,7 +13,7 @@ const DS_PARAMS = {
   "DS_MERCHANT_TERMINAL":"001",
   "DS_MERCHANT_MERCHANTURL":"",
   "DS_MERCHANT_URLOK":"https://dieta-farma-online.herokuapp.com/premium/success?userId=:userId",
-  "DS_MERCHANT_URLKO":"https://dieta-farma-online.herokuapp.com/premiun/error?userId=:userId"
+  "DS_MERCHANT_URLKO":"https://dieta-farma-online.herokuapp.com/premium/error?userId=:userId"
 };
 
 export default Service.extend({
