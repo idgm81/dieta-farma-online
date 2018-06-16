@@ -47,7 +47,7 @@ export default Controller.extend({
   
       set(data, `${field === 'email' ? '' : 'profile.'}${field}`, value);
 
-      return this.get('api').editUser(this.get('userId'), data)
+      return this.get('api').editUser(get(this, 'userId'), data)
         .catch(() => $('#modal-edit-profile-error').modal());
     },
     showDiets() {

@@ -22,6 +22,8 @@ export default Controller.extend({
 
   name: null,
 
+  options: [ 'Dieta', 'Pauta dietética'],
+
   nutritionistId: computed('session.data', function() {
     return this.get('session.data.authenticated.id');
   }),
@@ -47,11 +49,15 @@ export default Controller.extend({
             customer: get(this, 'userId'),
             nutritionist: get(this, 'nutritionistId'),
             title: get(this, 'title'),
-            fromDate: moment(get(this, 'fromDate'), 'DD/MM/YYYY').format(),
-            toDate: moment(get(this, 'toDate'), 'DD/MM/YYYY').format(),
+            type: get(this, 'option') === 'Dieta' ? 'D' : 'P',
+            fromDate: get(this, 'option') === 'Dieta'
+              ? moment(get(this, 'fromDate'), 'DD/MM/YYYY').format()
+              : moment().format('DD/MM/YYYY'),
+            toDate: get(this, 'option') === 'Dieta'
+              ? moment(get(this, 'toDate'), 'DD/MM/YYYY').format()
+              : moment().format('DD/MM/YYYY'),
             url: get(this, 'url')
           };
-
 
           return this.get('api').createDiet(diet)
             .then(() => $('#modal-new-diet-ok').modal())

@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
   <li>{{link-to 'Inicio' 'home'}}</li>
-  <li class="active">Mi perfil</li>
+  <li class="active">{{t 'label.myProfile'}}</li>
 </ol>
 
 <div class="container">
@@ -27,7 +27,7 @@
 <div class="container">
   <div class="panel panel-df">
     <div class="panel-heading">
-      <h4 class="panel-title">Datos personales</h4>
+      <h4 class="panel-title">{{t 'label.profile.header'}}</h4>
     </div>
     <div class="panel-body">
       <table class="table personal-data">
@@ -47,6 +47,34 @@
             <td>{{model.user.profile.phone}}</td>
             <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'phone'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
           </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="panel panel-df">
+  <div class="panel-heading">
+    <h4 class="panel-title">{{t 'label.purchase.header'}}</h4>
+  </div>
+    <div class="panel-body">
+      <table class="table personal-data">
+        <tbody>
+          <thead>
+            <tr>
+              <th>{{t 'label.date'}}</th>
+              <th>{{t 'label.dietType'}}</th>
+              <th>{{t 'label.amount'}}</th>
+            </tr>
+          </thead>
+          {{#each model.purchases as |purchase|}}
+            <tr>
+              <td>{{moment-parse-zone purchase.date 'HH:mm'}}</td>
+              <td>{{translate-meet-type purchase.type}}</td>
+              <td>{{purchase.price}} €</td>
+            </tr>
+          {{/each}}
         </tbody>
       </table>
     </div>

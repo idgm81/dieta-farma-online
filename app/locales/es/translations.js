@@ -3,13 +3,22 @@ export default {
     "generic": "Servicio no disponible"
   },
   "label": {
-    "dietafarma": "DietaFarma",
-    "privateAccess": "Acceso privado",
-    "resetPass": "Solicitar cambio contraseña",
+    "amount": "Importe",
     "changePass": "Escoge tu nueva contraseña",
+    "date": "Fecha",
+    "dietafarma": "DietaFarma",
+    "dietType": "Tipo de dieta",
+    "meet": {
+      "face": "Presencial",
+      "video": "Videollamada",
+      "online": "Online"
+    },
+    "myProfile": "Mi perfil",
+    "privateAccess": "Acceso privado",
     "profile": {
       "birthday": "Fecha nacimiento",
       "email": "Email",
+      "header": "Datos personales",
       "phone": "Teléfono",
       "measures": {
         "height": "Altura",
@@ -31,7 +40,11 @@ export default {
       "foodDiseases": "Enfermedades o intolerancias",
       "foodForbidden": "Alimentos prohibidos",
       "foodFavourite": "Alimentos favoritos",
-    }
+    },
+    "purchase": {
+      "header": "Dietas compradas"
+    },
+    "resetPass": "Solicitar cambio contraseña"
   },
   "text": {
     "accessing": "Accediendo...",

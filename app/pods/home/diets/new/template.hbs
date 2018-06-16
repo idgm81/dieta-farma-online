@@ -2,7 +2,7 @@
   <li>{{link-to 'Inicio' 'home'}}</li>
   <li>{{link-to 'Mis clientes' 'home.clients'}}</li>
   <li>{{link-to clientLinkLabel 'home.clients.client' userId}}</li>
-  <li class="active">Crear dieta</li>
+  <li class="active">Subir dieta/pauta nutricional</li>
 </ol>
 
 <div class="container">
@@ -12,39 +12,54 @@
       {{input type='text' class='form-control' id='title' name='title' value=title data-validate='true'}}
     </div>
 
-    <div class="form-group">
-      <label for="diet-start-date">Desde:</label>
-      <div id='diet-start-date' class="input-group date">
-        {{bootstrap-datepicker
-          class='form-control'
-          data-validate='true'
-          language='es'
-          autoclose=true
-          format='dd/mm/yyyy'
-          widgetContainer='#diet-start-date'
-          todayHighlight=true
-          orientation='bottom'
-          value=fromDate}}
-        <span class="input-group-addon">{{fa-icon 'calendar-alt'}}</span>
-      </div>
+    <div class="form-group col-xs-12">
+      <label for="title">Tipo:</label>
+      {{#power-select
+        id='diet-type'
+        class='form-control'
+        searchEnabled=false
+        selected=option
+        options=options
+        onchange=(action (mut option)) as |type|}}
+        {{type}}
+      {{/power-select}}
     </div>
 
-    <div class="form-group">
-      <label for="diet-end-date">Hasta:</label>
-      <div id='diet-end-date' class="input-group date">
-        {{bootstrap-datepicker
-          class='form-control'
-          data-validate='true'
-          language='es'
-          autoclose=true
-          format='dd/mm/yyyy'
-          widgetContainer='#diet-end-date'
-          todayHighlight=true
-          orientation='bottom'
-          value=toDate}}
-        <span class="input-group-addon">{{fa-icon 'calendar-alt'}}</span>
+    {{#if (eq option 'D')}}
+      <div class="form-group">
+        <label for="diet-start-date">Desde:</label>
+        <div id='diet-start-date' class="input-group date">
+          {{bootstrap-datepicker
+            class='form-control'
+            data-validate='true'
+            language='es'
+            autoclose=true
+            format='dd/mm/yyyy'
+            widgetContainer='#diet-start-date'
+            todayHighlight=true
+            orientation='bottom'
+            value=fromDate}}
+          <span class="input-group-addon">{{fa-icon 'calendar-alt'}}</span>
+        </div>
       </div>
-    </div>
+
+      <div class="form-group">
+        <label for="diet-end-date">Hasta:</label>
+        <div id='diet-end-date' class="input-group date">
+          {{bootstrap-datepicker
+            class='form-control'
+            data-validate='true'
+            language='es'
+            autoclose=true
+            format='dd/mm/yyyy'
+            widgetContainer='#diet-end-date'
+            todayHighlight=true
+            orientation='bottom'
+            value=toDate}}
+          <span class="input-group-addon">{{fa-icon 'calendar-alt'}}</span>
+        </div>
+      </div>
+    {{/if}}
 
     <div class="form-group">
       <label for="pwd">Archivo:</label>

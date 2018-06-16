@@ -40,12 +40,12 @@
           </tr>
         </thead>
         <tbody>
-          {{#each dayAppointments  as |cita|}}
+          {{#each dayAppointments as |meet|}}
             <tr>
-              <td>{{moment-parse-zone cita.date 'HH:mm'}}</td>
-              <td>{{if (eq cita.type 'P') 'Presencial' 'Skype'}}</td>
-              <td>{{get cita 'customer_data.0.profile.name'}}</td>
-              <td><button type="button" class="btn btn-info btn-xs" {{action 'showUser' (get cita 'customer_data.0._id')}}>{{fa-icon 'eye' fixedWidth=true}}</button></td>
+              <td>{{moment-parse-zone meet.date 'HH:mm'}}</td>
+              <td>{{translate-meet-type meet.type}}</td>
+              <td>{{get meet 'customer_data.0.profile.name'}}</td>
+              <td><button type="button" class="btn btn-info btn-xs" {{action 'showUser' (get meet 'customer_data.0._id')}}>{{fa-icon 'eye' fixedWidth=true}}</button></td>
             </tr>
           {{/each}}
         </tbody>
