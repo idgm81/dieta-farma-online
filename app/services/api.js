@@ -166,6 +166,13 @@ export default AjaxService.extend({
     });
   },
 
+  createPurchase(data) {
+    return this.request(`/purchases`, {
+      method: 'POST',
+      data
+    });
+  },
+
   getS3Url(userId, category, fileName, fileType) {
     return this.request(`/signed-request`, {
       method: 'POST',

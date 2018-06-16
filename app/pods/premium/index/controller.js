@@ -1,11 +1,7 @@
 import Controller from '@ember/controller';
 import { reads }  from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-
-const uris = {
-	real: 'https://sis.redsys.es/sis/realizarPago',
-  test: 'https://sis-t.redsys.es:25443/sis/realizarPago'
-};
+import { TPV_URI, DIET_PRICES } from '../constants';
 
 export default Controller.extend({
 
@@ -15,20 +11,26 @@ export default Controller.extend({
 
   userId: reads('session.data.authenticated.id'),
 
-  uri: uris.test,
+  uri: TPV_URI.test,
+
+  prices: DIET_PRICES,
 
   params: '',
 
   signature: '',
 
   actions: {
-    buy(amount) {
+    buy(type) {
       const sermepa = this.get('sermepa');
       const userId = this.get('userId');
-      const urlOK = sermepa.getParam('DS_MERCHANT_URLOK').replace('userId', userId);
-      const urlKO = sermepa.getParam('DS_MERCHANT_URLKO').replace('userId', userId);
+      const urlOK = sermepa.getParam('DS_MERCHANT_URLOK')
+        .replace('userId', userId)
+        .replace('type', type);
+      const urlKO = sermepa.getParam('DS_MERCHANT_URLKO')
+        .replace('userId', userId)
+        .replace('type', type);
 
-      sermepa.setParam('DS_MERCHANT_AMOUNT', amount*100);
+      sermepa.setParam('DS_MERCHANT_AMOUNT', DIET_PRICES[type]*100);
       sermepa.setParam('DS_MERCHANT_URLOK', urlOK);
       sermepa.setParam('DS_MERCHANT_URLKO', urlKO);
 

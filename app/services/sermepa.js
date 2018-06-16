@@ -12,8 +12,8 @@ const DS_PARAMS = {
   "DS_MERCHANT_TRANSACTIONTYPE":"0",
   "DS_MERCHANT_TERMINAL":"001",
   "DS_MERCHANT_MERCHANTURL":"",
-  "DS_MERCHANT_URLOK":"https://dieta-farma-online.herokuapp.com/premium/success?userId=:userId",
-  "DS_MERCHANT_URLKO":"https://dieta-farma-online.herokuapp.com/premium/error?userId=:userId"
+  "DS_MERCHANT_URLOK":"https://dieta-farma-online.herokuapp.com/premium/success?userId=:userId&type=:type",
+  "DS_MERCHANT_URLKO":"https://dieta-farma-online.herokuapp.com/premium/error?userId=:userId&type=:type"
 };
 
 export default Service.extend({

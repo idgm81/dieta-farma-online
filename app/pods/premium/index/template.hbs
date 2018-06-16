@@ -30,10 +30,10 @@
           <img class="image" src="{{image-path 'face-to-face-icon.png'}}" alt="imagen pack bronce">
           <div class="caption-details">
             <h3>Compra 1 dieta presencial</h3>
-            <p class="price">40 €</p>
+            <p class="price">{{get prices 'P'}} €</p>
           </div>
           <div class="caption-link">
-            <span {{action 'buy' '40'}}>{{fa-icon 'plus' size='8x'}}</span>
+            <span {{action 'buy' 'P'}}>{{fa-icon 'plus' size='8x'}}</span>
           </div>
         </div>
       </div>
@@ -41,11 +41,11 @@
         <div class="thumbnail">
           <img class="image" src="{{image-path 'skype-icon.png'}}" alt="imagen pack plata">
           <div class="caption-details">
-            <h3>Compra 1 dieta por skype (videollamada)</h3>
-            <p class="price">30 €</p>
+            <h3>Compra 1 dieta por videollamada (skype)</h3>
+            <p class="price">{{get prices 'V'}} €</p>
           </div>
           <div class="caption-link">
-            <span {{action 'buy' '30'}}>{{fa-icon 'plus' size='8x' fixedWidth=true}}</span>
+            <span {{action 'buy' 'V'}}>{{fa-icon 'plus' size='8x' fixedWidth=true}}</span>
           </div>
         </div>
       </div>
@@ -54,17 +54,17 @@
           <img  class="image"src="{{image-path 'device-icon.png'}}" alt="imagen pack oro">
           <div class="caption-details">
             <h3>Compra 1 dieta online</h3>
-            <p class="price">15 €</p>
+            <p class="price">{{get prices 'O'}} €</p>
           </div>
           <div class="caption-link">
-            <span {{action 'buy' '15'}}>{{fa-icon 'plus' size='8x'}}</span>
+            <span {{action 'buy' 'O'}}>{{fa-icon 'plus' size='8x'}}</span>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-4 col-xs-12 text-right">
-        <a href="https://s3.eu-west-3.amazonaws.com/dieta-farma-files/Politica_devoluciones.pdf"><small>Política de devoluciones</small></a>
+        <a href="https://s3.eu-west-3.amazonaws.com/dieta-farma-files/Politica_devoluciones.pdf"><small>Consulta nuestra política de devoluciones</small></a>
       </div>
     </div>
   </div>
