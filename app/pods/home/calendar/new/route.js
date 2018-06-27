@@ -9,6 +9,20 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   session: service(),
 
+  i18n: service(),
+
+  beforeModel(transition) {
+    this._super(...arguments);
+
+    const isPremium = get(this, 'session.data.authenticated.isPremium');
+        
+    if (!isPremium) {
+      return this.transitionTo('home.index')
+    }
+
+    return transition;
+  },
+
   model() {
     return this.get('api').getAvailableDates(get(this, 'session.data.authenticated.id'));
   },
@@ -16,10 +30,13 @@ export default Route.extend(AuthenticatedRouteMixin, {
   setupController(controller, model) {
     this._super(...arguments);
 
+    const i18n = this.get('i18n');
     const appointments = get(model, 'items');
     const dayOptions = appointments.map((appointments) => appointments.day);
-    controller.set('typeOptions', ['Presencial', 'Skype']);
-    controller.set('bookType', 'Presencial');
+    const typeOptions = [i18n.t('label.meet.face'), i18n.t('label.meet.video')];
+
+    controller.set('typeOptions', typeOptions);
+    controller.set('bookType', typeOptions[0]);
     controller.set('dayOptions', dayOptions);
     controller.set('bookDay', dayOptions[0]);
     controller.set('hourOptions', appointments[0].hours);
