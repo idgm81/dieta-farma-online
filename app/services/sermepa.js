@@ -2,18 +2,22 @@ import Service from '@ember/service';
 import { get }  from '@ember/object';
 import CryptoJS from 'cryptojs'
 import moment from 'moment';
+import ENV from '../config/environment';
 
 const TPV_KEY = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
+const HOST = ENV.environment === 'production'
+  ? 'https://dieta-farma-api.herokuapp.com'
+  : 'http://localhost:4200'
 const DS_PARAMS = {
-  "DS_MERCHANT_AMOUNT":"",
-  "DS_MERCHANT_ORDER": moment().format('YYMMDDHHmmss').toString(),
-  "DS_MERCHANT_MERCHANTCODE":"336823737",
-  "DS_MERCHANT_CURRENCY":"978",
-  "DS_MERCHANT_TRANSACTIONTYPE":"0",
-  "DS_MERCHANT_TERMINAL":"001",
-  "DS_MERCHANT_MERCHANTURL":"",
-  "DS_MERCHANT_URLOK":"https://dieta-farma-online.herokuapp.com/premium/success?userId=:userId&type=:type",
-  "DS_MERCHANT_URLKO":"https://dieta-farma-online.herokuapp.com/premium/error?userId=:userId&type=:type"
+  'DS_MERCHANT_AMOUNT': '',
+  'DS_MERCHANT_ORDER': moment().format('YYMMDDHHmmss').toString(),
+  'DS_MERCHANT_MERCHANTCODE': ENV.environment === 'production' ? '336823737PP' : '336823737',
+  'DS_MERCHANT_CURRENCY': '978',
+  'DS_MERCHANT_TRANSACTIONTYPE': '0',
+  'DS_MERCHANT_TERMINAL': '001',
+  'DS_MERCHANT_MERCHANTURL': '',
+  'DS_MERCHANT_URLOK': `${HOST}/premium/success?userId=:userId&type=:type`,
+  'DS_MERCHANT_URLKO': `${HOST}/premium/error?userId=:userId&type=:type`
 };
 
 export default Service.extend({

@@ -24,11 +24,11 @@ export default Controller.extend({
       const sermepa = this.get('sermepa');
       const userId = this.get('userId');
       const urlOK = sermepa.getParam('DS_MERCHANT_URLOK')
-        .replace('userId', userId)
-        .replace('type', type);
+        .replace(':userId', userId)
+        .replace(':type', type);
       const urlKO = sermepa.getParam('DS_MERCHANT_URLKO')
-        .replace('userId', userId)
-        .replace('type', type);
+        .replace(':userId', userId)
+        .replace(':type', type);
 
       sermepa.setParam('DS_MERCHANT_AMOUNT', DIET_PRICES[type]*100);
       sermepa.setParam('DS_MERCHANT_URLOK', urlOK);
