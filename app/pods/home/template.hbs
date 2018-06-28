@@ -22,9 +22,9 @@
     <ul>
       <li {{action 'goHome'}}>{{fa-icon 'home' fixedWidth=true}}<span>Inicio</span></li>
       {{#if isClient}}
-        {{#if isPremium}}
+        {{#if (or (or (not isFeatureActive) (not freePeriodExpired)) isPremium)}}
           <li {{action 'showDiets'}}>{{fa-icon 'file-alt' fixedWidth=true}}<span>Mis dietas</span></li>
-          <li {{action 'askForAppointment'}}>{{fa-icon 'calendar-alt' fixedWidth=true}}<span>Pedir cita</span></li>
+          <li {{action 'requestAppointment'}}>{{fa-icon 'calendar-alt' fixedWidth=true}}<span>Pedir cita</span></li>
           <li><span class="skype-button rounded" data-color="#25a29f" data-text="Skype" data-contact-id="dietafarma"></span></li>
           <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
         {{else}}

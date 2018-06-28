@@ -21,6 +21,8 @@ export default Controller.extend({
 
   userId: reads('session.data.authenticated.id'),
 
+  isPremium: reads('session.data.authenticated.isPremium'),
+
   avatar: reads('session.data.avatar'),
 
   setup: function(model) {
@@ -30,11 +32,14 @@ export default Controller.extend({
 
     const avatar = getWithDefault(model, 'userData.user.profile.avatar', imagePath('default-avatar.png'));
     const isFeatureActive = WHITE_LIST_USERS.includes(get(model, 'userData.user._id'));
-    const expiredFree = (moment().subtract(1, 'months')).isAfter(moment(get(model, 'userData.user.createdAt')));
+    const freePeriodExpired = (moment().subtract(1, 'months')).isAfter(moment(get(model, 'userData.user.createdAt')));
+    const credits = getWithDefault(model, 'userData.user.profile.credits', 0);
 
     setProperties(this, {
       isClient: get(model, 'userData.user.role') === USER_ROLES.CLIENT,
-      isPremium: !isFeatureActive || !expiredFree || get(model, 'userData.user.profile.isPremium'),
+      isFeatureActive,
+      freePeriodExpired,
+      credits,
       headerTitle: `Hola ${capitalize(get(model, 'userData.user.profile.name'))}`,
       fullName: `${get(model, 'userData.user.profile.name')} ${get(model, 'userData.user.profile.surname')}`,
       appVersion: `v${ENV.APP.version}`,
@@ -60,7 +65,7 @@ export default Controller.extend({
       this.transitionToRoute('home.profile', get(this, 'userId'));
     },
 
-    askForAppointment() {
+    requestAppointment() {
       this.close();
       this.transitionToRoute('home.calendar.new');
     },
