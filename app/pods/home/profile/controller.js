@@ -12,6 +12,8 @@ export default Controller.extend({
 
   userId: reads('session.data.authenticated.id'),
 
+  isPremium: reads('session.data.authenticated.isPremium'),
+
   actions: {
     delete() {
       return this.get('api').deleteUser(this.get('userId'))
