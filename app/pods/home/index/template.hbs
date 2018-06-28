@@ -9,29 +9,33 @@
   <div class="container">
     <div class="panel panel-df">
       <div class="panel-heading">
-        <h3 class="panel-title">Tus citas de esta semana</h3>
+        <h3 class="panel-title">Tus citas para los próximos 7 días</h3>
       </div>
-      {{#if hasAppointmentsThisWeek}}
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Hora</th>
-              <th>Tipo</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.appointments.items as |meet|}}
-              {{#if (and (gte (moment-diff now meet.date precision='days') 0) (lte (moment-diff now meet.date precision='days') 7))}}
-                <tr>
-                  <td>{{moment-format meet.date 'DD/MM/YYYY'}}</td>
-                  <td>{{moment-format meet.date 'HH:mm'}}</td>
-                  <td>{{translate-meet-type meet.type}}</td>
-                </tr>
-              {{/if}}
-            {{/each}}
-          </tbody>
-        </table>
+      {{#if hasAppointments}}
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Tipo</th>
+                <th>Cliente</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each model.appointments.items as |meet|}}
+                {{#if (and (gte (moment-diff now meet.date precision='days') 0) (lte (moment-diff now meet.date precision='days') 7))}}
+                  <tr>
+                    <td>{{moment-parse-zone meet.date 'DD/MM/YYYY'}}</td>
+                    <td>{{moment-parse-zone meet.date 'HH:mm'}}</td>
+                    <td>{{translate-meet-type meet.type}}</td>
+                    <td>{{meet.customer_data.0.profile.name}} {{meet.customer_data.0.profile.surname}}</td>
+                  </tr>
+                {{/if}}
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
       {{else}}
         <div class="panel-body">No tienes ninguna programada para hoy</div>
       {{/if}}
