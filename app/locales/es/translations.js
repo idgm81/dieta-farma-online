@@ -10,7 +10,7 @@ export default {
     "dietType": "Tipo de dieta",
     "meet": {
       "face": "Presencial",
-      "video": "Videollamada",
+      "video": "Videollamada (skype)",
       "online": "Online"
     },
     "myProfile": "Mi perfil",

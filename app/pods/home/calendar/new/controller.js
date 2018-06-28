@@ -5,6 +5,8 @@ import moment from 'moment';
 
 export default Controller.extend({
 
+  i18n: service(),
+
   session: service(),
 
   api: service(),
@@ -25,7 +27,7 @@ export default Controller.extend({
     save() {
       const data = {
         customer: get(this, 'session.data.authenticated.id'),
-        type: this.get('bookType') === 'Presencial' ? 'P' : 'S',
+        type: this.get('bookType') === this.get('i18n').t('label.meet.face') ? 'P' : 'V',
         date: moment.parseZone(`${this.get('bookDay')} ${this.get('bookHour')}`).toISOString()
       };
 
