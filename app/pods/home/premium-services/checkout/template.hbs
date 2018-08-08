@@ -1,0 +1,80 @@
+<ol class="breadcrumb">
+  <li>{{link-to 'Inicio' 'home'}}</li>
+  <li>{{link-to 'Servicios de dieta' 'home.premium-services.index'}}</li>
+  <li>{{link-to 'Mi cita' 'home.premium-services.schedule'}}</li>
+   <li>{{link-to 'Preguntas' 'home.premium-services.questions'}}</li>
+  <li class="active">Pagar dieta</li>
+</ol>
+
+<section class="premium-banner checkout">
+  <div class="overlay-color checkout">
+    <div class="container">
+      <div class="row">
+        <div class="premium-banner-info">
+          <div class="banner-text text-center">
+            <h1 class="white">PAGO DE LA DIETA</h1>
+            <p>Por favor, finaliza el proceso de compra de tu dieta realizando el pago con tu tarjeta de débito o crédito</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {{premium-services-steps currentStep=4}}
+      </div>
+    </div>
+    <div class="container stripe">
+      <div class="row">
+        <div class="col-xs-12">
+          {{#if isLoading}}
+            <div class="loader"></div>
+            Realizando el pago, espere por favor...
+          {{else if (not isCompleted)}}
+            <form>
+              <fieldset class="card-details">
+                <legend>Pago con tarjeta</legend>
+                <div class="form-row">
+                  <div class="form-group required">
+                    <label for="customer-email">Email</label>
+                    {{input id='customer-email' class='form-control' type='email' value=email readonly=true}}
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="customer-card">Datos de la tarjeta</label>
+                    {{#stripe-card options=stripeOptions as |stripeElement stripeError|}}
+                      <div class="submit-button">
+                        <div class="col-xs-12">
+                          <button type="button" class="form-control btn btn-df" {{action 'pay' stripeElement}}>Pagar dieta por {{amount}} €</button>
+                          <button type="button" class="form-control btn btn-grey" {{action 'cancel'}}>Cancelar</button>
+                        </div>
+                      </div>
+                      {{#if stripeError}}
+                        <p class="checkout-error" role="alert">{{fa-icon 'times-circle' fixedWidth=true}}{{stripeError.message}}</p>
+                      {{/if}}
+                    {{/stripe-card}}
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          {{else}}
+            <form>
+              <fieldset class="payment-result">
+                <legend>Pago con tarjeta</legend>
+                <div class="form-row">
+                  <div class="text-center">{{fa-icon (if isError 'times-circle' 'check-circle')}}</div>
+                  <p class="text-center">{{t (if isError 'error.payment' 'text.paymentSuccess')}}</p>
+                  {{#if hasCredits}}
+                    <p class="text-center">Esta dieta es gratis ya que la última que habías pagado la cancelaste</p>
+                  {{/if}}
+                  <div role="group">
+                    <button type="button" class="btn btn-df">{{link-to 'Continuar' 'home'}}</button>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

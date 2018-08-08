@@ -22,14 +22,10 @@
     <ul>
       <li {{action 'goHome'}}>{{fa-icon 'home' fixedWidth=true}}<span>Inicio</span></li>
       {{#if isClient}}
-        {{#if (or (or (not isFeatureActive) (not freePeriodExpired)) isPremium)}}
           <li {{action 'showDiets'}}>{{fa-icon 'file-alt' fixedWidth=true}}<span>Mis dietas</span></li>
-          <li {{action 'requestAppointment'}}>{{fa-icon 'calendar-alt' fixedWidth=true}}<span>Pedir cita</span></li>
+          <li {{action 'purchaseService'}}>{{fa-icon 'shopping-cart' fixedWidth=true}}<span>Solicitar nueva dieta</span></li>
           <li><span class="skype-button rounded" data-color="#25a29f" data-text="Skype" data-contact-id="dietafarma"></span></li>
           <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
-        {{else}}
-          <li {{action 'makePremium'}}>{{fa-icon 'star' fixedWidth=true}}<span>Hazte premium</span></li>
-        {{/if}}
       {{else}}
         <li {{action 'showMyClients'}}>{{fa-icon 'users' fixedWidth=true}}<span>Mis clientes</span></li>
         <li {{action 'showMyCalendar'}}>{{fa-icon 'calendar-alt' fixedWidth=true}}<span>Mi calendario</span></li>
@@ -50,3 +46,5 @@
 <main class="main-content">
   {{outlet}}
 </main>
+{{wait-modal id='modal-loading-home' text='Cargando...'}}
+

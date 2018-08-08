@@ -18,6 +18,9 @@ module.exports = function(environment) {
       includeLocales: ['es']
     },
     rootURL: '/',
+    stripe: {
+      lazyLoad: true
+    },
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -75,6 +78,9 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV['stripe'] = {
+      publishableKey: 'pk_test_4JUWzeGkidllmepT1NL2dvG4'
+    }
   }
 
   if (environment === 'test') {
@@ -106,7 +112,10 @@ module.exports = function(environment) {
 			],
 			network: ['*'],
 			showCreateDate: true
-		};
+    };
+    ENV['stripe'] = {
+      publishableKey: process.env.STRIPE_PUBLISHABLE_KEY
+    }
   }
 
   return ENV;

@@ -1,0 +1,66 @@
+<ol class="breadcrumb">
+  <li>{{link-to 'Inicio' 'home'}}</li>
+  <li class="active">Servicios de dieta</li>
+</ol>
+
+<section class="premium-banner">
+  <div class="overlay-color">
+    <div class="container">
+      <div class="row">
+        <div class="premium-banner-info">
+          <div class="banner-text text-center">
+            <h1 class="white">ESCOGE UN TIPO DE SERVICIO</h1>
+            <p>Recibe una atención más personalizada con nuestras dietas personalizadas</p>
+            <p><a href="https://s3.eu-west-3.amazonaws.com/dieta-farma-files/Politica_devoluciones.pdf" target="_blank"><small>(Consulta nuestra política de devoluciones)</small></a></p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {{premium-services-steps currentStep=1}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="premium-packs">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-xs-12">
+        <div class="thumbnail">
+          <img class="image" src="{{image-path 'face-to-face-icon.png'}}" alt="imagen pack bronce">
+          <div class="caption-details">
+            <h3>Solicita 1 dieta presencial</h3>
+            <p class="price">{{get DIET_PRICES 'P'}} €</p>
+          </div>
+          <div class="caption-link">
+            <span {{action 'next' 'P'}}>{{fa-icon 'plus' size='8x'}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-xs-12">
+        <div class="thumbnail">
+          <img class="image" src="{{image-path 'skype-icon.png'}}" alt="imagen pack plata">
+          <div class="caption-details">
+            <h3>Solicita 1 dieta por videollamada (skype)</h3>
+            <p class="price">{{get DIET_PRICES 'V'}} €</p>
+          </div>
+          <div class="caption-link">
+            <span {{action 'next' 'V'}}>{{fa-icon 'plus' size='8x' fixedWidth=true}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-xs-12">
+        <div class="thumbnail">
+          <img  class="image"src="{{image-path 'device-icon.png'}}" alt="imagen pack oro">
+          <div class="caption-details">
+            <h3>Solicita 1 dieta online</h3>
+            <p class="price">{{get DIET_PRICES 'O'}} €</p>
+          </div>
+          <div class="caption-link">
+            <span {{action 'next' 'O'}}>{{fa-icon 'plus' size='8x'}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

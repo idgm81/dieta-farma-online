@@ -1,0 +1,10 @@
+<div class="premium-services-progress">
+  <div class="premium-services-progress-line" data-now-value="{{value}}" data-number-of-steps="{{stepsNumber}}" style="width: {{value}}%"></div>
+</div>
+{{#each steps as |step index|}}
+  <div class="premium-services-step {{if (lt index currentStep) 'active'}}">
+    <div class="premium-services-step-icon">{{fa-icon step.icon}}</div>
+    <p>{{step.name}}</p>
+  </div>
+{{/each}}
+

@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { get } from '@ember/object';
+import { computed }  from '@ember/object';
 import moment from 'moment';
 
 export default Controller.extend({
@@ -10,6 +11,12 @@ export default Controller.extend({
   session: service(),
 
   api: service(),
+
+  queryParams: ['type'],
+
+  dietType: computed('type', function() {
+    return this.get('i18n').t(`label.meet.${this.get('type') === 'P' ? 'face' : 'video'}`);
+  }),
 
   actions: {
 
@@ -27,22 +34,19 @@ export default Controller.extend({
     save() {
       const data = {
         customer: get(this, 'session.data.authenticated.id'),
-        type: this.get('bookType') === this.get('i18n').t('label.meet.face') ? 'P' : 'V',
+        type: this.get('type'),
         date: moment.parseZone(`${this.get('bookDay')} ${this.get('bookHour')}`).toISOString()
       };
 
       $('#modal-wait-new-appointment').modal();
 
       return this.get('api').createAppointment(data)
-        .then(() => $('#modal-new-appointment-ok').modal())
-        .catch(() => $('#modal-new-appointment-error').modal())
-        .finally(() => {
+        .then(() => {
           $('#modal-wait-new-appointment').modal('hide');
+          this.transitionToRoute('home.premium-services.questions');
         })
-    },
-
-    goToHome() {
-      this.replaceRoute('home.index');
+        .catch(() => $('#modal-new-appointment-error').modal())
+        .finally(() => $('#modal-wait-new-appointment').modal('hide'));
     }
   }
 });

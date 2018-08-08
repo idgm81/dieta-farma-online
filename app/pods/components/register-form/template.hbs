@@ -9,10 +9,9 @@
     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
       <form role="form" class="register">
         <h3>Rellena tus datos personales</h3>
-        <p>Con estos datos te ofreceremos un servicio personalizado que se adapte mejor a tus necesidades</p>
         <div class="register-steps">
           <div class="register-progress">
-            <div class="register-progress-line" data-now-value="10" data-number-of-steps="5" style="width: 10%;"></div>
+            <div class="register-progress-line" data-now-value="25" data-number-of-steps="2" style="width: 50%;"></div>
           </div>
           <div class="register-step active">
             <div class="register-step-icon">{{fa-icon 'key'}}</div>
@@ -22,20 +21,7 @@
             <div class="register-step-icon">{{fa-icon 'user'}}</div>
             <p>Perfil</p>
           </div>
-          <div class="register-step">
-            <div class="register-step-icon">{{fa-icon 'chart-area'}}</div>
-            <p>Medidas</p>
-          </div>
-          <div class="register-step">
-            <div class="register-step-icon">{{fa-icon 'utensils'}}</div>
-            <p>Dieta</p>
-          </div>
-          <div class="register-step">
-            <div class="register-step-icon">{{fa-icon 'bicycle'}}</div>
-            <p>Actividad</p>
-          </div>
         </div>
-
         <fieldset id="register-step-1">
           <h4>Tus datos de acceso:</h4>
           <div class="form-group">
@@ -44,7 +30,6 @@
               id='register-email'
               name='register-email'
               type='email'
-              required=true
               class='register-email form-control'
               autocomplete='off'
               value=data.email
@@ -58,7 +43,6 @@
               name='register-password'
               type='password'
               minlength='8'
-              required=true
               class='register-password form-control'
               autocomplete='off'
               value=data.password
@@ -83,6 +67,7 @@
               autocomplete='off'
               value=data.name
               placeholder='Nombre'}}
+            <small class="help-block with-errors"></small>
           </div>
           <div class="form-group">
             <label for="register-surname">Apellidos</label>
@@ -95,6 +80,7 @@
               autocomplete='off'
               value=data.surname
               placeholder='Apellidos'}}
+            <small class="help-block with-errors"></small>
           </div>
           <div class="form-group">
             <label for="register-birthday">Fecha de nacimiento</label>
@@ -127,7 +113,7 @@
                   class='form-control'
                   searchEnabled=false
                   selected=data.birthday.year
-                  options=(range 1936 2017)
+                  options=(range birthdayYear.min birthdayYear.max)
                   onchange=(action (mut data.birthday.year)) as |year|}}
                   {{year}}
                 {{/power-select}}
@@ -148,6 +134,32 @@
             </label>
           </div>
           <div class="form-group">
+            <label for="register-height">Altura</label>
+            {{input
+              id='register-measures-height'
+              name='register-measures-height'
+              type='text'
+              class='register-measures-height form-control'
+              autocomplete='off'
+              pattern='[1|2][0-9][0-9]'
+              value=data.measures.height
+              placeholder='Altura (cm)'}}
+            <small class="help-block with-errors"></small>
+          </div>
+          <div class="form-group">
+            <label for="register-weight">Peso</label>
+            {{input
+              id='register-measures-weight'
+              name='register-measures-weight'
+              type='text'
+              class='register-measures-weight form-control'
+              autocomplete='off'
+              pattern='[0-9]+([\.][0-9]+)?'
+              value=data.measures.weight
+              placeholder='Peso (kg)'}}
+            <small class="help-block with-errors"></small>
+          </div>
+          <div class="form-group">
             <label for="register-phone">Teléfono de contacto</label>
             {{input
               id='register-phone'
@@ -159,722 +171,9 @@
               value=data.phone
               placeholder='Teléfono de contacto'}}
           </div>
-          <div class="register-buttons">
-            <button type="button" class="btn btn-previous" {{action 'previousStep'}}>Anterior</button>
-            <button type="button" class="btn btn-next"{{action 'saveStep'}}>Siguiente</button>
-          </div>
-        </fieldset>
-
-        <fieldset id="register-step-3">
-          <h4>Tus medidas:</h4>
           <div class="form-group">
-            <label for="register-height">Altura</label>
-            {{input
-              id='register-measures-height'
-              name='register-measures-height'
-              type='text'
-              class='register-measures-height form-control'
-              maxlength='3'
-              autocomplete='off'
-              value=data.measures.height
-              placeholder='Altura (cm)'}}
-          </div>
-          <div class="form-group">
-            <label for="register-weight">Peso</label>
-            {{input
-              id='register-measures-weight'
-              name='register-measures-weight'
-              type='text'
-              class='register-measures-weight form-control'
-              maxlength='3'
-              autocomplete='off'
-              value=data.measures.weight
-              placeholder='Peso (kg)'}}
-          </div>
-          <div class="form-group">
-            <p>Si anteriormente acudiste a una consulta y conoces tus medidas antropométricas, por favor indícanoslas <a href="#measures" data-toggle="collapse">aquí.</a></p>
-            <p>(Si tienes curiosidad por cómo se toman estas medidas, puedes mirar este<a href="https://www.youtube.com/watch?v=SKV4DLq6aps" target="_blank"> video)</a></p>
-            <div id="measures" class="collapse">
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <label for="register-measures-imc">IMC</label>
-                    {{input
-                      id='register-measures-imc'
-                      name='register-measures-imc'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-imc form-control'
-                      autocomplete='off'
-                      value=data.measures.imc}}
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="register-measures-fat">Grasa (%)</label>
-                    {{input
-                      id='register-measures-fat'
-                      name='register-measures-fat'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-fat form-control'
-                      autocomplete='off'
-                      value=data.measures.fat}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <label for="register-measures-water">Agua (%)</label>
-                    {{input
-                      id='register-measures-water'
-                      name='register-measures-water'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-water form-control'
-                      autocomplete='off'
-                      value=data.measures.water}}
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="register-shapes-mass">Masa muscular (kg)</label>
-                    {{input
-                      id='register-measures-mass'
-                      name='register-measures-mass'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-mass form-control'
-                      autocomplete='off'
-                      value=data.measures.mass}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <label for="register-shapes-biotype">Biotipo o complexión (1-9)</label>
-                    {{input
-                      id='register-measures-biotype'
-                      name='register-measures-biotype'
-                      type='text'
-                      maxlength='1'
-                      class='register-measures-biotype form-control'
-                      autocomplete='off'
-                      value=data.measures.biotype}}
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="register-measures-bone-mass">Masa ósea (kg)</label>
-                    {{input
-                      id='register-measures-bone-mass'
-                      name='register-measures-bone-mass'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-bone-mass form-control'
-                      autocomplete='off'
-                      value=data.measures.boneMass}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <label for="register-measures-metabolic-expense">Gasto metabólico basal (kcal)</label>
-                    {{input
-                      id='register-measures-metabolic-expense'
-                      name='register-measures-metabolic-expense'
-                      type='text'
-                      maxlength='4'
-                      class='register-measures-metabolic-expense form-control'
-                      autocomplete='off'
-                      value=data.measures.metabolicExpense}}
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="register-measures-metabolic-age">Edad metabólica</label>
-                    {{input
-                      id='register-measures-metabolic-age'
-                      name='register-measures-metabolic-age'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-metabolic-age form-control'
-                      autocomplete='off'
-                      value=data.measures.metabolicAge}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-12">
-                    <label for="register-measures-visceral-fat">Nivel de grasa visceral (1-12 ó 13-59)</label>
-                    {{input
-                      id='register-measures-visceral-fat'
-                      name='register-measures-visceral-fat'
-                      type='text'
-                      maxlength='2'
-                      class='register-measures-visceral-fat form-control'
-                      autocomplete='off'
-                      value=data.measures.visceralFat}}
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <h5>Segmentos</h5>
-                <h6>Brazo izq.</h6>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <label for="register-measures-segments-leftArm-fatPercentage">Porcentaje grasa (%)</label>
-                    {{input
-                      id='register-measures-segments-leftArm-fatPercentage'
-                      name='register-measures-segments-leftArm-fatPercentage'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-segments-leftArm-fatPercentage form-control'
-                      autocomplete='off'
-                      value=data.measures.segments.arm.left.fatPercentage}}
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="register-measures-segments-leftArm-mass">Masa muscular (kg)</label>
-                    {{input
-                      id='register-measures-segments-leftArm-mass'
-                      name='register-measures-segments-leftArm-mass'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-segments-leftArm-mass form-control'
-                      autocomplete='off'
-                      value=data.measures.segments.arm.left.mass}}
-                  </div>
-                </div>
-                <h6>Brazo dcho.</h6>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <label for="register-measures-segments-rightArm-fatPercentage">Porcentaje grasa (%)</label>
-                    {{input
-                      id='register-measures-segments-rightArm-fatPercentage'
-                      name='register-measures-segments-rightArm-fatPercentage'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-segments-rightArm-fatPercentage form-control'
-                      autocomplete='off'
-                      value=data.measures.segments.arm.right.fatPercentage}}
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="register-measures-segments-rightArm-mass">Masa muscular (kg)</label>
-                    {{input
-                      id='register-measures-segments-rightArm-mass'
-                      name='register-measures-segments-rightArm-mass'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-segments-rightArm-mass form-control'
-                      autocomplete='off'
-                      value=data.measures.segments.arm.right.mass}}
-                  </div>
-                </div>
-                <h6>Pierna izq.</h6>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <label for="register-measures-segments-leftLeg-fatPercentage">Porcentaje grasa (%)</label>
-                    {{input
-                      id='register-measures-segments-leftLeg-fatPercentage'
-                      name='register-measures-segments-leftLeg-fatPercentage'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-segments-leftLeg-fatPercentage form-control'
-                      autocomplete='off'
-                      value=data.measures.segments.leg.left.fatPercentage}}
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="register-measures-segments-leftLeg-mass">Masa muscular (kg)</label>
-                    {{input
-                      id='register-measures-segments-leftLeg-mass'
-                      name='register-measures-segments-leftLeg-mass'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-segments-leftLeg-mass form-control'
-                      autocomplete='off'
-                      value=data.measures.segments.leg.left.mass}}
-                  </div>
-                </div>
-                <h6>Pierna dcha.</h6>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <label for="register-measures-segments-rightLeg-fatPercentage">Porcentaje grasa (%)</label>
-                    {{input
-                      id='register-measures-segments-rightLeg-fatPercentage'
-                      name='register-measures-segments-rightLeg-fatPercentage'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-segments-rightLeg-fatPercentage form-control'
-                      autocomplete='off'
-                      value=data.measures.segments.leg.right.fatPercentage}}
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="register-measures-segments-rightLeg-mass">Masa muscular (kg)</label>
-                    {{input
-                      id='register-measures-segments-rightLeg-mass'
-                      name='register-measures-segments-rightLeg-mass'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-segments-rightLeg-mass form-control'
-                      autocomplete='off'
-                      value=data.measures.segments.leg.right.mass}}
-                  </div>
-                </div>
-                <h6>Tronco</h6>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <label for="register-measures-segments-trunk-fatPercentage">Porcentaje grasa (%)</label>
-                    {{input
-                      id='register-measures-segments-trunk-fatPercentage'
-                      name='register-measures-segments-trunk-fatPercentage'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-segments-trunk-fatPercentage form-control'
-                      autocomplete='off'
-                      value=data.measures.segments.trunk.fatPercentage}}
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="register-measures-segments-trunk-mass">Masa muscular (kg)</label>
-                    {{input
-                      id='register-measures-segments-trunk-mass'
-                      name='register-measures-segments-trunk-mass'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-segments-trunk-mass form-control'
-                      autocomplete='off'
-                      value=data.measures.segments.trunk.mass}}
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <h5>Contornos (cm)</h5>
-                <div class="row">
-                  <div class="col-xs-4">
-                    <label for="register-measures-shapes-wrist">Muñeca</label>
-                    {{input
-                      id='register-measures-shapes-wrist'
-                      name='register-measures-shapes-wrist'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-shapes-wrist form-control'
-                      autocomplete='off'
-                      value=data.measures.shapes.wrist}}
-                  </div>
-                  <div class="col-xs-4">
-                    <label for="register-measures-shapes-waist">Cintura</label>
-                    {{input
-                      id='register-measures-shapes-waist'
-                      name='register-measures-shapes-waist'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-shapes-waist form-control'
-                      autocomplete='off'
-                      value=data.measures.shapes.waist}}
-                  </div>
-                  <div class="col-xs-4">
-                    <label for="register-measures-shapes-hip">Cadera</label>
-                    {{input
-                      id='register-measures-shapes-hip'
-                      name='register-measures-shapes-hip'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-shapes-hip form-control'
-                      autocomplete='off'
-                      value=data.measures.shapes.hip}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-4">
-                    <label for="register-measures-shapes-arm">Brazo</label>
-                    {{input
-                      id='register-measures-shapes-arm'
-                      name='register-measures-shapes-arm'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-shapes-arm form-control'
-                      autocomplete='off'
-                      value=data.measures.shapes.arm}}
-                  </div>
-                  <div class="col-xs-4">
-                    <label for="register-measures-shapes-leg">Pierna</label>
-                    {{input
-                      id='register-measures-shapes-leg'
-                      name='register-measures-shapes-leg'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-shapes-leg form-control'
-                      autocomplete='off'
-                      value=data.measures.shapes.leg}}
-                  </div>
-                  <div class="col-xs-4">
-                    <label for="register-measures-shapes-chest">Torax</label>
-                    {{input
-                      id='register-measures-shapes-chest'
-                      name='register-measures-shapes-chest'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-shapes-chest form-control'
-                      autocomplete='off'
-                      value=data.measures.shapes.chest}}
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <h5>Pliegues corporales para deportistas de alto rendimiento (mm)</h5>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <label for="register-measures-creases-bicipital">Bicipital</label>
-                    {{input
-                      id='register-measures-creases-bicipital'
-                      name='register-measures-creases-bicipital'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-creases-bicipital form-control'
-                      autocomplete='off'
-                      value=data.measures.creases.bicipital}}
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="register-measures-creases-tricipital">Tricipital</label>
-                    {{input
-                      id='register-measures-creases-tricipital'
-                      name='register-measures-creases-tricipital'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-creases-tricipital form-control'
-                      autocomplete='off'
-                      value=data.measures.creases.tricipital}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <label for="register-measures-creases-subescapular">Subescapular</label>
-                    {{input
-                      id='register-measures-creases-subescapular'
-                      name='register-measures-creases-subescapular'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-creases-subescapular form-control'
-                      autocomplete='off'
-                      value=data.measures.creases.subescapular}}
-                  </div>
-                  <div class="col-xs-6">
-                    <label for="register-measures-creases-suprailiaco">Suprailiaco</label>
-                    {{input
-                      id='register-measures-creases-suprailiaco'
-                      name='register-measures-creases-suprailiaco'
-                      type='text'
-                      maxlength='3'
-                      class='register-measures-creases-suprailiaco form-control'
-                      autocomplete='off'
-                      value=data.measures.creases.suprailiaco}}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="register-buttons">
-            <button type="button" class="btn btn-previous" onclick={{action 'previousStep'}}>Anterior</button>
-            <button type="button" class="btn btn-next" onclick={{action 'saveStep'}}>Siguiente</button>
-          </div>
-        </fieldset>
-
-        <fieldset id="register-step-4">
-          <h4>Tus hábitos de alimentación:</h4>
-          <div class="form-group">
-            <label for="register-objective">¿Cuál es tu objetivo principal para empezar una dieta?</label>
-            {{#power-select
-              id='register-objectives'
-              searchEnabled=false
-              selected=data.objective
-              options=objectives
-              onchange=(action (mut data.objective)) as |obj|}}
-              {{obj}}
-            {{/power-select}}
-          </div>
-          <div class="form-group">
-            <label for="register-reason">¿Y el motivo?</label>
-            {{#power-select
-              id='register-reasons'
-              searchEnabled=false
-              selected=data.reason
-              options=reasons
-              onchange=(action (mut data.reason)) as |reason|}}
-              {{reason}}
-            {{/power-select}}
-          </div>
-          <div class="form-group">
-            <label for="register-food-diseases">¿Padeces alguna alergia o intolerancia alimentaria? ¿Cuál?</label>
-            {{textarea
-              id='register-food-disease'
-              name='register-food-disease'
-              class='register-food-disease form-control'
-              rows='2'
-              value=data.foodDiseases}}
-          </div>
-          <div class="form-group">
-            <label for="register-food-forbidden">¿Qué alimentos son los que más te gustan?</label>
-            {{textarea
-              id='register-food-favourite'
-              name='register-food-favourite'
-              class='register-food-favourite form-control'
-              rows='2'
-              value=data.foodFavourite}}
-          </div>
-          <div class="form-group">
-            <label for="register-food-forbidden">¿Qué alimento/s no te gusta/n nada, no quieres o no puedes consumir?</label>
-            {{textarea
-              id='register-food-forbidden'
-              name='register-food-forbidden'
-              class='register-food-forbidden form-control'
-              rows='2'
-              value=data.foodForbidden}}
-          </div>
-          <div class="form-group">
-            <label for="register-diet-type">¿Prefieres una dieta muy variada o menos variada porque haces la compra cada 7-10 días?</label>
-            {{#power-select
-              id='register-diet-type'
-              searchEnabled=false
-              selected=data.dietType
-              options=dietTypes
-              onchange=(action (mut data.dietType)) as |type|}}
-              {{type}}
-            {{/power-select}}
-          </div>
-          <div class="form-group">
-            {{input type='checkbox' id='checkInjuries' name='checkInjuries' checked=data.checkInjury}}
-            <label for="checkInjuries">No sufro ninguna otra patología que me impida o desaconseje hacer dieta para perder peso</label>
-          </div>
-          <div class="form-group">
-            <label for="register-diet-description">Describe un día normal en tu dieta, cuantas comidas, cada cuantas horas, detalla alimentos que componen platos combinados</label>
-            <div class="table-responsive">
-              <table class="table table-bordered table-condensed" cellpadding="0" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th>Número de comida</th>
-                    <th>Hora (HH:MM)</th>
-                    <th>Alimentos y cantidad ingerida</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each (range 1 6) as |row|}}
-                    <tr>
-                      <td style="width: 20%;"><input type="text" class="form-control" value={{row}}></td>
-                      <td style="width: 20%;"><input type="text" class="form-control"></td>
-                      <td><input type="text" class="form-control"></td>
-                    </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <h5>¿Qué tipo de alimentos consumes?¿Con qué frecuencia?</h5>
-          <div class="form-group">
-            <p>Frutas enteras (no zumo) verduras u hortalizas</p>
-            {{#power-select
-              id='optFruit'
-              searchEnabled=false
-              selected=data.dayFruit
-              options=foodFrecuencies
-              onchange=(action (mut data.dayFruit)) as |frec|}}
-              {{frec}}
-            {{/power-select}}
-          </div>
-          <div class="form-group">
-            <p>Lácteos</p>
-            {{#power-select
-              id='optMilk'
-              searchEnabled=false
-              selected=data.dayMilk
-              options=foodFrecuencies
-              onchange=(action (mut data.dayMilk)) as |frec|}}
-              {{frec}}
-            {{/power-select}}
-          </div>
-          <div class="form-group">
-            <p>Cereales y frutos secos</p>
-            {{#power-select
-              id='optCereals'
-              searchEnabled=false
-              selected=data.dayCereals
-              options=foodFrecuencies
-              onchange=(action (mut data.dayCereals)) as |frec|}}
-              {{frec}}
-            {{/power-select}}
-          </div>
-          <div class="form-group">
-            <p>Carne, pescado y huevos</p>
-            {{#power-select
-              id='optProteins'
-              searchEnabled=false
-              selected=data.dayProteins
-              options=foodFrecuencies
-              onchange=(action (mut data.dayProteins)) as |frec|}}
-              {{frec}}
-            {{/power-select}}
-          </div>
-          <div class="form-group">
-            <p>¿Cocinas para ti mismo o te preparan la comida?</p>
-            <label for="optSelfCook1" class="radio-inline">
-              {{radio-button id='optSelfCook1' name='optSelfCook' value=true checked=data.selfCook}}
-              <span>Sí, cocino</span>
-              <div class="radio-checked"></div>
-            </label>
-            <label for="optSelfCook2" class="radio-inline">
-              {{radio-button id='optSelfCook2' name='optSelfCook' value=false checked=data.selfCook}}
-              <span>No, me la preparan</span>
-              <div class="radio-checked"></div>
-            </label>
-          </div>
-          <div class="form-group">
-            <p>¿Has practicado alguna dieta en el pasado?</p>
-            <label for="optReceiveDietsBefore1" class="radio-inline">
-              {{radio-button id='optReceiveDietsBefore1' name='optReceiveDietsBefore' value=true checked=data.receiveDietsBefore}}
-              <span>Sí</span>
-              <div class="radio-checked"></div>
-            </label>
-            <label for="optReceiveDietsBefore2" class="radio-inline">
-              {{radio-button id='optReceiveDietsBefore2' name='optReceiveDietsBefore' value=false checked=data.receiveDietsBefore}}
-              <span>No</span>
-              <div class="radio-checked"></div>
-            </label>
-          </div>
-          <div class="form-group">
-            <p>¿Alguna de ellas bajo supervisión de un profesional?</p>
-            {{#power-select
-              id='register-supervisor'
-              searchEnabled=false
-              selected=data.supervisor
-              options=otherSupevisors
-              onchange=(action (mut data.supervisor)) as |superv|}}
-              {{superv}}
-            {{/power-select}}
-          </div>
-          <div class="form-group">
-            <label for="register-supervisor-detail">¿Dónde y con quién?</label>
-            {{textarea
-              id='register-supervisor-detail'
-              name='rregister-supervisor-detail'
-              class='rregister-supervisor-detail form-control'
-              rows='2'
-              value=data.supervisorDetail}}
-          </div>
-          <div class="register-buttons">
-            <button type="button" class="btn btn-previous" onclick={{action 'previousStep'}}>Anterior</button>
-            <button type="button" class="btn btn-next" onclick={{action 'saveStep'}}>Siguiente</button>
-          </div>
-        </fieldset>
-
-        <fieldset id="register-step-5">
-          <h4>Tu actividad física:</h4>
-          <div class="form-group">
-            <p>¿Trabajas actualmente?</p>
-            <label for="optIsEmployed1" class="radio-inline">
-              {{radio-button id='optIsEmployed1' name='optIsEmployed' value=true checked=data.isEmployed}}
-              <span>Sí</span>
-              <div class="radio-checked"></div>
-            </label>
-            <label for="optIsEmployed2" class="radio-inline">
-              {{radio-button id='optIsEmployed2' name='optIsEmployed' value=false checked=data.isEmployed}}
-              <span>No</span>
-              <div class="radio-checked"></div></label>
-          </div>
-          <div class="form-group">
-            <label for="register-employment-type">¿Cómo defines tu tipo de trabajo?</label>
-            {{#power-select
-              id='register-employment-type'
-              searchEnabled=false
-              selected=data.employmentType
-              options=employmentTypes
-              onchange=(action (mut data.employmentType)) as |type|}}
-              {{type}}
-            {{/power-select}}
-          </div>
-          <div class="form-group">
-            <label for="register-transport-type">¿Cómo sueles desplazarte?</label>
-            {{#power-select
-              id='register-transport-type'
-              searchEnabled=false
-              selected=data.transportType
-              options=transportTypes
-              onchange=(action (mut data.transportType)) as |type|}}
-              {{type}}
-            {{/power-select}}
-          </div>
-          <div class="form-group">
-            <p>¿Practicas ejercicio o has practicado en el pasado?</p>
-            <label for="optDoExercise1" class="radio-inline">
-              {{radio-button id='optDoExercise1' name='optDoExercise' value=true checked=data.doExercise}}
-              <span>Sí</span>
-              <div class="radio-checked"></div>
-            </label>
-            <label for="optDoExercise2" class="radio-inline">
-              {{radio-button id='optDoExercise2' name='optDoExercise' value=false checked=data.doExercise}}
-              <span>No</span>
-              <div class="radio-checked"></div>
-            </label>
-          </div>
-          <div class="form-group">
-            <p>¿Cuál, cuánto tiempo por sesión y con cuanta frecuencia semanal?</p>
-            <div class="row">
-              <div class="col-xs-6">
-                {{textarea
-                  id='register-sport-detail'
-                  name='register-sport-detail'
-                  class='register-sport-detail form-control'
-                  rows=2
-                  value=data.sportDetail}}
-              </div>
-              <div class="col-xs-6">
-                {{#power-select
-                  id='register-exercise-frecuency'
-                  searchEnabled=false
-                  selected=data.exerciseFrecuency
-                  options=exerciseFrecuencies
-                  onchange=(action (mut data.exerciseFrecuency)) as |frecuency|}}
-                  {{frecuency}}
-                {{/power-select}}
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <p>¿Estarías dispuesto a aumentar tu actividad o ejercicio físico?</p>
-            <label for="optIncreaseActivity1" class="radio-inline">
-              {{radio-button id='optIncreaseActivity1' name='optIncreaseActivity' value=true checked=data.increaseActivity}}
-              <span>Sí</span>
-              <div class="radio-checked"></div>
-            </label>
-            <label for="optIncreaseActivity2" class="radio-inline">
-              {{radio-button id='optIncreaseActivity2' name='optIncreaseActivity' value=false checked=data.increaseActivity}}
-              <span>No</span>
-              <div class="radio-checked"></div>
-            </label>
-          </div>
-          <div class="form-group">
-            <label for="register-injuries">¿Tienes lesiones que te impidan realizar alguna actividad concreta?</label>
-            {{textarea
-              id='register-injuries'
-              name='register-injuries'
-              class='register-injuries form-control'
-              rows=2
-              value=data.injuries}}
-          </div>
-          <div class="form-group">
-            <p>¿Deseas recibir información sobre entrenamiento personal?</p>
-            <label for="optTrainingInfo1" class="radio-inline">
-              {{radio-button id='optTrainingInfo1' name='optTrainingInfo' value=true checked=data.receiveTrainingInfo}}
-              <span>Sí</span>
-              <div class="radio-checked"></div>
-            </label>
-            <label for="optTrainingInfo2" class="radio-inline">
-              {{radio-button id='optTrainingInfo2' name='optTrainingInfo' value=false checked=data.receiveTrainingInfo}}
-              <span>No</span>
-              <div class="radio-checked"></div>
-            </label>
-          </div>
-          <div class="form-group">
-            <p>¿Estás interesado en recibir de manera gratuita consejos sobre suplementación dietética?</p>
-            <label for="optSupplementInfo1" class="radio-inline">
-              {{radio-button id='optSupplementInfo1' name='optSupplementInfo' value=true checked=data.receiveSupplementInfo}}
-              <span>Sí</span>
-              <div class="radio-checked"></div>
-            </label>
-            <label for="optSupplementInfo2" class="radio-inline">
-              {{radio-button id='optSupplementInfo2' name='optSupplementInfo' value=false checked=data.receiveSupplementInfo}}
-              <span>No</span>
-              <div class="radio-checked"></div>
-            </label>
-          </div>
-          <div class="form-group">
-            {{input type='checkbox' id='checkTerms' name='checkTerms' checked=data.terms required=true}}
-            <label for="checkTerms">Acepto que mis datos personales puedan ser utilizados con fines comerciales</label>
+            {{input type='checkbox' id='checkTerms' name='checkTerms' checked=data.terms}}
+            <label for='checkTerms'>Acepto que mis datos personales puedan ser utilizados con fines comerciales</label>
             <small><a href="https://s3.eu-west-3.amazonaws.com/dieta-farma-files/Politica-proteccion-datos.pdf" target="_blank">Consulta nuestra política de protección de datos</a></small>
           </div>
           <small class="help-block with-errors"></small>

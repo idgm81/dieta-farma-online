@@ -1,7 +1,9 @@
-import Component from "@ember/component";
-import { inject as service } from "@ember/service";
-import { run } from "@ember/runloop";
-import { setProperties } from "@ember/object";
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { scheduleOnce } from '@ember/runloop';
+import { setProperties } from '@ember/object';
+import moment from 'moment';
+import $ from 'jquery';
 
 export default Component.extend({
 
@@ -9,23 +11,12 @@ export default Component.extend({
 
   classNames: ['dt-register-page', 'top-content'],
 
+  birthdayYear: {
+    min: 1936,
+    max: moment().year() 
+  },
+
   data: {},
-
-  dietTypes: ['Muy variada', 'Menos variada'],
-
-  objectives: ['Pérdida de peso', 'Ganancia de peso', 'Mantenimiento', 'Mejorar composición corporal', 'Otro'],
-
-  reasons: ['Salud', 'Estética', 'Competición', 'Otro'],
-
-  foodFrecuencies: ['Diario', 'Semanal', 'Mensual', 'Nunca'],
-
-  otherSupevisors: ['Médico', 'Nutricionista', 'Farmacéutico', 'Entrenador', 'Otro'],
-
-  employmentTypes: ['Sendentario', 'Activo'],
-
-  transportTypes: ['A pie', 'Coche o moto', 'Bicicleta', 'Transporte público'],
-
-  exerciseFrecuencies: ['De 1 a 3 horas', 'De 3 a 6 horas', 'De 9 a 12 horas', 'Más de 12 horas'],
 
   hasError: false,
 
@@ -34,105 +25,22 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    run.scheduleOnce('afterRender', this, function() {
-      this.$('.register fieldset:first').fadeIn('slow');
-      this.$('form.register').find('fieldset').each((index, element) => {
-        if (index > 0) {
-          $(element).find('input, textarea, select').each((index, el) => {
-            $(el).attr('data-validate', 'false');
-          });
-        }
-      });
-
-      $('input[name="checkTerms"]').attr('data-validate', 'true');
-
+    scheduleOnce('afterRender', this, () => {
+      $('.register fieldset:first').fadeIn('slow');
       setProperties(this.get('data'), {
         birthday: { day: 1, month: 1, year: 1970 },
         genre: 'female',
         measures: {
           height: '',
-          weight: '',
-          imc: '',
-          fat: '',
-          water: '',
-          mass: '',
-          biotype: '',
-          boneMass: '',
-          metabolicExpense: '',
-          metabolicAge: '',
-          visceralFat: '',
-          creases: {
-            bicipital: '',
-            tricipital: '',
-            subescapular: '',
-            suprailiaco: ''
-          },
-          segments: {
-            arm: {
-              left: {
-                fatPercentage: '',
-                mass: ''
-              },
-              right: {
-                fatPercentage: '',
-                mass: ''
-              }
-            },
-            leg: {
-              left: {
-                fatPercentage: '',
-                mass: ''
-              },
-              right: {
-                fatPercentage: '',
-                mass: ''
-              }
-            },
-            trunk: {
-              fatPercentage: '',
-              mass: ''
-            }
-          },
-          shapes: {
-            wrist: '',
-            waist: '',
-            hip: '',
-            arm: '',
-            leg: '',
-            chest: ''
-          }
+          weight: ''
         },
-        objective: this.get('objectives.4'),
-        reason: this.get('reasons.3'),
-        foodDiseases: '',
-        foodForbidden: '',
-        foodFavourite: '',
-        dietType: this.get('dietTypes.0'),
-        dayFruit: this.get('foodFrecuencies.3'),
-        dayMilk: this.get('foodFrecuencies.3'),
-        dayCereals: this.get('foodFrecuencies.3'),
-        dayProteins: this.get('foodFrecuencies.3'),
-        selfCook: false,
-        receiveDietsBefore: false,
-        supervisor: this.get('otherSupevisors.4'),
-        supervisorDetail: '',
-        isEmployed: false,
-        employmentType: this.get('employmentTypes.0'),
-        transportType: this.get('transportTypes.0'),
-        doExercise: false,
-        sportDetail: '',
-        exerciseFrecuency: this.get('exerciseFrecuencies.0'),
-        increaseActivity: false,
-        injuries: '',
-        receiveTrainingInfo: false,
-        receiveSupplementInfo: false,
+        phone: ''
       });
 
-      this.$('form.register').validator();
-      this.$('form.register').on('invalid.bs.validator', this._showError);
-      this.$('form.register').on('valid.bs.validator', this._hideError);
-      this.$('#end-register-modal-success').modal({ backdrop: 'static', keyboard: false, show: false});
-      this.$('#end-register-modal-error').modal({ backdrop: 'static', keyboard: false, show: false});
+      $('form.register').on('invalid.bs.validator', this._showError);
+      $('form.register').on('valid.bs.validator', this._hideError);
+      $('#end-register-modal-success').modal({ backdrop: 'static', keyboard: false, show: false});
+      $('#end-register-modal-error').modal({ backdrop: 'static', keyboard: false, show: false});
     });
   },
 
@@ -166,7 +74,12 @@ export default Component.extend({
   },
 
   _checkFormErrors() {
-    const errors = this.$('form.register').find('input, textarea, select').filter((index, element) =>
+    const formFields = $(`#register-step-${this.get('step')}`).find('input');
+    formFields.attr('data-validate', 'true');
+    formFields.attr('required', 'true');
+
+    $('form.register').validator('validate');
+    const errors = $('form.register').find('input, textarea, select').filter((index, element) =>
       $(element).hasClass('field-error')
     );
 
@@ -214,7 +127,7 @@ export default Component.extend({
         const current_active_step = $('form.register').find('.register-step.active');
         const progress_line = $('form.register').find('.register-progress-line');
 
-        if (Number(step) < 5) {
+        if (Number(step) < 2) {
           this.incrementProperty('step');
           $(parent_fieldset).fadeOut(() => {
             // change icons
@@ -224,7 +137,7 @@ export default Component.extend({
             // show next step
             $(parent_fieldset).next().fadeIn();
             // scroll window to beginning of the form
-            this._scrollToClass( $('.register'), 20 );
+            this._scrollToClass($('.register'), 20 );
           });
         } else {
           this.sendAction('onsumit');
@@ -233,8 +146,11 @@ export default Component.extend({
     },
 
     register() {
-      if (Number(this.get('step')) === 5) {
-        this.sendAction('onsubmit', this.get('data'));
+      if (Number(this.get('step')) === 2) {
+        this._checkFormErrors();
+        if (!this.get('hasError')) {
+          this.sendAction('onsubmit', this.get('data'));
+        }
       }
     },
 

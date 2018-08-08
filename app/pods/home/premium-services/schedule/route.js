@@ -11,18 +11,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   i18n: service(),
 
-  beforeModel(transition) {
-    this._super(...arguments);
-
-    const isPremium = get(this, 'session.data.authenticated.isPremium');
-        
-    if (!isPremium) {
-      return this.transitionTo('home.index')
-    }
-
-    return transition;
-  },
-
   model() {
     return this.get('api').getAvailableDates(get(this, 'session.data.authenticated.id'));
   },

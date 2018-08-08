@@ -53,36 +53,6 @@
   </div>
 </div>
 
-{{#if isPremium}}
-  <div class="container">
-    <div class="panel panel-df">
-    <div class="panel-heading">
-      <h4 class="panel-title">{{t 'label.purchase.header'}}</h4>
-    </div>
-      <div class="panel-body">
-        <table class="table personal-data">
-          <thead>
-            <tr>
-              <th>{{t 'label.date'}}</th>
-              <th>{{t 'label.dietType'}}</th>
-              <th>{{t 'label.amount'}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.purchases as |purchase|}}
-              <tr>
-                <td>{{moment-parse-zone purchase.date 'HH:mm'}}</td>
-                <td>{{translate-meet-type purchase.type}}</td>
-                <td>{{purchase.price}} €</td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-{{/if}}
-
 {{avatar-modal id='modal-edit-avatar' avatar=avatar onsave='saveAvatar'}}
 
 {{profile-modal id='modal-edit-profile' field=field value=value onsave='saveProfile'}}

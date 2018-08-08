@@ -1,17 +1,55 @@
+$color-dietafarma: #25a29f;
+
 .premium-banner {
   background: url(../assets/images/backgrounds/premium.jpg) no-repeat fixed center;
   background-size: cover;
-  min-height: 420px;
+  min-height: 360px;
   position: relative;
+
+  .premium-banner-info {
+    padding-top: 20px;
+    a {
+      color: #fff;
+    }
+  }
+
+  &.schedule,  &.checkout {
+    min-height: 500px;
+  }
 
   .overlay-color {
     background-color: rgba(13, 70, 83, 0.78);
-    min-height: 420px;
+    min-height: 360px;
+    &.schedule, &.checkout {
+      min-height: 100vh;
+    }
   }
 
   .full-overlay-color {
     background-color: rgba(13, 70, 83, 0.78);
     min-height: 100vh;
+  }
+
+  fieldset {
+    border: 1px solid #fff;
+    padding: 15px;
+    border-radius: 6px;
+  
+    legend {
+      margin: 0 auto;
+      padding: 0 10px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+      background-color: transparent;
+      width: auto;
+      border-bottom: none;
+    }
+
+    label {
+      color: white;
+    }
   }
 }
 
@@ -47,6 +85,7 @@
     h3 {
       color: white;
       text-align: center;
+      font-size: 18px;
     }
 
     .image {
@@ -63,6 +102,7 @@
     }
 
     .caption-link {
+      cursor: pointer;
       color: white;
       transition: .5s ease;
       opacity: 0;
@@ -83,5 +123,141 @@
     }
   }
 }
+
+.premium-services-steps {
+  overflow: hidden;
+  position: relative;
+  margin-top: 20px;
+}
+
+.premium-services-progress {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ddd;
+}
+
+.premium-services-progress-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: $color-dietafarma;
+}
+
+.premium-services-step {
+  position: relative;
+  float: left;
+  width: 33%;
+  padding: 0 5px;
+  font-size: 12px;
+  font-weight: 300;
+  color: #888;
+  line-height: 18px;
+  text-align: center;
+}
+
+.premium-services-step-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-top: 4px;
+  background: #ddd;
+  font-size: 16px;
+  color: #fff;
+  line-height: 40px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.premium-services-step {
+  &.completed .premium-services-step-icon {
+    background: #fff;
+    border: 1px solid $color-dietafarma;
+    color: $color-dietafarma;
+    line-height: 38px;
+  }
+
+  &.active .premium-services-step-icon {
+    width: 48px;
+    height: 48px;
+    margin-top: 0;
+    background: $color-dietafarma;
+    font-size: 22px;
+    line-height: 48px;
+  }
+
+  p {
+    color: #ccc;
+  }
+
+  &.completed p, &.active p {
+    color: $color-dietafarma;
+  }
+}
+
+.empty {
+  height: 50px;
+  background: transparent;
+}
+
+.stripe * {
+  font-family: 'Open Sans';
+  font-size: 16px;
+  font-weight: 400;
+  color: grey;
+}
+
+.stripe {
+  fieldset {
+    min-height: 360px;
+    &.payment-result {
+      color: white;
+    }
+  }
+}
+
+.stripe label {
+  width: 100%;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ember-stripe-element {
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 10px 12px;
+  line-height: 1em;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.checkout-error {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 10px 0 10px 0;
+  color: #E25950;
+  svg {
+    font-size: 1em;
+    path {
+      color: #E25950;
+    }
+  }
+}
+
+.submit-button {
+  margin-top: 40px;
+}
+
 
 

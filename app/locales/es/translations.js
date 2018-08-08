@@ -1,6 +1,7 @@
 export default {
   "error": {
-    "generic": "Servicio no disponible"
+    "generic": "Servicio no disponible",
+    "payment": "Se ha producido un error al realizar el pago. Por favor contacte con soporte@dietafarma.es"
   },
   "label": {
     "amount": "Importe",
@@ -54,6 +55,7 @@ export default {
     },
     "checking": "Comprobando...",
     "loading": "Cargando...",
+    "paymentSuccess": "El pago se ha realizado correctamente",
     "public": {
       "aboutMe": {
         "title": "\"Soy farmacéutico de profesión, nutricionista por vocación, y entrenador por devoción\"",

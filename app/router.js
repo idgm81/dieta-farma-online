@@ -10,29 +10,25 @@ Router.map(function() {
   this.route('change-password');
   this.route('error-page', { path: '*path'});
   this.route('home', function() {
-    this.route('calendar', function() {
-      this.route('edit', { path: '/edit/:id' });
-      this.route('new');
-    });
+    this.route('calendar');
     this.route('clients', function() {
       this.route('client', { path: ':id' });
     });
     this.route('diets', function() {
       this.route('edit', { path: '/edit/:id' });
-      this.route('new');
-      this.route('request');
     });
     this.route('threads', function() {
       this.route('new');
       this.route('thread', { path: ':id' });
     });
+    this.route('premium-services', { path: '/premium' }, function() {
+      this.route('schedule');
+      this.route('questions');
+      this.route('checkout');
+    });
     this.route('profile', { path: '/profile/:id'});
   });
   this.route('login');
-  this.route('premium', function() {
-    this.route('success');
-    this.route('error');
-  });
   this.route('register');
   this.route('reset-password');
 });

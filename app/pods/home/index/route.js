@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import { isPresent } from '@ember/utils';
+import { get } from '@ember/object';
 import RSVP from 'rsvp';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import moment from 'moment';
-import { isPresent } from '@ember/utils';
-import { get } from '@ember/object';
 
 export default Route.extend(AuthenticatedRouteMixin, {
 

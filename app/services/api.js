@@ -68,6 +68,16 @@ export default AjaxService.extend({
     });
   },
 
+  saveAdvanceQuestions(userId, data) {
+    return this.request(`/users-advance`, {
+      method: 'POST',
+      data: {
+        customer: userId,
+        questions: data
+      }
+    });
+  },
+
   editUser(userId, data) {
     return this.request(`/users/${userId}`, {
       method: 'PUT',
@@ -89,13 +99,6 @@ export default AjaxService.extend({
 
   createDiet(data) {
     return this.request(`/diets`, {
-      method: 'POST',
-      data
-    });
-  },
-
-  requestDiet(data) {
-    return this.request(`/request-diet`, {
       method: 'POST',
       data
     });
