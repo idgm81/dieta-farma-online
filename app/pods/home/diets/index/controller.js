@@ -37,9 +37,7 @@ export default Controller.extend({
     },
 
     request() {
-      const queryParams = { userId: this.get('userId') };
-
-      this.transitionToRoute('home.diets.request', { queryParams });
+      this.transitionToRoute('home.premium-services.index');
     },
 
     delete(id, userId) {
