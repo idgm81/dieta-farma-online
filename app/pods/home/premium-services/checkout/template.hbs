@@ -28,45 +28,60 @@
             <div class="loader white"></div>
             Realizando el pago, espere por favor...
           {{else if (not isCompleted)}}
-            <form>
+            <form class="premium-form">
               <fieldset class="card-details">
                 <legend>Pago con tarjeta</legend>
                 <div class="form-row">
-                  <div class="form-group required">
+                  <div class="form-group">
                     <label for="customer-email">Email</label>
                     {{input id='customer-email' class='form-control' type='email' value=email readonly=true}}
                   </div>
                 </div>
+                {{#if (not-eq type 'O')}}
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="diet-date">Fecha de la cita</label>
+                      {{input id='diet-date' class='form-control' type='text' value=(moment-parse-zone date 'DD/MM/YYYY HH:mm') readonly=true}}
+                    </div>
+                  </div>
+                {{/if}}
                 <div class="form-row">
                   <div class="form-group">
-                    <label for="customer-card">Datos de la tarjeta</label>
-                    {{#stripe-card options=stripeOptions as |stripeElement stripeError|}}
+                    {{#if hasCredits}}
+                      <p class="text-center">Esta dieta te sale gratis ya que dispones de saldo por haber cancelado alguna dieta anteriormente</p>
                       <div class="submit-button">
                         <div class="col-xs-12">
-                          <button type="button" class="form-control btn btn-df" {{action 'pay' stripeElement}}>Pagar dieta por {{amount}} €</button>
+                          <button type="button" class="form-control btn btn-df" {{action 'confirm'}}>Comprar dieta GRATIS</button>
                           <button type="button" class="form-control btn btn-grey" {{action 'cancel'}}>Cancelar</button>
                         </div>
                       </div>
-                      {{#if stripeError}}
-                        <p class="checkout-error" role="alert">{{fa-icon 'times-circle' fixedWidth=true}}{{stripeError.message}}</p>
-                      {{/if}}
-                    {{/stripe-card}}
+                    {{else}}
+                      <label for="customer-card">Datos de la tarjeta</label>
+                      {{#stripe-card options=stripeOptions as |stripeElement stripeError|}}
+                        <div class="submit-button">
+                          <div class="col-xs-12">
+                            <button type="button" class="form-control btn btn-df" {{action 'pay' stripeElement stripeError}}>Comprar dieta por {{amount}} €</button>
+                            <button type="button" class="form-control btn btn-grey" {{action 'cancel'}}>Cancelar</button>
+                          </div>
+                        </div>
+                        {{#if stripeError}}
+                          <p class="checkout-error" role="alert">{{fa-icon 'times-circle' fixedWidth=true}}{{stripeError.message}}</p>
+                        {{/if}}
+                      {{/stripe-card}}
+                    {{/if}}
                   </div>
                 </div>
               </fieldset>
             </form>
           {{else}}
-            <form>
+            <form class="premium-form">
               <fieldset class="payment-result">
                 <legend>Pago con tarjeta</legend>
                 <div class="form-row">
                   <div class="text-center">{{fa-icon (if isError 'times-circle' 'check-circle')}}</div>
                   <p class="text-center">{{t (if isError 'error.payment' 'text.paymentSuccess')}}</p>
-                  {{#if hasCredits}}
-                    <p class="text-center">Esta dieta es gratis ya que la última que habías pagado la cancelaste</p>
-                  {{/if}}
-                  <div role="group">
-                    <button type="button" class="btn btn-df">{{link-to 'Continuar' 'home'}}</button>
+                  <div role="group" class="text-center">
+                    <button type="button" class="btn btn-df">{{link-to (if isError 'Cerrar' 'Continuar') 'home'}}</button>
                   </div>
                 </div>
               </fieldset>

@@ -20,7 +20,7 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <form>
+          <form class="premium-form">
             <fieldset>
               <legend>Cita {{dietType}}</legend>
               <div class="form-row">
@@ -53,7 +53,7 @@
               </div>
               <div class="form-row text-center">
                 <button type="button" class="btn btn-grey" {{action 'cancel'}}>Cancelar</button>
-                <button type="button" class="btn btn-df" {{action 'save'}}>Reservar cita</button>
+                <button type="button" class="btn btn-df" {{action 'next'}}>Reservar cita</button>
               </div>
             </fieldset>
           </form>
@@ -62,11 +62,4 @@
     </div>
   </div>
 </section>
-
-{{wait-modal id='modal-wait-new-appointment' text='Solicitando cita...'}}
-
-{{#generic-modal id='modal-new-appointment-error'}}
-  <div class="text-center">{{fa-icon 'times-circle'}}</div>
-  <h5 class="modal-title text-center">Error al reservar la cita!</h5>
-{{/generic-modal}}
 
