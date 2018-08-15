@@ -9,13 +9,6 @@ export default Route.extend(UnauthenticatedRouteMixin, {
 
   session: service(),
 
-  // clear a potentially stale error message from previous login attempts
-  setupController(controller) {
-      this._super(...arguments);
-
-      controller.set('error', false);
-  },
-
   actions: {
     authenticate(credentials) {
       $('button').hide();
@@ -30,6 +23,7 @@ export default Route.extend(UnauthenticatedRouteMixin, {
       .catch(({error}) => {
         $('button').show();
         this.set('controller.error', error || this.get('i18n').t('error.generic'));
+        $('#modal-login-ko').modal();
       })
       .finally(() => $('#modal-login').modal('hide'));
     },

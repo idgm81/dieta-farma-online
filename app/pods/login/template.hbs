@@ -8,7 +8,6 @@
           </div>
         </div>
         {{login-form
-          authError=error
           onsubmit='authenticate'
           onreset='goToResetPassword'}}
       </div>
@@ -16,4 +15,8 @@
   </div>
 
   {{wait-modal id='modal-login' text=(t 'text.accessing')}}
+  {{#generic-modal id='modal-login-ko'}}
+    <div class="text-center">{{fa-icon 'times-circle'}}</div>
+    <h5 class="modal-title text-center">{{error}}</h5>
+  {{/generic-modal}}
 {{/wrapper-bg}}

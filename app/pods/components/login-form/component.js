@@ -8,10 +8,6 @@ export default Component.extend({
 
   password: '',
 
-  authError: null,
-
-  msgError: reads('authError'),
-
   didInsertElement() {
     this._super(...arguments);
 
