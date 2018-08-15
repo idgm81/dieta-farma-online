@@ -34,8 +34,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
     return RSVP.hash({
       userData: this.get('api').getUser(id),
       inboxThreads: this.get('api').getThreads(id)
-    }).catch(() => this.transitionTo('index'))
-      .finally(() => $('#modal-loading-home').modal('hide'));
+    })
+    .catch(() => this.transitionTo('index'))
+    .finally(() => $('#modal-loading-home').modal('hide'));
   },
 
   redirect(model) {

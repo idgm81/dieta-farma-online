@@ -1,4 +1,3 @@
-import { reads } from '@ember/object/computed';
 import Component from '@ember/component';
 import { run } from '@ember/runloop';
 

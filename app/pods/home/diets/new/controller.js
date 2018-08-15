@@ -22,7 +22,7 @@ export default Controller.extend({
 
   name: null,
 
-  options: [ 'Dieta', 'Pauta dietética'],
+  options: ['Dieta', 'Pauta dietética'],
 
   nutritionistId: computed('session.data', function() {
     return this.get('session.data.authenticated.id');

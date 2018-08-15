@@ -30,12 +30,11 @@ export default Controller.extend({
 
     const avatar = getWithDefault(model, 'userData.user.profile.avatar', imagePath('default-avatar.png'));
     const isFeatureActive = WHITE_LIST_USERS.includes(get(model, 'userData.user._id'));
-    const credits = getWithDefault(model, 'userData.user.profile.credits', 0);
 
     setProperties(this, {
       isClient: get(model, 'userData.user.role') === USER_ROLES.CLIENT,
       isFeatureActive,
-      headerTitle: `Hola ${capitalize(get(model, 'userData.user.profile.name'))}`,
+      headerTitle: `Hola ${capitalize(get(model, 'userData.user.profile.name') || '')}`,
       fullName: `${get(model, 'userData.user.profile.name')} ${get(model, 'userData.user.profile.surname')}`,
       appVersion: `v${ENV.APP.version}`,
       inboxThreadsUnread
