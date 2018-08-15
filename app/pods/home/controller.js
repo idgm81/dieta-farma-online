@@ -72,7 +72,7 @@ export default Controller.extend({
 
     showMyCalendar() {
       this.close();
-      this.transitionToRoute('home.calendar.index');
+      this.transitionToRoute('home.calendar');
     },
 
     showThreads() {

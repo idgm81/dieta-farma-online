@@ -15,7 +15,7 @@ Router.map(function() {
       this.route('client', { path: ':id' });
     });
     this.route('diets', function() {
-      this.route('edit', { path: '/edit/:id' });
+      this.route('new');
     });
     this.route('threads', function() {
       this.route('new');
