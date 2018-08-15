@@ -32,6 +32,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
     refreshHome() {
       this.refresh();
     },
+    showClients() {
+      this.transitionTo('home.clients.index');
+    },
     open(url) {
       window.open(url);
     },

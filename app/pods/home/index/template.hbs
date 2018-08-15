@@ -1,8 +1,5 @@
 <ol class="breadcrumb">
   <li class="active">Inicio</li>
-  {{#if isNutritionist}}
-    <li>{{link-to 'Mis clientes' 'home.clients.index'}}</li>
-  {{/if}}
 </ol>
 
 {{#if isNutritionist}}
@@ -116,5 +113,10 @@
       </div>
     </div>
   {{/each}}
+{{else}}
+  <div {{action 'showClients'}} class="floating-button">
+    {{fa-icon 'user' size='2x' transform='down-6'}}
+  </div>
 {{/unless}}
+
 
