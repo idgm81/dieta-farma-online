@@ -44,11 +44,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
     run.later(() => this.get('session').invalidate(), 15 * 60 * 1000); // close session after 15 minutes
 
-    const nextRoute = get(model, 'userData.user.role') === USER_ROLES.NUTRITIONIST
-      ? 'home.clients.index'
-      : 'home.index';
-
-    this.transitionTo(nextRoute);
+    this.transitionTo('home.index');
   },
 
   setupController: function(controller, model) {

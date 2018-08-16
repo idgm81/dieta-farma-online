@@ -9,6 +9,8 @@ export default Route.extend(UnauthenticatedRouteMixin, {
 
   api: service(),
 
+  routeIfAlreadyAuthenticated: 'home',
+
   _normalize(data) {
     return {
       email: data.email,

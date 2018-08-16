@@ -16,7 +16,7 @@ export default Controller.extend({
     delete() {
       return this.get('api').deleteUser(this.get('userId'))
         .then(() => this.get('session').invalidate())
-        .catch(() => '');
+        .catch(() => $('#modal-edit-profile-error').modal());
     },
     editAvatar() {
       $('#modal-edit-avatar').modal();

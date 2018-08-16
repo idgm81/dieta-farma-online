@@ -1,4 +1,3 @@
-// app/adapters/application.js
 import DS from 'ember-data';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import ENV from '../config/environment';
@@ -6,5 +5,5 @@ import ENV from '../config/environment';
 export default DS.RESTAdapter.extend(DataAdapterMixin, {
   host: ENV.APP.API_HOST,
   namespace: 'api',
-  authorizer: 'authorizer:token'
+  authorizer: 'authorizer:jwt'
 });

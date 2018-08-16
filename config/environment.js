@@ -53,12 +53,6 @@ module.exports = function(environment) {
     }
   };
 
-  ENV['ember-simple-auth'] = {
-    authorizer: 'authorizer:jwt',
-    routeAfterAuthentication: 'home',
-    routeIfAlreadyAuthenticated: 'home'
-  };
-
   ENV['ember-simple-auth-token'] = {
     serverTokenEndpoint: `${API_HOST}/api/auth/user`,
     tokenPropertyName: 'token',

@@ -9,6 +9,8 @@ export default Route.extend(UnauthenticatedRouteMixin, {
 
   session: service(),
 
+  routeIfAlreadyAuthenticated: 'home',
+
   actions: {
     authenticate(credentials) {
       $('button').hide();
@@ -18,15 +20,13 @@ export default Route.extend(UnauthenticatedRouteMixin, {
       this.get('session').authenticate(authenticator, {
         identification: credentials.email,
         password: credentials.password
-      })
-      .then(() => this.transitionTo('home'))
-      .catch(({error}) => {
+      }).catch(({error}) => {
         $('button').show();
         this.set('controller.error', error || this.get('i18n').t('error.generic'));
         $('#modal-login-ko').modal();
-      })
-      .finally(() => $('#modal-login').modal('hide'));
+      }).finally(() => $('#modal-login').modal('hide'));
     },
+
     goToResetPassword() {
       this.transitionTo('reset-password');
     }

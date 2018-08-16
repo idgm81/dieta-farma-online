@@ -6,7 +6,6 @@ import { getWithDefault, get, setProperties } from '@ember/object';
 import { imagePath } from 'dieta-farma-online/helpers/image-path';
 import { capitalize }  from '@ember/string';
 import { USER_ROLES } from './constants';
-import moment from 'moment';
 
 const WHITE_LIST_USERS = [
   '5a74230545283400044aec6b',
@@ -81,12 +80,11 @@ export default Controller.extend({
 
     showMyClients() {
       this.close();
-      this.transitionToRoute('home.clients');
+      this.transitionToRoute('home.clients.index');
     },
 
     logout() {
       this.get('session').invalidate();
-      this.transitionToRoute('login');
     }
   }
 
