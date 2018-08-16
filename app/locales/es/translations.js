@@ -57,7 +57,14 @@ export default {
     },
     "checking": "Comprobando...",
     "loading": "Cargando...",
-    "paymentSuccess": "El pago se ha realizado correctamente",
+    "payment": {
+      "description": {
+        "O": "Dieta online",
+        "P": "Dieta presencial",
+        "V": "Dieta por video consulta (skype)"
+      },
+      "success": "El pago se ha realizado correctamente"
+    },
     "public": {
       "aboutMe": {
         "title": "\"Soy farmacéutico de profesión, nutricionista por vocación, y entrenador por devoción\"",
