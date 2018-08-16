@@ -30,7 +30,7 @@ export default Controller.extend({
 
   date: computed.reads('premiumController.data.date'),
 
-  credits: computed.alias('premiumController.data.profile.credits'),
+  credits: computed.reads('premiumController.data.profile.credits'),
 
   isCompleted: false,
 
@@ -60,11 +60,18 @@ export default Controller.extend({
         },
       },
 
+      complete: {
+        color: '#25a29f'
+      },
+
+      empty: {
+        color: '#E25950',
+        'border-color': '#E25950'
+      },
+
       invalid: {
         color: '#E25950',
-        '::placeholder': {
-          color: 'blue',
-        },
+        'border-color': '#E25950'
       }
     }
   },
@@ -72,6 +79,13 @@ export default Controller.extend({
   setup() {
     let credits = get(this, 'credits');
     const type = get(this, 'type');
+
+    this.setProperties({
+      isCompleted: false,
+      hasCredits: false,
+      isError: false,
+      isLoading: false
+    });
 
     if (type === 'O') {
       if (credits >= 1) {
@@ -111,11 +125,10 @@ export default Controller.extend({
       return this.get('api').createAppointment(appointment).then(() => {
         const credits = this.decrementProperty('credits', CREDITS_TYPES[type]);
 
-        return this.get('api').editUser(customer, { 'profile.credits': credits }).then(() => {
-          this.set('isLoading', false);
-          this.set('isCompleted', true);
-          this.set('isError', false);
-        });
+        return this.get('api').editUser(customer, { 'profile.credits': credits })
+      }).then(() => {
+        this.set('isLoading', false);
+        this.set('isCompleted', true);
       }).catch(() =>  {
         this.set('isLoading', false);
         this.set('isCompleted', true);
@@ -123,57 +136,46 @@ export default Controller.extend({
       });
     },
 
-    pay(stripeElement, stripeError) {
-      if (!stripeError) {
+    pay(stripeElement) {
+      const stripe = get(this, 'stripev3');
+
+      return stripe.createToken(stripeElement).then(({token, error}) => {
+        if (error) {
+          return;
+        }
+
         this.set('isLoading', true);
 
         const type = get(this, 'type');
         const customer = get(this, 'userId');
-        const stripe = get(this, 'stripev3');
         const appointment = {
           customer,
           type,
           date: get(this, 'date')
         };
 
-        return this.get('api').createAppointment(appointment)
-        .then(() => {
-          const credits = this.decrementProperty('credits', CREDITS_TYPES[type]);
+        return this.get('api').createAppointment(appointment).then(() => {
+          const purchase = {
+            customer: get(this, 'userId'),
+            email: get(this, 'email'),
+            amount: get(this, 'amount'),
+            token
+          };
 
-          return this.get('api').editUser(customer, { 'profile.credits': credits }).then(() => {
-              return stripe.createToken(stripeElement).then(({token}) => {
-              const purchase = {
-                customer: get(this, 'userId'),
-                email: get(this, 'email'),
-                amount: get(this, 'amount'),
-                token
-              };
-
-              return this.get('api').createPurchase(purchase).then(() => {
-                this.set('isLoading', false);
-                this.set('isCompleted', true);
-                this.set('isError', false);
-              }).catch(() =>  {
-                this.set('isLoading', false);
-                this.set('isCompleted', true);
-                this.set('isError', true);
-              });
-            }).catch(() =>  {
-              this.set('isLoading', false);
-              this.set('isCompleted', true);
-              this.set('isError', true);
-            });
-          }).catch(() =>  {
-            this.set('isLoading', false);
-            this.set('isCompleted', true);
-            this.set('isError', true);
-          });
-        }).catch((error) =>  {
+          return this.get('api').createPurchase(purchase);
+        }).then(() => {
+          this.set('isLoading', false);
+          this.set('isCompleted', true);
+        }).catch(() =>  {
           this.set('isLoading', false);
           this.set('isCompleted', true);
           this.set('isError', true);
         });
-      }
+      });
+    },
+
+    close() {
+      this.replaceRoute('home');
     }
   }
 });

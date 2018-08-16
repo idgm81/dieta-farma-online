@@ -5,7 +5,6 @@ import { run } from '@ember/runloop';
 import { get } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import RSVP from 'rsvp';
-import { USER_ROLES } from './constants';
 
 export default Route.extend(AuthenticatedRouteMixin, {
 

@@ -42,7 +42,7 @@ $color-dietafarma: #25a29f;
     color: #6ea2a2;
   }
   .error {
-    color: red;
+    color: #de615e;
   }
 
   .btn {
@@ -195,7 +195,23 @@ $color-dietafarma: #25a29f;
     min-height: 360px;
     &.payment-result {
       color: white;
+      div.error {
+        path {
+          color: #de615e;
+        }
+      }
+      p.error {
+        font-size: 14px;
+        color: white;
+        margin-top: 20px;
+      }
     }
+  }
+
+  p.error {
+    font-size: 14px;
+    color: white;
+    margin-top: 20px;
   }
 }
 
@@ -222,10 +238,10 @@ $color-dietafarma: #25a29f;
 }
 
 .checkout-error {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
-  margin: 140px 10px 10px 10px;
   color: #E25950;
+  margin-top: 30px;
   svg {
     font-size: 1em;
     path {
@@ -234,8 +250,8 @@ $color-dietafarma: #25a29f;
   }
 }
 
-.submit-button {
-  margin-top: 40px;
+.pay-buttons {
+  margin-top: 30px;
 }
 
 .premium-form {
