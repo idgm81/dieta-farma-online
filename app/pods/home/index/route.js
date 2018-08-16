@@ -25,7 +25,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     this._super(...arguments);
 
     controller.set('isNutritionist', this.get('session.data.authenticated.role') === 'N');
-    controller.set('hasAppointments', isPresent(get(model, 'appointments.items').filter((item) => (0 <= moment(item.date).diff(moment(), 'days') <= 7))));
+    controller.set('hasAppointments', isPresent(get(model, 'appointments.items').filter((item) => (0 <= moment(item.date).diff(moment(), 'days') <= 14))));
   },
 
   actions: {
