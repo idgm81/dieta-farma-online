@@ -23,11 +23,9 @@
           #{{index}} {{diet.title}}
         </h3>
       </div>
-      {{#if (eq diet.type 'D')}}
-        <div class="panel-body">
-          Desde {{moment-format diet.fromDate 'DD/MM/YYYY'}} - Hasta {{moment-format diet.toDate 'DD/MM/YYYY'}}
-        </div>
-      {{/if}}
+      <div class="panel-body">
+        Desde {{moment-format diet.fromDate 'DD/MM/YYYY'}} - Hasta {{moment-format diet.toDate 'DD/MM/YYYY'}}
+      </div>
       <div class="panel-footer text-center">
         <div class="btn-group" role="group">
           <button type="button" class="btn btn-info" {{action 'open' (get diet 'url')}}>{{fa-icon 'eye' size='x'}}</button>
