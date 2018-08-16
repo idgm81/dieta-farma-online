@@ -195,23 +195,30 @@ $color-dietafarma: #25a29f;
     min-height: 360px;
     &.payment-result {
       color: white;
-      div.error {
-        path {
-          color: #de615e;
+
+      div {
+        &.form-row {
+          margin-top: 60px;
+        }
+
+        &.error {
+          path {
+            color: #de615e;
+          }
+        }
+
+        &.success {
+          path {
+            color: $color-dietafarma;
+          }
         }
       }
-      p.error {
-        font-size: 14px;
-        color: white;
-        margin-top: 20px;
-      }
     }
-  }
-
-  p.error {
-    font-size: 14px;
-    color: white;
-    margin-top: 20px;
+    p.info {
+      font-size: 14px;
+      color: white;
+      margin-top: 20px;
+    }
   }
 }
 

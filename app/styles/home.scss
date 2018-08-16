@@ -228,8 +228,9 @@ $color-dietafarma: #25a29f;
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
   }
-  &.profile {
+  .profile {
     color: white;
+    cursor: pointer;
   }
 }
 
