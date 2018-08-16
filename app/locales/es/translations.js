@@ -21,26 +21,28 @@ export default {
       "email": "Email",
       "header": "Datos personales",
       "phone": "Teléfono",
-      "measures": {
-        "height": "Altura",
-        "weight": "Peso",
-        "imc": "IMC",
-        "water": "Agua",
-        "fat": "Grasa",
-        "mass": "Masa muscular",
-        "biotype": "Biotipo (1-9)",
-        "boneMass": "Masa ósea",
-        "metabolicExpense": "Gasto metabólico basal",
-        "metabolicAge": "Edad metabólica",
-        "visceralFat": "Nivel grasa bisceral (1-12 o 13-59)"
-      },
-      "injuries": "Lesiones",
-      "objective": "Objetivo de la dieta",
-      "reason": "Motivo para hacer la dieta",
-      "dietType": "Tipo de dieta",
-      "foodDiseases": "Enfermedades o intolerancias",
-      "foodForbidden": "Alimentos prohibidos",
-      "foodFavourite": "Alimentos favoritos",
+      "questionnaire" : {
+        "measures": {
+          "height": "Altura",
+          "weight": "Peso",
+          "imc": "IMC",
+          "water": "Agua",
+          "fat": "Grasa",
+          "mass": "Masa muscular",
+          "biotype": "Biotipo (1-9)",
+          "boneMass": "Masa ósea",
+          "metabolicExpense": "Gasto metabólico basal",
+          "metabolicAge": "Edad metabólica",
+          "visceralFat": "Nivel grasa bisceral (1-12 o 13-59)"
+        },
+        "injuries": "Lesiones",
+        "objective": "Objetivo de la dieta",
+        "reason": "Motivo para hacer la dieta",
+        "dietType": "Tipo de dieta",
+        "foodDiseases": "Enfermedades o intolerancias",
+        "foodForbidden": "Alimentos prohibidos",
+        "foodFavourite": "Alimentos favoritos"
+      }
     },
     "purchase": {
       "header": "Dietas compradas"
@@ -91,6 +93,8 @@ export default {
       "emailOK": "Hemos enviado un enlace a esa dirección de email para que puedas cambiar tu contraseña. Revisa también en tu bandeja de spam. Dispones de 15 minutos antes de que el enlace deje de ser válido.",
       "emailKO": "No hemos encontrado ese email es nuestra base de datos"
     },
-    "signUp": "Registrando, por favor espere..."
+    "signUp": "Registrando, por favor espere...",
+    "yes": 'Sí',
+    "no": "No"
   }
 };
