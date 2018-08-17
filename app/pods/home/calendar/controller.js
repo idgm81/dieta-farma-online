@@ -7,7 +7,7 @@ export default Controller.extend({
   actions: {
     onSelected(day) {
       set(this, 'day', day);
-      set(this, 'dayAppointments', this.get('model.items').filter((item) =>
+      set(this, 'dayAppointments', this.get('model.appointments').filter((item) =>
         moment(item.date).isSame(day, 'day')
       ));
     },

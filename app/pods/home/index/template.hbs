@@ -20,7 +20,7 @@
               </tr>
             </thead>
             <tbody>
-              {{#each model.appointments.items as |meet|}}
+              {{#each model.appointments as |meet|}}
                 {{#if (and (gte (moment-diff now meet.date precision='days') 0) (lte (moment-diff now meet.date precision='days') 7))}}
                   <tr>
                     <td>{{moment-parse-zone meet.date 'DD/MM/YYYY'}}</td>
@@ -39,12 +39,12 @@
     </div>
   </div>
 {{else}}
-  {{#if model.appointments.items.length}}
+  {{#if model.appointments.length}}
     <div class="alert alert-warning text-justify">
       <small><strong>Nota: </strong>Puedes cancelar tu cita antes de 24h si te surge algún imprevisto. La videoconsulta se intentará realizar como máximo hasta en 3 ocasiones. Si no hay respuesta la cita se dará por realizada.</small>
     </div>
   {{/if}}
-  {{#each model.appointments.items as |meet|}}
+  {{#each model.appointments as |meet|}}
     <div class="container">
       <div class="panel panel-df">
         <div class="panel-heading">
@@ -85,7 +85,7 @@
 {{/generic-modal}}
 
 {{#unless isNutritionist}}
-  {{#each model.diets.diets as |diet index|}}
+  {{#each model.diets as |diet index|}}
     <div class="container">
       <div class="panel panel-df">
         <div class="panel-heading">
@@ -109,7 +109,11 @@
         <div class="panel-heading">
           <h3 class="panel-title">{{fa-icon 'exclamation-triangle'}} Atención</h3>
         </div>
-        <div class="panel-body">No tienes ninguna dieta asignada</div>
+        {{#unless (get model 'user.profile.pendingDiet')}}
+          <div class="panel-body">Tu nutricionista está trabajando en tu dieta y pronto la tendrás disponible</div>
+        {{else}}
+          <div class="panel-body">No tienes ninguna dieta asignada</div>
+        {{/unless}}
       </div>
     </div>
   {{/each}}
