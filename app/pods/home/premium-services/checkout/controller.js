@@ -18,6 +18,8 @@ export default Controller.extend({
 
   stripev3: service(),
 
+  i18n: service(),
+
   api: service(),
 
   premiumController: controller('home.premium-services.index'),
@@ -77,7 +79,7 @@ export default Controller.extend({
   },
 
   setup() {
-    let credits = get(this, 'credits');
+    const credits = get(this, 'credits');
     const type = get(this, 'type');
 
     this.setProperties({
@@ -112,21 +114,35 @@ export default Controller.extend({
     },
 
     confirm() {
+      const customer = get(this, 'userId');
+      const type = get(this, 'type');
+      let credits = this.decrementProperty('credits', CREDITS_TYPES[type]);
+
       this.set('isLoading', true);
 
-      const type = get(this, 'type');
-      const customer = get(this, 'userId');
+      if (type === 'O') {
+        return this.get('api').editUser(customer, { 
+          'profile.credits': credits ,
+          'profile.pendingDiet': true
+        }).then(() => {
+          this.set('isLoading', false);
+          this.set('isCompleted', true);
+        }).catch(() =>  {
+          this.set('isLoading', false);
+          this.set('isCompleted', true);
+          this.set('isError', true);
+        });
+      }
+
       const appointment = {
         customer,
         type,
         date: get(this, 'date')
       };
 
-      return this.get('api').createAppointment(appointment).then(() => {
-        const credits = this.decrementProperty('credits', CREDITS_TYPES[type]);
-
-        return this.get('api').editUser(customer, { 'profile.credits': credits })
-      }).then(() => {
+      return this.get('api').createAppointment(appointment).then(() =>
+        this.get('api').editUser(customer, { 'profile.credits': credits })
+      ).then(() => {
         this.set('isLoading', false);
         this.set('isCompleted', true);
       }).catch(() =>  {
@@ -137,6 +153,8 @@ export default Controller.extend({
     },
 
     pay(stripeElement) {
+      const customer = get(this, 'userId');
+      const type = get(this, 'type');
       const stripe = get(this, 'stripev3');
 
       return stripe.createToken(stripeElement).then(({token, error}) => {
@@ -146,26 +164,41 @@ export default Controller.extend({
 
         this.set('isLoading', true);
 
-        const type = get(this, 'type');
-        const customer = get(this, 'userId');
-        const appointment = {
+        if (type === 'O') {
+          return this.get('api').editUser(customer, { 'profile.pendingDiet': true })
+            .then(() => {
+              this.set('isLoading', false);
+              this.set('isCompleted', true);
+            }).catch(() =>  {
+              this.set('isLoading', false);
+              this.set('isCompleted', true);
+              this.set('isError', true);
+            });
+        }
+
+        return this.get('api').createAppointment({
           customer,
           type,
           date: get(this, 'date')
-        };
-
-        return this.get('api').createAppointment(appointment).then(() => {
+        }).then(({appointment}) => {
           const purchase = {
             customer: get(this, 'userId'),
             email: get(this, 'email'),
-            amount: get(this, 'amount'),
+            amount: get(this, 'amount') * 100,
+            description: this.get('i18n').t(`text.payment.description.${type}`),
             token
           };
 
-          return this.get('api').createPurchase(purchase);
-        }).then(() => {
-          this.set('isLoading', false);
-          this.set('isCompleted', true);
+          return this.get('api').createPurchase(purchase).then(() => {
+            this.set('isLoading', false);
+            this.set('isCompleted', true);
+          }).catch(() =>  {
+            this.set('isLoading', false);
+            this.set('isCompleted', true);
+            this.set('isError', true);
+
+            return this.get('api').deleteAppointment(appointment._id)
+          });
         }).catch(() =>  {
           this.set('isLoading', false);
           this.set('isCompleted', true);
