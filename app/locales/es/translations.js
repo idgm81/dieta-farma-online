@@ -18,6 +18,7 @@ export default {
     "privateAccess": "Acceso privado",
     "profile": {
       "birthday": "Fecha nacimiento",
+      "credits": "Créditos",
       "email": "Email",
       "header": "Datos personales",
       "phone": "Teléfono",

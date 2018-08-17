@@ -47,6 +47,10 @@
             <td>{{model.user.profile.phone}}</td>
             <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'phone'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
           </tr>
+          <tr>
+            <td>{{t 'label.profile.credits'}}</td>
+            <td>{{model.user.profile.credits}}</td>
+          </tr>
         </tbody>
       </table>
     </div>
