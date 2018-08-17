@@ -1,8 +1,10 @@
 <ol class="breadcrumb">
   <li>{{link-to 'Inicio' 'home'}}</li>
   <li>{{link-to 'Servicios de dieta' 'home.premium-services.index'}}</li>
-  <li>{{link-to 'Mi cita' 'home.premium-services.schedule'}}</li>
-   <li>{{link-to 'Preguntas' 'home.premium-services.questions'}}</li>
+  {{#unless (eq type 'O')}}
+    <li>{{link-to 'Mi cita' 'home.premium-services.schedule'}}</li>
+  {{/unless}}
+  <li>{{link-to 'Preguntas' 'home.premium-services.questions'}}</li>
   <li class="active">Pagar dieta</li>
 </ol>
 

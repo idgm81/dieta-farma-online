@@ -185,8 +185,8 @@ export default Controller.extend({
             customer: get(this, 'userId'),
             email: get(this, 'email'),
             amount: get(this, 'amount') * 100,
-            description: this.get('i18n').t(`text.payment.description.${type}`),
-            token
+            description: this.get('i18n').t(`text.payment.description.${type}`).toString(),
+            token: token.id
           };
 
           return this.get('api').createPurchase(purchase).then(() => {
