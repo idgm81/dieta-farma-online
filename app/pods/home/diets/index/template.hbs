@@ -18,7 +18,9 @@
         </h3>
       </div>
       <div class="panel-body">
-        Desde {{moment-format diet.fromDate 'DD/MM/YYYY'}} - Hasta {{moment-format diet.toDate 'DD/MM/YYYY'}}
+        {{#if (eq diet.type 'D')}}
+          Desde {{moment-format diet.fromDate 'DD/MM/YYYY'}} - Hasta {{moment-format diet.toDate 'DD/MM/YYYY'}}
+        {{/if}}
       </div>
       <div class="panel-footer text-center">
         <div class="btn-group" role="group">

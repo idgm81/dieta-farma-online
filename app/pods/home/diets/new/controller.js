@@ -71,10 +71,10 @@ export default Controller.extend({
             type: get(this, 'option') === 'Dieta' ? 'D' : 'P',
             fromDate: get(this, 'option') === 'Dieta'
               ? moment(get(this, 'fromDate'), 'DD/MM/YYYY').format()
-              : moment().format('DD/MM/YYYY'),
+              : moment().format(),
             toDate: get(this, 'option') === 'Dieta'
               ? moment(get(this, 'toDate'), 'DD/MM/YYYY').format()
-              : moment().format('DD/MM/YYYY'),
+              : moment().format(),
             url: get(this, 'url')
           };
 

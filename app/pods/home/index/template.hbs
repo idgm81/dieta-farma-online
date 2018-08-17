@@ -38,6 +38,10 @@
       {{/if}}
     </div>
   </div>
+
+  <div {{action 'showClients'}} class="floating-button">
+    {{fa-icon 'user' size='2x' transform='down-6'}}
+  </div>
 {{else}}
   {{#if model.appointments.length}}
     <div class="alert alert-warning text-justify">
@@ -70,6 +74,11 @@
       </div>
     </div>
   {{/each}}
+  {{#if (get model 'user.profile.pendingDiet')}}
+    <div class="alert alert-warning text-justify">
+      <small><strong>Nota: </strong>Puedes cancelar tu cita antes de 24h si te surge algún imprevisto. La videoconsulta se intentará realizar como máximo hasta en 3 ocasiones. Si no hay respuesta la cita se dará por realizada.</small>
+    </div>
+  {{/if}}
 {{/if}}
 
 {{wait-modal id='modal-wait-delete-appointment' text='Cancelando cita...'}}
@@ -84,43 +93,5 @@
   <h5 class="modal-title text-center">Error al cancelar la cita!</h5>
 {{/generic-modal}}
 
-{{#unless isNutritionist}}
-  {{#each model.diets as |diet index|}}
-    <div class="container">
-      <div class="panel panel-df">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            #{{index}} {{diet.title}}
-          </h3>
-        </div>
-        <div class="panel-body">
-          Desde {{moment-format diet.fromDate 'DD/MM/YYYY'}} - Hasta {{moment-format diet.toDate 'DD/MM/YYYY'}}
-        </div>
-        <div class="panel-footer text-center">
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-info" {{action 'open' (get diet 'url')}}>{{fa-icon 'eye' size='x'}}</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  {{else}}
-    <div class="container">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{{fa-icon 'exclamation-triangle'}} Atención</h3>
-        </div>
-        {{#unless (get model 'user.profile.pendingDiet')}}
-          <div class="panel-body">Tu nutricionista está trabajando en tu dieta y pronto la tendrás disponible</div>
-        {{else}}
-          <div class="panel-body">No tienes ninguna dieta asignada</div>
-        {{/unless}}
-      </div>
-    </div>
-  {{/each}}
-{{else}}
-  <div {{action 'showClients'}} class="floating-button">
-    {{fa-icon 'user' size='2x' transform='down-6'}}
-  </div>
-{{/unless}}
 
 
