@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { set, get, computed } from '@ember/object';
+import { reads }  from '@ember/object/computed';
 import $ from 'jquery';
 import moment from 'moment';
 
@@ -12,21 +13,21 @@ export default Controller.extend({
 
   queryParams: ['userId', 'name'],
 
+  userId: null,
+
+  name: null,
+
   clientLinkLabel: computed('name', function() {
     return `Perfil de ${get(this, 'name')}`
   }),
 
   file: null,
 
-  userId: null,
+  dietOptions: ['Dieta', 'Pauta dietética'],
 
-  name: null,
+  option: 'Dieta',
 
-  options: ['Dieta', 'Pauta dietética'],
-
-  nutritionistId: computed('session.data', function() {
-    return this.get('session.data.authenticated.id');
-  }),
+  nutritionistId: reads('session.data.authenticated.id'),
 
   actions: {
 
@@ -34,9 +35,27 @@ export default Controller.extend({
       this.replaceRoute('home.clients');
     },
 
+    fileSelected() {
+      $('.form-group .file-uploader').parent().removeClass('has-error has-danger');
+      $('.file-uploader + small').empty();
+    },
+
     save() {
-      const fileName = get(this, 'file.name');
-      const fileType = get(this, 'file.type');
+      $('#form-diet').validator('validate');
+
+      const hasErrors = $('#form-diet').find('div').filter((index, element) =>
+        $(element).hasClass('has-error')
+      );
+      const file = get(this, 'file');
+
+      if (hasErrors.length || !file) {
+        $('.form-group .file-uploader').parent().addClass('has-error has-danger');
+        $('.file-uploader + small').html('<ul class="list-unstyled"><li>Debes adjuntar un archivo</li></ul>');
+        return;
+      }
+
+      const fileName = get(file, 'name');
+      const fileType = get(file, 'type');
       const category = 'diets';
 
       $('#modal-wait-diet').modal();

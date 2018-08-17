@@ -9,12 +9,6 @@
   {{/if}}
 </ol>
 
-{{#if (and isFeatureActive (and (not isNutritionist) (gte model.diets.length 1)))}}
-  <div class="alert alert-info text-justify">
-    <small><strong>Nota: </strong>Puedes pedir una segunda dieta a tu nutricionista pulsando en el botón que aparece más abajo</small>
-  </div>
-{{/if}}
-
 {{#each model.diets as |diet index|}}
   <div class="container">
     <div class="panel panel-df">
@@ -32,7 +26,7 @@
         </div>
         {{#if isNutritionist}}
           <div class="btn-group" role="group">
-            <button type="button" class="btn btn-danger" {{action 'delete' (get diet '_id') (get diet 'client')}}>{{fa-icon 'trash' size='x'}}</button>
+            <button type="button" class="btn btn-danger" {{action 'delete' (get diet '_id') (get diet 'customer')}}>{{fa-icon 'trash' size='x'}}</button>
           </div>
         {{/if}}
       </div>
@@ -44,7 +38,11 @@
       <div class="panel-heading">
         <h3 class="panel-title">{{fa-icon 'exclamation-triangle'}} Atención</h3>
       </div>
-      <div class="panel-body">No tienes ninguna dieta asignada</div>
+      {{#if isNutritionist}}
+        <div class="panel-body">El cliente no tiene dietas asignadas</div>
+      {{else}}
+        <div class="panel-body">No tienes ninguna dieta asignada</div>
+      {{/if}}
     </div>
   </div>
 {{/each}}
@@ -60,9 +58,5 @@
     <div class="text-center">{{fa-icon 'times-circle'}}</div>
     <h5 class="modal-title text-center">Error al borrar la dieta!</h5>
   {{/generic-modal}}
-{{else if (and isFeatureActive (gte model.diets.length 1))}}
-  <div {{action 'request'}} class='floating-button'>
-    {{fa-icon 'plus' size='2x' transform='down-6'}}
-  </div>
 {{/if}}
 

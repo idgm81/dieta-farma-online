@@ -14,13 +14,6 @@ export default Controller.extend({
 
   isNutritionist: equal('session.data.authenticated.role', USER_ROLES.NUTRITIONIST),
 
-  isFeatureActive: computed('session.data.authenticated.id', function() {
-    return [
-      '5a74230545283400044aec6b',
-      '5a43df203a0c23a52728cb16'
-    ].includes(this.get('session.data.authenticated.id'));
-  }),
-
   clientLinkLabel: computed('name', function() {
     return `Perfil de ${get(this, 'name')}`
   }),
@@ -42,16 +35,13 @@ export default Controller.extend({
 
     delete(id, userId) {
       $('#modal-wait-delete-diet').modal();
-      return this.get('api').deleteDiet(id, userId)
-        .then(() => {
-          this.replaceWith('home.clients.index');
-        })
-        .catch(() => {
-          $('#modal-delete-diet-error').modal();
-        })
-        .finally(() => {
-          $('#modal-wait-delete-diet').modal('hide');
-        })
+      return this.get('api').deleteDiet(id, userId).then(() =>
+        this.replaceRoute('home.clients.index')
+      ).catch(() =>
+        $('#modal-delete-diet-error').modal()
+      ).finally(() =>
+        $('#modal-wait-delete-diet').modal('hide')
+      )
     }
   }
 });

@@ -12,7 +12,7 @@ export default Component.extend({
   actions: {
     fileLoaded(file) {
       set(this, 'file', file);
-
+      this.sendAction('onloaded');
     },
 
     deleteFile() {

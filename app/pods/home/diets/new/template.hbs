@@ -9,29 +9,37 @@
   <form role="form" id="form-diet">
     <div class="form-group">
       <label for="title">Título:</label>
-      {{input type='text' class='form-control' id='title' name='title' value=title data-validate='true'}}
+      {{input
+        id='title' 
+        type='text'
+        class='form-control'
+        name='title'
+        value=title
+        data-validate='true'
+        required=true}}
+      <small class="help-block with-errors"></small>
     </div>
-
-    <div class="form-group col-xs-12">
+    <div class="form-group">
       <label for="title">Tipo:</label>
       {{#power-select
         id='diet-type'
         class='form-control'
         searchEnabled=false
         selected=option
-        options=options
+        options=dietOptions
         onchange=(action (mut option)) as |type|}}
         {{type}}
       {{/power-select}}
     </div>
 
-    {{#if (eq option 'D')}}
+    {{#if (eq option 'Dieta')}}
       <div class="form-group">
         <label for="diet-start-date">Desde:</label>
         <div id='diet-start-date' class="input-group date">
           {{bootstrap-datepicker
             class='form-control'
             data-validate='true'
+            required=true
             language='es'
             autoclose=true
             format='dd/mm/yyyy'
@@ -41,6 +49,7 @@
             value=fromDate}}
           <span class="input-group-addon">{{fa-icon 'calendar-alt'}}</span>
         </div>
+        <small class="help-block with-errors"></small>
       </div>
 
       <div class="form-group">
@@ -48,6 +57,7 @@
         <div id='diet-end-date' class="input-group date">
           {{bootstrap-datepicker
             class='form-control'
+            required=true
             data-validate='true'
             language='es'
             autoclose=true
@@ -58,14 +68,16 @@
             value=toDate}}
           <span class="input-group-addon">{{fa-icon 'calendar-alt'}}</span>
         </div>
+        <small class="help-block with-errors"></small>
       </div>
     {{/if}}
 
     <div class="form-group">
       <label for="pwd">Archivo:</label>
       <div class="file-uploader">
-        {{file-uploader file=file}}
+        {{file-uploader file=file onloaded='fileSelected'}}
       </div>
+      <small class="help-block with-errors"></small>
     </div>
 
     <div class="btn-group" role="group">
