@@ -23,10 +23,10 @@ module.exports = function(defaults) {
       enabled: true
     },
     minifyJS: {
-      enabled: false
+      enabled: true
     },
     minifyCSS: {
-      enabled: false
+      enabled: true
     },
     fingerprint: {
       enabled: false
