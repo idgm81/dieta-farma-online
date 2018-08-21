@@ -81,6 +81,11 @@ export default Component.extend({
   },
 
   actions: {
+    cancel() {
+      if (this.get('oncancel')) {
+        this.sendAction('oncancel');
+      }
+    },
     save() {
       this._checkFormErrors();
       if (!this.get('hasError')) {
