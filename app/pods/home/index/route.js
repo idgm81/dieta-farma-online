@@ -45,7 +45,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     delete(id) {
       $('#modal-wait-delete-appointment').modal();
 
-      return this.get('api').deleteAppointment(id)
+      return this.get('api').deleteAppointment(id, true)
         .then(() => $('#modal-delete-appointment-ok').modal())
         .catch(() => $('#modal-delete-appointment-error').modal())
         .finally(() => {

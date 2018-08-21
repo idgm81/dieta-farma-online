@@ -136,8 +136,8 @@ export default AjaxService.extend({
     });
   },
 
-  deleteAppointment(appointmentId) {
-    return this.request(`/appointments/${appointmentId}`, {
+  deleteAppointment(appointmentId, updateCredits) {
+    return this.request(`/appointments/${appointmentId}/?updateCredits=${updateCredits}`, {
       method: 'DELETE'
     });
   },

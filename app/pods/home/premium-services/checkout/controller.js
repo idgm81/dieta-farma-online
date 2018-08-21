@@ -197,7 +197,7 @@ export default Controller.extend({
             this.set('isCompleted', true);
             this.set('isError', true);
 
-            return this.get('api').deleteAppointment(appointment._id)
+            return this.get('api').deleteAppointment(appointment._id, false)
           });
         }).catch(() =>  {
           this.set('isLoading', false);
