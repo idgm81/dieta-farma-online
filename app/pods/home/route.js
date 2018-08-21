@@ -1,7 +1,7 @@
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import { run } from '@ember/runloop';
+import { later } from '@ember/runloop';
 import { get } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import RSVP from 'rsvp';
@@ -41,13 +41,13 @@ export default Route.extend(AuthenticatedRouteMixin, {
   redirect(model) {
     this._super(...arguments);
 
-    run.later(() => this.get('session').invalidate(), 15 * 60 * 1000); // close session after 15 minutes
-
     this.transitionTo('home.index');
   },
 
   setupController: function(controller, model) {
     this._super(...arguments);
+
+    later(() => this.get('session').invalidate(), 10 * 60 * 1000); // close session after 10 minutes
 
     controller.setup(model);
   }

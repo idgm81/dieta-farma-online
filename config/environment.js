@@ -61,7 +61,7 @@ module.exports = function(environment) {
     refreshAccessTokens: true,
     authorizationPrefix: 'JWT ',
     refreshTokenPropertyName: 'refreshToken',
-    refreshLeeway: 120, // Refresh the token 2 minutes (120s) before it expires
+    refreshLeeway: 60, // Refresh the token 1 minute before it expires
     serverTokenRefreshEndpoint: `${API_HOST}/api/auth/refreshToken`,
     tokenExpireName: 'exp'
   };
