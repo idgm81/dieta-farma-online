@@ -18,7 +18,7 @@ export default Route.extend(UnauthenticatedRouteMixin, {
 
       const authenticator = 'authenticator:jwt';
       this.get('session').authenticate(authenticator, {
-        username: credentials.email,
+        email: credentials.email,
         password: credentials.password
       }).catch(({error}) => {
         $('button').show();
