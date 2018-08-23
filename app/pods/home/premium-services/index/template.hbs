@@ -27,10 +27,10 @@
     <div class="row">
       <div class="col-md-4 col-xs-12">
         <div class="thumbnail">
-          <img class="image"src="{{image-path 'device-icon.png'}}" alt="imagen pack oro">
+          <img class="image"src="{{image-path 'device-icon.png'}}" alt="imagen dieta online">
           <div class="caption-details">
             <h3>Solicita 1 dieta online</h3>
-            <p class="price">{{get DIET_PRICES 'O'}} €</p>
+            <p class="price">{{get DIET_PRICES 'O'}} €<span>(1 crédito)</span></p>
           </div>
           <div class="caption-link">
             <span {{action 'next' 'O'}}>{{fa-icon 'plus' size='8x'}}</span>
@@ -39,10 +39,10 @@
       </div>
       <div class="col-md-4 col-xs-12">
         <div class="thumbnail">
-          <img class="image" src="{{image-path 'skype-icon.png'}}" alt="imagen pack plata">
+          <img class="image" src="{{image-path 'skype-icon.png'}}" alt="imagen dieta skype">
           <div class="caption-details">
             <h3>Solicita 1 dieta por videollamada (skype)</h3>
-            <p class="price">{{get DIET_PRICES 'V'}} €</p>
+            <p class="price">{{get DIET_PRICES 'V'}} €<span>(2 créditos)</span></p>
           </div>
           <div class="caption-link">
             <span {{action 'next' 'V'}}>{{fa-icon 'plus' size='8x' fixedWidth=true}}</span>
@@ -51,10 +51,10 @@
       </div>
       <div class="col-md-4 col-xs-12">
         <div class="thumbnail">
-          <img class="image" src="{{image-path 'face-to-face-icon.png'}}" alt="imagen pack bronce">
+          <img class="image" src="{{image-path 'face-to-face-icon.png'}}" alt="imagen dieta presencial">
           <div class="caption-details">
             <h3>Solicita 1 dieta presencial</h3>
-            <p class="price">{{get DIET_PRICES 'P'}} €</p>
+            <p class="price">{{get DIET_PRICES 'P'}} € <span>(3 créditos)</span></p>
           </div>
           <div class="caption-link">
             <span {{action 'next' 'P'}}>{{fa-icon 'plus' size='8x'}}</span>
