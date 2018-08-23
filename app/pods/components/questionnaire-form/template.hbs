@@ -1,6 +1,6 @@
 <form class="premium-form">
   <fieldset>
-    <legend>Preguntas</legend>
+    <legend>{{t 'label.questions'}}</legend>
     {{#if (eq questionsVersion 1)}}
       <div class="form-row">
         <h4>Tus medidas:</h4>
@@ -715,7 +715,7 @@
             id='advance-q2'
             searchEnabled=false
             selected=answers.q2
-            options=follows
+            options=followOptions
             onchange=(action (mut answers.q2)) as |follow|}}
             {{follow}}
           {{/power-select}}
@@ -780,7 +780,7 @@
             class='check'
             searchEnabled=false
             selected=answers.q7
-            options=levels
+            options=levelOptions
             onchange=(action (mut answers.q7)) as |level|}}
             {{level}}
           {{/power-select}}
@@ -893,7 +893,7 @@
           {{textarea
             id='advance-q16'
             name='advance-q16'
-            class='advance-q16 form-control check'
+            class='advance-q16 form-control'
             rows='2'
             value=answers.q16}}
           <small class="help-block with-errors"></small>
@@ -901,7 +901,7 @@
       </div>
     {{/if}}
     <div class="form-row text-center">
-      <button type="button" class="btn btn-grey" {{action 'cancel'}}>Cancelar</button>
+      <button type="button" class="btn btn-grey" {{action 'cancel'}}>{{t 'label.cancel'}}</button>
       <button type="submit" class="btn btn-df" {{action 'save'}}>Guardar respuestas</button>
     </div>
   </fieldset>

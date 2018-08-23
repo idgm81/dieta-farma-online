@@ -5,6 +5,7 @@ export default {
   },
   "label": {
     "amount": "Importe",
+    "cancel": "Cancelar",
     "changePass": "Escoge tu nueva contraseña",
     "date": "Fecha",
     "dietafarma": "DietaFarma",
@@ -48,7 +49,9 @@ export default {
     "purchase": {
       "header": "Dietas compradas"
     },
-    "resetPass": "Solicitar cambio contraseña"
+    "questions": "Preguntas",
+    "resetPass": "Solicitar cambio contraseña",
+    "save": "Guardar"
   },
   "text": {
     "accessing": "Accediendo...",
@@ -58,6 +61,7 @@ export default {
     },
     "checking": "Comprobando...",
     "loading": "Cargando...",
+    "paying": "Realizando el pago, espere por favor...",
     "payment": {
       "description": {
         "O": "Dieta online",
@@ -101,7 +105,7 @@ export default {
       "emailOK": "Hemos enviado un enlace a esa dirección de email para que puedas cambiar tu contraseña. Revisa también en tu bandeja de spam. Dispones de 15 minutos antes de que el enlace deje de ser válido.",
       "emailKO": "No hemos encontrado ese email es nuestra base de datos"
     },
-    "signUp": "Registrando, por favor espere...",
+    "signing": "Registrando, por favor espere...",
     "yes": 'Sí',
     "no": "No"
   }

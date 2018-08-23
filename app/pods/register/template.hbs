@@ -1,7 +1,7 @@
 {{#wrapper-bg images='backgrounds/register.jpg'}}
   {{register-form onsubmit='register'}}
 
-  {{wait-modal id='modal-register' text=(t 'text.signUp')}}
+  {{wait-modal id='modal-register' text=(t 'text.signing')}}
 
   {{#generic-modal id='modal-registration-ok' onclose='goToLogin'}}
     <div class="text-center">{{fa-icon 'check-circle'}}</div>

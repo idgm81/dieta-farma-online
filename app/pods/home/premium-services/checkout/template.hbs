@@ -32,7 +32,7 @@
                 <legend>Pago con tarjeta</legend>
                 {{#if isLoading}}
                   <div class="loader payment"></div>
-                  <p class="text-center info">Realizando el pago, espere por favor...</p>
+                  <p class="text-center info">{{t 'text.paying'}}</p>
                 {{else}}
                   <div class="form-row">
                     <div class="form-group">
@@ -54,8 +54,8 @@
                         <p class="text-center info">Esta dieta te sale gratis ya que dispones de saldo por haber cancelado alguna dieta anteriormente</p>
                         <div class="submit-button">
                           <div class="col-xs-12">
-                            <button type="button" class="form-control btn btn-df btn-block" {{action 'confirm'}}>Comprar dieta GRATIS</button>
-                            <button type="button" class="form-control btn btn-grey btn-block" {{action 'cancel'}}>Cancelar</button>
+                            <button type="button" class="form-control btn btn-df btn-block" {{action 'confirm'}}>Comprar dieta con créditos</button>
+                            <button type="button" class="form-control btn btn-grey btn-block" {{action 'cancel'}}>{{t 'label.cancel'}}</button>
                           </div>
                         </div>
                       {{else}}
@@ -67,7 +67,7 @@
                           <div class="pay-buttons">
                             <div class="col-xs-12">
                               <button type="button" class="form-control btn btn-df btn-block" {{action 'pay' stripeElement}}>Comprar dieta por {{amount}} €</button>
-                              <button type="button" class="form-control btn btn-grey btn-block" {{action 'cancel'}}>Cancelar</button>
+                              <button type="button" class="form-control btn btn-grey btn-block" {{action 'cancel'}}>{{t 'label.cancel'}}</button>
                             </div>
                           </div>
                         {{/stripe-card}}
