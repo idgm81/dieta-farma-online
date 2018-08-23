@@ -9,28 +9,38 @@
   {{/if}}
 </ol>
 
-{{#each model.diets as |diet index|}}
+{{#each (filter-by 'type' 'D' model.diets) as |diet|}}
   <div class="container">
     <div class="panel panel-df">
       <div class="panel-heading">
-        <h3 class="panel-title">
-          #{{index}} {{diet.title}}
-        </h3>
+        <h3 class="panel-title">Dietas</h3>
       </div>
       <div class="panel-body">
-        {{#if (eq diet.type 'D')}}
-          Desde {{moment-format diet.fromDate 'DD/MM/YYYY'}} - Hasta {{moment-format diet.toDate 'DD/MM/YYYY'}}
-        {{/if}}
-      </div>
-      <div class="panel-footer text-center">
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-info" {{action 'open' (get diet 'url')}}>{{fa-icon 'eye' size='x'}}</button>
-        </div>
-        {{#if isNutritionist}}
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-danger" {{action 'delete' (get diet '_id') (get diet 'customer')}}>{{fa-icon 'trash' size='x'}}</button>
-          </div>
-        {{/if}}
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Incio</th>
+              <th>Fin</th>
+              <th>Nombre</th>
+              <th>Enlace</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{moment-format diet.fromDate 'DD/MM/YYYY'}}</td>
+              <td>{{moment-format diet.toDate 'DD/MM/YYYY'}} </td>
+              <td>{{diet.title}}</td>
+              <td>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-info" {{action 'open' (get diet 'url')}}>{{fa-icon 'eye' size='x'}}</button>
+                  {{#if isNutritionist}}
+                    <button type="button" class="btn btn-danger" {{action 'delete' (get diet '_id') (get diet 'customer')}}>{{fa-icon 'trash' size='x'}}</button>
+                  {{/if}}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -45,6 +55,39 @@
       {{else}}
         <div class="panel-body">No tienes ninguna dieta asignada</div>
       {{/if}}
+    </div>
+  </div>
+{{/each}}
+
+{{#each (filter-by 'type' 'P' model.diets) as |diet|}}
+  <div class="container">
+    <div class="panel panel-df">
+      <div class="panel-heading">
+        <h3 class="panel-title">Pautas dietéticas</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Enlace</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{diet.title}}</td>
+              <td>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-info" {{action 'open' (get diet 'url')}}>{{fa-icon 'eye' size='x'}}</button>
+                  {{#if isNutritionist}}
+                    <button type="button" class="btn btn-danger" {{action 'delete' (get diet '_id') (get diet 'customer')}}>{{fa-icon 'trash' size='x'}}</button>
+                  {{/if}}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 {{/each}}

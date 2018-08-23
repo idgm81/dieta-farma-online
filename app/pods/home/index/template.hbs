@@ -43,6 +43,11 @@
     {{fa-icon 'user' size='2x' transform='down-6'}}
   </div>
 {{else}}
+  {{#if (get model 'user.profile.pendingDiet')}}
+    <div class="alert alert-success text-justify">
+      <small><strong>Nota: </strong>Tu nutricionista está trabajando en tu dieta. La tendrás disponible en un plazo máximo de 48 horas</small>
+    </div>
+  {{/if}}
   {{#if model.appointments.length}}
     <div class="alert alert-warning text-justify">
       <small><strong>Nota: </strong>Puedes cancelar tu cita antes de 24h si te surge algún imprevisto. La videoconsulta se intentará realizar como máximo hasta en 3 ocasiones. Si no hay respuesta la cita se dará por realizada.</small>
@@ -74,11 +79,6 @@
       </div>
     </div>
   {{/each}}
-  {{#if (get model 'user.profile.pendingDiet')}}
-    <div class="alert alert-warning text-justify">
-      <small><strong>Nota: </strong>Puedes cancelar tu cita antes de 24h si te surge algún imprevisto. La videoconsulta se intentará realizar como máximo hasta en 3 ocasiones. Si no hay respuesta la cita se dará por realizada.</small>
-    </div>
-  {{/if}}
 {{/if}}
 
 {{wait-modal id='modal-wait-delete-appointment' text='Cancelando cita...'}}
