@@ -17,17 +17,15 @@ export default Controller.extend({
 
   name: null,
 
+  nutritionistId: reads('session.data.authenticated.id'),
+
   clientLinkLabel: computed('name', function() {
     return `Perfil de ${get(this, 'name')}`
   }),
 
-  file: null,
-
   dietOptions: ['Dieta', 'Pauta dietética'],
 
   option: 'Dieta',
-
-  nutritionistId: reads('session.data.authenticated.id'),
 
   actions: {
 

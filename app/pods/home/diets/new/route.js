@@ -10,5 +10,17 @@ export default Route.extend(AuthenticatedRouteMixin, {
     name: {
       refreshModel: true
     }
+  },
+
+  setupController(controller, model) {
+    // Call _super for default behavior
+    this._super(controller, model);
+    
+    controller.setProperties({
+      title: '',
+      fromDate: '',
+      toDate: '',
+      file: null
+    });
   }
 });
