@@ -1,11 +1,12 @@
 import Component from '@ember/component';
 import { scheduleOnce } from '@ember/runloop';
-import { get } from '@ember/object';
+import { get, setProperties } from '@ember/object';
+import { isPresent }  from '@ember/utils';
 import $ from 'jquery';
 
 export default Component.extend({
 
-  version: 1,
+  showLargeQuestionnaire: true,
 
   dietTypes: ['Muy variada', 'Menos variada'],
 
@@ -23,7 +24,7 @@ export default Component.extend({
 
   exerciseFrecuencies: ['De 1 a 3 horas', 'De 3 a 6 horas', 'De 9 a 12 horas', 'Más de 12 horas'],
 
-  follows: [
+  followOptions: [
     '0 - Nada',
     '1 - Muy poco',
     '2 - Poco',
@@ -32,7 +33,7 @@ export default Component.extend({
     '5 - Completamente'
   ],
 
-  levels: [
+  levelOptions: [
     '0 - Ninguno',
     '1 - Muy poco',
     '2 - Poco',
@@ -49,6 +50,27 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
+
+    if (get(this, 'showLargeQuestionnaire')) {
+      setProperties(this.get('answers'), {
+        objective: get(this, 'objectives.0'),
+        reason: get(this, 'reasons.0'),
+        dietType: get(this, 'dietTypes.0'),
+        dayFruit: get(this, 'foodFrecuencies.0'),
+        dayMilk: get(this, 'foodFrecuencies.0'),
+        dayCereals: get(this, 'foodFrecuencies.0'),
+        dayProteins: get(this, 'foodFrecuencies.0'),
+        supervisor: get(this, 'otherSupevisors.0'),
+        employmentType: get(this, 'employmentTypes.0'),
+        transportType: get(this, 'transportTypes.0'),
+        exerciseFrecuency: get(this, 'exerciseFrecuencies.0')
+      });  
+    } else {
+      setProperties(this.get('answers'), {
+        q2: get(this, 'followOptions.0'),
+        q7: get(this, 'levelOptions.0')
+      });
+    }
 
     scheduleOnce('afterRender', this, () => {
       $('form.premium-form').on('invalid.bs.validator', this._showError);
@@ -77,7 +99,7 @@ export default Component.extend({
       $(element).hasClass('field-error')
     );
 
-    this.set('hasError', errors.length ? true : false);
+    this.set('hasError', isPresent(errors));
   },
 
   actions: {

@@ -68,16 +68,6 @@ export default AjaxService.extend({
     });
   },
 
-  saveAdvanceQuestions(userId, data) {
-    return this.request(`/users-advance`, {
-      method: 'POST',
-      data: {
-        customer: userId,
-        questions: data
-      }
-    });
-  },
-
   editUser(userId, data) {
     return this.request(`/users/${userId}`, {
       method: 'PUT',

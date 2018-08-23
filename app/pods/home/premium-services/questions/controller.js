@@ -21,8 +21,7 @@ export default Controller.extend({
   level: computed.reads('premiumController.data.profile.level'),
 
   setup() {
-    this.set('isMandatory', get(this, 'type') === 'O');
-    this.set('questionsVersion', get(this, 'level') < 1 ? 1 : 2);
+    this.set('isMandatory', get(this, 'type') === 'O' || get(this, 'level') === 1 );
   },
 
   actions: {
@@ -37,14 +36,16 @@ export default Controller.extend({
 
       $('#modal-wait-questions').modal();
 
-      if (this.get('questionsVersion') === 1) {
+      if (get(this, 'isMandatory')) {
         request = this.get('api').editUser(userId, {
           'profile.level': 1,
           'profile.questionnaire' : answers
           }
         );
       } else {
-        request = this.get('api').saveAdvanceQuestions(userId, answers)
+        request = this.get('api').editUser(userId, {
+          'profile.questionnaire_review': answers
+        });
       }
 
       return request.then(() => {
