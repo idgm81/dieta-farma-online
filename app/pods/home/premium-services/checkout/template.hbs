@@ -43,7 +43,7 @@
                   {{#if (not-eq type 'O')}}
                     <div class="form-row">
                       <div class="form-group">
-                        <label for="diet-date">Fecha de la cita</label>
+                        <label for="diet-date">Fecha de la cita {{t (if (eq type 'P') 'label.meet.face' 'label.meet.video')}}</label>
                         {{input id='diet-date' class='form-control' type='text' value=(moment-parse-zone date 'DD/MM/YYYY HH:mm') readonly=true}}
                       </div>
                     </div>
@@ -51,7 +51,7 @@
                   <div class="form-row">
                     <div class="form-group">
                       {{#if hasCredits}}
-                        <p class="text-center info">Esta dieta te sale gratis ya que dispones de saldo por haber cancelado alguna dieta anteriormente</p>
+                        <p class="text-center info">Esta dieta puedes pagarla con los créditos que dispones</p>
                         <div class="submit-button">
                           <div class="col-xs-12">
                             <button type="button" class="form-control btn btn-df btn-block" {{action 'confirm'}}>Comprar dieta con créditos</button>
