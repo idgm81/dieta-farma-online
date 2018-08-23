@@ -157,12 +157,12 @@ export default Controller.extend({
       const type = get(this, 'type');
       const stripe = get(this, 'stripev3');
 
+      this.set('isLoading', true);
+
       return stripe.createToken(stripeElement).then(({token, error}) => {
         if (error) {
           return;
         }
-
-        this.set('isLoading', true);
 
         if (type === 'O') {
           return this.get('api').editUser(customer, { 'profile.pendingDiet': true })
