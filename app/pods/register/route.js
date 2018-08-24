@@ -1,15 +1,12 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import moment from 'moment';
-import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
-export default Route.extend(UnauthenticatedRouteMixin, {
+export default Route.extend({
 
   i18n: service(),
 
   api: service(),
-
-  routeIfAlreadyAuthenticated: 'home',
 
   _normalize(data) {
     return {
