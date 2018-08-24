@@ -27,21 +27,13 @@ export default Route.extend(AuthenticatedRouteMixin, {
   },
 
   model() {
-    $('#modal-loading-home').modal();
     const id = get(this, 'userId');
 
     return RSVP.hash({
       userData: this.get('api').getUser(id),
       inboxThreads: this.get('api').getThreads(id)
     })
-    .catch(() => this.transitionTo('index'))
-    .finally(() => $('#modal-loading-home').modal('hide'));
-  },
-
-  redirect(model) {
-    this._super(...arguments);
-
-    this.transitionTo('home.index');
+    .catch(() => this.transitionTo('index'));
   },
 
   setupController: function(controller, model) {
@@ -50,5 +42,15 @@ export default Route.extend(AuthenticatedRouteMixin, {
     later(() => this.get('session').invalidate(), 10 * 60 * 1000); // close session after 10 minutes
 
     controller.setup(model);
+  },
+
+  actions: {
+    loading(transition, originRoute) {
+      $('#modal-loading-home').modal();
+
+      transition.promise.finally(function() {
+        $('#modal-loading-home').modal('hide')
+      });
+    }
   }
 });
