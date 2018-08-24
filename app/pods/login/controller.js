@@ -1,5 +1,33 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
+import $ from 'jquery';
 
 export default Controller.extend({
-  error: ''
+
+  i18n: service(),
+
+  session: service(),
+
+  error: '',
+
+  actions: {
+    authenticate(credentials) {
+      $('button').hide();
+      $('#modal-login').modal();
+
+      const authenticator = 'authenticator:jwt';
+      this.get('session').authenticate(authenticator, {
+        email: credentials.email,
+        password: credentials.password
+      }).catch(({error}) => {
+        $('button').show();
+        this.set('controller.error', error || this.get('i18n').t('error.generic'));
+        $('#modal-login-ko').modal();
+      }).finally(() => $('#modal-login').modal('hide'));
+    },
+
+    goToResetPassword() {
+      this.transitionToRoute('reset-password');
+    }
+  }
 });
