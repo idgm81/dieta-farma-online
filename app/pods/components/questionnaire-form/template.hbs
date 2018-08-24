@@ -736,7 +736,7 @@
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label for="title">¿Qué es imposible de seguir?</label>
+          <label for="title">¿Qué aspectos te gustan menos de la dieta?</label>
           {{textarea
             id='advance-q4'
             name='advance-q4'
@@ -748,7 +748,7 @@
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label for="title">¿Quieres añadir algún alimento concreto que eches de menos?</label>
+          <label for="title">¿Qué es imposible de seguir?</label>
           {{textarea
             id='advance-q5'
             name='advance-q5'
@@ -760,7 +760,7 @@
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label for="title">¿Consigues que no pasen más de 5 horas entre tomas?</label>
+          <label for="title">¿Quieres añadir algún alimento concreto que eches de menos?</label>
           {{textarea
             id='advance-q6'
             name='advance-q6'
@@ -772,16 +772,28 @@
       </div>
       <div class="form-row">
         <div class="form-group">
+          <label for="title">¿Consigues que no pasen más de 5 horas entre tomas?</label>
+          {{textarea
+            id='advance-q7'
+            name='advance-q7'
+            class='advance-q7 form-control check'
+            rows='2'
+            value=answers.q7}}
+          <small class="help-block with-errors"></small>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
           <label for="title">Indica el consumo del ultraprocesados como
           cereales de desayuno, refrescos, galletas, bollería, comida rápida (pizza, hamburguesa)
           </label>
           {{#power-select
-            id='advance-q7'
+            id='advance-q8'
             class='check'
             searchEnabled=false
-            selected=answers.q7
+            selected=answers.q8
             options=levelOptions
-            onchange=(action (mut answers.q7)) as |level|}}
+            onchange=(action (mut answers.q8)) as |level|}}
             {{level}}
           {{/power-select}}
           <small class="help-block with-errors"></small>
@@ -790,19 +802,6 @@
       <div class="form-row">
         <div class="form-group">
           <label for="title">¿Crees que has seguido bien la dieta acercándote a tu objetivo?</label>
-          {{textarea
-            id='advance-q8'
-            name='advance-q8'
-            class='advance-q8 form-control check'
-            rows='2'
-            value=answers.q8}}
-          <small class="help-block with-errors"></small>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="title">¿Cumpliste el objetivo de tomar 5 frutas/verduras/hortalizas diferentes al día? En caso
-          negativo, ¿por qué?</label>
           {{textarea
             id='advance-q9'
             name='advance-q9'
@@ -814,8 +813,8 @@
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label for="title">¿Tomaste las cantidades de alimentos proteicos propuestos? (por ejemplo huevos pollo
-          pavo ternera pescado)? En caso negativo, ¿por qué?</label>
+          <label for="title">¿Cumpliste el objetivo de tomar 5 frutas/verduras/hortalizas diferentes al día? En caso
+          negativo, ¿por qué?</label>
           {{textarea
             id='advance-q10'
             name='advance-q10'
@@ -827,8 +826,8 @@
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label for="title">¿Cumpliste el objetivo de tomar 5 frutas/verduras/hortalizas diferentes al día? En caso
-          negativo, ¿por qué?</label>
+          <label for="title">¿Tomaste las cantidades de alimentos proteicos propuestos? (por ejemplo huevos pollo
+          pavo ternera pescado)? En caso negativo, ¿por qué?</label>
           {{textarea
             id='advance-q11'
             name='advance-q11'
