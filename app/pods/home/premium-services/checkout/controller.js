@@ -108,6 +108,26 @@ export default Controller.extend({
     }
   },
 
+  _makePurchase(token) {
+    const purchase = {
+      customer: get(this, 'userId'),
+      email: get(this, 'email'),
+      amount: get(this, 'amount') * 100,
+      description: this.get('i18n').t(`text.payment.description.${get(this, 'type')}`).toString(),
+      token: token.id
+    };
+
+    return this.get('api').createPurchase(purchase);
+  },
+
+  _makeFreePurchase() {
+    return this.get('api').createFreePurchase({
+      customer: get(this, 'userId'),
+      email: get(this, 'email'),
+      description: this.get('i18n').t(`text.payment.description.${get(this, 'type')}`).toString()
+    });
+  },
+
   actions: {
     cancel() {
       this.replaceRoute('home');
@@ -122,12 +142,15 @@ export default Controller.extend({
 
       if (type === 'O') {
         return this.get('api').editUser(customer, { 
-          'profile.credits': credits ,
+          'profile.credits': credits,
           'profile.pendingDiet': true
-        }).then(() => {
+        })
+        .then(() => this._makeFreePurchase())
+        .then(() => {
           this.set('isLoading', false);
           this.set('isCompleted', true);
-        }).catch(() =>  {
+        })
+        .catch(() =>  {
           this.set('isLoading', false);
           this.set('isCompleted', true);
           this.set('isError', true);
@@ -140,16 +163,18 @@ export default Controller.extend({
         date: get(this, 'date')
       };
 
-      return this.get('api').createAppointment(appointment).then(() =>
-        this.get('api').editUser(customer, { 'profile.credits': credits })
-      ).then(() => {
-        this.set('isLoading', false);
-        this.set('isCompleted', true);
-      }).catch(() =>  {
-        this.set('isLoading', false);
-        this.set('isCompleted', true);
-        this.set('isError', true);
-      });
+      return this.get('api').createAppointment(appointment)
+        .then(() => this.get('api').editUser(customer, { 'profile.credits': credits }))
+        .then(() => this._makeFreePurchase())
+        .then(() => {
+          this.set('isLoading', false);
+          this.set('isCompleted', true);
+        })
+        .catch(() =>  {
+          this.set('isLoading', false);
+          this.set('isCompleted', true);
+          this.set('isError', true);
+        });
     },
 
     pay(stripeElement) {
@@ -161,11 +186,14 @@ export default Controller.extend({
 
       return stripe.createToken(stripeElement).then(({token, error}) => {
         if (error) {
+          this.set('isLoading', false);
+
           return;
         }
 
         if (type === 'O') {
           return this.get('api').editUser(customer, { 'profile.pendingDiet': true })
+            .then(() => this._makePurchase(token))
             .then(() => {
               this.set('isLoading', false);
               this.set('isCompleted', true);
@@ -181,15 +209,7 @@ export default Controller.extend({
           type,
           date: get(this, 'date')
         }).then(({appointment}) => {
-          const purchase = {
-            customer: get(this, 'userId'),
-            email: get(this, 'email'),
-            amount: get(this, 'amount') * 100,
-            description: this.get('i18n').t(`text.payment.description.${type}`).toString(),
-            token: token.id
-          };
-
-          return this.get('api').createPurchase(purchase).then(() => {
+          return this._makePurchase(token).then(() => {
             this.set('isLoading', false);
             this.set('isCompleted', true);
           }).catch(() =>  {
@@ -204,6 +224,8 @@ export default Controller.extend({
           this.set('isCompleted', true);
           this.set('isError', true);
         });
+      }).catch(() =>  {
+        this.set('isLoading', false);
       });
     },
 
