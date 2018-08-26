@@ -60,6 +60,7 @@ export default {
       "ko": "Se ha producido un error al cambiar la contraseña"
     },
     "checking": "Comprobando...",
+    "creditsAvailable": "Te informamos de que dispones de {{credits}} crédito(s)",
     "loading": "Cargando...",
     "paying": "Realizando el pago, espere por favor...",
     "payment": {
