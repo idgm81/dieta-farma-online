@@ -1,13 +1,10 @@
 import Component from '@ember/component';
 import { scheduleOnce } from '@ember/runloop';
 import { get, setProperties } from '@ember/object';
-import { reads } from '@ember/object/computed';
 import { isPresent }  from '@ember/utils';
 import $ from 'jquery';
 
 export default Component.extend({
-
-  showLargeQuestionnaire: true,
 
   dietTypes: ['Muy variada', 'Menos variada'],
 
@@ -45,7 +42,9 @@ export default Component.extend({
 
   answers: {},
 
-  mandatory: reads('showLargeQuestionnaire'),
+  showLargeQuestionnaire: true,
+
+  mandatory: false,
 
   hasError: false,
 
@@ -69,7 +68,7 @@ export default Component.extend({
     } else {
       setProperties(this.get('answers'), {
         q2: get(this, 'followOptions.0'),
-        q7: get(this, 'levelOptions.0')
+        q8: get(this, 'levelOptions.0')
       });
     }
 

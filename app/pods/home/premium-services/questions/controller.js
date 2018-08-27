@@ -21,7 +21,8 @@ export default Controller.extend({
   level: computed.reads('premiumController.data.profile.level'),
 
   setup() {
-    this.set('isMandatory', get(this, 'type') === 'O' || get(this, 'level') > 0 );
+    this.set('isMandatory', get(this, 'type') === 'O');
+    this.set('hasBasicQuestionnaire', get(this, 'level') > 0);
   },
 
   actions: {

@@ -28,7 +28,8 @@
       <div class="row">
         <div class="col-xs-12">
           {{questionnaire-form
-            showLargeQuestionnaire=isMandatory
+            showLargeQuestionnaire=(not hasBasicQuestionnaire)
+            mandatory=isMandatory
             oncancel='cancel'
             onsubmit='next'}}
         </div>
