@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { scheduleOnce } from '@ember/runloop';
 import { get, setProperties } from '@ember/object';
+import { reads } from '@ember/object/computed';
 import { isPresent }  from '@ember/utils';
 import $ from 'jquery';
 
@@ -44,7 +45,7 @@ export default Component.extend({
 
   answers: {},
 
-  mandatory: false,
+  mandatory: reads('showLargeQuestionnaire'),
 
   hasError: false,
 
