@@ -108,6 +108,7 @@ module.exports = function(environment) {
 			showCreateDate: true
     };
     ENV['stripe'] = {
+      lazyLoad: true,
       publishableKey: process.env.STRIPE_PUBLISHABLE_KEY
     }
   }
