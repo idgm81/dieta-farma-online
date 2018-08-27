@@ -182,14 +182,12 @@ export default Controller.extend({
       const type = get(this, 'type');
       const stripe = get(this, 'stripev3');
 
-      this.set('isLoading', true);
-
       return stripe.createToken(stripeElement).then(({token, error}) => {
         if (error) {
-          this.set('isLoading', false);
-
           return;
         }
+
+        this.set('isLoading', true);
 
         if (type === 'O') {
           return this.get('api').editUser(customer, { 'profile.pendingDiet': true })
@@ -224,8 +222,6 @@ export default Controller.extend({
           this.set('isCompleted', true);
           this.set('isError', true);
         });
-      }).catch(() =>  {
-        this.set('isLoading', false);
       });
     },
 
