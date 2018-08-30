@@ -53,6 +53,59 @@ export default Component.extend({
 
     if (get(this, 'showLargeQuestionnaire')) {
       setProperties(this.get('answers'), {
+        measures: {
+          height: '',
+          weight: '',
+          imc: '',
+          fat: '',
+          water: '',
+          mass: '',
+          biotype: '',
+          boneMass: '',
+          metabolicExpense: '',
+          metabolicAge: '',
+          visceralFat: '',
+        },
+        segments: {
+          arm: {
+            left: {
+              fatPercentage: '',
+              mass: ''
+            },
+            right: {
+              fatPercentage: '',
+              mass: ''
+            }
+          },
+          leg: {
+            left: {
+              fatPercentage: '',
+              mass: ''
+            },
+            right: {
+              fatPercentage: '',
+              mass: ''
+            }
+          },
+          trunk: {
+            fatPercentage: '',
+            mass: ''
+          }
+        },
+        shapes: {
+          waist: '',
+          wrist: '',
+          hip: '',
+          arm: '',
+          leg: '',
+          chest: ''
+        },
+        creases: {
+          bicipital: '',
+          tricipital: '',
+          subescapular: '',
+          suprailiaco: ''
+        },
         objective: get(this, 'objectives.0'),
         reason: get(this, 'reasons.0'),
         dietType: get(this, 'dietTypes.0'),
@@ -63,12 +116,27 @@ export default Component.extend({
         supervisor: get(this, 'otherSupevisors.0'),
         employmentType: get(this, 'employmentTypes.0'),
         transportType: get(this, 'transportTypes.0'),
-        exerciseFrecuency: get(this, 'exerciseFrecuencies.0')
+        exerciseFrecuency: get(this, 'exerciseFrecuencies.0'),
+        sportDetail: 'String',
       });  
     } else {
+
       setProperties(this.get('answers'), {
+        q1: '',
         q2: get(this, 'followOptions.0'),
-        q8: get(this, 'levelOptions.0')
+        q3: '',
+        q4: '',
+        q5: '',
+        q6: '',
+        q7: '',
+        q8: get(this, 'levelOptions.0'),
+        q9: '',
+        q10: '',
+        q11: '',
+        q12: '',
+        q13: '',
+        q14: '',
+        q15: ''
       });
     }
 

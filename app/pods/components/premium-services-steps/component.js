@@ -6,8 +6,11 @@ export default Component.extend({
   classNames: ['premium-services-steps'],
 
   currentStep: 1,
+  
+  type: 'O',
 
-  steps: [
+  steps: computed('type', function() {
+    const stepsArray = [
     {
       name: 'Tipo de dieta',
       icon: 'plus'
@@ -20,8 +23,14 @@ export default Component.extend({
     }, {
       name: 'Pago',
       icon: 'credit-card'
+    }];
+
+    if (this.get('type') === 'O') {
+      stepsArray.splice(1,1);
     }
-  ],
+
+    return stepsArray;
+  }),
 
   stepsNumber: computed('steps.[]', function () {
     return this.get('steps').length;
