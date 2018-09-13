@@ -95,10 +95,10 @@ export default {
       },
       "services": {
         "title": "Consulta dietética online",
-        "paragraph1": "Contesta en unos minutos nuestro formulario definido por el experto Jorge Baztán (farmacéutico, nutricionista y entrenador personal) y obtén una dieta que se ajusta a tus necesidades",
-        "paragraph2": "Resuelve cualquier duda directamente con tu nutricionista a través de nuestro servicio de 'Mensajes' de la aplicación",
-        "paragraph3": "Realizaremos un seguimiento continuo de tu dieta y podrás renovarla periódicamente",
-        "paragraph4": "Si te gusta más el contacto directo próximamente podrás reservar tu consulta a través de Skype o presencial con del servicio de 'Citas' de la aplicación"
+        "paragraph1": "Contesta en 4 minutos mi cuestionario inicial, y podré empezar a diseñar tu plan dietético cuanto antes",
+        "paragraph2": "Resuelve cualquier duda conmigo directamente en el apartado Mensajes",
+        "paragraph3": "Haré un seguimiento continuo de tu ejecución de la dieta. Además puedes solicitar modificaciones parciales o cambios completos de dieta desde el apartado Solicitar nueva dieta, pudiendo realizar tus pagos online cómodamente y de forma 100% segura",
+        "paragraph4": "En cada ocasión podrás elegir entre 3 servicios: asesoría dietética presencial, video-asesoría online en directo, o un plan dietético online más sencillo en diferido. Podrás reservar tu siguiente servicio prensencial o por videoconferencia cuando quieras en el apartado Calendario"
       }
     },
     "reset": {
