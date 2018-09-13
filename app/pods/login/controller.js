@@ -21,7 +21,7 @@ export default Controller.extend({
         password: credentials.password
       }).catch(({error}) => {
         $('button').show();
-        this.set('controller.error', error || this.get('i18n').t('error.generic'));
+        this.set('error', error || this.get('i18n').t('error.generic'));
         $('#modal-login-ko').modal();
       });
     },
