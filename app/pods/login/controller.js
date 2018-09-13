@@ -23,7 +23,7 @@ export default Controller.extend({
         $('button').show();
         this.set('controller.error', error || this.get('i18n').t('error.generic'));
         $('#modal-login-ko').modal();
-      }).finally(() => $('#modal-login').modal('hide'));
+      });
     },
 
     goToResetPassword() {

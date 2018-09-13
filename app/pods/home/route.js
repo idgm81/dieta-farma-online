@@ -42,6 +42,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     later(() => this.get('session').invalidate(), 10 * 60 * 1000); // close session after 10 minutes
 
     controller.setup(model);
+    $('#modal-login').modal('hide')
   },
 
   actions: {
