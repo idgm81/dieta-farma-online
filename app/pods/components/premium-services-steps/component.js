@@ -38,5 +38,10 @@ export default Component.extend({
 
   value: computed('currentStep', 'stepsNumber', function () {
     return this.get('currentStep') * (100 / this.get('stepsNumber'));
-  })
+  }),
+
+  didInsertElement() {
+    this._super(...arguments);
+    this.$('.premium-services-step').css('width', `${(100 / this.get('stepsNumber'))}%`);
+  }
 });

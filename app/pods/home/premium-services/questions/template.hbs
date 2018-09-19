@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="row">
-        {{premium-services-steps currentStep=3 type=type}}
+        {{premium-services-steps currentStep=(if isMandatory 2 3) type=type}}
       </div>
       <div class="row">
         <div class="col-xs-12">
