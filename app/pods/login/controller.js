@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import { get }  from '@ember/object';
 import $ from 'jquery';
 
 export default Controller.extend({
@@ -19,9 +20,9 @@ export default Controller.extend({
       this.get('session').authenticate(authenticator, {
         email: credentials.email,
         password: credentials.password
-      }).catch(({error}) => {
+      }).catch((error) => {
         $('button').show();
-        this.set('error', error || this.get('i18n').t('error.generic'));
+        this.set('error', get(error, 'json.error') || get(this, 'i18n').t('error.generic'));
         $('#modal-login-ko').modal();
       });
     },
