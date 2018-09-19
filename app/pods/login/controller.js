@@ -23,6 +23,7 @@ export default Controller.extend({
       }).catch((error) => {
         $('button').show();
         this.set('error', get(error, 'json.error') || get(this, 'i18n').t('error.generic'));
+        $('#modal-login').modal('hide');
         $('#modal-login-ko').modal();
       });
     },
