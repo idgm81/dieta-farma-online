@@ -36,7 +36,7 @@ export default Component.extend({
     return this.get('steps').length;
   }),
 
-  value: computed('currentStep', function () {
+  value: computed('currentStep', 'stepsNumber', function () {
     return this.get('currentStep') * (100 / this.get('stepsNumber'));
   })
 });
