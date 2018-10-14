@@ -64,6 +64,7 @@
     "ember-simple-auth-token": "4.0.4",
     "ember-source": "3.1.2",
     "ember-stripe-elements": "0.4.0",
+    "ember-web-app": "2.3.0",
     "fastclick": "1.0.6",
     "jquery-backstretch": "2.1.16",
     "loader.js": "4.6.0",
