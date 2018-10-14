@@ -1,6 +1,5 @@
 /* eslint-env node */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-var nodeSass = require('node-sass');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
@@ -34,7 +33,6 @@ module.exports = function(defaults) {
     },
     // Add options here
     sassOptions: {
-      implementation: nodeSass,
       includePaths: [
         'node_modules/bootstrap-sass/assets/stylesheets'
       ]
