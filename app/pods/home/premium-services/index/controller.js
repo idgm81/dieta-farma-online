@@ -21,10 +21,12 @@ export default Controller.extend({
   },
 
   setup(model) {
-    this.set('data.type', 'O');
-    this.set('data.email', get(model, 'user.email'));
-    this.set('data.profile.level', get(model, 'user.profile.level'));
-    this.set('data.profile.credits', get(model, 'user.profile.credits'));
+    this.setProperties({
+      'data.type': 'O',
+      'data.email': get(model, 'user.email'),
+      'data.profile.level': get(model, 'user.profile.level'),
+      'data.profile.credits': get(model, 'user.profile.credits')
+    });
   },
 
   actions: {
