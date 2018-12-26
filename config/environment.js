@@ -11,6 +11,13 @@ module.exports = function(environment) {
     bootstrapDatepicker: {
       includeLocales: [ 'es' ]
     },
+    fontawesome: {
+      icons: {
+        'free-solid-svg-icons': 'all',
+        'free-regular-svg-icons': 'all',
+        'free-brands-svg-icons': 'all'
+      }
+    },
     i18n: {
       defaultLocale: 'es'
     },

@@ -6,13 +6,6 @@ module.exports = function(defaults) {
 		'ember-cli-babel': {
 			includePolyfill: true
     },
-    fontawesome: {
-      icons: {
-        'free-solid-svg-icons': 'all',
-        'free-regular-svg-icons': 'all',
-        'free-brands-svg-icons': 'all'
-      }
-    },
     svg: {
       paths: [
         'public/assets/images',
