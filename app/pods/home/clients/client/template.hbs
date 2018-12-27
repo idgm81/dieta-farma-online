@@ -48,6 +48,7 @@
                 <tr>
                   <td>{{t 'label.profile.credits'}}</td>
                   <td>{{profile.credits}}</td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'credits'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
                   <td>Dietas</td>
@@ -218,7 +219,7 @@
                 <tr>
                   <td>Frecuencia consumo lácteos</td>
                   <td>{{profile.questionnaire.dayMilk}}</td>
-                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'dayMilk'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
+                  <td><button class="btn btn-link btn-sm" {{action 'editProfile' 'questionnaire.dayMilk'}}>{{fa-icon 'pencil-alt' fixedWidth=true}}</button></td>
                 </tr>
                 <tr>
                   <td>Frecuencia consumo cereales y frutos secos</td>

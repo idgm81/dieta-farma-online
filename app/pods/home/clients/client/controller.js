@@ -19,11 +19,10 @@ export default Controller.extend({
       $('#modal-edit-profile').modal();
     },
     saveProfile(field, value) {
-      const data = this.get('model.user');
-  
-      set(data, `profile.${field}`, value);
+      const user = this.get('model.user');
 
-      return this.get('api').editUser(get(data, '_id'), data)
+      return this.get('api').editProfile(user._id, `profile.${field}`, value)
+        .then((data) => set(user, `profile.${field}`, get(data, `user.profile.${field}`)))
         .catch(() => $('#modal-edit-profile-error').modal());
     },
     showDiets() {
