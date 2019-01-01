@@ -68,7 +68,7 @@ export default AjaxService.extend({
     });
   },
 
-  editProfile(userId, key, value) {
+  editUser(userId, key, value) {
     return this.request(`/users/${userId}`, {
       method: 'PUT',
       data: {

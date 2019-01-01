@@ -4,6 +4,7 @@ import { computed }  from '@ember/object';
 import { get }  from '@ember/object';
 import { inject as service } from '@ember/service';
 import { inject as controller } from '@ember/controller';
+import { all } from 'rsvp';
 import { DIET_PRICES } from '../constants';
 
 const CREDITS_TYPES = {
@@ -141,10 +142,9 @@ export default Controller.extend({
       this.set('isLoading', true);
 
       if (type === 'O') {
-        return this.get('api').editUser(customer, { 
-          'profile.credits': credits,
-          'profile.pendingDiet': true
-        })
+        return all([
+            this.get('api').editUser(customer, 'profile.credits', credits),
+            this.get('api').editUser(customer, 'profile.pendingDiet', true)])
         .then(() => this._makeFreePurchase())
         .then(() => {
           this.set('isLoading', false);
@@ -164,7 +164,7 @@ export default Controller.extend({
       };
 
       return this.get('api').createAppointment(appointment)
-        .then(() => this.get('api').editUser(customer, { 'profile.credits': credits }))
+        .then(() => this.get('api').editUser(customer, 'profile.credits', credits))
         .then(() => this._makeFreePurchase())
         .then(() => {
           this.set('isLoading', false);
@@ -190,7 +190,7 @@ export default Controller.extend({
         this.set('isLoading', true);
 
         if (type === 'O') {
-          return this.get('api').editUser(customer, { 'profile.pendingDiet': true })
+          return this.get('api').editUser(customer, 'profile.pendingDiet', true)
             .then(() => this._makePurchase(token))
             .then(() => {
               this.set('isLoading', false);

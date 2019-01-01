@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { inject as controller } from '@ember/controller';
 import { get } from '@ember/object';
 import { computed }  from '@ember/object';
+import { all } from 'rsvp';
 
 export default Controller.extend({
 
@@ -38,15 +39,12 @@ export default Controller.extend({
       $('#modal-wait-questions').modal();
 
       if (get(this, 'isMandatory')) {
-        request = this.get('api').editUser(userId, {
-          'profile.level': 1,
-          'profile.questionnaire' : answers
-          }
-        );
+        request = all([
+          this.get('api').editUser(userId, 'profile.level', 1),
+          this.get('api').editUser(userId, 'profile.questionnaire', answers)
+        ]);
       } else {
-        request = this.get('api').editUser(userId, {
-          'profile.questionnaire_review': answers
-        });
+        request = all([this.get('api').editUser(userId, 'profile.questionnaire_review', answers)]);
       }
 
       return request.then(() => {

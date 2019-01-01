@@ -22,17 +22,21 @@ export default Controller.extend({
       $('#modal-edit-avatar').modal();
     },
     saveAvatar(avatar) {
-      const data = get(this, 'model.user');
+      const user = this.get('model.user');
 
-      set(data, 'profile.avatar', avatar);
-
-      return this.get('api').editUser(get(this, 'userId'), data)
-        .then(() => this.get('session').set('data.avatar', avatar))
+      return this.get('api').editUser(user._id, 'profile.avatar', avatar)
+        .then((data) =>  this.get('session').set('data.avatar', get(data, 'user.profile.avatar')))
         .catch(() => $('#modal-edit-profile-error').modal());
     },
     editProfile(field) {
-      const value = get(this, `model.user.${field === 'email' ? 'email' : 'profile.'}${field}`);
+      let value = null;
 
+      if (field === 'email') {
+        value = get(this, 'model.user.email');
+      } else {
+        value = get(this, `model.user.profile.${field}`);
+      }
+      
       if (field === 'birthday') {
         this.set('value', moment.parseZone(value).format('DD/MM/YYYY'));
       } else {
@@ -43,11 +47,11 @@ export default Controller.extend({
       $('#modal-edit-profile').modal();
     },
     saveProfile(field, value) {
-      const data = this.get('model.user');
+      const user = this.get('model.user');
+      const key = field === 'email' ? field : `profile.${field}`;
   
-      set(data, `${field === 'email' ? '' : 'profile.'}${field}`, value);
-
-      return this.get('api').editUser(get(this, 'userId'), data)
+      return this.get('api').editUser(user._id, key, value)
+        .then((response) => set(user, key, get(response, `user.${key}`)))
         .catch(() => $('#modal-edit-profile-error').modal());
     },
     showDiets() {
