@@ -117,7 +117,7 @@ export default Component.extend({
         employmentType: get(this, 'employmentTypes.0'),
         transportType: get(this, 'transportTypes.0'),
         exerciseFrecuency: get(this, 'exerciseFrecuencies.0'),
-        sportDetail: 'String',
+        sportDetail: '',
       });  
     } else {
 
