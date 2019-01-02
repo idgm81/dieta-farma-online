@@ -38,7 +38,7 @@ export default Controller.extend({
       }
       
       if (field === 'birthday') {
-        this.set('value', moment.parseZone(value).format('DD/MM/YYYY'));
+        this.set('value', moment(value).format('DD/MM/YYYY'));
       } else {
         this.set('value', value)
       }
@@ -49,7 +49,11 @@ export default Controller.extend({
     saveProfile(field, value) {
       const user = this.get('model.user');
       const key = field === 'email' ? field : `profile.${field}`;
-  
+      
+      if (field === 'birthday') {
+        value = moment(value, 'DD/MM/YYYY').startOf('day').toISOString()
+      }
+
       return this.get('api').editUser(user._id, key, value)
         .then((response) => set(user, key, get(response, `user.${key}`)))
         .catch(() => $('#modal-edit-profile-error').modal());

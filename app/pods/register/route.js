@@ -17,7 +17,7 @@ export default Route.extend({
         surname: data.surname,
         genre: data.genre,
         phone: data.phone,
-        birthday: moment(`${data.birthday.year}-${data.birthday.month}-${data.birthday.day}`, 'YYYY-MM-DD').format(),
+        birthday: moment(`${data.birthday.year}-${data.birthday.month}-${data.birthday.day}`, 'YYYY-MM-DD').startOf('day').toISOString(),
         measures: {
           height: data.measures.height,
           weight: data.measures.weight
