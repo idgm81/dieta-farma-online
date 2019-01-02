@@ -94,7 +94,10 @@ export default {
         "contact": "CONTACTA CONMIGO"
       },
       "services": {
-        "title": "Consulta dietética online",
+        "title1": "Servicio Diferido",
+        "title2": "Servicio Skype",
+        "title3": "Servicio Presencial",
+        "title4": "Adaptado a tus necesidades",
         "paragraph1": "Obtén tu dieta personalizada rellenando en 4 minutos el cuestionario que he definido, y podré empezar a diseñar tu plan dietético cuanto antes",
         "paragraph2": "Reserva tu videoconferencia en directo conmigo el día y hora que mejor se adapte a tu agenda y obtén tu dieta personalizada",
         "paragraph3": "Reserva tu cita para acudir a la oficina de Dietafarma, donde te proporcionaré tu dieta personalizada",
