@@ -520,11 +520,14 @@ about
   margin-top: 20px;
 }
 
-.thumbnail {
-  padding-top: 20px;
-  height: 500px;
-  background-color: #d9e2e2;
-  border: 0px;
+
+.services {
+  &.thumbnail {
+    padding-top: 20px;
+    height: 300px;
+    background-color: #d9e2e2;
+    border: 0px;
+  }
 }
 
 .profile-thumbnail {

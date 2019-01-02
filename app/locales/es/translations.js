@@ -95,10 +95,10 @@ export default {
       },
       "services": {
         "title": "Consulta dietética online",
-        "paragraph1": "Contesta en 4 minutos mi cuestionario inicial, y podré empezar a diseñar tu plan dietético cuanto antes",
-        "paragraph2": "Resuelve cualquier duda conmigo directamente en el apartado Mensajes",
-        "paragraph3": "Haré un seguimiento continuo de tu ejecución de la dieta. Además puedes solicitar modificaciones parciales o cambios completos de dieta desde el apartado Solicitar nueva dieta, pudiendo realizar tus pagos online cómodamente y de forma 100% segura",
-        "paragraph4": "En cada ocasión podrás elegir entre 3 servicios: asesoría dietética presencial, video-asesoría online en directo, o un plan dietético online más sencillo en diferido. Podrás reservar tu siguiente servicio prensencial o por videoconferencia cuando quieras en el apartado Calendario"
+        "paragraph1": "Obtén tu dieta personalizada rellenando en 4 minutos el cuestionario que he definido, y podré empezar a diseñar tu plan dietético cuanto antes",
+        "paragraph2": "Reserva tu videoconferencia en directo conmigo el día y hora que mejor se adapte a tu agenda y obtén tu dieta personalizada",
+        "paragraph3": "Reserva tu cita para acudir a la oficina de Dietafarma, donde te proporcionaré tu dieta personalizada",
+        "paragraph4": "Haré un seguimiento de la ejecución de la dieta donde podrás preguntarme cualquier duda desde la sección de \"Mensajes\". Además, podrás solicitar modificaciones parciales o cambios completos de la dieta proporcionada"
       }
     },
     "reset": {
