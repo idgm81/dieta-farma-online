@@ -1,9 +1,8 @@
 // app/services/api.js
 import { inject as service } from '@ember/service';
-
 import { computed } from '@ember/object';
-import RSVP from 'rsvp';
 import AjaxService from 'ember-ajax/services/ajax';
+import { Promise }  from 'rsvp';
 import ENV from '../config/environment';
 
 export default AjaxService.extend({
@@ -188,7 +187,7 @@ export default AjaxService.extend({
   },
 
   uploadToS3(file, signedRequest) {
-    return new RSVP.Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
       xhr.open('PUT', signedRequest)
       xhr.setRequestHeader('x-amz-acl', 'public-read')
