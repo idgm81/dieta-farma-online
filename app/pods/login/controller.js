@@ -17,15 +17,16 @@ export default Controller.extend({
       $('#modal-login').modal();
 
       const authenticator = 'authenticator:jwt';
-      this.get('session').authenticate(authenticator, {
-        email: credentials.email,
-        password: credentials.password
-      }).catch((error) => {
-        $('button').show();
-        this.set('error', get(error, 'json.error') || get(this, 'i18n').t('error.generic'));
-        $('#modal-login').modal('hide');
-        $('#modal-login-ko').modal();
-      });
+      const email = credentials.email && credentials.email.toLowerCase();
+      const password = credentials.password;
+
+      return this.get('session').authenticate(authenticator, { email, password })
+        .catch((error) => {
+          $('button').show();
+          this.set('error', get(error, 'json.error') || get(this, 'i18n').t('error.generic'));
+          $('#modal-login').modal('hide');
+          $('#modal-login-ko').modal();
+        });
     },
 
     goToResetPassword() {

@@ -54,6 +54,10 @@ export default Controller.extend({
         value = moment(value, 'DD/MM/YYYY').startOf('day').toISOString()
       }
 
+      if (field === 'email') {
+        value = value.toLowerCase();
+      }
+
       return this.get('api').editUser(user._id, key, value)
         .then((response) => set(user, key, get(response, `user.${key}`)))
         .catch(() => $('#modal-edit-profile-error').modal());
