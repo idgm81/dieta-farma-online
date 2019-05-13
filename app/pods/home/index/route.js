@@ -19,11 +19,11 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
     return RSVP.hash({
       diets: this.get('api').getDiets(userId),
-      appointments: this.get('api').getAppointments(userId)
-    }).then(({diets, appointments}) => {
-      const scheduledAppointments = appointments.filter((a) => moment(a.date).isAfter(moment()));
+      mettings: this.get('api').getAppointments(userId)
+    }).then(({ diets, mettings }) => {
+      const appointments = mettings.appointments.filter((a) => moment(a.date).isAfter(moment()));
 
-      assign({}, parentModel.userData, parentModel.inboxThreads, diets, scheduledAppointments)
+      return assign({}, parentModel.userData, parentModel.inboxThreads, diets, { appointments })
     });
   },
 
