@@ -3,7 +3,8 @@ import Helper from '@ember/component/helper';
 import { inject as service } from '@ember/service';
 
 const LABELS = {
-	['P'] : 'label.meet.face',
+	['P'] : 'label.meet.face.paid',
+	['L'] : 'label.meet.face.payLater',
 	['V'] : 'label.meet.video',
 	['O'] : 'label.meet.online'
 };

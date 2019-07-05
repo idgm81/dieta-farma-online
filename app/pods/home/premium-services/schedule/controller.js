@@ -16,8 +16,21 @@ export default Controller.extend({
 
   dietType: computed(function() {
     const type = this.get('premiumController.data.type');
+    const i18n = this.get('i18n');
 
-    return this.get('i18n').t(`label.meet.${type === 'P' ? 'face' : 'video'}`);
+    if (type === 'P') {
+      return i18n.t('label.meet.face.paid');
+    }
+
+    if (type === 'L') {
+      return i18n.t('label.meet.face.payLater');
+    }
+
+    if (type === 'V') {
+      return i18n.t('label.meet.video');
+    }
+
+    return i18n.t('label.meet.online'); 
   }),
 
   actions: {

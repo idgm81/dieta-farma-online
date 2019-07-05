@@ -16,6 +16,21 @@
           <div class="banner-text text-center">
             <h1 class="white">PAGO DE LA DIETA</h1>
             <p>Por favor, finaliza el proceso de compra de tu dieta realizando el pago con tu tarjeta de débito o crédito</p>
+            {{#if (eq type 'P')}}
+              <div class="form-group">
+                <p>Si te resulta más cómodo, también puedes pagar tu dieta una vez finalice tu consulta con tu nutricionista</p>
+                <label for="optGenre1" class="radio-inline">
+                  {{radio-button id='optPay1' name='optPay' value=true checked=payLater}}
+                  <span>Pago en consulta</span>
+                  <div class="radio-checked"></div>
+                </label>
+                <label for="optGenre2" class="radio-inline">
+                  {{radio-button id='optPay2' name='optPay' value=false checked=payLater}}
+                  <span>Pagar ahora</span>
+                  <div class="radio-checked"></div>
+                </label>
+              </div>
+            {{/if}}
           </div>
         </div>
       </div>
@@ -29,7 +44,7 @@
           {{#unless isCompleted}}
             <form class="premium-form">
               <fieldset class="card-details">
-                <legend>Pago con tarjeta</legend>
+                <legend>Pago de tu dieta</legend>
                 {{#if isLoading}}
                   <div class="loader payment"></div>
                   <p class="text-center info">{{t 'text.paying'}}</p>
@@ -58,6 +73,13 @@
                             <button type="button" class="form-control btn btn-grey btn-block" {{action 'cancel'}}>{{t 'label.cancel'}}</button>
                           </div>
                         </div>
+                      {{else if payLater}}
+                          <div class="pay-buttons">
+                            <div class="col-xs-12">
+                              <button type="button" class="form-control btn btn-df btn-block" {{action 'payLater'}}>Pagar tras la consulta</button>
+                              <button type="button" class="form-control btn btn-grey btn-block" {{action 'cancel'}}>{{t 'label.cancel'}}</button>
+                            </div>
+                          </div>
                       {{else}}
                         <label for="customer-card">Datos de la tarjeta</label>
                         {{#stripe-card autofocus=true options=stripeOptions as |stripeElement stripeError|}}
@@ -80,7 +102,7 @@
           {{else}}
             <form class="premium-form">
               <fieldset class="payment-result">
-                <legend>Pago con tarjeta</legend>
+                <legend>Pago de tu dieta</legend>
                 <div class="form-row">
                   <div class="text-center {{if isError 'error' 'success'}}">{{fa-icon (if isError 'times-circle' 'check-circle')}}</div>
                   <p class="text-center info">{{t (if isError 'error.payment' 'text.payment.success')}}</p>

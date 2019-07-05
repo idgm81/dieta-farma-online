@@ -39,6 +39,8 @@ export default Controller.extend({
 
   hasCredits: false,
 
+  payLater: false,
+
   isError: false,
 
   isLoading: false,
@@ -86,6 +88,7 @@ export default Controller.extend({
     this.setProperties({
       isCompleted: false,
       hasCredits: false,
+      payLater: false,
       isError: false,
       isLoading: false
     });
@@ -126,6 +129,14 @@ export default Controller.extend({
       customer: get(this, 'userId'),
       email: get(this, 'email'),
       description: this.get('i18n').t(`text.payment.description.${get(this, 'type')}`).toString()
+    });
+  },
+
+  _makePurchasePayLater() {
+    return this.get('api').createFreePurchase({
+      customer: get(this, 'userId'),
+      email: get(this, 'email'),
+      description: this.get('i18n').t('text.payment.description.L').toString()
     });
   },
 
@@ -175,6 +186,28 @@ export default Controller.extend({
           this.set('isCompleted', true);
           this.set('isError', true);
         });
+    },
+
+    payLater() {
+        this.set('isLoading', true);
+
+        const appointment = {
+          customer: get(this, 'userId'),
+          type: 'L',
+          date: get(this, 'date')
+        };
+  
+        return this.get('api').createAppointment(appointment)
+          .then(() => this._makePurchasePayLater())
+          .then(() => {
+            this.set('isLoading', false);
+            this.set('isCompleted', true);
+          })
+          .catch(() =>  {
+            this.set('isLoading', false);
+            this.set('isCompleted', true);
+            this.set('isError', true);
+          });
     },
 
     pay(stripeElement) {

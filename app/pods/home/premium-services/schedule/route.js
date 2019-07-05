@@ -21,14 +21,16 @@ export default Route.extend(AuthenticatedRouteMixin, {
     const i18n = this.get('i18n');
     const calendar = get(model, 'calendar');
     const dayOptions = calendar.map((appointments) => appointments.day);
-    const typeOptions = [i18n.t('label.meet.face'), i18n.t('label.meet.video')];
+    const typeOptions = [i18n.t('label.meet.face.paid'), i18n.t('label.meet.video')];
 
-    controller.set('typeOptions', typeOptions);
-    controller.set('bookType', typeOptions[0]);
-    controller.set('dayOptions', dayOptions);
-    controller.set('bookDay', dayOptions[0]);
-    controller.set('hourOptions', calendar[0].hours);
-    controller.set('bookHour', calendar[0].hours[0]);
-    controller.set('calendar', calendar);
+    controller.setProperties({
+      typeOptions,
+      bookType: typeOptions[0],
+      dayOptions,
+      bookDay: dayOptions[0],
+      hourOptions: calendar[0].hours,
+      bookHour: calendar[0].hours[0],
+      calendar
+    });
   }
 });

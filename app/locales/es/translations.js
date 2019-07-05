@@ -11,9 +11,12 @@ export default {
     "dietafarma": "DietaFarma",
     "dietType": "Tipo de dieta",
     "meet": {
-      "face": "Presencial",
-      "video": "Videollamada (skype)",
-      "online": "Online"
+      "face": {
+        "paid": "Presencial",
+        "payLater": "Presencial (pago tras consulta)",
+      },
+      "online": "Online",
+      "video": "Videollamada (skype)"
     },
     "myProfile": "Mi perfil",
     "privateAccess": "Acceso privado",
@@ -65,6 +68,7 @@ export default {
     "paying": "Realizando el pago, espere por favor...",
     "payment": {
       "description": {
+        "L": "Dieta presencial (paga en consulta)",
         "O": "Dieta online",
         "P": "Dieta presencial",
         "V": "Dieta por video consulta (skype)"
