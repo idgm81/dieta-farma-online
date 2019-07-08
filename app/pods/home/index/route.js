@@ -44,10 +44,12 @@ export default Route.extend(AuthenticatedRouteMixin, {
     open(url) {
       window.open(url);
     },
-    delete(id) {
+    delete(appointment) {
       $('#modal-wait-delete-appointment').modal();
 
-      return this.get('api').deleteAppointment(id, true)
+      const isPaid = appointment.type === 'P' || appointment.type === 'V';
+
+      return this.get('api').deleteAppointment(appointment._id, isPaid)
         .then(() => $('#modal-delete-appointment-ok').modal())
         .catch(() => $('#modal-delete-appointment-error').modal())
         .finally(() => {

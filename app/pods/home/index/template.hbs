@@ -64,7 +64,7 @@
         </div>
         {{#if (gte (moment-diff now meet.date precision='hours') 24)}}
           <div class="panel-footer text-center">
-            <button type="button" class="btn btn-danger" {{action 'delete' (get meet '_id')}}>{{fa-icon 'trash' size='x'}}</button>
+            <button type="button" class="btn btn-danger" {{action 'delete' meet}}>{{fa-icon 'trash' size='x'}}</button>
           </div>
         {{/if}}
       </div>
