@@ -35,6 +35,21 @@ export default Controller.extend({
 
   credits: computed.reads('premiumController.data.profile.credits'),
 
+  dateLabel: computed('i18n.locale', 'type', function() {
+    const i18n = this.get('i18n');
+    const type = this.get('type');
+
+    if (type === 'V') {
+      return i18n.t('label.meet.video');
+    }
+
+    if (type === 'P') {
+      return i18n.t('label.meet.face.paid');
+    }
+
+    return '';
+  }),
+
   isCompleted: false,
 
   hasCredits: false,

@@ -58,7 +58,7 @@
                   {{#if (not-eq type 'O')}}
                     <div class="form-row">
                       <div class="form-group">
-                        <label for="diet-date">Fecha de la cita {{t (if (eq type 'P') 'label.meet.face' 'label.meet.video')}}</label>
+                        <label for="diet-date">Fecha de la cita {{dateLabel}}</label>
                         {{input id='diet-date' class='form-control' type='text' value=(moment-parse-zone date 'DD/MM/YYYY HH:mm') readonly=true}}
                       </div>
                     </div>
