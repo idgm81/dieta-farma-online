@@ -16,7 +16,7 @@
           <div class="banner-text text-center">
             <h1 class="white">PAGO DE LA DIETA</h1>
             <p>Por favor, finaliza el proceso de compra de tu dieta realizando el pago con tu tarjeta de débito o crédito</p>
-            {{#if (eq type 'P')}}
+            {{#if (and (eq type 'P') (not hasCredits))}}
               <div class="form-group">
                 <p>Si te resulta más cómodo, también puedes pagar tu dieta una vez finalice tu consulta con tu nutricionista</p>
                 <label for="optGenre1" class="radio-inline">
