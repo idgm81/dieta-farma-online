@@ -1,7 +1,7 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-body">
-      {{input type='text' value=value key-up='validate'}}
+      {{input type='text' value=value key-up=(action 'validate')}}
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-df" {{action 'save'}}>{{t 'label.save'}}</button>
