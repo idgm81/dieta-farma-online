@@ -1,8 +1,8 @@
 import Controller from '@ember/controller';
+import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { inject as controller } from '@ember/controller';
 import { get } from '@ember/object';
-import { computed }  from '@ember/object';
 import { all } from 'rsvp';
 
 export default Controller.extend({
@@ -13,13 +13,13 @@ export default Controller.extend({
 
   api: service(),
 
-  userId: computed.reads('session.data.authenticated.id'),
+  userId: reads('session.data.authenticated.id'),
 
   premiumController: controller('home.premium-services.index'),
 
-  type: computed.reads('premiumController.data.type'),
+  type: reads('premiumController.data.type'),
 
-  level: computed.reads('premiumController.data.profile.level'),
+  level: reads('premiumController.data.profile.level'),
 
   setup() {
     this.set('isMandatory', get(this, 'type') === 'O');
