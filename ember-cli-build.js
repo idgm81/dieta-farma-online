@@ -3,6 +3,10 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
+    'ember-service-worker': {
+      versionStrategy: 'every-build',
+      registrationStrategy: 'inline'
+    },
 		'ember-cli-babel': {
 			includePolyfill: true
     },
