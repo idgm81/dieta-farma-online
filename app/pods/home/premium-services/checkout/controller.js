@@ -1,10 +1,9 @@
 
 import Controller from '@ember/controller';
 import { computed }  from '@ember/object';
-import { get }  from '@ember/object';
 import { inject as service } from '@ember/service';
 import { inject as controller } from '@ember/controller';
-import { all } from 'rsvp';
+import { all, resolve, reject } from 'rsvp';
 import { DIET_PRICES } from '../constants';
 
 const CREDITS_TYPES = {
@@ -17,7 +16,7 @@ export default Controller.extend({
 
   session: service(),
 
-  stripev3: service(),
+  stripe: service('stripev3'),
 
   i18n: service(),
 
@@ -52,8 +51,6 @@ export default Controller.extend({
 
   isCompleted: false,
 
-  hasCredits: false,
-
   payLater: false,
 
   isError: false,
@@ -61,7 +58,7 @@ export default Controller.extend({
   isLoading: false,
 
   amount: computed('type', 'credits', function () {
-    return (DIET_PRICES[get(this, 'type')] - get(this, 'credits') * 15)
+    return (DIET_PRICES[this.get('type')] - this.get('credits') * 15)
   }),
 
   stripeOptions: {
@@ -97,8 +94,8 @@ export default Controller.extend({
   },
 
   setup() {
-    const credits = get(this, 'credits');
-    const type = get(this, 'type');
+    const credits = this.get('credits');
+    const type = this.get('type');
 
     this.setProperties({
       isCompleted: false,
@@ -127,32 +124,67 @@ export default Controller.extend({
     }
   },
 
-  _makePurchase(token) {
+  _makePurchase(paymentMethod) {
     const purchase = {
-      customer: get(this, 'userId'),
-      email: get(this, 'email'),
-      amount: get(this, 'amount') * 100,
-      description: this.get('i18n').t(`text.payment.description.${get(this, 'type')}`).toString(),
-      token: token.id
+      customer: this.get('userId'),
+      email: this.get('email'),
+      amount: this.get('amount') * 100,
+      description: this.get('i18n').t(`text.payment.description.${this.get('type')}`).toString(),
+      payment_method_id: paymentMethod.id
     };
 
     return this.get('api').createPurchase(purchase);
   },
 
+  _confirmPurchase(paymentIntent) {
+    return this.get('api').createPurchase({ payment_intent_id: paymentIntent.id });
+  },
+
   _makeFreePurchase() {
     return this.get('api').createFreePurchase({
-      customer: get(this, 'userId'),
-      email: get(this, 'email'),
-      description: this.get('i18n').t(`text.payment.description.${get(this, 'type')}`).toString()
+      customer: this.get('userId'),
+      email: this.get('email'),
+      description: this.get('i18n').t(`text.payment.description.${this.get('type')}`).toString()
     });
   },
 
   _makePurchasePayLater() {
     return this.get('api').createFreePurchase({
-      customer: get(this, 'userId'),
-      email: get(this, 'email'),
+      customer: this.get('userId'),
+      email: this.get('email'),
       description: this.get('i18n').t('text.payment.description.L').toString()
     });
+  },
+
+  _handlePurchaseResponse(response) {
+    if (response.error) {
+      // Show error from server on payment form
+      this.setProperties({ isLoading: false, isCompleted: true, isError: true });
+
+      return reject();
+    } else if (response.requires_action) {
+      // Use Stripe.js to handle the required card action
+     
+        return this.get('stripe').handleCardAction(response.payment_intent_client_secret)
+          .then(({ error: errorAction, paymentIntent }) => {
+            if (errorAction) {
+              // Show error from Stripe.js in payment form
+              this.setProperties({ isLoading: false, isCompleted: true, isError: true });
+      
+              return reject();
+            } else {
+              // The card action has been handled
+              // The PaymentIntent can be confirmed again on the server
+      
+              return this._confirmPurchase(paymentIntent).then(this._handlePurchaseResponse.bind(this));
+            }
+          });
+    } else {
+      // Show success message
+      this.setProperties({ isLoading: false, isCompleted: true, isError: false });
+
+      return resolve();
+    }
   },
 
   actions: {
@@ -160,9 +192,9 @@ export default Controller.extend({
       this.replaceRoute('home');
     },
 
-    confirm() {
-      const customer = get(this, 'userId');
-      const type = get(this, 'type');
+    payWithCredits() {
+      const customer = this.get('userId');
+      const type = this.get('type');
       let credits = this.decrementProperty('credits', CREDITS_TYPES[type]);
 
       this.set('isLoading', true);
@@ -172,65 +204,44 @@ export default Controller.extend({
             this.get('api').editUser(customer, 'profile.credits', credits),
             this.get('api').editUser(customer, 'profile.pendingDiet', true)])
         .then(() => this._makeFreePurchase())
-        .then(() => {
-          this.set('isLoading', false);
-          this.set('isCompleted', true);
-        })
-        .catch(() =>  {
-          this.set('isLoading', false);
-          this.set('isCompleted', true);
-          this.set('isError', true);
-        });
+        .then(() => this.setProperties({ isLoading: false, isCompleted: true, isError: false }))
+        .catch(() => this.setProperties({ isLoading: false, isCompleted: true, isError: true }));
       }
 
       const appointment = {
         customer,
         type,
-        date: get(this, 'date')
+        date: this.get('date')
       };
 
       return this.get('api').createAppointment(appointment)
         .then(() => this.get('api').editUser(customer, 'profile.credits', credits))
         .then(() => this._makeFreePurchase())
-        .then(() => {
-          this.set('isLoading', false);
-          this.set('isCompleted', true);
-        })
-        .catch(() =>  {
-          this.set('isLoading', false);
-          this.set('isCompleted', true);
-          this.set('isError', true);
-        });
+        .then(() => this.setProperties({ isLoading: false, isCompleted: true, isError: false }))
+        .catch(() => this.setProperties({ isLoading: false, isCompleted: true, isError: true }));
     },
 
     payLater() {
         this.set('isLoading', true);
 
         const appointment = {
-          customer: get(this, 'userId'),
+          customer: this.get('userId'),
           type: 'L',
-          date: get(this, 'date')
+          date: this.get('date')
         };
   
         return this.get('api').createAppointment(appointment)
           .then(() => this._makePurchasePayLater())
-          .then(() => {
-            this.set('isLoading', false);
-            this.set('isCompleted', true);
-          })
-          .catch(() =>  {
-            this.set('isLoading', false);
-            this.set('isCompleted', true);
-            this.set('isError', true);
-          });
+          .then(() => this.setProperties({ isLoading: false, isCompleted: true, isError: false }))
+          .catch(() => this.setProperties({ isLoading: false, isCompleted: true, isError: true }));
     },
 
     pay(stripeElement) {
-      const customer = get(this, 'userId');
-      const type = get(this, 'type');
-      const stripe = get(this, 'stripev3');
+      const customer = this.get('userId');
+      const type = this.get('type');
+      const stripe = this.get('stripe');
 
-      return stripe.createToken(stripeElement).then(({token, error}) => {
+      return stripe.createPaymentMethod('card', stripeElement).then(({paymentMethod, error}) => {
         if (error) {
           return;
         }
@@ -239,37 +250,19 @@ export default Controller.extend({
 
         if (type === 'O') {
           return this.get('api').editUser(customer, 'profile.pendingDiet', true)
-            .then(() => this._makePurchase(token))
-            .then(() => {
-              this.set('isLoading', false);
-              this.set('isCompleted', true);
-            }).catch(() =>  {
-              this.set('isLoading', false);
-              this.set('isCompleted', true);
-              this.set('isError', true);
-            });
+            .then(() => this._makePurchase(paymentMethod))
+            .then(this._handlePurchaseResponse.bind(this))
         }
 
         return this.get('api').createAppointment({
           customer,
           type,
-          date: get(this, 'date')
+          date: this.get('date')
         }).then(({appointment}) => {
-          return this._makePurchase(token).then(() => {
-            this.set('isLoading', false);
-            this.set('isCompleted', true);
-          }).catch(() =>  {
-            this.set('isLoading', false);
-            this.set('isCompleted', true);
-            this.set('isError', true);
-
-            return this.get('api').deleteAppointment(appointment._id, false)
-          });
-        }).catch(() =>  {
-          this.set('isLoading', false);
-          this.set('isCompleted', true);
-          this.set('isError', true);
-        });
+          return this._makePurchase(paymentMethod)
+            .then(this._handlePurchaseResponse.bind(this))
+            .catch(() => this.get('api').deleteAppointment(appointment._id, false))
+        }).catch(() => this.setProperties({ isLoading: false, isCompleted: true, isError: true }))
       });
     },
 

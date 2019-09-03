@@ -8,7 +8,7 @@ export default Controller.extend({
   DIET_PRICES,
 
   price: computed('type', function() {
-    return DIET_PRICES[get(this, 'type')]*100;
+    return DIET_PRICES[get(this, 'type')] * 100;
   }),
 
   data: {
