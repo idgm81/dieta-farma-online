@@ -1,18 +1,18 @@
 import { isArray } from '@ember/array';
 import { helper } from '@ember/component/helper';
 
-const IMAGE_PATH = '/assets/images/';
+const IMAGE_PATH = './assets/images/';
 
 /**
  * Image path function.
  *
  * @example
- *     imagePath('image.png')
- *         Returns 'assets/images/image.png'
+ *	imagePath('image.png')
+ *	Returns 'assets/images/image.png'
  *
  * @method imagePath
- * @param  {String|Array}		params  The relative path to the image
- * @return {String}									Path to the image
+ * @param  {String|Array}	params	The relative path to the image
+ * @return {String}					Path to the image
  *
  */
 export function imagePath(params = '') {

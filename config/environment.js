@@ -24,11 +24,11 @@ module.exports = function(environment) {
     moment: {
       includeLocales: ['es']
     },
-    rootURL: '/',
+    rootURL: '',
     stripe: {
       lazyLoad: true
     },
-    locationType: 'auto',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -49,7 +49,7 @@ module.exports = function(environment) {
         : `X.X`
     },
     contentSecurityPolicy: {
-      'default-src': "'none'",
+      'default-src': "'none' 'gap://ready'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
       'font-src': "'self'",
       'connect-src': "'self' 'localhost' '*.dietafarma.es' 'dieta-farma-api.herokuapp.com' 's3.eu-west-3.amazonaws.com'",

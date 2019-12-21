@@ -78,5 +78,9 @@
     "jquery-backstretch": "2.1.17",
     "loader.js": "4.7.0",
     "sass": "1.22.4"
+  },
+  "dependencies": {
+    "corber": "1.4.2",
+    "corber-ember-livereload": "0.0.2"
   }
 }
