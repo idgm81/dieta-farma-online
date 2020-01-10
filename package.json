@@ -34,7 +34,7 @@
     "broccoli-funnel": "2.0.2",
     "croppie": "2.6.4",
     "ember-ajax": "5.0.0",
-    "ember-auto-import": "1.5.2",
+    "ember-auto-import": "1.5.3",
     "ember-bootstrap-datepicker": "2.0.9",
     "ember-cli": "3.10.1",
     "ember-cli-app-version": "3.2.0",
