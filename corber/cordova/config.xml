@@ -14,6 +14,7 @@
     <allow-intent href="sms:*"/>
     <allow-intent href="mailto:*"/>
     <allow-intent href="geo:*"/>
+    <allow-intent href="skype:*"/>
     <platform name="android">
         <allow-intent href="market:*"/>
         <icon id="mdpi" src="res/icon/android/mdpi.png" density="mdpi"/>

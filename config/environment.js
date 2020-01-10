@@ -45,7 +45,7 @@ module.exports = function(environment) {
       // when it is created
       API_HOST,
       version: environment === 'production'
-        ? `${process.env.MAJOR_VERSION}.${process.env.MINOR_VERSION}`
+        ? `${process.env.DIETAFARMA_MAJOR_VERSION}.${process.env.DIETAFARMA_MINOR_VERSION}`
         : `X.X`
     },
     contentSecurityPolicy: {

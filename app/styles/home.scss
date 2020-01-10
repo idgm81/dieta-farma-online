@@ -170,6 +170,16 @@ $color-dietafarma: #25a29f;
   span {
     margin-left: 10px;
     font-weight: 700;
+    a {
+      color: white;
+      &:visited, &:active {
+        text-decoration: none;
+      }
+      &:hover {
+        text-decoration: none;
+        color: $color-dietafarma;
+      }
+    }
   }
   cursor: pointer;
 }

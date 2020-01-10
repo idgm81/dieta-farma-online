@@ -24,8 +24,7 @@
       {{#if isClient}}
           <li {{action 'showDiets'}}>{{fa-icon 'file-alt' fixedWidth=true}}<span>Mis dietas</span></li>
           <li {{action 'purchaseService'}}>{{fa-icon 'shopping-cart' fixedWidth=true}}<span>Solicitar nueva dieta</span></li>
-          <li><span class="skype-button rounded" data-color="#25a29f" data-text="Skype" data-contact-id="dietafarma"></span></li>
-          <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
+          <li>{{fa-icon 'skype' prefix='fab' fixedWidth=true}}<span><a href="skype:dietafarma?call">Videollamada</a></span></li>
       {{else}}
         <li {{action 'showMyClients'}}>{{fa-icon 'users' fixedWidth=true}}<span>Mis clientes</span></li>
         <li {{action 'showMyCalendar'}}>{{fa-icon 'calendar-alt' fixedWidth=true}}<span>Mi calendario</span></li>
