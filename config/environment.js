@@ -47,13 +47,13 @@ module.exports = function(environment) {
     },
     contentSecurityPolicy: {
       'default-src': "'none' 'gap://ready'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' 'https://js.stripe.com'",
       'font-src': "'self'",
       'connect-src': "'self' 'localhost' '*.dietafarma.es' 'dieta-farma-api.herokuapp.com' 's3.eu-west-3.amazonaws.com'",
       'img-src': "'self'",
       'report-uri':"'localhost'",
       'style-src': "'self' 'unsafe-inline'",
-      'frame-src': "'none'"
+      'frame-src': "'none' 'https://js.stripe.com'"
     }
   };
 
