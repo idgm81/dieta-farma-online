@@ -13,9 +13,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
 
   session: service(),
 
-  model(params, transition) {
+  model(_, transition) {
     const parentModel = this.modelFor('home') || {};
-    const userId = transition.queryParams.userId || this.get('session.data.authenticated.id');
+    const userId = transition.to.queryParams.userId || this.get('session.data.authenticated.id');
 
     return RSVP.hash({
       diets: this.get('api').getDiets(userId),

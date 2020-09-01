@@ -17,8 +17,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
     }
   },
 
-  model(params, transition) {
-    const userId = transition.queryParams.userId || this.get('session.data.authenticated.id');
+  model(_, transition) {
+    const userId = transition.to.queryParams.userId || this.get('session.data.authenticated.id');
 
     return this.get('api').getDiets(userId);
   }

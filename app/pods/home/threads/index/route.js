@@ -20,7 +20,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     });
   },
 
-  setupController(controller, model) {
+  setupController(controller) {
     this._super(...arguments);
 
     controller.set('isNutritionist', get(this, 'session.data.authenticated.role') === 'N');
@@ -31,6 +31,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
       const queryParams = { from: this.get('session.data.authenticated.id') }
       this.transitionTo('home.threads.new', { queryParams });
     },
+
     detail(id) {
       this.transitionTo('home.threads.thread', id);
     }
