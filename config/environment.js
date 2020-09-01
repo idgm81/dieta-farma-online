@@ -25,9 +25,6 @@ module.exports = function(environment) {
       includeLocales: ['es']
     },
     rootURL: '',
-    stripe: {
-      lazyLoad: true
-    },
     locationType: 'hash',
     EmberENV: {
       FEATURES: {
@@ -80,6 +77,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV['stripe'] = {
+      lazyLoad: true,
       publishableKey: 'pk_test_4JUWzeGkidllmepT1NL2dvG4'
     }
   }

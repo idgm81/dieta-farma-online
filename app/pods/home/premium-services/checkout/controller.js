@@ -76,16 +76,13 @@ export default Controller.extend({
           color: 'grey',
         },
       },
-
       complete: {
         color: '#25a29f'
       },
-
       empty: {
         color: '#E25950',
         'border-color': '#E25950'
       },
-
       invalid: {
         color: '#E25950',
         'border-color': '#E25950'

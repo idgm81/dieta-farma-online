@@ -24,6 +24,7 @@
   "author": "Dieta Farma ©",
   "license": "MIT",
   "devDependencies": {
+    "@adopted-ember-addons/ember-stripe-elements": "1.0.0-rc.2",
     "@fortawesome/ember-fontawesome": "0.2.1",
     "@fortawesome/free-brands-svg-icons": "5.14.0",
     "@fortawesome/free-regular-svg-icons": "5.14.0",
