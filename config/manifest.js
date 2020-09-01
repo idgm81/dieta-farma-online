@@ -34,7 +34,7 @@ module.exports = function(/* environment, appConfig */) {
       sizes: "180x180",
       type: "image/png"
     }, {
-      src: "/images/icons/apple-touch-icon.png",
+      src: "assets/images/touch/apple-touch-icon.png",
       sizes: "180x180",
       type: "image/png",
       targets: ['apple']
