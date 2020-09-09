@@ -92,7 +92,7 @@
                   searchEnabled=false
                   selected=data.birthday.day
                   options=(range 1 32)
-                  onchange=(action (mut data.birthday.day)) as |day|}}
+                  onChange=(action (mut data.birthday.day)) as |day|}}
                   {{day}}
                 {{/power-select}}
               </div>
@@ -103,7 +103,7 @@
                   searchEnabled=false
                   selected=data.birthday.month
                   options=(range 1 13)
-                  onchange=(action (mut data.birthday.month)) as |month|}}
+                  onChange=(action (mut data.birthday.month)) as |month|}}
                   {{month}}
                 {{/power-select}}
               </div>
@@ -114,7 +114,7 @@
                   searchEnabled=false
                   selected=data.birthday.year
                   options=(range birthdayYear.min birthdayYear.max)
-                  onchange=(action (mut data.birthday.year)) as |year|}}
+                  onChange=(action (mut data.birthday.year)) as |year|}}
                   {{year}}
                 {{/power-select}}
               </div>

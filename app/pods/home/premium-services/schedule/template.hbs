@@ -32,7 +32,7 @@
                     searchEnabled=false
                     selected=bookDay
                     options=dayOptions
-                    onchange=(action 'onSelectDay') as |day|}}
+                    onChange=(action 'onSelectDay') as |day|}}
                     {{moment-format day 'dddd DD [de] MMMM' 'YYYY-MM-DD'}}
                   {{/power-select}}
                 </div>
@@ -46,7 +46,7 @@
                     searchEnabled=false
                     selected=bookHour
                     options=hourOptions
-                    onchange=(action (mut bookHour)) as |hour|}}
+                    onChange=(action (mut bookHour)) as |hour|}}
                     {{hour}}
                   {{/power-select}}
                 </div>
