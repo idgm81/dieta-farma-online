@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import ENV from '../../config/environment';
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
-import { getWithDefault, get, setProperties } from '@ember/object';
+import { get, setProperties } from '@ember/object';
 import { imagePath } from 'dieta-farma-online/helpers/image-path';
 import { capitalize }  from '@ember/string';
 import { USER_ROLES } from './constants';
@@ -22,12 +22,12 @@ export default Controller.extend({
 
   avatar: reads('session.data.avatar'),
 
-  setup: function(model) {
-    const inboxThreadsUnread = getWithDefault(model, 'inboxThreads.threads', [])
+  setup(model) {
+    const inboxThreadsUnread = (model?.inboxThreads?.threads || [])
       .map((thread) => thread.unread ? 1 : 0)
       .reduce((acc, cur) => acc + cur, 0);
 
-    const avatar = getWithDefault(model, 'userData.user.profile.avatar', imagePath('default-avatar.png'));
+    const avatar = model?.userData?.user.profile.avatar || imagePath('default-avatar.png');
     const isFeatureActive = WHITE_LIST_USERS.includes(get(model, 'userData.user._id'));
 
     setProperties(this, {

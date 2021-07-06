@@ -2,7 +2,6 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import { imagePath } from 'dieta-farma-online/helpers/image-path';
-import { getWithDefault } from '@ember/object';
 
 export default Route.extend(AuthenticatedRouteMixin, {
 
@@ -19,6 +18,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
   setupController(controller, model) {
     this._super(...arguments);
 
-    controller.set('avatar', getWithDefault(model, 'user.profile.avatar', imagePath('default-avatar.png')));
+    controller.set('avatar', model?.user?.profile?.avatar || imagePath('default-avatar.png'));
   }
 });
