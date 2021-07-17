@@ -1,9 +1,10 @@
-'use strict';
+'use strict'
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   parserOptions: {
+    requireConfigFile: false,
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
@@ -44,33 +45,31 @@ module.exports = {
     'no-unused-vars': 2
   },
   overrides: [
-    // node files
     {
       files: [
         '.eslintrc.js',
         'ember-cli-build.js',
         'testem.js',
-        'config/**/*.js'
+        'config/**/*.js',
+        'tests/.eslintrc.js'
       ],
       parserOptions: {
-        sourceType: 'module',
-        ecmaVersion: 2018
+        sourceType: 'script',
+        ecmaVersion: 2015
       },
       env: {
         browser: false,
         node: true
       },
       plugins: ['node'],
-      extends: ['plugin:node/recommended'],
-      rules: {
-        'no-sync': 0,
-        'no-process-env': 0,
-        'node/shebang': 0,
-        'node/no-extraneous-require': 1,
+      rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
+        'no-import-assign': 'off',
+        // add your custom rules and overrides for node files here
+
         // this can be removed once the following is fixed
         // https://github.com/mysticatea/eslint-plugin-node/issues/77
         'node/no-unpublished-require': 'off'
-      }
+      })
     }
   ]
 };
