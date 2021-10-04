@@ -36,7 +36,7 @@
     "broccoli-asset-rev": "3.0.0",
     "broccoli-funnel": "3.0.8",
     "broccoli-merge-trees": "4.2.0",
-    "broccoli-replace": "0.12.0",
+    "broccoli-replace": "2.0.2",
     "core-js": "3.15.2",
     "croppie": "2.6.4",
     "ember-ajax": "5.0.0",
