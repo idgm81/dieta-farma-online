@@ -40,7 +40,7 @@
     "core-js": "3.15.2",
     "croppie": "2.6.4",
     "ember-ajax": "5.0.0",
-    "ember-auto-import": "1.6.0",
+    "ember-auto-import": "2.4.3",
     "ember-bootstrap-datepicker": "2.0.9",
     "ember-cli": "3.27.0",
     "ember-cli-app-version": "5.0.0",
@@ -61,7 +61,7 @@
     "ember-i18n": "5.3.0",
     "ember-inflector": "3.0.1",
     "ember-load-initializers": "2.1.2",
-    "ember-moment": "9.0.1",
+    "ember-moment": "10.0.0",
     "ember-power-calendar": "0.16.0",
     "ember-power-calendar-moment": "0.1.7",
     "ember-power-select": "4.0.3",
@@ -69,7 +69,7 @@
     "ember-qunit-assert-helpers": "0.2.2",
     "ember-radio-buttons": "5.0.0",
     "ember-resolver": "8.0.2",
-    "ember-service-worker": "0.8.0",
+    "ember-service-worker": "9.0.1",
     "ember-service-worker-asset-cache": "0.6.4",
     "ember-service-worker-index": "0.7.0",
     "ember-side-menu": "0.1.0",
@@ -89,11 +89,11 @@
     "jquery-backstretch": "2.1.17",
     "loader.js": "4.7.0",
     "mdn-polyfills": "5.20.0",
-    "moment": "2.29.1",
+    "moment": "2.29.4",
     "sass": "1.35.1"
   },
   "dependencies": {
-    "corber": "1.4.2",
+    "corber": "1.4.4",
     "corber-ember-livereload": "0.0.2"
   }
 }
