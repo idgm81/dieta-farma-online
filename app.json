@@ -2,8 +2,5 @@
   "name": "Dieta Farma Online App",
   "description": "Dieta Farma Online App",
   "repository": "https://github.com/idgm81/dieta-farma-online.git",
-  "keywords": ["ember.js", "static"],
-  "buildpacks": [
-    { "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz" }
-  ]
+  "keywords": ["ember.js", "static"]
 }
