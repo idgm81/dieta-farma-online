@@ -91,7 +91,7 @@
     "mdn-polyfills": "5.20.0",
     "moment": "2.29.4",
     "sass": "1.35.1",
-    "webpack": "5.74.0"
+    "webpack": "5.76.0"
   },
   "dependencies": {
     "corber": "1.4.4",
